@@ -1,844 +1,1135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- <title>EuroShores - The Best Beaches in Europe</title>
- <meta name="description" content="Discover Europe's most breathtaking beaches. Curated guides, ratings, and travel tips for the best shores across the continent."/>
- <link rel="preconnect" href="https://fonts.googleapis.com"/>
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
- <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
- <style>
- *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EuroShores - The Best Beaches in Europe</title>
+  <meta name="description" content="Discover Europe's most breathtaking beaches. Curated guides, ratings, and travel tips for the best shores across the continent."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ocean: #1a6b8a;
+      --ocean-dark: #0f4a63;
+      --ocean-mid: #155e78;
+      --sand: #f5e6c8;
+      --sand-light: #fdf8f0;
+      --gold: #e8a020;
+      --gold-light: #f0b840;
+      --white: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-mid: #3d4a5c;
+      --text-light: #6b7a8d;
+      --card-bg: #ffffff;
+      --border: #e8ecf0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--sand-light); overflow-x: hidden; }
 
- :root {
- --ocean: #1a6b8a;
- --ocean-dark: #0f4a63;
- --sand: #f5e6c8;
- --sand-light: #fdf8f0;
- --gold: #e8a020;
- --gold-light: #f0b840;
- --white: #ffffff;
- --text-dark: #1a1a2e;
- --text-mid: #3d4a5c;
- --text-light: #6b7a8d;
- --card-bg: #ffffff;
- --border: #e8ecf0;
- }
+    /* ====== NAVBAR ====== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+      background: rgba(8, 32, 46, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--white);
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    }
+    .nav-wave { color: var(--gold); }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.75);
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 500; transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.1); color: var(--white); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), #f5bc3a) !important;
+      color: #1a1a00 !important; font-weight: 700 !important;
+      box-shadow: 0 4px 16px rgba(232,160,32,0.4) !important;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(232,160,32,0.5) !important; }
 
- html { scroll-behavior: smooth; }
+    /* ====== HERO ====== */
+    #hero {
+      position: relative; height: 100vh; min-height: 640px;
+      display: flex; align-items: center;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,20,40,0.85) 0%, rgba(0,50,80,0.6) 55%, rgba(0,15,30,0.35) 100%);
+    }
+    .hero-overlay::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 65% 40%, rgba(26,107,138,0.25) 0%, transparent 65%);
+      animation: heroGlow 7s ease-in-out infinite alternate;
+    }
+    @keyframes heroGlow { from { opacity: 0.4 } to { opacity: 1 } }
 
- body {
- font-family: 'Inter', sans-serif;
- color: var(--text-dark);
- background: var(--sand-light);
- overflow-x: hidden;
- }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 88px; max-width: 800px;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px; padding: 9px 20px;
+      color: var(--white); font-size: 0.84rem; font-weight: 500;
+      margin-bottom: 30px;
+      animation: fadeSlideUp 0.9s ease both;
+    }
+    .tag-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px rgba(232,160,32,0.8);
+      animation: tagPulse 2s infinite;
+    }
+    @keyframes tagPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4); opacity:0.7} }
 
- /* --- NAVBAR --- */
- nav {
- position: fixed; top: 0; left: 0; right: 0; z-index: 100;
- display: flex; align-items: center; justify-content: space-between;
- padding: 0 40px; height: 64px;
- background: rgba(10, 40, 55, 0.85);
- backdrop-filter: blur(12px);
- border-bottom: 1px solid rgba(255,255,255,0.08);
- }
- .nav-brand {
- display: flex; align-items: center; gap: 10px;
- text-decoration: none; color: var(--white);
- font-family: 'Playfair Display', serif;
- font-size: 1.35rem; font-weight: 700;
- }
- .nav-links { display: flex; gap: 8px; }
- .nav-links a {
- text-decoration: none; color: rgba(255,255,255,0.8);
- padding: 8px 16px; border-radius: 8px;
- font-size: 0.9rem; font-weight: 500;
- transition: all 0.2s;
- }
- .nav-links a:hover, .nav-links a.active {
- background: rgba(255,255,255,0.15);
- color: var(--white);
- }
- .nav-cta {
- background: var(--gold) !important;
- color: var(--text-dark) !important;
- border-radius: 8px;
- font-weight: 600 !important;
- }
- .nav-cta:hover { background: var(--gold-light) !important; }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6.5vw, 6rem);
+      color: var(--white); font-weight: 700; line-height: 1.02;
+      margin-bottom: 4px;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      animation: fadeSlideUp 0.9s ease 0.2s both;
+    }
+    .hero-title-italic {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--gold); font-weight: 700; font-style: italic;
+      line-height: 1.1; margin-bottom: 28px; display: block;
+      text-shadow: 0 4px 24px rgba(232,160,32,0.5);
+      animation: fadeSlideUp 0.9s ease 0.35s both;
+    }
+    .hero-desc {
+      color: rgba(255,255,255,0.88);
+      font-size: 1.15rem; line-height: 1.75;
+      max-width: 560px; margin-bottom: 44px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+      animation: fadeSlideUp 0.9s ease 0.5s both;
+    }
+    .hero-buttons {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeSlideUp 0.9s ease 0.65s both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--ocean), #2389af);
+      color: var(--white); padding: 16px 34px;
+      border-radius: 12px; font-weight: 600; font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(26,107,138,0.55);
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(26,107,138,0.65); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.1); color: var(--white);
+      padding: 16px 34px; border-radius: 12px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(8px); transition: all 0.25s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
 
- /* --- HERO --- */
- #hero {
- position: relative; height: 100vh; min-height: 600px;
- display: flex; align-items: center;
- background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80') center/cover no-repeat;
- }
- .hero-overlay {
- position: absolute; inset: 0;
- background: linear-gradient(135deg, rgba(0,30,50,0.75) 0%, rgba(0,60,90,0.4) 60%, rgba(0,0,0,0.2) 100%);
- }
- .hero-content {
- position: relative; z-index: 1;
- padding: 0 80px; max-width: 740px;
- }
- .hero-tag {
- display: inline-flex; align-items: center; gap: 8px;
- background: rgba(255,255,255,0.15);
- backdrop-filter: blur(8px);
- border: 1px solid rgba(255,255,255,0.25);
- border-radius: 50px; padding: 8px 18px;
- color: var(--white); font-size: 0.85rem; font-weight: 500;
- margin-bottom: 28px;
- }
- .hero-title {
- font-family: 'Playfair Display', serif;
- font-size: clamp(3rem, 6vw, 5.5rem);
- color: var(--white); font-weight: 700; line-height: 1.05;
- margin-bottom: 8px;
- }
- .hero-title-italic {
- font-family: 'Playfair Display', serif;
- font-size: clamp(2.8rem, 5.5vw, 5rem);
- color: var(--gold); font-weight: 700; font-style: italic;
- line-height: 1.1; margin-bottom: 28px; display: block;
- }
- .hero-desc {
- color: rgba(255,255,255,0.88);
- font-size: 1.15rem; line-height: 1.7;
- max-width: 560px; margin-bottom: 40px;
- }
- .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
- .btn-primary {
- display: inline-flex; align-items: center; gap: 8px;
- background: var(--ocean); color: var(--white);
- padding: 15px 32px; border-radius: 10px;
- font-weight: 600; font-size: 1rem; text-decoration: none;
- border: 2px solid var(--ocean);
- transition: all 0.25s;
- }
- .btn-primary:hover { background: var(--ocean-dark); border-color: var(--ocean-dark); transform: translateY(-2px); }
- .btn-secondary {
- display: inline-flex; align-items: center; gap: 8px;
- background: rgba(255,255,255,0.12); color: var(--white);
- padding: 15px 32px; border-radius: 10px;
- font-weight: 600; font-size: 1rem; text-decoration: none;
- border: 2px solid rgba(255,255,255,0.35);
- backdrop-filter: blur(6px);
- transition: all 0.25s;
- }
- .btn-secondary:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
- .hero-scroll {
- position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
- z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
- color: rgba(255,255,255,0.6); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
- }
- .hero-scroll-line {
- width: 2px; height: 40px;
- background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
- animation: scrollPulse 2s infinite;
- }
- @keyframes scrollPulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    /* Location pills row */
+    .hero-locations {
+      position: absolute; bottom: 84px; left: 88px; right: 88px; z-index: 2;
+      display: flex; gap: 10px; flex-wrap: wrap;
+      animation: fadeSlideUp 0.9s ease 0.8s both;
+    }
+    .loc-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.09); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 50px; padding: 7px 16px;
+      color: rgba(255,255,255,0.88); font-size: 0.79rem; font-weight: 500;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .loc-pill:hover { background: rgba(255,255,255,0.18); }
 
- /* --- STATS BAR --- */
- .stats-bar {
- background: var(--ocean-dark);
- padding: 28px 80px;
- display: flex; justify-content: center; gap: 0;
- }
- .stat-item {
- display: flex; align-items: center; gap: 16px;
- padding: 0 48px;
- border-right: 1px solid rgba(255,255,255,0.12);
- }
- .stat-item:last-child { border-right: none; }
- .stat-icon { font-size: 1.8rem; }
- .stat-num {
- font-size: 1.8rem; font-weight: 700; color: var(--gold);
- font-family: 'Playfair Display', serif; line-height: 1;
- }
- .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.65); margin-top: 3px; }
+    .hero-scroll {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.45); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 2px; height: 44px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.55), transparent);
+      animation: scrollPulse 2.2s infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
 
- /* --- SECTIONS --- */
- section { padding: 90px 80px; }
- .section-label {
- display: inline-flex; align-items: center; gap: 8px;
- color: var(--ocean); font-size: 0.8rem; font-weight: 600;
- text-transform: uppercase; letter-spacing: 0.12em;
- margin-bottom: 14px;
- }
- .section-label::before {
- content: ''; display: block; width: 24px; height: 2px; background: var(--ocean);
- }
- h2 {
- font-family: 'Playfair Display', serif;
- font-size: clamp(2rem, 4vw, 3rem);
- color: var(--text-dark); line-height: 1.2; margin-bottom: 16px;
- }
- .section-desc {
- color: var(--text-light); font-size: 1.05rem; line-height: 1.7;
- max-width: 600px; margin-bottom: 50px;
- }
- .section-header {
- display: flex; justify-content: space-between; align-items: flex-end;
- margin-bottom: 50px;
- }
- .view-all {
- color: var(--ocean); font-weight: 600; text-decoration: none;
- font-size: 0.9rem; display: flex; align-items: center; gap: 6px;
- transition: gap 0.2s;
- }
- .view-all:hover { gap: 10px; }
+    /* ====== STATS BAR ====== */
+    .stats-bar {
+      background: linear-gradient(135deg, var(--ocean-dark) 0%, #0d3d55 100%);
+      padding: 38px 80px; display: flex; justify-content: center; gap: 0;
+    }
+    .stat-item {
+      display: flex; align-items: center; gap: 18px;
+      padding: 0 52px; border-right: 1px solid rgba(255,255,255,0.09);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-icon-box {
+      width: 50px; height: 50px; border-radius: 14px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-num {
+      font-size: 2rem; font-weight: 700; color: var(--gold);
+      font-family: 'Playfair Display', serif; line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 4px; }
 
- /* --- BEACH CARDS --- */
- .cards-grid {
- display: grid;
- grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
- gap: 28px;
- }
- .beach-card {
- background: var(--card-bg); border-radius: 16px;
- overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07);
- transition: transform 0.3s, box-shadow 0.3s;
- cursor: pointer;
- }
- .beach-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.13); }
- .card-img-wrap {
- position: relative; height: 220px; overflow: hidden;
- }
- .card-img-wrap img {
- width: 100%; height: 100%; object-fit: cover;
- transition: transform 0.4s;
- }
- .beach-card:hover .card-img-wrap img { transform: scale(1.05); }
- .card-badge {
- position: absolute; top: 14px; left: 14px;
- background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
- color: var(--white); font-size: 0.72rem; font-weight: 700;
- letter-spacing: 0.1em; text-transform: uppercase;
- padding: 4px 10px; border-radius: 6px;
- display: flex; align-items: center; gap: 6px;
- }
- .card-featured {
- position: absolute; top: 14px; right: 14px;
- background: var(--gold); color: var(--text-dark);
- font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
- border-radius: 6px; text-transform: uppercase; letter-spacing: 0.08em;
- }
- .card-body { padding: 22px 24px 26px; }
- .card-rating {
- display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
- }
- .rating-score {
- font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
- }
- .stars { color: var(--gold); font-size: 0.85rem; }
- .rating-count { color: var(--text-light); font-size: 0.82rem; }
- .card-type-tag {
- background: var(--sand); color: var(--text-mid);
- font-size: 0.75rem; font-weight: 500; padding: 3px 10px; border-radius: 50px;
- }
- .card-title {
- font-family: 'Playfair Display', serif;
- font-size: 1.4rem; font-weight: 700; color: var(--text-dark);
- margin-bottom: 4px;
- }
- .card-location { color: var(--text-light); font-size: 0.88rem; margin-bottom: 12px; }
- .card-desc { color: var(--text-mid); font-size: 0.9rem; line-height: 1.6; margin-bottom: 18px; }
- .card-meta {
- display: flex; gap: 20px; padding-top: 16px;
- border-top: 1px solid var(--border);
- }
- .meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-light); }
- .meta-icon { font-size: 0.9rem; }
+    /* ====== SECTIONS ====== */
+    section { padding: 96px 80px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--ocean); font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 28px; height: 2px;
+      background: linear-gradient(to right, var(--ocean), var(--gold));
+      border-radius: 2px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--text-dark); line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-desc {
+      color: var(--text-light); font-size: 1.05rem; line-height: 1.75;
+      max-width: 620px; margin-bottom: 52px;
+    }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;
+    }
+    .view-all {
+      color: var(--ocean); font-weight: 600; text-decoration: none;
+      font-size: 0.9rem; display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+    }
+    .view-all:hover { gap: 12px; color: var(--ocean-dark); }
 
- /* --- COUNTRIES SECTION --- */
- #countries { background: #f0f6fa; }
- .countries-grid {
- display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px;
- }
- .country-card {
- position: relative; border-radius: 14px; overflow: hidden;
- height: 200px; cursor: pointer;
- transition: transform 0.3s;
- }
- .country-card:hover { transform: scale(1.03); }
- .country-card img {
- width: 100%; height: 100%; object-fit: cover;
- }
- .country-overlay {
- position: absolute; inset: 0;
- background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
- display: flex; flex-direction: column; justify-content: flex-end;
- padding: 18px 16px;
- }
- .country-name { color: var(--white); font-weight: 700; font-size: 1rem; }
- .country-count { color: rgba(255,255,255,0.7); font-size: 0.78rem; }
+    /* ====== FILTER BAR ====== */
+    .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px; }
+    .filter-btn {
+      padding: 8px 20px; border-radius: 50px;
+      border: 1.5px solid var(--border); background: var(--white);
+      color: var(--text-mid); font-size: 0.84rem; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--ocean); color: var(--white); border-color: var(--ocean);
+      box-shadow: 0 4px 14px rgba(26,107,138,0.28);
+    }
 
- /* --- GUIDES --- */
- #guides { background: var(--sand-light); }
- .guides-grid {
- display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px;
- }
- .guide-card {
- background: var(--card-bg); border-radius: 16px; overflow: hidden;
- display: flex; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
- transition: transform 0.3s, box-shadow 0.3s;
- cursor: pointer;
- }
- .guide-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(0,0,0,0.12); }
- .guide-color-strip { width: 6px; flex-shrink: 0; }
- .guide-body { padding: 24px; flex: 1; }
- .guide-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
- .guide-desc { color: var(--text-light); font-size: 0.88rem; line-height: 1.6; margin-bottom: 18px; }
- .guide-meta { display: flex; gap: 16px; }
- .guide-meta span { font-size: 0.78rem; color: var(--text-light); display: flex; align-items: center; gap: 5px; }
+    /* ====== BEACH CARDS ====== */
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 28px;
+    }
+    .beach-card {
+      background: var(--card-bg); border-radius: 20px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s;
+      cursor: pointer;
+    }
+    .beach-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.15);
+    }
+    .card-img-wrap { position: relative; height: 240px; overflow: hidden; }
+    .card-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+    }
+    .beach-card:hover .card-img-wrap img { transform: scale(1.08); }
+    .card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
+      background: linear-gradient(to top, rgba(0,15,35,0.6) 0%, transparent 100%);
+      pointer-events: none; z-index: 1;
+    }
+    .card-badge {
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      background: rgba(0,0,0,0.52); backdrop-filter: blur(8px);
+      color: var(--white); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .card-featured {
+      position: absolute; top: 16px; right: 16px; z-index: 2;
+      background: linear-gradient(135deg, var(--gold), #f5bc3a);
+      color: #1a1100; font-size: 0.68rem; font-weight: 800;
+      padding: 5px 12px; border-radius: 8px; text-transform: uppercase;
+      letter-spacing: 0.08em; box-shadow: 0 4px 14px rgba(232,160,32,0.55);
+    }
+    /* Hover view overlay */
+    .card-view-overlay {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(10,50,75,0.45); backdrop-filter: blur(3px);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .beach-card:hover .card-view-overlay { opacity: 1; }
+    .view-btn {
+      background: var(--white); color: var(--ocean-dark);
+      padding: 11px 26px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700;
+      transform: translateY(10px) scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .beach-card:hover .view-btn { transform: translateY(0) scale(1); }
 
- /* --- TOP RATED --- */
- #top-rated { background: var(--ocean-dark); }
- #top-rated h2 { color: var(--white); }
- #top-rated .section-label { color: var(--gold); }
- #top-rated .section-label::before { background: var(--gold); }
- #top-rated .section-desc { color: rgba(255,255,255,0.65); }
- .top-rated-list { display: flex; flex-direction: column; gap: 16px; }
- .top-rated-item {
- display: flex; align-items: center; gap: 24px;
- background: rgba(255,255,255,0.06);
- border: 1px solid rgba(255,255,255,0.08);
- border-radius: 14px; padding: 18px 24px;
- transition: background 0.2s; cursor: pointer;
- }
- .top-rated-item:hover { background: rgba(255,255,255,0.1); }
- .rank-num {
- font-family: 'Playfair Display', serif;
- font-size: 2.5rem; font-weight: 700; color: var(--gold);
- width: 50px; text-align: center; flex-shrink: 0; line-height: 1;
- }
- .top-img { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
- .top-info { flex: 1; }
- .top-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
- .top-location { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
- .top-score {
- display: flex; flex-direction: column; align-items: center;
- gap: 4px; flex-shrink: 0;
- }
- .top-score .score { font-size: 1.6rem; font-weight: 700; color: var(--gold); line-height: 1; }
- .top-score .stars { font-size: 0.75rem; color: var(--gold); }
+    .card-body { padding: 22px 24px 26px; }
+    .card-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .card-rating { display: flex; align-items: center; gap: 7px; }
+    .rating-score { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); }
+    .stars { color: var(--gold); font-size: 0.82rem; }
+    .rating-count { color: var(--text-light); font-size: 0.8rem; }
+    .card-type-tag {
+      background: linear-gradient(135deg, #fdf1dc, #f9e8c4);
+      color: var(--text-mid); font-size: 0.72rem; font-weight: 600;
+      padding: 4px 12px; border-radius: 50px;
+      border: 1px solid rgba(232,160,32,0.2);
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px;
+    }
+    .card-location { color: var(--text-light); font-size: 0.86rem; margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+    .card-desc { color: var(--text-mid); font-size: 0.88rem; line-height: 1.65; margin-bottom: 18px; }
+    .card-meta {
+      display: flex; gap: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-light); }
 
- /* --- NEWSLETTER --- */
- #newsletter {
- background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-dark) 100%);
- text-align: center; padding: 90px 40px;
- }
- #newsletter h2 { color: var(--white); margin-bottom: 14px; }
- #newsletter .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto 40px; max-width: 500px; }
- .newsletter-form { display: flex; gap: 12px; justify-content: center; max-width: 480px; margin: 0 auto; }
- .newsletter-form input {
- flex: 1; padding: 15px 20px; border-radius: 10px;
- border: none; font-size: 1rem;
- outline: none; background: rgba(255,255,255,0.15);
- color: var(--white); backdrop-filter: blur(8px);
- }
- .newsletter-form input::placeholder { color: rgba(255,255,255,0.55); }
- .newsletter-form button {
- padding: 15px 28px; background: var(--gold); color: var(--text-dark);
- border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
- cursor: pointer; transition: background 0.2s; white-space: nowrap;
- }
- .newsletter-form button:hover { background: var(--gold-light); }
+    /* ====== WHY EUROSHORES BAND ====== */
+    #features { background: linear-gradient(160deg, #eef6fb 0%, #e4f0f8 100%); padding: 80px; }
+    .features-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px;
+    }
+    .feature-item { text-align: center; }
+    .feature-icon-wrap {
+      width: 72px; height: 72px; border-radius: 20px; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center; font-size: 2rem;
+      background: linear-gradient(135deg, rgba(26,107,138,0.12), rgba(26,107,138,0.05));
+      border: 1px solid rgba(26,107,138,0.12);
+      transition: transform 0.3s;
+    }
+    .feature-item:hover .feature-icon-wrap { transform: translateY(-4px) scale(1.06); }
+    .feature-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
+    .feature-desc { font-size: 0.87rem; line-height: 1.65; color: var(--text-light); }
 
- /* --- FOOTER --- */
- footer {
- background: #0a1e2e; color: rgba(255,255,255,0.5);
- padding: 40px 80px;
- display: flex; justify-content: space-between; align-items: center;
- flex-wrap: wrap; gap: 20px;
- }
- .footer-brand {
- font-family: 'Playfair Display', serif;
- font-size: 1.2rem; color: var(--white); font-weight: 700;
- }
- .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
- .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
- .footer-links a:hover { color: var(--white); }
- .footer-copy { font-size: 0.8rem; }
+    /* ====== COUNTRIES ====== */
+    #countries { background: #f0f6fa; }
+    .countries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+    .country-card {
+      position: relative; border-radius: 18px; overflow: hidden;
+      height: 230px; cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    }
+    .country-card:hover { transform: scale(1.04) translateY(-5px); box-shadow: 0 18px 42px rgba(0,0,0,0.18); }
+    .country-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .country-card:hover img { transform: scale(1.06); }
+    .country-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.08) 55%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 20px 18px;
+    }
+    .country-flag { font-size: 1.7rem; margin-bottom: 5px; }
+    .country-name { color: var(--white); font-weight: 700; font-size: 1.05rem; }
+    .country-count { color: rgba(255,255,255,0.62); font-size: 0.78rem; margin-top: 2px; }
 
- /* --- RESPONSIVE --- */
- @media (max-width: 768px) {
- nav { padding: 0 20px; }
- .nav-links { display: none; }
- .hero-content { padding: 0 24px; }
- section { padding: 60px 24px; }
- .stats-bar { padding: 24px 20px; flex-wrap: wrap; gap: 16px; justify-content: center; }
- .stat-item { border-right: none; padding: 0 20px; }
- .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
- .newsletter-form { flex-direction: column; }
- footer { padding: 30px 24px; flex-direction: column; text-align: center; }
- }
- </style>
+    /* ====== GUIDES ====== */
+    #guides { background: var(--sand-light); }
+    .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+    .guide-card {
+      background: var(--card-bg); border-radius: 16px; overflow: hidden;
+      display: flex; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;
+    }
+    .guide-card:hover { transform: translateY(-5px); box-shadow: 0 14px 38px rgba(0,0,0,0.12); }
+    .guide-color-strip { width: 6px; flex-shrink: 0; }
+    .guide-body { padding: 24px; flex: 1; }
+    .guide-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ocean); margin-bottom: 8px; }
+    .guide-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+    .guide-desc { color: var(--text-light); font-size: 0.87rem; line-height: 1.6; margin-bottom: 18px; }
+    .guide-meta { display: flex; gap: 16px; }
+    .guide-meta span { font-size: 0.78rem; color: var(--text-light); display: flex; align-items: center; gap: 5px; }
+
+    /* ====== TOP RATED ====== */
+    #top-rated {
+      background: linear-gradient(160deg, #08182a 0%, var(--ocean-dark) 100%);
+    }
+    #top-rated h2 { color: var(--white); }
+    #top-rated .section-label { color: var(--gold); }
+    #top-rated .section-label::before { background: var(--gold); }
+    #top-rated .section-desc { color: rgba(255,255,255,0.58); }
+    .top-rated-list { display: flex; flex-direction: column; gap: 14px; }
+    .top-rated-item {
+      display: flex; align-items: center; gap: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; padding: 18px 24px;
+      transition: all 0.25s; cursor: pointer;
+    }
+    .top-rated-item:hover { background: rgba(255,255,255,0.09); transform: translateX(8px); border-color: rgba(232,160,32,0.2); }
+    .rank-medal { font-size: 1.9rem; width: 52px; text-align: center; flex-shrink: 0; line-height: 1; }
+    .rank-num {
+      font-family: 'Playfair Display', serif; font-size: 2.2rem;
+      font-weight: 700; color: rgba(232,160,32,0.55); width: 52px;
+      text-align: center; flex-shrink: 0; line-height: 1;
+    }
+    .top-img { width: 76px; height: 76px; border-radius: 12px; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.1); }
+    .top-info { flex: 1; }
+    .top-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+    .top-location { color: rgba(255,255,255,0.48); font-size: 0.85rem; }
+    .top-score { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+    .top-score .score { font-size: 1.7rem; font-weight: 700; color: var(--gold); line-height: 1; font-family: 'Playfair Display', serif; }
+    .top-score .stars { font-size: 0.72rem; color: var(--gold); }
+
+    /* ====== NEWSLETTER ====== */
+    #newsletter {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80') center/cover no-repeat;
+      text-align: center; padding: 120px 40px; overflow: hidden;
+    }
+    #newsletter::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,24,42,0.90) 0%, rgba(12,60,88,0.85) 100%);
+    }
+    .newsletter-inner { position: relative; z-index: 1; }
+    #newsletter .section-label { color: var(--gold); justify-content: center; margin-bottom: 16px; }
+    #newsletter .section-label::before { background: var(--gold); }
+    #newsletter h2 { color: var(--white); margin-bottom: 14px; }
+    #newsletter .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 44px; max-width: 520px; }
+    .newsletter-form { display: flex; gap: 12px; justify-content: center; max-width: 500px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1; padding: 16px 22px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15); font-size: 1rem; outline: none;
+      background: rgba(255,255,255,0.12); color: var(--white); backdrop-filter: blur(10px);
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.48); }
+    .newsletter-form button {
+      padding: 16px 30px;
+      background: linear-gradient(135deg, var(--gold), #f5bc3a);
+      color: #1a1100; border: none; border-radius: 12px;
+      font-weight: 700; font-size: 1rem; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+      box-shadow: 0 6px 22px rgba(232,160,32,0.45);
+      font-family: 'Inter', sans-serif;
+    }
+    .newsletter-form button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,160,32,0.55); }
+
+    /* ====== FOOTER ====== */
+    footer { background: #050d16; color: rgba(255,255,255,0.42); padding: 52px 80px 36px; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 38px; border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 28px; flex-wrap: wrap; gap: 30px;
+    }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); font-weight: 700; margin-bottom: 10px; }
+    .footer-tagline { font-size: 0.84rem; color: rgba(255,255,255,0.38); max-width: 240px; line-height: 1.65; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .footer-links a { color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.78rem; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none; color: rgba(255,255,255,0.45);
+      transition: all 0.2s;
+    }
+    .social-btn:hover { background: var(--ocean); color: var(--white); transform: translateY(-2px); }
+
+    /* ====== SCROLL REVEAL ====== */
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(26px) } to { opacity: 1; transform: none } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+    .reveal-d6 { transition-delay: 0.48s; }
+    .reveal-d7 { transition-delay: 0.56s; }
+    .reveal-d8 { transition-delay: 0.64s; }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 1100px) {
+      .features-inner { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px; }
+      .hero-locations { left: 24px; right: 24px; bottom: 68px; }
+      section { padding: 64px 24px; }
+      #features { padding: 60px 24px; }
+      .stats-bar { padding: 28px 20px; flex-wrap: wrap; gap: 20px; justify-content: center; }
+      .stat-item { border-right: none; padding: 0 22px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .features-inner { grid-template-columns: 1fr 1fr; gap: 22px; }
+      .newsletter-form { flex-direction: column; }
+      footer { padding: 40px 24px 28px; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
- <!-- NAVBAR -->
- <nav>
- <a href="#hero" class="nav-brand">
- EuroShores
- </a>
- <div class="nav-links">
- <a href="#hero" class="active">Home</a>
- <a href="#beaches">Beaches</a>
- <a href="#countries">Countries</a>
- <a href="#guides">Guides</a>
- <a href="#top-rated">Top Rated</a>
- <a href="#newsletter" class="nav-cta">Subscribe</a>
- </div>
- </nav>
+<!-- NAVBAR -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <span class="nav-wave">ð</span> EuroShores
+  </a>
+  <div class="nav-links">
+    <a href="#hero" class="active">Home</a>
+    <a href="#beaches">Beaches</a>
+    <a href="#countries">Countries</a>
+    <a href="#guides">Guides</a>
+    <a href="#top-rated">Top Rated</a>
+    <a href="#newsletter" class="nav-cta">Subscribe</a>
+  </div>
+</nav>
 
- <!-- HERO -->
- <section id="hero">
- <div class="hero-overlay"></div>
- <div class="hero-content">
- <div class="hero-tag">Discover Europe's Finest Shores</div>
- <h1 class="hero-title">The Best Beaches</h1>
- <span class="hero-title-italic">in Europe</span>
- <p class="hero-desc">From the turquoise lagoons of Greece to the wild Atlantic shores of Portugal - your ultimate guide to Europe's most breathtaking beaches.</p>
- <div class="hero-buttons">
- <a href="#beaches" class="btn-primary">Explore Beaches -></a>
- <a href="#guides" class="btn-secondary">Read Guides</a>
- </div>
- </div>
- <div class="hero-scroll">
- <div class="hero-scroll-line"></div>
- SCROLL
- </div>
- </section>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="tag-dot"></span>
+      Discover Europe's Finest Shores
+    </div>
+    <h1 class="hero-title">The Best Beaches</h1>
+    <span class="hero-title-italic">in Europe</span>
+    <p class="hero-desc">From the turquoise lagoons of Greece to the wild Atlantic shores of Portugal â your ultimate guide to Europe's most breathtaking beaches.</p>
+    <div class="hero-buttons">
+      <a href="#beaches" class="btn-primary">Explore Beaches â</a>
+      <a href="#guides" class="btn-secondary">Read Guides</a>
+    </div>
+  </div>
+  <div class="hero-locations">
+    <div class="loc-pill">ð¬ð· Greece</div>
+    <div class="loc-pill">ð®ð¹ Italy</div>
+    <div class="loc-pill">ðªð¸ Spain</div>
+    <div class="loc-pill">ðµð¹ Portugal</div>
+    <div class="loc-pill">ð­ð· Croatia</div>
+    <div class="loc-pill">ð«ð· France</div>
+    <div class="loc-pill">ð²ðª Montenegro</div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    SCROLL
+  </div>
+</section>
 
- <!-- STATS BAR -->
- <div class="stats-bar">
- <div class="stat-item">
- <div>
- <div class="stat-num">25+</div>
- <div class="stat-label">Curated Beaches</div>
- </div>
- </div>
- <div class="stat-item">
- <div>
- <div class="stat-num">12</div>
- <div class="stat-label">Countries Covered</div>
- </div>
- </div>
- <div class="stat-item">
- <div>
- <div class="stat-num">6</div>
- <div class="stat-label">Expert Guides</div>
- </div>
- </div>
- <div class="stat-item">
- <span class="stat-icon">&#9733;</span>
- <div>
- <div class="stat-num">4.8&#9733;</div>
- <div class="stat-label">Average Rating</div>
- </div>
- </div>
- </div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-icon-box">ðï¸</div>
+    <div>
+      <div class="stat-num">27+</div>
+      <div class="stat-label">Curated Beaches</div>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-box">ð</div>
+    <div>
+      <div class="stat-num">12</div>
+      <div class="stat-label">Countries Covered</div>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-box">ð</div>
+    <div>
+      <div class="stat-num">8</div>
+      <div class="stat-label">Expert Guides</div>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-box">â­</div>
+    <div>
+      <div class="stat-num">4.8â</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+  </div>
+</div>
 
- <!-- FEATURED BEACHES -->
- <section id="beaches">
- <div class="section-header">
- <div>
- <div class="section-label">Hand-picked for you</div>
- <h2>Featured Beaches</h2>
- <p class="section-desc" style="margin-bottom:0">Our editors' top picks - the beaches that will leave you speechless.</p>
- </div>
- <a href="#top-rated" class="view-all">View all -></a>
- </div>
+<!-- FEATURED BEACHES -->
+<section id="beaches">
+  <div class="section-header">
+    <div>
+      <div class="section-label reveal">Hand-picked for you</div>
+      <h2 class="reveal reveal-d1">Featured Beaches</h2>
+      <p class="section-desc reveal reveal-d2" style="margin-bottom:0">Our editors' top picks â the beaches that will leave you speechless.</p>
+    </div>
+    <a href="#top-rated" class="view-all reveal">View all â</a>
+  </div>
 
- <div class="cards-grid">
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" onclick="filterCards(this,'all')">All Beaches</button>
+    <button class="filter-btn" onclick="filterCards(this,'sandy')">ð Sandy</button>
+    <button class="filter-btn" onclick="filterCards(this,'rocky')">ðª¨ Rocky Cove</button>
+    <button class="filter-btn" onclick="filterCards(this,'pebble')">âª Pebble</button>
+    <button class="filter-btn" onclick="filterCards(this,'pink')">ð¸ Pink Sand</button>
+  </div>
 
- <!-- Card 1 -->
- <div class="beach-card">
- <div class="card-img-wrap">
- <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Navagio Beach, Greece" loading="lazy"/>
- <div class="card-badge"> GREECE</div>
- <div class="card-featured">&#9733; FEATURED</div>
- </div>
- <div class="card-body">
- <div class="card-rating">
- <span class="rating-score">4.9</span>
- <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
- <span class="rating-count">(148)</span>
- <span class="card-type-tag">Sandy Beach</span>
- </div>
- <div class="card-title">Navagio Beach</div>
- <div class="card-location">Zakynthos, Greece</div>
- <div class="card-desc">The iconic Shipwreck Beach, enclosed by soaring white limestone cliffs - arguably the most photographed beach in the world.</div>
- <div class="card-meta">
- <span class="meta-item">June - September</span>
- <span class="meta-item">26&deg;C</span>
- <span class="meta-item">Moderate</span>
- </div>
- </div>
- </div>
+  <div class="cards-grid">
 
- <!-- Card 2 -->
- <div class="beach-card">
- <div class="card-img-wrap">
- <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80" alt="Positano Beach, Italy" loading="lazy"/>
- <div class="card-badge"> ITALY</div>
- <div class="card-featured">&#9733; FEATURED</div>
- </div>
- <div class="card-body">
- <div class="card-rating">
- <span class="rating-score">4.7</span>
- <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
- <span class="rating-count">(203)</span>
- <span class="card-type-tag">Mixed Beach</span>
- </div>
- <div class="card-title">Spiaggia Grande</div>
- <div class="card-location">Amalfi Coast, Italy</div>
- <div class="card-desc">Nestled beneath the pastel-coloured cliffside village of Positano - one of the most dramatic and romantic settings in Europe.</div>
- <div class="card-meta">
- <span class="meta-item">May - October</span>
- <span class="meta-item">23&deg;C</span>
- <span class="meta-item">Easy</span>
- </div>
- </div>
- </div>
+    <!-- Card 1: Navagio -->
+    <div class="beach-card reveal reveal-d1" data-type="sandy">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Navagio Beach, Greece" loading="lazy"/>
+        <div class="card-badge">ð¬ð· Greece</div>
+        <div class="card-featured">â Featured</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.9</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(148)</span>
+          </div>
+          <span class="card-type-tag">Sandy Beach</span>
+        </div>
+        <div class="card-title">Navagio Beach</div>
+        <div class="card-location">ð Zakynthos, Greece</div>
+        <div class="card-desc">The iconic Shipwreck Beach, enclosed by soaring white limestone cliffs â arguably the most photographed beach in the world.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð JuneâSeptember</span>
+          <span class="meta-item">ð¡ 26Â°C</span>
+          <span class="meta-item">ð¥¾ Moderate</span>
+        </div>
+      </div>
+    </div>
 
- <!-- Card 3 -->
- <div class="beach-card">
- <div class="card-img-wrap">
- <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Elafonissi, Crete" loading="lazy"/>
- <div class="card-badge"> GREECE</div>
- <div class="card-featured">&#9733; FEATURED</div>
- </div>
- <div class="card-body">
- <div class="card-rating">
- <span class="rating-score">4.8</span>
- <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
- <span class="rating-count">(175)</span>
- <span class="card-type-tag">Pink Sand</span>
- </div>
- <div class="card-title">Elafonissi Beach</div>
- <div class="card-location">Crete, Greece</div>
- <div class="card-desc">A rare pink-sand lagoon at the southwestern tip of Crete, where shallow crystal-clear waters meet rose-tinted sands.</div>
- <div class="card-meta">
- <span class="meta-item">May - October</span>
- <span class="meta-item">25&deg;C</span>
- <span class="meta-item">Easy</span>
- </div>
- </div>
- </div>
+    <!-- Card 2: Spiaggia Grande -->
+    <div class="beach-card reveal reveal-d2" data-type="sandy">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80" alt="Positano Beach, Italy" loading="lazy"/>
+        <div class="card-badge">ð®ð¹ Italy</div>
+        <div class="card-featured">â Featured</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.7</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(203)</span>
+          </div>
+          <span class="card-type-tag">Mixed Beach</span>
+        </div>
+        <div class="card-title">Spiaggia Grande</div>
+        <div class="card-location">ð Amalfi Coast, Italy</div>
+        <div class="card-desc">Nestled beneath the pastel-coloured cliffside village of Positano â one of the most dramatic and romantic settings in Europe.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð MayâOctober</span>
+          <span class="meta-item">ð¡ 23Â°C</span>
+          <span class="meta-item">ð¥¾ Easy</span>
+        </div>
+      </div>
+    </div>
 
- <!-- Card 4 -->
- <div class="beach-card">
- <div class="card-img-wrap">
- <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Praia da Marinha, Portugal" loading="lazy"/>
- <div class="card-badge"> PORTUGAL</div>
- </div>
- <div class="card-body">
- <div class="card-rating">
- <span class="rating-score">4.6</span>
- <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
- <span class="rating-count">(119)</span>
- <span class="card-type-tag">Rocky Cove</span>
- </div>
- <div class="card-title">Praia da Marinha</div>
- <div class="card-location">Algarve, Portugal</div>
- <div class="card-desc">Dramatic golden limestone arches frame this hidden gem on the Algarve coast - one of the most beautiful beaches in all of Portugal.</div>
- <div class="card-meta">
- <span class="meta-item">June - September</span>
- <span class="meta-item">22&deg;C</span>
- <span class="meta-item">Moderate</span>
- </div>
- </div>
- </div>
+    <!-- Card 3: Elafonissi -->
+    <div class="beach-card reveal reveal-d3" data-type="pink">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Elafonissi, Crete" loading="lazy"/>
+        <div class="card-badge">ð¬ð· Greece</div>
+        <div class="card-featured">â Featured</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+    0     <div class="card-rating">
+            <span class="rating-score">4.8</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(175)</span>
+          </div>
+          <span class="card-type-tag">Pink Sand</span>
+        </div>
+        <div class="card-title">Elafonissi Beach</div>
+        <div class="card-location">ð Crete, Greece</div>
+        <div class="card-desc">A rare pink-sand lagoon at the southwestern tip of Crete, where shallow crystal-clear waters meet rose-tinted sands.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð MayâOctober</span>
+          <span class="meta-item">ð¡ 25Â°C</span>
+          <span class="meta-item">ð¥¾ Easy</span>
+        </div>
+      </div>
+    </div>
 
- <!-- Card 5 -->
- <div class="beach-card">
- <div class="card-img-wrap">
- <img src="https://images.unsplash.com/photo-1528150177508-7cc0c36cda5c?w=600&q=80" alt="Es Trenc, Mallorca" loading="lazy"/>
- <div class="card-badge"> SPAIN</div>
- </div>
- <div class="card-body">
- <div class="card-rating">
- <span class="rating-score">4.7</span>
- <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
- <span class="rating-count">(162)</span>
- <span class="card-type-tag">Sandy Beach</span>
- </div>
- <div class="card-title">Es Trenc</div>
- <div class="card-location">Mallorca, Spain</div>
- <div class="card-desc">Mallorca's finest untouched beach - miles of pristine white sand, turquoise shallow water, and no high-rise hotels in sight.</div>
- <div class="card-meta">
- <span class="meta-item">May - October</span>
- <span class="meta-item">24&deg;C</span>
- <span class="meta-item">Easy</span>
- </div>
- </div>
- </div>
+    <!-- Card 4: Praia da Marinha -->
+    <div class="beach-card reveal reveal-d4" data-type="rocky">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Praia da Marinha, Portugal" loading="lazy"/>
+        <div class="card-badge">ðµð¹ Portugal</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.6</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(119)</span>
+          </div>
+          <span class="card-type-tag">Rocky Cove</span>
+        </div>
+        <div class="card-title">Praia da Marinha</div>
+        <div class="card-location">ð Algarve, Portugal</div>
+        <div class="card-desc">Dramatic golden limestone arches frame this hidden gem on the Algarve coast â one of the most beautiful beaches in all of Portugal.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð JuneâSeptember</span>
+          <span class="meta-item">ð¡ 22Â°C</span>
+          <span class="meta-item">ð¥¾ Moderate</span>
+        </div>
+      </div>
+    </div>
 
- <!-- Card 6 -->
- <div class="beach-card">
- <div class="card-img-wrap">
- <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80" alt="Budva Beach, Montenegro" loading="lazy"/>
- <div class="card-badge"> MONTENEGRO</div>
- </div>
- <div class="card-body">
- <div class="card-rating">
- <span class="rating-score">4.5</span>
- <span class="stars">&#9733;&#9733;&#9733;&#9733;&frac12;</span>
- <span class="rating-count">(88)</span>
- <span class="card-type-tag">Pebble Beach</span>
- </div>
- <div class="card-title">Sveti Stefan</div>
- <div class="card-location">Budva Riviera, Montenegro</div>
- <div class="card-desc">A fairytale island-village connected to the mainland by a narrow isthmus of pink pebbles and crystal-clear Adriatic water.</div>
- <div class="card-meta">
- <span class="meta-item">June - September</span>
- <span class="meta-item">25&deg;C</span>
- <span class="meta-item">Easy</span>
- </div>
- </div>
- </div>
+    <!-- Card 5: Es Trenc -->
+    <div class="beach-card reveal reveal-d5" data-type="sandy">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1528150177508-7cc0c36cda5c?w=600&q=80" alt="Es Trenc, Mallorca" loading="lazy"/>
+        <div class="card-badge">ðªð¸ Spain</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.7</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(162)</span>
+          </div>
+          <span class="card-type-tag">Sandy Beach</span>
+        </div>
+        <div class="card-title">Es Trenc</div>
+        <div class="card-location">ð Mallorca, Spain</div>
+        <div class="card-desc">Mallorca's finest untouched beach â miles of pristine white sand, turquoise shallow water, and no high-rise hotels in sight.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð MayâOctober</span>
+          <span class="meta-item">ð¡ 24Â°C</span>
+          <span class="meta-item">ð¥¾ Easy</span>
+        </div>
+      </div>
+    </div>
 
- </div>
- </section>
+    <!-- Card 6: Sveti Stefan -->
+    <div class="beach-card reveal reveal-d6" data-type="pebble">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80" alt="Sveti Stefan, Montenegro" loading="lazy"/>
+        <div class="card-badge">ð²ðª Montenegro</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.5</span>
+            <span class="stars">ââââÂ½</span>
+            <span class="rating-count">(88)</span>
+          </div>
+          <span class="card-type-tag">Pebble Beach</span>
+    0   </div>
+        <div class="card-title">Sveti Stefan</div>
+        <div class="card-location">ð Budva Riviera, Montenegro</div>
+        <div class="card-desc">A fairytale island-village connected to the mainland by a narrow isthmus of pink pebbles and crystal-clear Adriatic water.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð JuneâSeptember</span>
+          <span class="meta-item">ð¡ 25Â°C</span>
+          <span class="meta-item">ð¥¾ Easy</span>
+        </div>
+      </div>
+    </div>
 
- <!-- COUNTRIES -->
- <section id="countries">
- <div class="section-label">Explore by destination</div>
- <h2>Browse by Country</h2>
- <p class="section-desc">12 countries, hundreds of perfect shores - where will you go?</p>
- <div class="countries-grid">
- <div class="country-card">
- <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt="Greece"/>
- <div class="country-overlay">
- <div class="country-name">Greece</div>
- <div class="country-count">7 beaches</div>
- </div>
- </div>
- <div class="country-card">
- <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=80" alt="Italy"/>
- <div class="country-overlay">
- <div class="country-name">Italy</div>
- <div class="country-count">5 beaches</div>
- </div>
- </div>
- <div class="country-card">
- <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Spain"/>
- <div class="country-overlay">
- <div class="country-name">Spain</div>
- <div class="country-count">4 beaches</div>
- </div>
- </div>
- <div class="country-card">
- <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Portugal"/>
- <div class="country-overlay">
- <div class="country-name">Portugal</div>
- <div class="country-count">3 beaches</div>
- </div>
- </div>
- <div class="country-card">
- <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=400&q=80" alt="Croatia"/>
- <div class="country-overlay">
- <div class="country-name">Croatia</div>
- <div class="country-count">3 beaches</div>
- </div>
- </div>
- <div class="country-card">
- <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=80" alt="France"/>
- <div class="country-overlay">
- <div class="country-name">France</div>
- <div class="country-count">2 beaches</div>
- </div>
- </div>
- </div>
- </section>
+    <!-- Card 7 NEW: Zlatni Rat -->
+    <div class="beach-card reveal reveal-d7" data-type="pebble">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80" alt="Zlatni Rat, Croatia" loading="lazy"/>
+        <div class="card-badge">ð­ð· Croatia</div>
+        <div class="card-featured">â¦ New</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.8</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(211)</span>
+          </div>
+          <span class="card-type-tag">Pebble Beach</span>
+        </div>
+        <div class="card-title">Zlatni Rat</div>
+        <div class="card-location">ð BraÄ Island, Croatia</div>
+        <div class="card-desc">The famous "Golden Horn" â a distinctive pebble cape that juts into the Adriatic and magically shifts shape with the currents and winds.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð MayâOctober</span>
+          <span class="meta-item">ð¡ 26Â°C</span>
+          <span class="meta-item">ð¥¾ Easy</span>
+        </div>
+      </div>
+    </div>
 
- <!-- GUIDES -->
- <section id="guides">
- <div class="section-header">
- <div>
- <div class="section-label">Expert advice</div>
- <h2>Travel Guides</h2>
- <p class="section-desc" style="margin-bottom:0">Everything you need to plan the perfect beach holiday.</p>
- </div>
- <a href="#newsletter" class="view-all">Get all guides -></a>
- </div>
- <div class="guides-grid">
- <div class="guide-card">
- <div class="guide-color-strip" style="background:#1a6b8a"></div>
- <div class="guide-body">
- <div class="guide-category">Seasonal</div>
- <div class="guide-title">Best Time to Visit Each Country</div>
- <div class="guide-desc">Month-by-month breakdown of weather, crowds, and pricing across every European beach destination.</div>
- <div class="guide-meta">
- <span>8 min read</span>
- <span>All countries</span>
- </div>
- </div>
- </div>
- <div class="guide-card">
- <div class="guide-color-strip" style="background:#e8a020"></div>
- <div class="guide-body">
- <div class="guide-category">Budget</div>
- <div class="guide-title">Budget Beach Holidays in Europe</div>
- <div class="guide-desc">How to find paradise without breaking the bank - hidden gems, cheap eats, and free beach access tips.</div>
- <div class="guide-meta">
- <span>6 min read</span>
- <span>12 countries</span>
- </div>
- </div>
- </div>
- <div class="guide-card">
- <div class="guide-color-strip" style="background:#2ecc71"></div>
- <div class="guide-body">
- <div class="guide-category">Family</div>
- <div class="guide-title">Best Family-Friendly Beaches</div>
- <div class="guide-desc">Shallow waters, safe conditions, and kid-friendly facilities - the top beaches to visit with your family.</div>
- <div class="guide-meta">
- <span>5 min read</span>
- <span>10 beaches</span>
- </div>
- </div>
- </div>
- <div class="guide-card">
- <div class="guide-color-strip" style="background:#9b59b6"></div>
- <div class="guide-body">
- <div class="guide-category">Active</div>
- <div class="guide-title">Top Beaches for Water Sports</div>
- <div class="guide-desc">Surfing, windsurfing, snorkelling, and diving - the best active beach destinations across Europe.</div>
- <div class="guide-meta">
- <span>7 min read</span>
- <span>8 beaches</span>
- </div>
- </div>
- </div>
- <div class="guide-card">
- <div class="guide-color-strip" style="background:#e74c3c"></div>
- <div class="guide-body">
- <div class="guide-category">Romance</div>
- <div class="guide-title">Most Romantic Beach Getaways</div>
- <div class="guide-desc">Secluded coves, sunset views, and candlelit seafood restaurants - the most romantic shorelines in Europe.</div>
- <div class="guide-meta">
- <span>6 min read</span>
- <span>7 beaches</span>
- </div>
- </div>
- </div>
- <div class="guide-card">
- <div class="guide-color-strip" style="background:#1abc9c"></div>
- <div class="guide-body">
- <div class="guide-category">Diving</div>
- <div class="guide-title">Best Snorkelling & Diving Spots</div>
- <div class="guide-desc">Crystal-clear waters, marine life, and underwater caves - Europe's top spots for exploring beneath the surface.</div>
- <div class="guide-meta">
- <span>9 min read</span>
- <span>6 locations</span>
- </div>
- </div>
- </div>
- </div>
- </section>
+    <!-- Card 8 NEW: Myrtos Beach -->
+    <div class="beach-card reveal reveal-d8" data-type="pebble">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80" alt="Myrtos Beach, Kefalonia" loading="lazy"/>
+        <div class="card-badge">ð¬ð· Greece</div>
+        <div class="card-featured">â¦ New</div>
+        <div class="card-view-overlay"><div class="view-btn">View Beach â</div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top-row">
+          <div class="card-rating">
+            <span class="rating-score">4.9</span>
+            <span class="stars">âââââ</span>
+            <span class="rating-count">(193)</span>
+      0   </div>
+          <span class="card-type-tag">Pebble Beach</span>
+        </div>
+        <div class="card-title">Myrtos Beach</div>
+        <div class="card-location">ð Kefalonia, Greece</div>
+        <div class="card-desc">Consistently ranked among Europe's most beautiful beaches â gleaming white pebbles meet the most intense shade of turquoise blue imaginable, framed by towering cliffs.</div>
+        <div class="card-meta">
+          <span class="meta-item">ð JuneâSeptember</span>
+          <span class="meta-item">ð¡ 27Â°C</span>
+          <span class="meta-item">ð¥¾ Moderate</span>
+        </div>
+      </div>
+    </div>
 
- <!-- TOP RATED -->
- <section id="top-rated">
- <div class="section-label">Community favourites</div>
- <h2>Top Rated Beaches</h2>
- <p class="section-desc">Ranked by thousands of verified visitors - the beaches with the highest scores.</p>
- <div class="top-rated-list">
+  </div>
+</section>
 
- <div class="top-rated-item">
- <div class="rank-num">1</div>
- <img class="top-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=80" alt="Navagio"/>
- <div class="top-info">
- <div class="top-name">Navagio Beach</div>
- <div class="top-location"> Zakynthos, Greece</div>
- </div>
- <div class="top-score"><span class="score">4.9</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
- </div>
+<!-- WHY EUROSHORES FEATURE BAND -->
+<div id="features">
+  <div style="text-align:center; margin-bottom:48px;">
+    <div class="section-label reveal" style="justify-content:center">Why EuroShores</div>
+    <h2 class="reveal reveal-d1">Your Expert Beach Companion</h2>
+  </div>
+  <div class="features-inner">
+    <div class="feature-item reveal reveal-d1">
+      <div class="feature-icon-wrap">ð</div>
+      <div class="feature-title">Expert Curation</div>
+      <div class="feature-desc">Every beach is personally vetted by our travel editors â no paid placements, just genuinely great shores.</div>
+    </div>
+    <div class="feature-item reveal reveal-d2">
+      <div class="feature-icon-wrap">â­</div>
+      <div class="feature-title">Verified Ratings</div>
+      <div class="feature-desc">Ratings sourced from thousands of real visitor reviews, giving you an honest picture before you travel.</div>
+    </div>
+    <div class="feature-item reveal reveal-d3">
+      <div class="feature-icon-wrap">ðºï¸</div>
+      <div class="feature-title">Practical Guides</div>
+      <div class="feature-desc">Season tips, access routes, nearby accommodation and food â everything you need, all in one place.</div>
+    </div>
+    <div class="feature-item reveal reveal-d4">
+      <div class="feature-icon-wrap">ð±</div>
+      <div class="feature-title">Eco Conscious</div>
+      <div class="feature-desc">We highlight beaches with strong conservation efforts and share tips for low-impact visits.</div>
+    </div>
+  </div>
+</div>
 
- <div class="top-rated-item">
- <div class="rank-num">2</div>
- <img class="top-img" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200&q=80" alt="Elafonissi"/>
- <div class="top-info">
- <div class="top-name">Elafonissi Beach</div>
- <div class="top-location"> Crete, Greece</div>
- </div>
- <div class="top-score"><span class="score">4.8</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
- </div>
+<!-- COUNTRIES -->
+<section id="countries">
+  <div class="section-label reveal">Explore by destination</div>
+  <h2 class="reveal reveal-d1">Browse by Country</h2>
+  <p class="section-desc reveal reveal-d2">12 countries, hundreds of perfect shores â where will you go?</p>
+  <div class="countries-grid">
+    <div class="country-card reveal reveal-d1">
+      <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt="Greece"/>
+      <div class="country-overlay">
+        <div class="country-flag">ð¬ð·</div>
+        <div class="country-name">Greece</div>
+        <div class="country-count">9 beaches</div>
+      </div>
+    </div>
+    <div class="country-card reveal reveal-d2">
+      <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=80" alt="Italy"/>
+      <div class="country-overlay">
+        <div class="country-flag">ð®ð¹</div>
+        <div class="country-name">Italy</div>
+        <div class="country-count">5 beaches</div>
+      </div>
+    </div>
+    <div class="country-card reveal reveal-d3">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Spain"/>
+     0<div class="country-overlay">
+        <div class="country-flag">ðªð¸</div>
+        <div class="country-name">Spain</div>
+        <div class="country-count">4 beaches</div>
+      </div>
+    </div>
+    <div class="country-card reveal reveal-d4">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Portugal"/>
+      <div class="country-overlay">
+        <div class="country-flag">ðµð¹</div>
+        <div class="country-name">Portugal</div>
+        <div class="country-count">3 beaches</div>
+      </div>
+    </div>
+    <div class="country-card reveal reveal-d5">
+      <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=400&q=80" alt="Croatia"/>
+      <div class="country-overlay">
+        <div class="country-flag">ð­ð·</div>
+        <div class="country-name">Croatia</div>
+        <div class="country-count">4 beaches</div>
+      </div>
+    </div>
+    <div class="country-card reveal reveal-d6">
+      <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=80" alt="France"/>
+      <div class="country-overlay">
+        <div class="country-flag">ð«ð·</div>
+        <div class="country-name">France</div>
+        <div class="country-count">2 beaches</div>
+      </div>
+    </div>
+  </div>
+</section>
 
- <div class="top-rated-item">
- <div class="rank-num">3</div>
- <img class="top-img" src="https://images.unsplash.com/photo-1528150177508-7cc0c36cda5c?w=200&q=80" alt="Es Trenc"/>
- <div class="top-info">
- <div class="top-name">Es Trenc</div>
- <div class="top-location"> Mallorca, Spain</div>
- </div>
- <div class="top-score"><span class="score">4.7</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
- </div>
+<!-- GUIDES -->
+<section id="guides">
+  <div class="section-header">
+    <div>
+      <div class="section-label reveal">Expert advice</div>
+      <h2 class="reveal reveal-d1">Travel Guides</h2>
+     0<p class="section-desc reveal reveal-d2" style="margin-bottom:0">Everything you need to plan the perfect beach holiday.</p>
+    </div>
+    <a href="#newsletter" class="view-all reveal">Get all guides â</a>
+  </div>
+  <div class="guides-grid">
+    <div class="guide-card reveal reveal-d1">
+      <div class="guide-color-strip" style="background:#1a6b8a"></div>
+      <div class="guide-body">
+        <div class="guide-category">Seasonal</div>
+        <div class="guide-title">Best Time to Visit Each Country</div>
+        <div class="guide-desc">Month-by-month breakdown of weather, crowds, and pricing across every European beach destination.</div>
+        <div class="guide-meta"><span>ð 8 min read</span><span>ð All countries</span></div>
+      </div>
+    </div>
+    <div class="guide-card reveal reveal-d2">
+      <div class="guide-color-strip" style="background:#e8a020"></div>
+      <div class="guide-body">
+        <div class="guide-category">Budget</div>
+        <div class="guide-title">Budget Beach Holidays in Europe</div>
+        <div class="guide-desc">How to find paradise without breaking the bank â hidden gems, cheap eats, and free beach access tips.</div>
+        <div class="guide-meta"><span>ð 6 min read</span><span>ð 12 countries</span></div>
+      </div>
+    </div>
+    <div class="guide-card reveal reveal-d3">
+      <div class="guide-color-strip" style="background:#2ecc71"></div>
+      <div class="guide-body">
+        <div class="guide-category">Family</div>
+        <div class="guide-title">Best Family-Friendly Beaches</div>
+        <div class="guide-desc">Shallow waters, safe conditions, and kid-friendly facilities â the top beaches to visit with your family.</div>
+        <div class="guide-meta"><span>ð 5 min read</span><span>ð 10 beaches</span></div>
+      </div>
+    </div>
+    <div class="guide-card reveal reveal-d4">
+      <div class="guide-color-strip" style="background:#9b59b6"></div>
+      <div class="guide-body">
+        <div class="guide-category">Active</div>
+        <div class="guide-title">Top Beaches for Water Sports</div>
+        <div class="guide-desc">Surfing, windsurfing, snorkelling, and diving â the best active beach destinations across Europe.</div>
+        <div class="guide-meta"><span>ð 7 min read</span><span>ð 8 beaches</span></div>
+      </div>
+    </div>
+    <div class="guide-card reveal reveal-d5">
+      <div class="guide-color-strip" style="background:#e74c3c"></div>
+      <div class="guide-body">
+        <div class="guide-category">Romance</div>
+        <div class="guide-title">Most Romantic Beach Getaways</div>
+   0    <div class="guide-desc">Secluded coves, sunset views, and candlelit seafood restaurants â the most romantic shorelines in Europe.</div>
+        <div class="guide-meta"><span>ð 6 min read</span><span>ð 7 beaches</span></div>
+      </div>
+    </div>
+    <div class="guide-card reveal reveal-d6">
+      <div class="guide-color-strip" style="background:#1abc9c"></div>
+      <div class="guide-body">
+        <div class="guide-category">Diving</div>
+        <div class="guide-title">Best Snorkelling &amp; Diving Spots</div>
+        <div class="guide-desc">Crystal-clear waters, marine life, and underwater caves â Europe's top spots for exploring beneath the surface.</div>
+        <div class="guide-meta"><span>ð 9 min read</span><span>ð 6 locations</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
- <div class="top-rated-item">
- <div class="rank-num">4</div>
- <img class="top-img" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=80" alt="Spiaggia Grande"/>
- <div class="top-info">
- <div class="top-name">Spiaggia Grande</div>
- <div class="top-location"> Positano, Italy</div>
- </div>
- <div class="top-score"><span class="score">4.7</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
- </div>
+<!-- TOP RATED -->
+<section id="top-rated">
+  <div class="section-label reveal">Community favourites</div>
+  <h2 class="reveal reveal-d1">Top Rated Beaches</h2>
+  <p class="section-desc reveal reveal-d2">Ranked by thousands of verified visitors â the beaches with the highest scores.</p>
+  <div class="top-rated-list">
 
- <div class="top-rated-item">
- <div class="rank-num">5</div>
- <img class="top-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&q=80" alt="Praia da Marinha"/>
- <div class="top-info">
- <div class="top-name">Praia da Marinha</div>
- <div class="top-location"> Algarve, Portugal</div>
- </div>
- <div class="top-score"><span class="score">4.6</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&frac12;</span></div>
- </div>
+    <div class="top-rated-item reveal reveal-d1">
+      <div class="rank-medal">ð¥</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&q=80" alt="Navagio"/>
+      <div class="top-info">
+        <div class="top-name">Navagio Beach</div>
+        <div class="top-location">ð Zakynthos, Greece</div>
+      </div>
+      <div class="top-score"><span class="score">4.9</span><span class="stars">âââââ</span></div>
+    </div>
 
- <div class="top-rated-item">
- <div class="rank-num">6</div>
- <img class="top-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=200&q=80" alt="Sveti Stefan"/>
- <div class="top-info">
- <div class="top-name">Sveti Stefan</div>
- <div class="top-location"> Budva, Montenegro</div>
- </div>
- <div class="top-score"><span class="score">4.5</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&frac12;</span></div>
- </div>
+    <div class="top-rated-item reveal reveal-d1">
+      <div class="rank-medal">ð¥</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=200&q=80" alt="Myrtos"/>
+      <div class="top-info">
+        <div class="top-name">Myrtos Beach</div>
+        <div class="top-location">ð Kefalonia, Greece</div>
+      </div>
+      <div class="top-score"><span class="score">4.9</span><span class="stars">âââââ</span></div>
+    </div>
 
- </div>
- </section>
+    <div class="top-rated-item reveal reveal-d2">
+      <div class="rank-medal">ð¥</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200&q=80" alt="Elafonissi"/>
+      <div class="top-info">
+        <div class="top-name">Elafonissi Beach</div>
+        <div class="top-location">ð Crete, Greece</div>
+      </div>
+      <div class="top-score"><span class="score">4.8</span><span class="stars">âââââ</span></div>
+    </div>
 
- <!-- NEWSLETTER -->
- <section id="newsletter">
- <div class="section-label" style="color:var(--gold);justify-content:center;margin-bottom:14px">
- <span style="background:var(--gold);height:2px;width:24px;display:inline-block"></span>
- Stay Updated
- </div>
- <h2>Never Miss a Hidden Gem</h2>
- <p class="section-desc">Get monthly curated beach picks, travel tips, and exclusive guides straight to your inbox.</p>
- <div class="newsletter-form">
- <input type="email" placeholder="your@email.com"/>
- <button type="button">Subscribe -></button>
- </div>
- </section>
+    <div class="top-rated-item reveal reveal-d2">
+      <div class="rank-medal">ð¥</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=200&q=80" alt="Zlatni Rat"/>
+      <div class="top-info">
+        <div class="top-name">Zlatni Rat</div>
+        <div class="top-location">ð BraÄ Island, Croatia</div>
+      </div>
+      <div class="top-score"><span class="score">4.8</span><span class="stars">âââââ</span></div>
+    </div>
 
- <!-- FOOTER -->
- <footer>
- <div class="footer-brand">EuroShores</div>
- <div class="footer-links">
- <a href="#beaches">Beaches</a>
- <a href="#countries">Countries</a>
- <a href="#guides">Guides</a>
- <a href="#top-rated">Top Rated</a>
- <a href="#newsletter">Newsletter</a>
- </div>
- <div class="footer-copy">&copy; 2026 EuroShores &middot; Built with </div>
- </footer>
+    <div class="top-rated-item reveal reveal-d3">
+      <div class="rank-medal">ð¥</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1528150177508-7cc0c36cda5c?w=200&q=80" alt="Es Trenc"/>
+      <div class="top-info">
+        <div class="top-name">Es Trenc</div>
+        <div class="top-location">ð Mallorca, Spain</div>
+      </div>
+      <div class="top-score"><span class="score">4.7</span><span class="stars">âââââ</span></div>
+    </div>
 
+    <div class="top-rated-item reveal reveal-d4">
+      <div class="rank-num">4</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=200&q=80" alt="Spiaggia Grande"/>
+      <div class="top-info">
+        <div class="top-name">Spiaggia Grande</div>
+        <div class="top-location">ð Positano, Italy</div>
+      </div>
+      <div class="top-score"><span class="score">4.7</span><span class="stars">âââââ</span></div>
+    </div>
+
+    <div class="top-rated-item reveal reveal-d5">
+      <div class="rank-num">5</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&q=80" alt="Praia da Marinha"/>
+      <div class="top-info">
+        <div class="top-name">Praia da Marinha</div>
+        <div class="top-location">ð Algarve, Portugal</div>
+      </div>
+      <div class="top-score"><span class="score">4.6</span><span class="stars">ââââÂ½</span></div>
+    </div>
+
+    <div class="top-rated-item reveal reveal-d6">
+      <div class="rank-num">6</div>
+      <img class="top-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=200&q=80" alt="Sveti Stefan"/>
+      <div class="top-info">
+        <div class="top-name">Sveti Stefan</div>
+        <div class="top-location">ð Budva, Montenegro</div>
+      </div>
+      <div class="top-score"><span class="score">4.5</span><span class="stars">ââââÂ½</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="newsletter-inner">
+    <div class="section-label reveal" style="justify-content:center">Stay Updated</div>
+    <h2 class="reveal reveal-d1">Never Miss a Hidden Gem</h2>
+    <p class="section-desc reveal reveal-d2">Get monthly curated beach picks, travel tips, and exclusive guides straight to your inbox.</p>
+    <div class="newsletter-form reveal reveal-d3">
+      <input type="email" placeholder="your@email.com"/>
+      <button type="button">Subscribe â</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">ð EuroShores</div>
+      <div class="footer-tagline">Your ultimate guide to Europe's most breathtaking beaches and coastal destinations.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#beaches">Beaches</a>
+      <a href="#countries">Countries</a>
+      <a href="#guides">Guides</a>
+      <a href="#top-rated">Top Rated</a>
+      <a href="#newsletter">Newsletter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">Â© 2026 EuroShores Â· Built with â¤ï¸</div>
+    <div class="footer-social">
+      <a href="#" class="social-btn" title="Instagram">ð·</a>
+      <a href="#" class="social-btn" title="Twitter">ð¦</a>
+      <a href="#" class="social-btn" title="Pinterest">ð</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal animation
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Filter cards by type
+  function filterCards(btn, type) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.beach-card').forEach(card => {
+      if (type === 'all' || card.dataset.type === type) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
 </body>
 </html>
