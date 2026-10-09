@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bbogdanflueras-hue.github.io/euroshores/sitemap.xml
+Sitemap: https://euroshores.com/sitemap.xml
