@@ -9,10 +9,10 @@
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="EuroShores - The Best Beaches in Europe"/>
   <meta property="og:description" content="Curated beaches, maps, guides and travel tips for Europe's finest shores."/>
-  <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80"/>
+  <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Navagio%2C_Zante_02.jpg?width=1200"/>
   <meta property="og:url" content="https://bbogdanflueras-hue.github.io/euroshores/"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80"/>
+  <meta name="twitter:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/Navagio%2C_Zante_02.jpg?width=1200"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -70,7 +70,7 @@
     #hero {
       position: relative; height: 100vh; min-height: 640px;
       display: flex; align-items: center;
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80') center/cover no-repeat;
+      background: url('https://commons.wikimedia.org/wiki/Special:FilePath/Navagio%2C_Zante_02.jpg?width=1920') center/cover no-repeat;
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -415,7 +415,7 @@
     /* ====== NEWSLETTER ====== */
     #newsletter {
       position: relative;
-      background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80') center/cover no-repeat;
+      background: url('https://commons.wikimedia.org/wiki/Special:FilePath/Myrtos_Beach_5_%289344634826%29.jpg?width=1920') center/cover no-repeat;
       text-align: center; padding: 120px 40px; overflow: hidden;
     }
     #newsletter::before {
@@ -741,7 +741,6 @@
     </div>
     <select id="sort" class="tool-input" aria-label="Sort beaches">
       <option value="rating">Sort: Top rated</option>
-      <option value="reviews">Sort: Most reviewed</option>
       <option value="name">Sort: Name A-Z</option>
       <option value="country">Sort: Country</option>
     </select>
@@ -823,7 +822,7 @@
     <div class="footer-links"><a href="#beaches">Beaches</a><a href="#map-section">Map</a><a href="#countries">Countries</a><a href="#guides">Guides</a><a href="#top-rated">Top Rated</a><a href="#newsletter">Newsletter</a></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">&#169; 2026 EuroShores &#183; Built with &hearts; &#183; Photos via Unsplash and Wikimedia Commons (credits on each beach page)</div>
+    <div class="footer-copy">&#169; 2026 EuroShores &#183; Built with &hearts; &#183; Photos via Wikimedia Commons (credits on each beach page)</div>
     <a href="#hero" class="to-top">Back to top &uarr;</a>
   </div>
 </footer>
@@ -866,63 +865,90 @@ function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.
 function $(id){ return document.getElementById(id); }
 function stars(r){ var n=Math.round(r*2)/2, f=Math.floor(n), h=(n-f)>=0.5, o=''; for(var i=0;i<f;i++) o+='&#9733;'; if(h) o+='&frac12;'; return o; }
 
-var IMG = 'https://images.unsplash.com/';
 var B = [
- {id:'navagio',name:'Navagio Beach',loc:'Zakynthos, Greece',country:'Greece',cc:'GR',type:'sandy',tag:'Sandy Beach',rating:4.9,count:148,img:'photo-1507525428034-b723cf961d3e',feat:1,lat:37.8594,lng:20.6244,season:'June&#8211;September',temp:26,access:'Moderate',gem:0,g:['#0f4a63','#2389af'],
+ {id:'navagio',name:'Navagio Beach',loc:'Zakynthos, Greece',country:'Greece',cc:'GR',type:'sandy',tag:'Sandy Beach',rating:4.9,feat:1,lat:37.8594,lng:20.6244,season:'June&#8211;September',temp:26,access:'Moderate',gem:0,g:['#0f4a63','#2389af'],
   desc:'The iconic Shipwreck Beach, enclosed by soaring white limestone cliffs &#8212; arguably the most photographed beach in the world.',
   fac:'None on the beach &mdash; bring water and shade',park:'Boat access only (from Porto Vromi or Zakynthos town)',tip:'Go early or late to avoid the peak-hour boat crowds.'},
- {id:'spiaggia',name:'Spiaggia Grande',loc:'Amalfi Coast, Italy',country:'Italy',cc:'IT',type:'sandy',tag:'Mixed Beach',rating:4.7,count:203,img:'photo-1516483638261-f4dbaf036963',feat:1,lat:40.6279,lng:14.4850,season:'May&#8211;October',temp:23,access:'Easy',gem:0,g:['#c0562b','#f0b840'],
+ {id:'spiaggia',name:'Spiaggia Grande',loc:'Amalfi Coast, Italy',country:'Italy',cc:'IT',type:'sandy',tag:'Mixed Beach',rating:4.7,feat:1,lat:40.6279,lng:14.4850,season:'May&#8211;October',temp:23,access:'Easy',gem:0,g:['#c0562b','#f0b840'],
   desc:'Nestled beneath the pastel-coloured cliffside village of Positano &#8212; one of the most dramatic and romantic settings in Europe.',
   fac:'Sunbed rental, restaurants, showers',park:'Limited &mdash; use public transport or village car parks',tip:'The stairs back up to the village are steep; pack light.'},
- {id:'elafonissi',name:'Elafonissi Beach',loc:'Crete, Greece',country:'Greece',cc:'GR',type:'pink',tag:'Pink Sand',rating:4.8,count:175,img:'photo-1559827260-dc66d52bef19',feat:1,lat:35.2711,lng:23.5388,season:'May&#8211;October',temp:25,access:'Easy',gem:0,g:['#d96f8e','#f5c6d0'],
+ {id:'elafonissi',name:'Elafonissi Beach',loc:'Crete, Greece',country:'Greece',cc:'GR',type:'pink',tag:'Pink Sand',rating:4.8,feat:1,lat:35.2711,lng:23.5388,season:'May&#8211;October',temp:25,access:'Easy',gem:0,g:['#d96f8e','#f5c6d0'],
   desc:'A rare pink-sand lagoon at the southwestern tip of Crete, where shallow crystal-clear waters meet rose-tinted sands.',
   fac:'Sunbeds, tavernas, toilets',park:'Large car park near the beach',tip:'Walk across the shallow lagoon to the islet for the pinkest sand.'},
- {id:'marinha',name:'Praia da Marinha',loc:'Algarve, Portugal',country:'Portugal',cc:'PT',type:'rocky',tag:'Rocky Cove',rating:4.6,count:119,img:'photo-1506905925346-21bda4d32df4',feat:0,lat:37.0866,lng:-8.4122,season:'June&#8211;September',temp:22,access:'Moderate',gem:0,g:['#b8742a','#e8c07a'],
+ {id:'marinha',name:'Praia da Marinha',loc:'Algarve, Portugal',country:'Portugal',cc:'PT',type:'rocky',tag:'Rocky Cove',rating:4.6,feat:0,lat:37.0866,lng:-8.4122,season:'June&#8211;September',temp:22,access:'Moderate',gem:0,g:['#b8742a','#e8c07a'],
   desc:'Dramatic golden limestone arches frame this hidden gem on the Algarve coast &#8212; one of the most beautiful beaches in all of Portugal.',
   fac:'Basic facilities in season, cliff-top viewpoint',park:'Car park at the top of the cliff stairs',tip:'The clifftop walking trail gives the best views of the arches.'},
- {id:'estrenc',name:'Es Trenc',loc:'Mallorca, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.7,count:162,img:'photo-1528150177508-7cc0c36cda5c',feat:0,lat:39.3519,lng:3.0118,season:'May&#8211;October',temp:24,access:'Easy',gem:0,g:['#1a6b8a','#7fd1e0'],
+ {id:'estrenc',name:'Es Trenc',loc:'Mallorca, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.7,feat:0,lat:39.3519,lng:3.0118,season:'May&#8211;October',temp:24,access:'Easy',gem:0,g:['#1a6b8a','#7fd1e0'],
   desc:'Mallorca\'s finest untouched beach &#8212; miles of pristine white sand, turquoise shallow water, and no high-rise hotels in sight.',
   fac:'Beach bars, sunbeds at some access points',park:'Paid car parks at the main entrances',tip:'Walk away from the entrances for quieter stretches of sand.'},
- {id:'svetistefan',name:'Sveti Stefan',loc:'Budva Riviera, Montenegro',country:'Montenegro',cc:'ME',type:'pebble',tag:'Pebble Beach',rating:4.5,count:88,img:'photo-1542314831-068cd1dbfeeb',feat:0,lat:42.2557,lng:18.8918,season:'June&#8211;September',temp:25,access:'Easy',gem:0,g:['#8a4b3a','#e0a58f'],
+ {id:'svetistefan',name:'Sveti Stefan',loc:'Budva Riviera, Montenegro',country:'Montenegro',cc:'ME',type:'pebble',tag:'Pebble Beach',rating:4.5,feat:0,lat:42.2557,lng:18.8918,season:'June&#8211;September',temp:25,access:'Easy',gem:0,g:['#8a4b3a','#e0a58f'],
   desc:'A fairytale island-village connected to the mainland by a narrow isthmus of pink pebbles and crystal-clear Adriatic water.',
   fac:'Sunbeds, cafes nearby',park:'Roadside and paid parking above the beach',tip:'Views from the road above are free and superb at sunset.'},
- {id:'zlatnirat',name:'Zlatni Rat',loc:'Bra&#269; Island, Croatia',country:'Croatia',cc:'HR',type:'pebble',tag:'Pebble Beach',rating:4.8,count:211,img:'photo-1570077188670-e3a8d69ac5ff',feat:0,lat:43.2569,lng:16.6372,season:'May&#8211;October',temp:26,access:'Easy',gem:0,g:['#0f4a63','#e8a020'],
+ {id:'zlatnirat',name:'Zlatni Rat',loc:'Bra&#269; Island, Croatia',country:'Croatia',cc:'HR',type:'pebble',tag:'Pebble Beach',rating:4.8,feat:0,lat:43.2569,lng:16.6372,season:'May&#8211;October',temp:26,access:'Easy',gem:0,g:['#0f4a63','#e8a020'],
   desc:'The famous "Golden Horn" &#8212; a distinctive pebble cape that juts into the Adriatic and magically shifts shape with the currents and winds.',
   fac:'Water sports, beach bars, showers',park:'Car park in Bol, short walk',tip:'Windy afternoons make it a top windsurfing spot &mdash; mornings are calmer.'},
- {id:'myrtos',name:'Myrtos Beach',loc:'Kefalonia, Greece',country:'Greece',cc:'GR',type:'pebble',tag:'Pebble Beach',rating:4.9,count:193,img:'photo-1519046904884-53103b34b206',feat:0,lat:38.3350,lng:20.5420,season:'June&#8211;September',temp:27,access:'Moderate',gem:0,g:['#0e7490','#a5f3fc'],
+ {id:'myrtos',name:'Myrtos Beach',loc:'Kefalonia, Greece',country:'Greece',cc:'GR',type:'pebble',tag:'Pebble Beach',rating:4.9,feat:0,lat:38.3350,lng:20.5420,season:'June&#8211;September',temp:27,access:'Moderate',gem:0,g:['#0e7490','#a5f3fc'],
   desc:'Consistently ranked among Europe\'s most beautiful beaches &#8212; gleaming white pebbles meet the most intense shade of turquoise blue imaginable, framed by towering cliffs.',
   fac:'Small cafe, sunbeds, viewpoint car park',park:'Viewpoint car park above; winding road down',tip:'Visit before midday &mdash; shade disappears early in the afternoon.'},
- {id:'goloritze',name:'Cala Goloritz&eacute;',loc:'Sardinia, Italy',country:'Italy',cc:'IT',type:'pebble',tag:'Pebble Beach',rating:4.8,count:96,lat:40.1167,lng:9.7000,season:'June&#8211;September',temp:24,access:'Challenging',gem:1,g:['#14532d','#34d399'],
+ {id:'goloritze',name:'Cala Goloritz&eacute;',loc:'Sardinia, Italy',country:'Italy',cc:'IT',type:'pebble',tag:'Pebble Beach',rating:4.8,lat:40.1167,lng:9.7000,season:'June&#8211;September',temp:24,access:'Challenging',gem:1,g:['#14532d','#34d399'],
   desc:'A secluded cove under a limestone needle, reached only on foot or by boat &#8212; worth every step.',
   fac:'None &mdash; carry water and food',park:'Trailhead car park, then a steep hike',tip:'Access is regulated in season &mdash; check booking rules before you go.'},
- {id:'benagil',name:'Benagil Cove',loc:'Algarve, Portugal',country:'Portugal',cc:'PT',type:'rocky',tag:'Rocky Cove',rating:4.7,count:134,lat:37.0870,lng:-8.4217,season:'May&#8211;October',temp:22,access:'Moderate',gem:1,g:['#9a3412','#fdba74'],
+ {id:'benagil',name:'Benagil Cove',loc:'Algarve, Portugal',country:'Portugal',cc:'PT',type:'rocky',tag:'Rocky Cove',rating:4.7,lat:37.0870,lng:-8.4217,season:'May&#8211;October',temp:22,access:'Moderate',gem:1,g:['#9a3412','#fdba74'],
   desc:'A small cove leading to a sea cave with a skylight in its roof &#8212; best seen by kayak or paddleboard.',
   fac:'Kayak and boat tours from the beach',park:'Village car park, short walk',tip:'Calm mornings are best for kayaking into the cave.'},
- {id:'macarelleta',name:'Cala Macarelleta',loc:'Menorca, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.8,count:108,lat:39.9319,lng:3.9319,season:'May&#8211;October',temp:24,access:'Moderate',gem:1,g:['#0369a1','#bae6fd'],
+ {id:'macarelleta',name:'Cala Macarelleta',loc:'Menorca, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.8,lat:39.9319,lng:3.9319,season:'May&#8211;October',temp:24,access:'Moderate',gem:1,g:['#0369a1','#bae6fd'],
   desc:'A tiny turquoise cove tucked below pine-covered cliffs, a short coastal walk from its bigger neighbour.',
   fac:'None &mdash; bring everything you need',park:'Car park at Cala Galdana side, then a coastal trail',tip:'Arrive early; the cove fills quickly in high season.'},
- {id:'palombaggia',name:'Palombaggia',loc:'Corsica, France',country:'France',cc:'FR',type:'sandy',tag:'Sandy Beach',rating:4.8,count:121,lat:41.5500,lng:9.3700,season:'June&#8211;September',temp:24,access:'Easy',gem:1,g:['#b45309','#fcd34d'],
+ {id:'palombaggia',name:'Palombaggia',loc:'Corsica, France',country:'France',cc:'FR',type:'sandy',tag:'Sandy Beach',rating:4.8,lat:41.5500,lng:9.3700,season:'June&#8211;September',temp:24,access:'Easy',gem:1,g:['#b45309','#fcd34d'],
   desc:'Red granite boulders, parasol pines and soft pale sand &#8212; Corsica\'s most photographed shoreline.',
   fac:'Beach restaurants, sunbed rental',park:'Roadside and paid parking along the coast road',tip:'Pick a spot between the beach restaurants for more space.'},
- {id:'balos',name:'Balos Lagoon',loc:'Crete, Greece',country:'Greece',cc:'GR',type:'pink',tag:'Pink Sand',rating:4.8,count:157,lat:35.5917,lng:23.5917,season:'May&#8211;October',temp:25,access:'Moderate',gem:1,g:['#be185d','#fbcfe8'],
+ {id:'balos',name:'Balos Lagoon',loc:'Crete, Greece',country:'Greece',cc:'GR',type:'pink',tag:'Pink Sand',rating:4.8,lat:35.5917,lng:23.5917,season:'May&#8211;October',temp:25,access:'Moderate',gem:1,g:['#be185d','#fbcfe8'],
   desc:'A shallow lagoon of pale pink sand and impossible blues at the tip of the Gramvousa peninsula.',
   fac:'Canteen, sunbed rental in season',park:'Unpaved road to the car park, then a stepped path',tip:'Go early &mdash; the day-boat crowds arrive late morning.'},
- {id:'sakarun',name:'Sakarun Beach',loc:'Dugi Otok, Croatia',country:'Croatia',cc:'HR',type:'sandy',tag:'Sandy Beach',rating:4.6,count:74,lat:44.1300,lng:14.9700,season:'June&#8211;September',temp:25,access:'Easy',gem:1,g:['#075985','#7dd3fc'],
+ {id:'sakarun',name:'Sakarun Beach',loc:'Dugi Otok, Croatia',country:'Croatia',cc:'HR',type:'sandy',tag:'Sandy Beach',rating:4.6,lat:44.1300,lng:14.9700,season:'June&#8211;September',temp:25,access:'Easy',gem:1,g:['#075985','#7dd3fc'],
   desc:'A long, shallow, white-sand bay in the Kornati archipelago &#8212; rare for the Adriatic and ideal for families.',
-  fac:'Beach bar, sunbed rental',park:'Parking above the bay',tip:'Shallow, warm water makes it a good pick for young children.'}
+  fac:'Beach bar, sunbed rental',park:'Parking above the bay',tip:'Shallow, warm water makes it a good pick for young children.'},
+ {id:'dona',name:'Praia Dona Ana',loc:'Lagos, Algarve, Portugal',country:'Portugal',cc:'PT',type:'rocky',tag:'Rocky Cove',rating:4.6,feat:0,lat:37.0956,lng:-8.7669,season:'May&#8211;October',temp:21,access:'Easy',gem:0,g:['#b45309','#fdba74'],
+  desc:'Golden cliffs, sea stacks and a sheltered turquoise cove, a short walk from Lagos town.',
+  fac:'Steps down to the beach; restaurants and shops in nearby Lagos',park:'Car park near the top of the steps (fills early in summer)',tip:'Arrive before 10am in July and August, or visit near sunset for the best light.'},
+ {id:'illetes',name:'Ses Illetes',loc:'Formentera, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.8,feat:0,lat:38.7274,lng:1.4183,season:'June&#8211;September',temp:25,access:'Easy',gem:0,g:['#0e7490','#a5f3fc'],
+  desc:'A long strip of white sand and shallow, almost Caribbean-coloured water on the northern tip of Formentera.',
+  fac:'Beach bars and sunbed rental',park:'Limited parking; vehicle access can be restricted and charged in season, so many visitors cycle or take the bus',tip:'Walk north along the spit for quieter sand and calmer water.'},
+ {id:'pelosa',name:'La Pelosa',loc:'Stintino, Sardinia, Italy',country:'Italy',cc:'IT',type:'sandy',tag:'Sandy Beach',rating:4.7,feat:0,lat:40.9660,lng:8.2160,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#0369a1','#bae6fd'],
+  desc:'A shallow white-sand lagoon facing the Torre della Pelosa at the northwest tip of Sardinia.',
+  fac:'Sunbed rental and a snack bar',park:'Paid parking in Stintino, then a short walk',tip:'In summer access is regulated &mdash; check current booking rules and bring a beach mat before you go.'},
+ {id:'comino',name:'Blue Lagoon',loc:'Comino, Malta',country:'Malta',cc:'MT',type:'rocky',tag:'Rocky Cove',rating:4.5,feat:0,lat:36.0139,lng:14.3333,season:'May&#8211;October',temp:25,access:'Moderate',gem:0,g:['#0891b2','#67e8f9'],
+  desc:'A sheltered bay of vivid turquoise water between Comino and the islet of Cominotto.',
+  fac:'Kiosks and sunbed rental in season',park:'Boat only &mdash; ferries and tours run from Malta and Gozo',tip:'Go early or late; the lagoon is busiest around midday in summer.'},
+ {id:'ksamil',name:'Ksamil Beaches',loc:'Albanian Riviera, Albania',country:'Albania',cc:'AL',type:'pebble',tag:'Pebble Beach',rating:4.5,feat:0,lat:39.7656,lng:20.0003,season:'June&#8211;September',temp:25,access:'Easy',gem:1,g:['#0f766e','#5eead4'],
+  desc:'Small islands and shallow turquoise coves on the Albanian Riviera, facing Corfu.',
+  fac:'Beach clubs, sunbed rental and cafes',park:'Roadside and paid parking in Ksamil village',tip:'Choose a quieter cove away from the town centre, and carry some cash for sunbeds.'}
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
 var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 var PH = {
+ navagio:{f:'Shipwreck_at_Navagio_Beach_Zakynthos_Greece_(45557496695).jpg',by:'dronepicr',lic:'CC BY 2.0'},
+ spiaggia:{f:'Blick_auf_die_Spiaggia_Grande_(Positano)_von_der_Via_Cristoforo_Colombo_-_03.jpg',by:'Rudolfo Kithera',lic:'CC0'},
+ elafonissi:{f:'Elafonissi.jpg',by:'Cecilivm',lic:'CC BY-SA 3.0'},
+ marinha:{f:'Praia_da_Marinha-Algarve-Portugal.jpg',by:'Tobi 87',lic:'CC BY-SA 3.0'},
+ estrenc:{f:'Es_Trenc,_Mallorca,_the_beach.jpg',by:'Bogdan Giusca',lic:'CC BY-SA 3.0'},
+ svetistefan:{f:'Sveti_Stefan,_Montenegro,_2014-04-18,_DD_04.JPG',by:'Diego Delso',lic:'CC BY-SA 3.0'},
+ zlatnirat:{f:'J32_676_Zlatni_Rat.jpg',by:'Falk2',lic:'CC BY-SA 4.0'},
+ myrtos:{f:'Myrtos_Beach,_Kefalonia.jpg',by:'Matt Sims',lic:'CC BY 2.0'},
  goloritze:{f:'Baunei-Guglia_di_Cala_Goloritz%C3%A9.jpg',by:'Rosanna C.',lic:'CC BY 2.5'},
  benagil:{f:'02-05-2017_Algar_de_Benagil_(4).JPG',by:'Kolforn',lic:'CC BY-SA 4.0'},
  macarelleta:{f:'Cala_Macarelleta_(30132323685).jpg',by:'Ben Salter',lic:'CC BY 2.0'},
  palombaggia:{f:'Plage_de_Palombaggia_(Corse_du_sud).jpg',by:'Freddy Deneux',lic:'CC BY-SA 3.0'},
  balos:{f:'Aerial_view_of_Balos_Lagoon_on_the_island_of_Crete,_Greece.jpg',by:'dronepicr',lic:'CC BY 2.0'},
- sakarun:{f:'Dugi_Otok_Greta_Ceresini.jpg',by:'Greta Ceresini',lic:'CC BY 2.0'}
+ sakarun:{f:'Dugi_Otok_Greta_Ceresini.jpg',by:'Greta Ceresini',lic:'CC BY 2.0'},
+ dona:{f:'Praia_Dona_Ana_(Lagos)_(48518811376).jpg',by:'Nikos Roussos',lic:'CC BY-SA 2.0'},
+ illetes:{f:'Formentera_-_Platja_De_Ses_Illetes_-_panoramio.jpg',by:'MrPepanos',lic:'CC BY 3.0'},
+ pelosa:{f:'Torre_della_Pelosa_-_Stintino_(SS).jpg',by:'Mihael Grmek',lic:'CC BY-SA 3.0'},
+ comino:{f:'Malta_-_Ghajnsielem_-_Comino_-_Blue_Lagoon_(Comino)_02_ies.jpg',by:'Frank Vincentz',lic:'CC BY-SA 3.0'},
+ ksamil:{f:'Ksamil,_Albania_(by_Pudelek).JPG',by:'Pudelek',lic:'CC BY-SA 4.0'}
 };
 B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
-function imgUrl(b, w){ return b.wm ? WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200) : IMG + b.img + '?w=' + w + '&q=80'; }
+function imgUrl(b, w){ return WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200); }
 
 var GUIDES = [
  {cat:'Seasonal',color:'#1a6b8a',title:'Best Time to Visit Each Country',min:8,desc:'When to go for warm water, fewer crowds and better prices.',
@@ -958,7 +984,7 @@ function renderStats(){
   $('stRating').innerHTML = avg.toFixed(1)+'&#9733;';
 }
 function countries(){
-  var m = {}; B.forEach(function(b){ if(!m[b.country]) m[b.country]={name:b.country,cc:b.cc,n:0,img:null}; m[b.country].n++; if(!m[b.country].img && b.img && !b.wm) m[b.country].img=b.img; });
+  var m = {}; B.forEach(function(b){ if(!m[b.country]) m[b.country]={name:b.country,cc:b.cc,n:0,img:null}; m[b.country].n++; if(!m[b.country].img && b.wm) m[b.country].img=b.id; });
   return Object.keys(m).map(function(k){return m[k];}).sort(function(a,b){return b.n-a.n || a.name.localeCompare(b.name);});
 }
 function renderPills(){
@@ -968,7 +994,7 @@ function renderCountries(){
   var cs = countries();
   $('countriesDesc').textContent = cs.length+' countries and growing &#8212; where will you go?'.replace('&#8212;','-');
   $('countriesGrid').innerHTML = cs.map(function(c,i){
-    return '<div class="country-card reveal reveal-d'+((i%6)+1)+'" tabindex="0" role="button" data-country="'+esc(c.name)+'" aria-label="Show beaches in '+esc(c.name)+'">'+(c.img?'<img src="'+IMG+c.img+'?w=400&q=80" alt="" loading="lazy" onerror="this.remove()"/>':'')+'<div class="country-overlay"><div class="cc">'+c.cc+'</div><div class="country-name">'+esc(c.name)+'</div><div class="country-count">'+c.n+' beach'+(c.n>1?'es':'')+'</div></div></div>';
+    return '<div class="country-card reveal reveal-d'+((i%6)+1)+'" tabindex="0" role="button" data-country="'+esc(c.name)+'" aria-label="Show beaches in '+esc(c.name)+'">'+(c.img?'<img src="'+imgUrl(BY[c.img],400)+'" alt="" loading="lazy" onerror="this.remove()"/>':'')+'<div class="country-overlay"><div class="cc">'+c.cc+'</div><div class="country-name">'+esc(c.name)+'</div><div class="country-count">'+c.n+' beach'+(c.n>1?'es':'')+'</div></div></div>';
   }).join('');
   observeReveal($('countriesGrid'));
 }
@@ -979,7 +1005,7 @@ function renderGuides(){
   observeReveal($('guidesGrid'));
 }
 function renderTop(){
-  var top = B.slice().sort(function(a,b){return b.rating-a.rating || b.count-a.count;}).slice(0,8);
+  var top = B.slice().sort(function(a,b){return b.rating-a.rating || a.name.localeCompare(b.name);}).slice(0,8);
   var prev = null, rank = 0, shown = 0;
   $('topList').innerHTML = top.map(function(b,i){
     shown++; if(b.rating!==prev){ rank = shown; prev=b.rating; }
@@ -1018,8 +1044,7 @@ function visible(){
   l.sort(function(a,b){
     if(s==='name') return a.name.localeCompare(b.name);
     if(s==='country') return a.country.localeCompare(b.country) || b.rating-a.rating;
-    if(s==='reviews') return b.count-a.count;
-    return b.rating-a.rating || b.count-a.count;
+    return b.rating-a.rating || a.name.localeCompare(b.name);
   });
   return l;
 }
@@ -1032,7 +1057,7 @@ function cardHTML(b, i){
    '<div class="card-badge">'+ic('pin',12)+' '+esc(b.country)+'</div>'+badge+
    '<div class="card-view-overlay"><div class="view-btn">View Beach &rarr;</div></div>'+
    '<button type="button" class="card-cmp'+(on?' on':'')+'" data-cmp="'+b.id+'" aria-pressed="'+on+'">'+ic(on?'check':'layers',13)+(on?' Added':' Compare')+'</button></div>'+
-   '<div class="card-body"><div class="card-top-row"><div class="card-rating"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span><span class="rating-count">('+b.count+')</span></div><span class="card-type-tag">'+b.tag+'</span></div>'+
+   '<div class="card-body"><div class="card-top-row"><div class="card-rating"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span></div><span class="card-type-tag">'+b.tag+'</span></div>'+
    '<div class="card-title">'+b.name+'</div><div class="card-location">'+ic('pin',14)+' '+b.loc+'</div><div class="card-desc">'+b.desc+'</div>'+
    '<div class="card-meta"><span class="meta-item">'+ic('cal',14)+' '+b.season+'</span><span class="meta-item">'+ic('therm',14)+' '+b.temp+'&#176;C</span><span class="meta-item">'+ic('compass',14)+' '+b.access+'</span></div></div></div>';
 }
@@ -1093,7 +1118,7 @@ function openBeach(id){
   var bg = 'background:linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')'+(b.img?',url('+imgUrl(b,1200)+')':'');
   if(b.img) bg = 'background-image:url('+imgUrl(b,1200)+'),linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')';
   var h = '<div class="modal-hero" style="'+bg+'"></div><div class="modal-body"><h3>'+b.name+'</h3><div class="card-location">'+ic('pin',14)+' '+b.loc+'</div>'+
-   '<div class="card-rating" style="margin:8px 0"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span><span class="rating-count">('+b.count+' reviews)</span><span class="card-type-tag" style="margin-left:8px">'+b.tag+'</span>'+(b.gem?'<span class="card-type-tag" style="margin-left:6px">Hidden gem</span>':'')+'</div>'+
+   '<div class="card-rating" style="margin:8px 0"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span><span class="card-type-tag" style="margin-left:8px">'+b.tag+'</span>'+(b.gem?'<span class="card-type-tag" style="margin-left:6px">Hidden gem</span>':'')+'</div>'+
    '<p class="card-desc">'+b.desc+'</p>'+
    '<div class="facts"><div class="fact"><b>'+ic('cal',13)+'Best season</b>'+b.season+'</div><div class="fact"><b>'+ic('therm',13)+'Water temp</b>~'+b.temp+'&#176;C in season</div><div class="fact"><b>'+ic('compass',13)+'Access</b>'+b.access+'</div><div class="fact"><b>'+ic('info',13)+'Facilities</b>'+b.fac+'</div><div class="fact"><b>'+ic('car',13)+'Getting there</b>'+b.park+'</div><div class="fact"><b>'+ic('sun',13)+'Local tip</b>'+b.tip+'</div></div>'+
    '<div class="updated">'+(b.cr?'Photo: '+esc(b.cr.by)+', '+b.cr.lic+', via <a href="https://commons.wikimedia.org/wiki/File:'+b.wm+'" target="_blank" rel="noopener">Wikimedia Commons</a><br>':'')+'Last updated October 2026 &#183; <a href="https://www.google.com/maps/search/?api=1&query='+b.lat+','+b.lng+'" target="_blank" rel="noopener">Open in Google Maps</a></div>'+
@@ -1106,11 +1131,11 @@ function openGuide(i){
   openModal('<div class="modal-body"><div class="guide-category" style="color:'+g.color+'">'+g.cat+'</div><h3>'+g.title+'</h3><div class="updated">'+g.min+' min read</div><div class="guide-text">'+g.html+'</div></div>');
 }
 function openRating(){
-  openModal('<div class="modal-body"><h3>How we rate</h3><div class="guide-text"><p>Each beach receives an editorial score out of 5 from our editors. We weigh scenery, water quality and clarity, access and facilities, crowding, and how well the beach rewards the effort of getting there.</p><p>The number in brackets is the review tally shown for reference. Visitor reviews written on this site are stored locally in your own browser.</p><p>Information such as water temperature and facilities is approximate and can change by season &#8212; always check local conditions and access rules before you travel.</p></div></div>');
+  openModal('<div class="modal-body"><h3>How we rate</h3><div class="guide-text"><p>Each beach receives an editorial score out of 5 from our editors. We weigh scenery, water quality and clarity, access and facilities, crowding, and how well the beach rewards the effort of getting there.</p><p>Visitor reviews written on this site are stored only in your own browser.</p><p>Information such as water temperature and facilities is approximate and can change by season &#8212; always check local conditions and access rules before you travel.</p></div></div>');
 }
 function openCompare(){
   var l = CMP.map(function(id){return BY[id];}); if(l.length<2) return;
-  var rows = [['Country',function(b){return b.country;}],['Type',function(b){return b.tag;}],['Score',function(b){return b.rating.toFixed(1)+' '+stars(b.rating);}],['Reviews',function(b){return b.count;}],['Best season',function(b){return b.season;}],['Water temp',function(b){return '~'+b.temp+'&#176;C';}],['Access',function(b){return b.access;}],['Facilities',function(b){return b.fac;}],['Getting there',function(b){return b.park;}],['Local tip',function(b){return b.tip;}]];
+  var rows = [['Country',function(b){return b.country;}],['Type',function(b){return b.tag;}],['Score',function(b){return b.rating.toFixed(1)+' '+stars(b.rating);}],['Best season',function(b){return b.season;}],['Water temp',function(b){return '~'+b.temp+'&#176;C';}],['Access',function(b){return b.access;}],['Facilities',function(b){return b.fac;}],['Getting there',function(b){return b.park;}],['Local tip',function(b){return b.tip;}]];
   var t = '<div class="compare-wrap"><h3 style="font-family:Playfair Display,serif;margin-bottom:14px;color:var(--text-dark)">Compare beaches</h3><table class="compare-table"><thead><tr><th></th>'+l.map(function(b){return '<th>'+b.name+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr><td>'+r[0]+'</td>'+l.map(function(b){return '<td>'+r[1](b)+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>';
   openModal(t, true);
 }
