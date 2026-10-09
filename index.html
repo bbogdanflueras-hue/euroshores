@@ -680,6 +680,16 @@
       html { scroll-behavior: auto; }
     }
 
+      /* ---- hero layout fix: pills flow under the buttons instead of overlapping them ---- */
+    #hero { height: auto; min-height: 100vh; flex-direction: column; align-items: flex-start; justify-content: center; padding: 112px 0 104px; }
+    .hero-locations { position: relative; left: auto; right: auto; bottom: auto; width: calc(100% - 176px); margin: 44px 88px 0; }
+    .hero-scroll { bottom: 22px; }
+    @media (max-width: 768px) {
+      #hero { padding: 96px 0 84px; }
+      .hero-locations { width: calc(100% - 48px); margin: 32px 24px 0; }
+      .hero-scroll { display: none; }
+    }
+    @media (max-height: 780px) { .hero-scroll { display: none; } }
   </style>
 </head>
 <body>
