@@ -809,6 +809,7 @@
     <p class="section-desc reveal reveal-d2">Get monthly curated beach picks, travel tips, and exclusive guides straight to your inbox.</p>
     <form class="newsletter-form reveal reveal-d3" id="nlForm" novalidate>
       <input type="email" id="nlEmail" placeholder="your@email.com" aria-label="Email address" required/>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
       <button type="submit">Subscribe &rarr;</button>
     </form>
     <div class="nl-msg" id="nlMsg" aria-live="polite"></div>
@@ -822,7 +823,7 @@
     <div class="footer-links"><a href="#beaches">Beaches</a><a href="#map-section">Map</a><a href="#countries">Countries</a><a href="#guides">Guides</a><a href="#top-rated">Top Rated</a><a href="#newsletter">Newsletter</a></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">&#169; 2026 EuroShores &#183; Built with &hearts; &#183; Photos via Unsplash</div>
+    <div class="footer-copy">&#169; 2026 EuroShores &#183; Built with &hearts; &#183; Photos via Unsplash and Wikimedia Commons (credits on each beach page)</div>
     <a href="#hero" class="to-top">Back to top &uarr;</a>
   </div>
 </footer>
@@ -911,6 +912,18 @@ var B = [
   fac:'Beach bar, sunbed rental',park:'Parking above the bay',tip:'Shallow, warm water makes it a good pick for young children.'}
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
+var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
+var PH = {
+ goloritze:{f:'Baunei-Guglia_di_Cala_Goloritz%C3%A9.jpg',by:'Rosanna C.',lic:'CC BY 2.5'},
+ benagil:{f:'02-05-2017_Algar_de_Benagil_(4).JPG',by:'Kolforn',lic:'CC BY-SA 4.0'},
+ macarelleta:{f:'Cala_Macarelleta_(30132323685).jpg',by:'Ben Salter',lic:'CC BY 2.0'},
+ palombaggia:{f:'Plage_de_Palombaggia_(Corse_du_sud).jpg',by:'Freddy Deneux',lic:'CC BY-SA 3.0'},
+ balos:{f:'Aerial_view_of_Balos_Lagoon_on_the_island_of_Crete,_Greece.jpg',by:'dronepicr',lic:'CC BY 2.0'},
+ sakarun:{f:'Dugi_Otok_Greta_Ceresini.jpg',by:'Greta Ceresini',lic:'CC BY 2.0'}
+};
+B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
+function imgUrl(b, w){ return b.wm ? WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200) : IMG + b.img + '?w=' + w + '&q=80'; }
+
 var GUIDES = [
  {cat:'Seasonal',color:'#1a6b8a',title:'Best Time to Visit Each Country',min:8,desc:'When to go for warm water, fewer crowds and better prices.',
   html:'<p>Mediterranean beaches are at their best from late May to mid-June and again in September: warm sea, long days and noticeably fewer people than July and August.</p><ul><li><b>Greece, Italy, Spain:</b> May&#8211;October; sea is warmest in August and September.</li><li><b>Croatia, Montenegro:</b> June&#8211;September for swimming; shoulder months are lovely for walking.</li><li><b>Portugal (Algarve):</b> June&#8211;September; the Atlantic stays cooler than the Med.</li><li><b>Corsica:</b> June&#8211;September.</li></ul>'},
@@ -926,6 +939,8 @@ var GUIDES = [
   html:'<p>Rocky coves with clear water are usually best.</p><ul><li><b>Praia da Marinha (Portugal)</b> &#8212; arches and rock pools.</li><li><b>Cala Macarelleta (Menorca)</b> &#8212; clear, sheltered water.</li><li><b>Navagio (Greece)</b> &#8212; deep blue water; swim only with a boat captain&#8217;s advice.</li></ul><p>Always check local conditions and never snorkel alone.</p>'}
 ];
 
+// Paste your Formspree (or similar) form URL here, e.g. 'https://formspree.io/f/xxxxxxxx'
+var NL_ENDPOINT = '';
 var S = {q:'',type:'all',country:'all',gems:false,sort:'rating'};
 var CMP = [];
 var map = null, markers = [];
@@ -943,7 +958,7 @@ function renderStats(){
   $('stRating').innerHTML = avg.toFixed(1)+'&#9733;';
 }
 function countries(){
-  var m = {}; B.forEach(function(b){ if(!m[b.country]) m[b.country]={name:b.country,cc:b.cc,n:0,img:null}; m[b.country].n++; if(!m[b.country].img && b.img) m[b.country].img=b.img; });
+  var m = {}; B.forEach(function(b){ if(!m[b.country]) m[b.country]={name:b.country,cc:b.cc,n:0,img:null}; m[b.country].n++; if(!m[b.country].img && b.img && !b.wm) m[b.country].img=b.img; });
   return Object.keys(m).map(function(k){return m[k];}).sort(function(a,b){return b.n-a.n || a.name.localeCompare(b.name);});
 }
 function renderPills(){
@@ -974,7 +989,7 @@ function renderTop(){
 }
 function thumb(b){
   var bg = 'background:linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')';
-  if(b.img) return '<img class="top-img" src="'+IMG+b.img+'?w=200&q=80" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=top-img-fallback style=&quot;'+bg+'&quot;></div>\'"/>';
+  if(b.img) return '<img class="top-img" src="'+imgUrl(b,200)+'" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=top-img-fallback style=&quot;'+bg+'&quot;></div>\'"/>';
   return '<div class="top-img-fallback" style="'+bg+'"></div>';
 }
 
@@ -1013,7 +1028,7 @@ function cardHTML(b, i){
   var on = CMP.indexOf(b.id)>=0;
   var badge = b.gem ? '<div class="card-gem">Hidden gem</div>' : (b.feat ? '<div class="card-featured">&#9733; Featured</div>' : '');
   return '<div class="beach-card reveal visible" tabindex="0" role="button" data-open="'+b.id+'" aria-label="'+esc(b.name)+' details" data-type="'+b.type+'">'+
-   '<div class="card-img-wrap'+(b.img?'':' noimg')+'" style="'+bg+'">'+(b.img?'<img src="'+IMG+b.img+'?w=600&q=80" alt="'+esc(b.name)+'" loading="lazy" onerror="this.remove()"/>':ic('sun',54))+
+   '<div class="card-img-wrap'+(b.img?'':' noimg')+'" style="'+bg+'">'+(b.img?'<img src="'+imgUrl(b,600)+'" alt="'+esc(b.name)+'" loading="lazy" onerror="this.remove()"/>':ic('sun',54))+
    '<div class="card-badge">'+ic('pin',12)+' '+esc(b.country)+'</div>'+badge+
    '<div class="card-view-overlay"><div class="view-btn">View Beach &rarr;</div></div>'+
    '<button type="button" class="card-cmp'+(on?' on':'')+'" data-cmp="'+b.id+'" aria-pressed="'+on+'">'+ic(on?'check':'layers',13)+(on?' Added':' Compare')+'</button></div>'+
@@ -1075,13 +1090,13 @@ function revHTML(id){
 }
 function openBeach(id){
   var b = BY[id]; if(!b) return;
-  var bg = 'background:linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')'+(b.img?',url('+IMG+b.img+'?w=1200&q=80)':'');
-  if(b.img) bg = 'background-image:url('+IMG+b.img+'?w=1200&q=80),linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')';
+  var bg = 'background:linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')'+(b.img?',url('+imgUrl(b,1200)+')':'');
+  if(b.img) bg = 'background-image:url('+imgUrl(b,1200)+'),linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')';
   var h = '<div class="modal-hero" style="'+bg+'"></div><div class="modal-body"><h3>'+b.name+'</h3><div class="card-location">'+ic('pin',14)+' '+b.loc+'</div>'+
    '<div class="card-rating" style="margin:8px 0"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span><span class="rating-count">('+b.count+' reviews)</span><span class="card-type-tag" style="margin-left:8px">'+b.tag+'</span>'+(b.gem?'<span class="card-type-tag" style="margin-left:6px">Hidden gem</span>':'')+'</div>'+
    '<p class="card-desc">'+b.desc+'</p>'+
    '<div class="facts"><div class="fact"><b>'+ic('cal',13)+'Best season</b>'+b.season+'</div><div class="fact"><b>'+ic('therm',13)+'Water temp</b>~'+b.temp+'&#176;C in season</div><div class="fact"><b>'+ic('compass',13)+'Access</b>'+b.access+'</div><div class="fact"><b>'+ic('info',13)+'Facilities</b>'+b.fac+'</div><div class="fact"><b>'+ic('car',13)+'Getting there</b>'+b.park+'</div><div class="fact"><b>'+ic('sun',13)+'Local tip</b>'+b.tip+'</div></div>'+
-   '<div class="updated">Last updated October 2026 &#183; <a href="https://www.google.com/maps/search/?api=1&query='+b.lat+','+b.lng+'" target="_blank" rel="noopener">Open in Google Maps</a></div>'+
+   '<div class="updated">'+(b.cr?'Photo: '+esc(b.cr.by)+', '+b.cr.lic+', via <a href="https://commons.wikimedia.org/wiki/File:'+b.wm+'" target="_blank" rel="noopener">Wikimedia Commons</a><br>':'')+'Last updated October 2026 &#183; <a href="https://www.google.com/maps/search/?api=1&query='+b.lat+','+b.lng+'" target="_blank" rel="noopener">Open in Google Maps</a></div>'+
    '<h4>Visitor reviews</h4><div id="revList">'+revHTML(id)+'</div>'+
    '<h4>Write a review</h4><form class="rev-form" id="revForm" data-id="'+id+'"><div class="row"><input name="name" placeholder="Your name" maxlength="40" required aria-label="Your name"/><select name="stars" aria-label="Rating"><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select></div><textarea name="text" rows="3" placeholder="Share your experience..." maxlength="500" required aria-label="Your review"></textarea><button class="btn-solid" type="submit">Submit review</button><div class="hint">Reviews are saved in this browser only and are not shared with other visitors.</div></form></div>';
   openModal(h);
@@ -1161,7 +1176,12 @@ document.addEventListener('submit', function(e){
     e.preventDefault();
     var v = $('nlEmail').value.trim(), m=$('nlMsg');
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ m.className='nl-msg err'; m.textContent='Please enter a valid email address.'; return; }
-    m.className='nl-msg'; m.textContent='Thanks! You are on the list.'; $('nlEmail').value='';
+    if(f.website && f.website.value){ return; }
+    if(!NL_ENDPOINT){ m.className='nl-msg'; m.textContent='Thanks! Signups are not switched on for this site yet.'; return; }
+    m.className='nl-msg'; m.textContent='Subscribing...';
+    fetch(NL_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:v,source:'euroshores'})})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); m.className='nl-msg'; m.textContent='Thanks! You are on the list.'; $('nlEmail').value=''; })
+      .catch(function(){ m.className='nl-msg err'; m.textContent='Sorry, something went wrong. Please try again later.'; });
   }
 });
 var qt;
