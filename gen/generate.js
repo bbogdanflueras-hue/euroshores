@@ -6,7 +6,9 @@ const src = fs.readFileSync(INDEX, 'utf8');
 const a0 = src.indexOf('var B = ['), z0 = src.indexOf('// Paste your Formspree');
 if (a0 < 0 || z0 < 0) throw new Error('data block not found in index.html');
 const data = new Function(src.slice(a0, z0) + ';return {B:B,PH:PH,GUIDES:GUIDES};')();
-const D = { site: 'https://bbogdanflueras-hue.github.io/euroshores', name: 'EuroShores', updated: '2026-10-09', B: data.B, PH: data.PH, GUIDES: data.GUIDES };
+let siteUrl = 'https://bbogdanflueras-hue.github.io/euroshores';
+try { const cn = fs.readFileSync(path.join(ROOT, 'CNAME'), 'utf8').trim(); if (cn) siteUrl = 'https://' + cn; } catch (e) { /* no custom domain */ }
+const D = { site: siteUrl, name: 'EuroShores', updated: '2026-10-09', B: data.B, PH: data.PH, GUIDES: data.GUIDES };
 const SITE = D.site.replace(/\/$/, ''), NAME = D.name;
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 
@@ -207,6 +209,7 @@ console.log('generated', urls.length, 'urls');
   h = h.replace(/<title>[^<]*<\/title>/, '<title>' + T + '</title>');
   h = h.replace(/<meta name="description" content="[^"]*"\/>/, '<meta name="description" content="' + dsc + '"/>');
   h = h.replace(/<meta property="og:title" content="[^"]*"\/>/, '<meta property="og:title" content="' + T + '"/>');
+  h = h.replace(/<meta property="og:url" content="[^"]*"\/>/, '<meta property="og:url" content="' + SITE + '/"/>');
   h = h.replace(/<!--seo-->[\s\S]*?<!--\/seo-->\n?/, '');
   const ld = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: SITE + '/', description: 'Editorial guide to the best beaches in Europe.' },
     { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in Europe', itemListElement: B.slice().sort((x, y) => y.rating - x.rating).map((b, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + b.slug + '/', name: b.name })) }];
