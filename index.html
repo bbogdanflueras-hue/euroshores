@@ -948,7 +948,19 @@ var B = [
   fac:'Canteen and restaurant above the beach; little shade, so bring an umbrella',park:'Paid clifftop car park (fills early), then a stairway down to the beach',tip:'Arrive before mid-morning for parking and shade. The cliffs reportedly shade the beach until around midday, and the climb back up is harder than the walk down.'},
  {id:'falesia',name:'Praia da Fal&#233;sia',loc:'Albufeira, Algarve, Portugal',country:'Portugal',cc:'PT',type:'sandy',tag:'Sandy Beach',rating:4.7,feat:0,lat:37.0867,lng:-8.17,season:'May&#8211;October',temp:21,access:'Moderate',gem:0,g:['#b45309','#fde68a'],
   desc:'A long golden beach backed by red and ochre cliffs and pine trees, stretching toward Vilamoura.',
-  fac:'Lifeguards in summer, beach bars, sunbed hire and showers at the main access points',park:'Several car parks along the clifftop, then stairs down (about 80 steps at the main entrance)',tip:'Walk away from the main access for quieter sand. Parking is tight in peak season, so arrive early.'}
+  fac:'Lifeguards in summer, beach bars, sunbed hire and showers at the main access points',park:'Several car parks along the clifftop, then stairs down (about 80 steps at the main entrance)',tip:'Walk away from the main access for quieter sand. Parking is tight in peak season, so arrive early.'},
+ {id:'stiniva',name:'Stiniva',loc:'Vis, Croatia',country:'Croatia',cc:'HR',type:'pebble',tag:'Pebble Beach',rating:4.7,feat:0,lat:43.0184,lng:16.1710,season:'May&#8211;September',temp:24,access:'Challenging',gem:1,g:['#0f4a63','#5eead4'],
+  desc:'A hidden pebble cove squeezed between sheer cliffs, with a narrow sea entrance framing the turquoise water.',
+  fac:'Minimal &mdash; bring water, shade and snacks',park:'Trailhead above the cove, then a steep path of about 20 minutes down; boat tours also visit',tip:'Go early, before the tour boats arrive, and wear sturdy closed shoes. The path is steep and the climb back up is the harder part.'},
+ {id:'gjipe',name:'Gjipe',loc:'Himara, Albania',country:'Albania',cc:'AL',type:'pebble',tag:'Pebble Beach',rating:4.6,feat:0,lat:40.1436,lng:19.6703,season:'June&#8211;September',temp:25,access:'Challenging',gem:1,g:['#0369a1','#a5f3fc'],
+  desc:'A pebble beach at the mouth of a canyon on the Albanian Riviera, with sea caves and clear Ionian water.',
+  fac:'Basic seasonal beach bars, umbrella rental and camping',park:'Parking at the top (small daily fee), then a steep hike of 30&#8211;45 minutes; boats from Himara and summer jeep shuttles also run',tip:'Arrive before 10 AM and wear sturdy shoes. Consider going in by boat and hiking out through the canyon.'},
+ {id:'saleccia',name:'Saleccia',loc:'Agriates, Corsica, France',country:'France',cc:'FR',type:'sandy',tag:'Sandy Beach',rating:4.8,feat:0,lat:42.7265,lng:9.2047,season:'May&#8211;October',temp:23,access:'Moderate',gem:1,g:['#0e7490','#e0f2fe'],
+  desc:'A long white-sand beach with shallow turquoise water on the wild Agriates coast of Corsica, far from the nearest road.',
+  fac:'Minimal &mdash; a snack bar in season, otherwise bring food, water and sun protection',park:'No road to the sand: shuttle boats run from Saint-Florent, or take a guided 4x4 through the Agriates. Do not drive your own car down the track',tip:'Book the boat early in July and August, and bring everything you need for the day.'},
+ {id:'goldenbay',name:'Golden Bay',loc:'Mellieha, Malta',country:'Malta',cc:'MT',type:'sandy',tag:'Sandy Beach',rating:4.5,feat:0,lat:35.9340,lng:14.3430,season:'June&#8211;September',temp:25,access:'Easy',gem:0,g:['#b45309','#fcd34d'],
+  desc:'A wide sandy bay on the northwest coast of Malta, backed by cliffs, with the amenities for a full beach day.',
+  fac:'Cafe-restaurant, sunbed and umbrella hire, toilets and lifeguards in summer',park:'Car park above the beach (fills by mid-morning in summer), then steps or a ramp down; buses run from Valletta and Sliema',tip:'Arrive early in July and August for parking, and take care when the wind is from the north-west, as currents can be strong.'}
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
 var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
@@ -974,9 +986,13 @@ var PH = {
  ksamil:{f:'Ksamil,_Albania_(by_Pudelek).JPG',by:'Pudelek',lic:'CC BY-SA 4.0'},
  sarakiniko:{f:'Sarakiniko_Beach_on_Milos_Island,_Greece_with_a_view_of_the_Aegean_Sea.jpg',by:'dronepicr',lic:'CC BY 2.0'},
  katsiki:{f:'Porto_Katsiki_beach,_pic1.JPG',by:'Alf van Beem',lic:'CC0'},
- falesia:{f:'Falesia_Beach_seen_from_sea.JPG',by:'Diana5cruz',lic:'CC BY-SA 4.0'}
+ falesia:{f:'Falesia_Beach_seen_from_sea.JPG',by:'Diana5cruz',lic:'CC BY-SA 4.0'},
+ stiniva:{f:'Stiniva_beach,_island_of_Vis,_Croatia_(1).jpg',by:'Ante Perkovic',lic:'CC BY-SA 3.0'},
+ gjipe:{f:'Gjipe_beach,_Albania.JPG',by:'Pudelek',lic:'CC BY-SA 3.0'},
+ saleccia:{f:'Saleccia_2004.jpg',by:'Pierre Bona',lic:'CC BY-SA 3.0'},
+ goldenbay:{f:'Malta_-_Mellieha_-_Golden_Bay_(Triq_Ghajn_Tuffieha)_01_ies.jpg',by:'Frank Vincentz',lic:'CC BY-SA 3.0'}
 };
-var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":"elafonissi-beach","marinha":"praia-da-marinha","estrenc":"es-trenc","svetistefan":"sveti-stefan","zlatnirat":"zlatni-rat","myrtos":"myrtos-beach","goloritze":"cala-goloritze","benagil":"benagil-cove","macarelleta":"cala-macarelleta","palombaggia":"palombaggia","balos":"balos-lagoon","sakarun":"sakarun-beach","dona":"praia-dona-ana","illetes":"ses-illetes","pelosa":"la-pelosa","comino":"blue-lagoon-comino","ksamil":"ksamil-beaches","sarakiniko":"sarakiniko","katsiki":"porto-katsiki","falesia":"praia-da-falesia"};
+var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":"elafonissi-beach","marinha":"praia-da-marinha","estrenc":"es-trenc","svetistefan":"sveti-stefan","zlatnirat":"zlatni-rat","myrtos":"myrtos-beach","goloritze":"cala-goloritze","benagil":"benagil-cove","macarelleta":"cala-macarelleta","palombaggia":"palombaggia","balos":"balos-lagoon","sakarun":"sakarun-beach","dona":"praia-dona-ana","illetes":"ses-illetes","pelosa":"la-pelosa","comino":"blue-lagoon-comino","ksamil":"ksamil-beaches","sarakiniko":"sarakiniko","katsiki":"porto-katsiki","falesia":"praia-da-falesia","stiniva":"stiniva","gjipe":"gjipe","saleccia":"saleccia","goldenbay":"golden-bay"};
 B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
 function imgUrl(b, w){ return WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200); }
 
