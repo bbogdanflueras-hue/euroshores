@@ -961,7 +961,22 @@ var B = [
   fac:'Minimal &mdash; a snack bar in season, otherwise bring food, water and sun protection',park:'No road to the sand: shuttle boats run from Saint-Florent, or take a guided 4x4 through the Agriates. Do not drive your own car down the track',tip:'Book the boat early in July and August, and bring everything you need for the day.'},
  {id:'goldenbay',name:'Golden Bay',loc:'Mellieha, Malta',country:'Malta',cc:'MT',type:'sandy',tag:'Sandy Beach',rating:4.5,feat:0,lat:35.9340,lng:14.3430,season:'June&#8211;September',temp:25,access:'Easy',gem:0,g:['#b45309','#fcd34d'],
   desc:'A wide sandy bay on the northwest coast of Malta, backed by cliffs, with the amenities for a full beach day.',
-  fac:'Cafe-restaurant, sunbed and umbrella hire, toilets and lifeguards in summer',park:'Car park above the beach (fills by mid-morning in summer), then steps or a ramp down; buses run from Valletta and Sliema',tip:'Arrive early in July and August for parking, and take care when the wind is from the north-west, as currents can be strong.'}
+  fac:'Cafe-restaurant, sunbed and umbrella hire, toilets and lifeguards in summer',park:'Car park above the beach (fills by mid-morning in summer), then steps or a ramp down; buses run from Valletta and Sliema',tip:'Arrive early in July and August for parking, and take care when the wind is from the north-west, as currents can be strong.'},
+ {id:'catedrais',name:'As Catedrais',loc:'Ribadeo, Galicia, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.7,feat:0,lat:43.5539,lng:-7.1572,season:'May&#8211;September',temp:18,access:'Moderate',gem:0,g:['#334155','#7dd3fc'],
+  desc:'Towering sea arches and caves carved by the Atlantic along the coast of Galicia, walkable only at low tide.',
+  fac:'Minimal &mdash; bring water and sun protection',park:'A staircase leads down from the clifftop. A free permit is required from 1 July to 30 September and during Holy Week, booked online at ascatedrais.xunta.es',tip:'Check the tide table before you go and plan to be on the sand around low tide. The sea returns quickly, and in peak season the furthest arches may be closed near the end of the window.'},
+ {id:'mondrago',name:'Cala Mondrag&oacute;',loc:'Mallorca, Spain',country:'Spain',cc:'ES',type:'sandy',tag:'Sandy Beach',rating:4.5,feat:0,lat:39.3492,lng:3.1903,season:'May&#8211;October',temp:24,access:'Easy',gem:0,g:['#0f766e','#99f6e4'],
+  desc:'A sheltered turquoise cove backed by pines inside a natural park, with the sandy bay of S&#39;Amarador alongside.',
+  fac:'Showers and a restaurant; walking trails through the natural park',park:'Paid car parks at both ends, about a 5&#8211;10 minute walk from the sand; they can be full by late morning in high season',tip:'Arrive before 10 AM in July and August for parking, and bring cash or a card for the car park fee.'},
+ {id:'mariolu',name:'Cala Mariolu',loc:'Gulf of Orosei, Sardinia, Italy',country:'Italy',cc:'IT',type:'pebble',tag:'Pebble Beach',rating:4.8,feat:0,lat:40.1233,lng:9.6764,season:'May&#8211;September',temp:23,access:'Challenging',gem:1,g:['#0e7490','#a5f3fc'],
+  desc:'A pebble cove with vivid turquoise water below steep cliffs, reachable only by boat or on foot.',
+  fac:'A small seasonal kiosk &mdash; bring water and food',park:'No road: boats run from Cala Gonone, Santa Maria Navarrese and Arbatax, or hike about three hours from the Golgo plateau near Baunei',tip:'Go in the morning, as the sun drops behind the cliff around 16:30, and book boats ahead for July and August. Wear water shoes.'},
+ {id:'santagiulia',name:'Santa Giulia',loc:'Porto-Vecchio, Corsica, France',country:'France',cc:'FR',type:'sandy',tag:'Sandy Beach',rating:4.6,feat:0,lat:41.5320,lng:9.2755,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#0e7490','#bae6fd'],
+  desc:'A long white-sand beach on a sheltered bay with shallow, calm water, south of Porto-Vecchio.',
+  fac:'Lifeguards, toilets, showers, sunbed and water-sport rental, and beachfront cafes',park:'Car parks near the beach, which fill early in summer; fees vary',tip:'Arrive early in July and August to find a parking space. The water is shallow for some distance, which suits young children.'},
+ {id:'jaz',name:'Jaz Beach',loc:'Budva, Montenegro',country:'Montenegro',cc:'ME',type:'pebble',tag:'Pebble Beach',rating:4.3,feat:0,lat:42.2833,lng:18.8047,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#1d4ed8','#93c5fd'],
+  desc:'One of the longest beaches in Montenegro, a wide pebble sweep about 2.5 km west of Budva with room to spread out.',
+  fac:'A campsite behind the beach; other services vary by season',park:'Road access about 2.5 km west of central Budva; check parking on arrival in peak season',tip:'Bring water shoes for the pebbles and some shade, and walk along the beach to find a quieter stretch.'}
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
 var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
@@ -991,9 +1006,14 @@ var PH = {
  stiniva:{f:'Aerial_view_of_the_Adriatic_Sea_at_Stiniva_Bay_on_Vis_island_in_Croatia_(48608804397).jpg',by:'dronepicr',lic:'CC BY 2.0'},
  gjipe:{f:'Gjipe_beach,_Albania.JPG',by:'Pudelek',lic:'CC BY-SA 3.0'},
  saleccia:{f:'Saleccia_2004.jpg',by:'Pierre Bona',lic:'CC BY-SA 3.0'},
- goldenbay:{f:'Golden_Bay,_Malta.jpg',by:'Majjistral Park',lic:'CC BY-SA 4.0'}
+ goldenbay:{f:'Golden_Bay,_Malta.jpg',by:'Majjistral Park',lic:'CC BY-SA 4.0'},
+ catedrais:{f:'Praia_de_Augas_Santas_ou_das_Catedrais._Devesa._Ribadeo._Galiza-19.jpg',by:'Lmbuga',lic:'CC BY-SA 3.0'},
+ mondrago:{f:'Mallorca_Sch%C3%B6nste_Str%C3%A4nde_Cala_Mondrago_(181610261).jpeg',by:'Dronepicr',lic:'CC BY 3.0'},
+ mariolu:{f:'Cala_Mariolu_.jpg',by:'Lddcrs',lic:'CC BY-SA 4.0'},
+ santagiulia:{f:'Etang_de_Santa_Giulia_02.JPG',by:'TeletubAstyanax',lic:'CC BY-SA 4.0'},
+ jaz:{f:'Jaz_Beach_01.jpg',by:'Milica Buha',lic:'CC BY-SA 4.0'}
 };
-var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":"elafonissi-beach","marinha":"praia-da-marinha","estrenc":"es-trenc","svetistefan":"sveti-stefan","zlatnirat":"zlatni-rat","myrtos":"myrtos-beach","goloritze":"cala-goloritze","benagil":"benagil-cove","macarelleta":"cala-macarelleta","palombaggia":"palombaggia","balos":"balos-lagoon","sakarun":"sakarun-beach","dona":"praia-dona-ana","illetes":"ses-illetes","pelosa":"la-pelosa","comino":"blue-lagoon-comino","ksamil":"ksamil-beaches","sarakiniko":"sarakiniko","katsiki":"porto-katsiki","falesia":"praia-da-falesia","stiniva":"stiniva","gjipe":"gjipe","saleccia":"saleccia","goldenbay":"golden-bay"};
+var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":"elafonissi-beach","marinha":"praia-da-marinha","estrenc":"es-trenc","svetistefan":"sveti-stefan","zlatnirat":"zlatni-rat","myrtos":"myrtos-beach","goloritze":"cala-goloritze","benagil":"benagil-cove","macarelleta":"cala-macarelleta","palombaggia":"palombaggia","balos":"balos-lagoon","sakarun":"sakarun-beach","dona":"praia-dona-ana","illetes":"ses-illetes","pelosa":"la-pelosa","comino":"blue-lagoon-comino","ksamil":"ksamil-beaches","sarakiniko":"sarakiniko","katsiki":"porto-katsiki","falesia":"praia-da-falesia","stiniva":"stiniva","gjipe":"gjipe","saleccia":"saleccia","goldenbay":"golden-bay","catedrais":"as-catedrais","mondrago":"cala-mondrago","mariolu":"cala-mariolu","santagiulia":"santa-giulia","jaz":"jaz-beach"};
 B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
 function imgUrl(b, w){ return WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200); }
 
