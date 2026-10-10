@@ -10,6 +10,9 @@ let siteUrl = 'https://bbogdanflueras-hue.github.io/euroshores';
 try { const cn = fs.readFileSync(path.join(ROOT, 'CNAME'), 'utf8').trim(); if (cn) siteUrl = 'https://' + cn; } catch (e) { /* no custom domain */ }
 const D = { site: siteUrl, name: 'EuroShores', updated: new Date().toISOString().slice(0, 10), B: data.B, PH: data.PH, GUIDES: data.GUIDES };
 const SITE = D.site.replace(/\/$/, ''), NAME = D.name;
+// GoatCounter site code (the part before .goatcounter.com). Leave empty to disable analytics.
+const GC = 'euroshores';
+const gcTag = () => GC ? '<!--gc--><script data-goatcounter="https://' + GC + '.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><!--/gc-->' : '';
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", eacute: '\u00e9', mdash: '\u2014', ndash: '\u2013', hellip: '\u2026', frac12: '\u00bd', nbsp: ' ', rsquo: '\u2019', lsquo: '\u2018', deg: '\u00b0', middot: '\u00b7', egrave: '\u00e8', agrave: '\u00e0', ccedil: '\u00e7', ocirc: '\u00f4' };
@@ -66,6 +69,7 @@ ${o.ogimg ? `<meta property="og:image" content="${o.ogimg}"/>\n<meta name="twitt
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>${CSS}</style>
 ${ld}
+${gcTag()}
 </head>
 <body>
 <header class="top"><a class="brand" href="${up}">&#9830; ${NAME}</a><a href="${up}#beaches">Beaches</a><a href="${up}#map-section">Map</a><a href="${up}#countries">Countries</a><a href="${up}#guides">Guides</a></header>
@@ -377,6 +381,8 @@ console.log('generated', urls.length, 'urls');
   h = h.replace(/<meta name="description" content="[^"]*"\/>/, '<meta name="description" content="' + dsc + '"/>');
   h = h.replace(/<meta property="og:title" content="[^"]*"\/>/, '<meta property="og:title" content="' + T + '"/>');
   h = h.replace(/<meta property="og:url" content="[^"]*"\/>/, '<meta property="og:url" content="' + SITE + '/"/>');
+  h = h.replace(/<!--gc-->[\s\S]*?<!--\/gc-->\n?/g, '');
+  if (GC) h = h.replace('</head>', gcTag() + '\n</head>');
   h = h.replace(/<!--seo-->[\s\S]*?<!--\/seo-->\n?/, '');
   const ld = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: SITE + '/', description: 'Editorial guide to the best beaches in Europe.' },
     { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in Europe', itemListElement: B.slice().sort((x, y) => y.rating - x.rating).map((b, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + b.slug + '/', name: b.name })) }];
