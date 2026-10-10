@@ -232,7 +232,7 @@ const CINFO = {
 CL.forEach(c => {
   const rel = 'country/' + c.slug + '/';
   const top = c.list[0];
-  const title = 'Best Beaches in ' + c.name + ': ' + c.list.length + ' Hand-Picked Shores | ' + NAME;
+  const title = 'Best Beaches in ' + c.name + ': ' + (c.list.length === 1 ? top.name : c.list.length + ' Hand-Picked Shores') + ' | ' + NAME;
   const desc = ('The best beaches in ' + c.name + ': ' + c.list.map(x => x.name).join(', ') + '. Scores, best season, access and local tips.').slice(0, 158);
   const ld = [
     { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in ' + c.name, itemListElement: c.list.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + x.slug + '/', name: x.name })) },
