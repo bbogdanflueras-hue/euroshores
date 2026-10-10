@@ -88,6 +88,29 @@ function write(rel, content) {
 const urls = [{ loc: SITE + '/', pri: '1.0' }];
 const month = b => b.season.replace(/\u2013/g, ' to ');
 
+// ---- beach editorial helpers (general, stable advice derived from each beach's data; no prices or rules)
+const TYPE_NOTE = {
+  sandy: 'Sand beaches are usually gentle underfoot and easy for swimmers and children, though they can be exposed to wind and waves, so check conditions on the day. Bring a hat and extra water, as shade can be scarce away from facilities.',
+  pink: 'Pink sand gets its tint from crushed shell and coral fragments. Some pink-sand beaches are protected, so take nothing away and follow any posted rules.',
+  pebble: 'Pebble beaches usually mean clear water but awkward walking. Bring water shoes and a thick towel or mat to sit on.',
+  rocky: 'Rocky coves often have clear, deeper water that suits snorkelling, but the entry can be slippery. Wear water shoes, enter slowly and avoid swimming when there is a swell.'
+};
+const ACC_NOTE = {
+  Easy: 'Access is rated easy, so most visitors can reach the beach without a long walk or special equipment.',
+  Moderate: 'Access is rated moderate: expect stairs, a short walk or a rough road, and wear proper shoes rather than flip-flops.',
+  Challenging: 'Access is rated challenging and involves a steep hike. Take plenty of water, start early and allow enough daylight for the walk back.'
+};
+const gslug = k => (GUIDES.find(g => g.slug.indexOf(k) >= 0) || {}).slug;
+function relGuides(b) {
+  const out = [];
+  if (b.access === 'Easy') out.push(['family', 'Best Family-Friendly Beaches']);
+  if (b.type === 'rocky') out.push(['snorkelling', 'Best Snorkelling & Diving Spots']);
+  if (b.gem) out.push(['romantic', 'Most Romantic Beach Getaways']);
+  out.push(['time-to-visit', 'Best Time to Visit Each Country']);
+  out.push(['budget', 'Budget Beach Holidays in Europe']);
+  return out.filter(x => gslug(x[0])).slice(0, 3).map(x => [gslug(x[0]), x[1]]);
+}
+
 // ---- beach pages
 B.forEach(b => {
   const rel = 'beach/' + b.slug + '/';
@@ -98,7 +121,9 @@ B.forEach(b => {
     ['When is the best time to visit ' + b.name + '?', b.name + ' is best visited ' + month(b) + '. The sea is typically around ' + b.temp + ' \u00b0C in season. ' + b.tip],
     ['How do I get to ' + b.name + '?', 'Access is rated ' + b.access.toLowerCase() + '. ' + b.park + '.'],
     ['What facilities does ' + b.name + ' have?', b.fac + '.'],
-    ['Where is ' + b.name + '?', b.name + ' is in ' + city + ' (approx. coordinates ' + b.lat + ', ' + b.lng + ').']
+    ['Where is ' + b.name + '?', b.name + ' is in ' + city + ' (approx. coordinates ' + b.lat + ', ' + b.lng + ').'],
+    ['Is ' + b.name + ' good for children?', b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink') ? 'Access is rated easy and the beach is sandy, which usually suits families. Check water and weather conditions on the day and keep children in sight near the water.' : 'Access is rated ' + b.access.toLowerCase() + ', so check that it suits young children before you go. Our family guide lists easier options.'],
+    ['What should I bring to ' + b.name + '?', 'Facilities: ' + b.fac + '. ' + (b.type === 'pebble' || b.type === 'rocky' ? 'Water shoes help on the ' + (b.type === 'pebble' ? 'pebbles' : 'rocks') + '. ' : 'A hat and sun protection are useful. ') + 'Bring water and snacks if there is no kiosk or restaurant.']
   ];
   const title = b.name + ', ' + city.split(',')[0] + ' - Best Time, Access & Tips | ' + NAME;
   const desc = (b.name + ' (' + city + '): ' + b.desc).slice(0, 154).replace(/\s+\S*$/, '') + '...';
@@ -123,6 +148,11 @@ B.forEach(b => {
 <div class="fact"><b>Getting there &amp; parking</b>${esc(b.park)}</div>
 </div>
 <div class="tip"><b>Local tip:</b> ${esc(b.tip)}</div>
+<h2>Planning your visit to ${esc(b.name)}</h2>
+<p>${esc(TYPE_NOTE[b.type] || '')}</p>
+<p>${esc(ACC_NOTE[b.access] || '')}</p>
+<p>The usual season runs ${esc(b.season)}. Visiting near the start or end of that window usually means fewer people, but the sea is cooler and some facilities may not be open yet or may have closed for the year.${b.gem ? ' We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.' : ''}</p>
+<p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}</p>
 <p><a href="https://www.openstreetmap.org/?mlat=${b.lat}&amp;mlon=${b.lng}#map=14/${b.lat}/${b.lng}" rel="noopener">View ${esc(b.name)} on the map</a> &middot; <a href="../../#beaches">Compare with all beaches</a></p>
 <h2>Frequently asked questions</h2>
 ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('\n')}
