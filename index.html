@@ -939,7 +939,16 @@ var B = [
   fac:'Kiosks and sunbed rental in season',park:'Boat only &mdash; ferries and tours run from Malta and Gozo',tip:'Go early or late; the lagoon is busiest around midday in summer.'},
  {id:'ksamil',name:'Ksamil Beaches',loc:'Albanian Riviera, Albania',country:'Albania',cc:'AL',type:'pebble',tag:'Pebble Beach',rating:4.5,feat:0,lat:39.7656,lng:20.0003,season:'June&#8211;September',temp:25,access:'Easy',gem:1,g:['#0f766e','#5eead4'],
   desc:'Small islands and shallow turquoise coves on the Albanian Riviera, facing Corfu.',
-  fac:'Beach clubs, sunbed rental and cafes',park:'Roadside and paid parking in Ksamil village',tip:'Choose a quieter cove away from the town centre, and carry some cash for sunbeds.'}
+  fac:'Beach clubs, sunbed rental and cafes',park:'Roadside and paid parking in Ksamil village',tip:'Choose a quieter cove away from the town centre, and carry some cash for sunbeds.'},
+ {id:'sarakiniko',name:'Sarakiniko',loc:'Milos, Greece',country:'Greece',cc:'GR',type:'rocky',tag:'Rocky Cove',rating:4.7,feat:0,lat:36.7427,lng:24.4583,season:'May&#8211;October',temp:24,access:'Easy',gem:0,g:['#0f4a63','#94d4ee'],
+  desc:'A lunar shoreline of smooth white volcanic rock sculpted by wind and sea, with deep clear water for swimming from the rocks.',
+  fac:'Very limited &mdash; bring water, a hat and sun protection',park:'Parking near the beach (fills early in summer); local buses also run from Adamas',tip:'Go early or late to avoid the heat and the crowds. The rocks can be slippery, and wind can make swimming difficult, so check the forecast.'},
+ {id:'katsiki',name:'Porto Katsiki',loc:'Lefkada, Greece',country:'Greece',cc:'GR',type:'pebble',tag:'Pebble Beach',rating:4.8,feat:0,lat:38.6025,lng:20.5494,season:'June&#8211;September',temp:24,access:'Moderate',gem:0,g:['#0369a1','#7dd3fc'],
+  desc:'Tall white cliffs plunge into bright turquoise water on the Ionian coast of Lefkada, reached by a long flight of steps from the clifftop.',
+  fac:'Canteen and restaurant above the beach; little shade, so bring an umbrella',park:'Paid clifftop car park (fills early), then a stairway down to the beach',tip:'Arrive before mid-morning for parking and shade. The cliffs reportedly shade the beach until around midday, and the climb back up is harder than the walk down.'},
+ {id:'falesia',name:'Praia da Fal&#233;sia',loc:'Albufeira, Algarve, Portugal',country:'Portugal',cc:'PT',type:'sandy',tag:'Sandy Beach',rating:4.7,feat:0,lat:37.0867,lng:-8.17,season:'May&#8211;October',temp:21,access:'Moderate',gem:0,g:['#b45309','#fde68a'],
+  desc:'A long golden beach backed by red and ochre cliffs and pine trees, stretching toward Vilamoura.',
+  fac:'Lifeguards in summer, beach bars, sunbed hire and showers at the main access points',park:'Several car parks along the clifftop, then stairs down (about 80 steps at the main entrance)',tip:'Walk away from the main access for quieter sand. Parking is tight in peak season, so arrive early.'}
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
 var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
@@ -962,9 +971,12 @@ var PH = {
  illetes:{f:'Formentera_-_Platja_De_Ses_Illetes_-_panoramio.jpg',by:'MrPepanos',lic:'CC BY 3.0'},
  pelosa:{f:'Torre_della_Pelosa_-_Stintino_(SS).jpg',by:'Mihael Grmek',lic:'CC BY-SA 3.0'},
  comino:{f:'Malta_-_Ghajnsielem_-_Comino_-_Blue_Lagoon_(Comino)_02_ies.jpg',by:'Frank Vincentz',lic:'CC BY-SA 3.0'},
- ksamil:{f:'Ksamil,_Albania_(by_Pudelek).JPG',by:'Pudelek',lic:'CC BY-SA 4.0'}
+ ksamil:{f:'Ksamil,_Albania_(by_Pudelek).JPG',by:'Pudelek',lic:'CC BY-SA 4.0'},
+ sarakiniko:{f:'Sarakiniko_Beach_on_Milos_Island,_Greece_with_a_view_of_the_Aegean_Sea.jpg',by:'dronepicr',lic:'CC BY 2.0'},
+ katsiki:{f:'Porto_Katsiki_beach,_pic1.JPG',by:'Alf van Beem',lic:'CC0'},
+ falesia:{f:'Falesia_Beach_seen_from_sea.JPG',by:'Diana5cruz',lic:'CC BY-SA 4.0'}
 };
-var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":"elafonissi-beach","marinha":"praia-da-marinha","estrenc":"es-trenc","svetistefan":"sveti-stefan","zlatnirat":"zlatni-rat","myrtos":"myrtos-beach","goloritze":"cala-goloritze","benagil":"benagil-cove","macarelleta":"cala-macarelleta","palombaggia":"palombaggia","balos":"balos-lagoon","sakarun":"sakarun-beach","dona":"praia-dona-ana","illetes":"ses-illetes","pelosa":"la-pelosa","comino":"blue-lagoon-comino","ksamil":"ksamil-beaches"};
+var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":"elafonissi-beach","marinha":"praia-da-marinha","estrenc":"es-trenc","svetistefan":"sveti-stefan","zlatnirat":"zlatni-rat","myrtos":"myrtos-beach","goloritze":"cala-goloritze","benagil":"benagil-cove","macarelleta":"cala-macarelleta","palombaggia":"palombaggia","balos":"balos-lagoon","sakarun":"sakarun-beach","dona":"praia-dona-ana","illetes":"ses-illetes","pelosa":"la-pelosa","comino":"blue-lagoon-comino","ksamil":"ksamil-beaches","sarakiniko":"sarakiniko","katsiki":"porto-katsiki","falesia":"praia-da-falesia"};
 B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
 function imgUrl(b, w){ return WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200); }
 
