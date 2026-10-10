@@ -133,6 +133,101 @@ ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></de
   urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
 });
 
+// ---- country editorial content (general, stable facts only; no prices or visa rules)
+const CINFO = {
+  greece: {
+    intro: "Greece has more coastline than almost any other European country, spread across the mainland and thousands of islands. The beaches range from pink-tinted lagoons in Crete to dramatic cliff-backed coves in the Ionian islands, and the sea is clear and calm for most of the summer.",
+    when: "July and August are the hottest and busiest months, and the most popular beaches fill up by late morning. May, June and September are warmer than most people expect and much quieter, and the sea is usually at its warmest from late summer into early autumn. The meltemi, a strong northerly wind, blows across the Aegean in July and August, so beaches on the Ionian side can be calmer on windy days.",
+    around: "Most islands are reached by ferry or a short flight from Athens or Thessaloniki. Renting a car or scooter is the easiest way to reach remote beaches on islands such as Crete and Kefalonia, although some roads are steep, narrow or unpaved. Boat trips run to beaches such as Balos on Crete, and a few places can only be reached by sea.",
+    good: "The currency is the euro. Many organised beaches rent sunbeds and umbrellas, but plenty have no facilities at all, so carry water and shade. Access rules at protected or hazardous sites can change from season to season, so check locally before you travel.",
+    faqs: [
+      ["When is the best time to visit Greek beaches?", "For warm water and fewer crowds, aim for late May to June or September. July and August are hot and busy, and the meltemi wind can make exposed Aegean beaches rough."],
+      ["Which Greek island has the best beaches?", "There is no single answer. Crete has the pink sand of Elafonissi and Balos, Zakynthos has the Navagio cliffs (check current access rules), and Kefalonia has Myrtos."],
+      ["Do I need a car to reach Greek beaches?", "On larger islands a car or scooter helps a lot. Some beaches are reached by boat only, and some are best visited early to avoid the day-boat crowds."]
+    ]
+  },
+  italy: {
+    intro: "Italy's beaches range from the dramatic coves of Sardinia to the colourful, cliff-backed shores of the Amalfi Coast. Sardinia in particular is famous for its clear water and white sand.",
+    when: "The Italian beach season runs roughly from June to September. Mid-August, around the Ferragosto holiday, is the busiest and most expensive period. June and September give warm water with far fewer people. Outside summer, many beach clubs and some boat services close.",
+    around: "Sardinia is reached by ferry or flight and is best explored by car. The Amalfi Coast is served by buses and ferries, and its coastal road is narrow and congested in summer, so public transport or ferries can be easier than driving.",
+    good: "Italy uses the euro. Several popular beaches now regulate visitor numbers in summer, including La Pelosa and Cala Goloritze, so check booking rules ahead of time. Many beaches have paid sections with sunbeds alongside free public areas.",
+    faqs: [
+      ["Do I need to book Italian beaches in advance?", "For most beaches, no. But some Sardinian beaches limit daily visitors in summer and require a reservation. See our La Pelosa and Cala Goloritze pages for the details we found."],
+      ["When is the best time to visit Italian beaches?", "June and September are the best balance of warm water and manageable crowds. Avoid mid-August if you want space."]
+    ]
+  },
+  portugal: {
+    intro: "Portugal's best-known beaches sit on the Algarve coast, where golden limestone cliffs, sea arches and sea caves frame small sandy coves. The Atlantic is cooler than the Mediterranean, but the scenery is hard to beat.",
+    when: "June to September is the main season, and July and August are the busiest. The Atlantic usually peaks at around 20 to 22 degrees C, cooler than the Mediterranean, and the Algarve stays sunny well into October. Morning visits are calmer, especially for boat and kayak trips.",
+    around: "Faro airport is the main gateway to the Algarve. A car makes it easy to reach clifftop car parks, and many beaches are reached by stairs down the cliff. Boat and kayak trips run from nearby towns to sea caves such as Benagil.",
+    good: "Portugal uses the euro. Stairs to some beaches can be long and steep, and Atlantic swell and currents can be strong, so follow the flags and lifeguard advice on supervised beaches.",
+    faqs: [
+      ["When is the best time to visit the Algarve beaches?", "June to September for warm weather, with early mornings or September for fewer people. The sea stays cooler than in the Mediterranean all year."],
+      ["Can you visit the Benagil cave without a boat?", "Many people reach it by boat, kayak or paddleboard from nearby beaches. Conditions and rules change, so check locally before you go."]
+    ]
+  },
+  spain: {
+    intro: "Our Spanish picks are all in the Balearic Islands, where pine-fringed coves, white sand and shallow turquoise water make for some of the most photogenic beaches in the western Mediterranean.",
+    when: "June to September is the main season, with the water warmest in August and September. July and August are the busiest, and the most accessible beaches fill early. May and October can be pleasant but cooler, and some beach bars and services only open from late spring.",
+    around: "Each island has an airport, and renting a car is the easiest way to reach the quieter coves of Mallorca and Menorca. Formentera is reached by ferry, and cycling or renting a scooter is a popular way to get around there.",
+    good: "Spain uses the euro. Parking near popular coves is limited, and some areas restrict vehicle access in summer, so arrive early. Posidonia seagrass meadows protect the water here, so avoid anchoring on them if you are on a boat.",
+    faqs: [
+      ["When is the best time to visit the Balearic beaches?", "Late June and September are warm with fewer crowds than July and August."],
+      ["Do I need a car in the Balearic Islands?", "On Mallorca and Menorca a car is the easiest way to reach quiet coves. On Formentera, bikes and scooters are popular."]
+    ]
+  },
+  croatia: {
+    intro: "Croatia's Adriatic coast is known for clear water, pebble beaches and hundreds of islands. Zlatni Rat on Brac and Sakarun are two of its best-known beaches.",
+    when: "June to September is the best time, with sea temperatures peaking in July and August. Late June and September are quieter and still warm. Ferries run more often in summer, which makes island hopping easier to plan.",
+    around: "Ferries and catamarans link the islands to Split and other coastal ports, and car ferries run on the busier routes. Many beaches are a short walk or drive from the nearest town.",
+    good: "Croatia has used the euro since 2023. Many Croatian beaches are pebble or rock, so water shoes are useful. Strong winds such as the bora and jugo can affect sailing and ferry services.",
+    faqs: [
+      ["When is the best time to visit Croatian beaches?", "June to September, with late June and September being warm and less crowded."],
+      ["Are Croatian beaches sandy?", "Mostly not. Pebble and rock are far more common than sand, and the water is usually very clear. Sakarun is better known for fine pebbles and shallow water."]
+    ]
+  },
+  albania: {
+    intro: "Albania's Ionian coast around Ksamil and Sarande has clear turquoise water and small islets close to shore, and it has a reputation for being cheaper than neighbouring Greece.",
+    when: "June to September is the main season, and July and August are the hottest and busiest. Ksamil's small beaches can fill quickly, so early mornings or the shoulder months work well.",
+    around: "Ksamil is a short drive from Sarande, which is reached from Corfu by ferry or by road from Tirana and the Greek border. Hiring a car makes exploring the coast easier.",
+    good: "Albania's currency is the lek, although euros are widely accepted in tourist areas. Parts of the beach at Ksamil are taken by paid sunbed areas, so carry some cash and look for quieter coves.",
+    faqs: [
+      ["When is the best time to visit Ksamil?", "June or September for warm water with fewer people. July and August are the busiest."],
+      ["Is Ksamil cheaper than the Greek islands?", "It has that reputation, but prices rise in peak season and in popular beach clubs. Check current prices before you plan a budget."]
+    ]
+  },
+  france: {
+    intro: "Palombaggia, on the southeast coast of Corsica, is among the island's best-known beaches, with fine pale sand, red rocks and umbrella pines behind the shore.",
+    when: "June to September is the main season. July and August are the busiest, and parking behind the beach can fill early. Late spring and early autumn are quieter, and the sea stays warm into September.",
+    around: "Corsica is reached by ferry from mainland France and Italy, or by air to Figari, Bastia, Ajaccio or Calvi. A car is the easiest way to reach the beaches near Porto-Vecchio.",
+    good: "France uses the euro. Parts of Corsica's coastline are protected, so follow local signs and take your rubbish away.",
+    faqs: [
+      ["When is the best time to visit Palombaggia?", "June or September for warm water and fewer people. July and August are the busiest."],
+      ["How do I get to Palombaggia?", "By car or taxi from Porto-Vecchio. Parking is limited in high season, so arrive early."]
+    ]
+  },
+  malta: {
+    intro: "The Blue Lagoon on the small island of Comino is a shallow bay with very clear turquoise water over white sand, and it is one of the best-known swimming spots in the Mediterranean.",
+    when: "June to September is the best time. The lagoon is extremely busy in July and August, especially around midday when the day boats arrive. Early morning and the shoulder months are much calmer.",
+    around: "Ferries and boat trips to Comino run from Malta and Gozo. Comino has almost no road traffic, so you reach the lagoon on foot from the landing area or directly by boat.",
+    good: "Malta uses the euro. There is little shade on Comino, so bring sun protection, water and food. The island is protected, so follow the signs and leave no litter.",
+    faqs: [
+      ["When is the best time to visit the Blue Lagoon?", "Early morning or September, when it is warm and far less crowded than July and August middays."],
+      ["Are there facilities on Comino?", "There are limited facilities, and there is little shade, so bring water and sun protection."]
+    ]
+  },
+  montenegro: {
+    intro: "Sveti Stefan is a small fortified islet joined to the mainland by a narrow causeway, with pink-tinted sand on the beaches beside it. It sits on the Budva Riviera on Montenegro's Adriatic coast.",
+    when: "June to September is the main season. July and August are warm and busy, and September is warm but calmer. The islet itself is a resort area, so check what access is available before you plan your visit.",
+    around: "Budva is the nearest large town, and Tivat and Podgorica have airports. Buses run along the coast, and a car or taxi is the easiest way to reach the beaches.",
+    good: "Montenegro uses the euro, although it is not an EU member. Some beach areas are run by hotels and charge for sunbeds, so check on arrival.",
+    faqs: [
+      ["When is the best time to visit Sveti Stefan?", "June or September for warm weather and fewer people than July and August."],
+      ["Can you visit the island of Sveti Stefan?", "Access to the islet has been limited because it is a resort. Check current access rules locally."]
+    ]
+  }
+};
+
 // ---- country pages
 CL.forEach(c => {
   const rel = 'country/' + c.slug + '/';
@@ -143,13 +238,28 @@ CL.forEach(c => {
     { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in ' + c.name, itemListElement: c.list.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + x.slug + '/', name: x.name })) },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: c.name, item: SITE + '/' + rel }] }
   ];
-  const body = `<div class="crumbs"><a href="../../">${NAME}</a> &rsaquo; ${esc(c.name)}</div>
+  let body = `<div class="crumbs"><a href="../../">${NAME}</a> &rsaquo; ${esc(c.name)}</div>
 <h1>Best Beaches in ${esc(c.name)}</h1>
 <p class="lead">${c.list.length} hand-picked ${c.list.length > 1 ? 'beaches' : 'beach'} in ${esc(c.name)}, ranked by our editors. Top pick: <a href="../../beach/${top.slug}/">${esc(top.name)}</a> (${stars(top.rating)}).</p>
 <div class="grid">${c.list.map(x => `<a class="card" href="../../beach/${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name + ', ' + x.loc)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${esc(x.tag)} &middot; ${stars(x.rating)}</small><p style="font-size:14px;margin-top:6px">Best ${esc(x.season)}</p></div></a>`).join('')}</div>
 <h2>Planning a beach trip to ${esc(c.name)}</h2>
 <p>${c.list.map(x => esc(x.name) + ' is best in ' + esc(x.season)).join('; ') + '.'} See the <a href="../../guide/${GUIDES[0].slug}/">${esc(GUIDES[0].ptitle)}</a> guide for timing and the <a href="../../guide/${GUIDES[1].slug}/">${esc(GUIDES[1].ptitle)}</a> guide for saving money.</p>
 <p><a href="../../#beaches">Browse all European beaches &rarr;</a></p>`;
+  const ci = CINFO[c.slug];
+  if (ci) {
+    body += `
+<h2>About beaches in ${esc(c.name)}</h2>
+<p>${esc(ci.intro)}</p>
+<h2>When to go</h2>
+<p>${esc(ci.when)}</p>
+<h2>Getting around</h2>
+<p>${esc(ci.around)}</p>
+<h2>Good to know</h2>
+<p>${esc(ci.good)}</p>
+<h2>Frequently asked questions</h2>
+${ci.faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('\n')}`;
+    ld.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: ci.faqs.map(f => ({ '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } })) });
+  }
   write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(top, 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
 });
