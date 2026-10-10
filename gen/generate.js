@@ -8,7 +8,7 @@ if (a0 < 0 || z0 < 0) throw new Error('data block not found in index.html');
 const data = new Function(src.slice(a0, z0) + ';return {B:B,PH:PH,GUIDES:GUIDES};')();
 let siteUrl = 'https://bbogdanflueras-hue.github.io/euroshores';
 try { const cn = fs.readFileSync(path.join(ROOT, 'CNAME'), 'utf8').trim(); if (cn) siteUrl = 'https://' + cn; } catch (e) { /* no custom domain */ }
-const D = { site: siteUrl, name: 'EuroShores', updated: '2026-10-09', B: data.B, PH: data.PH, GUIDES: data.GUIDES };
+const D = { site: siteUrl, name: 'EuroShores', updated: new Date().toISOString().slice(0, 10), B: data.B, PH: data.PH, GUIDES: data.GUIDES };
 const SITE = D.site.replace(/\/$/, ''), NAME = D.name;
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 
