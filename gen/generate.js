@@ -72,7 +72,7 @@ ${ld}
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
 </body>
 </html>`;
@@ -326,6 +326,31 @@ GUIDES.forEach(g => {
   urls.push({ loc: SITE + '/' + rel, pri: '0.6' });
 });
 
+// ---- about page
+(function aboutPage() {
+  const rel = 'about/';
+  const title = 'About ' + NAME + ': How We Pick and Rate European Beaches';
+  const desc = NAME + ' is an independent editorial guide to ' + B.length + ' beaches in ' + CL.length + ' European countries. See how we choose beaches, how ratings work and where the facts and photos come from.';
+  const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: title, url: SITE + '/' + rel, description: desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'About', item: SITE + '/' + rel }] }];
+  const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; About</div>
+<h1>About ${NAME}</h1>
+<p class="lead">${NAME} is an editorial guide to the best beaches in Europe: ${B.length} hand-picked shores in ${CL.length} countries, with ratings, a map and practical notes on when to go and how to get there.</p>
+<h2>How we choose beaches</h2>
+<p>We include beaches that are worth planning a trip around, from famous bays to quieter coves we flag as hidden gems. Each one is chosen for its setting, the quality of the water and sand, and how practical it is for a visitor to reach and enjoy. We aim for a spread of beach types (sandy, pebble, rocky and pink-sand) and of countries, rather than a ranking of the most visited places.</p>
+<h2>How ratings work</h2>
+<p>Scores out of 5 are editorial opinions from the ${NAME} team, not measurements or visitor averages. They reflect the overall experience of a beach in its usual season. A high score does not mean a beach is easy or uncrowded: check the access rating and local tip on each page.</p>
+<h2>Where the details come from</h2>
+<p>Facts such as seasons, water temperatures, facilities and access are compiled from public sources and are approximate. Access rules change, especially at protected or very popular beaches (some require booking, limit numbers or close for conservation). Where we have checked a rule against recent sources we say so on the beach page, but you should always confirm with the local municipality or official site before you travel.</p>
+<h2>Photos</h2>
+<p>Photos come from <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> and are credited to their authors with their licences on each beach page.</p>
+<h2>Explore</h2>
+<ul class="links"><li><a href="../#beaches">All beaches</a></li><li><a href="../#countries">Countries</a></li><li><a href="../#guides">Travel guides</a></li></ul>
+<p style="margin-top:22px">Last updated ${D.updated}.</p>`;
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.5' });
+})();
+
 // ---- sitemap + robots
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${D.updated}</lastmod><priority>${u.pri}</priority></url>`).join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + '/sitemap.xml\n');
@@ -357,6 +382,7 @@ console.log('generated', urls.length, 'urls');
     { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in Europe', itemListElement: B.slice().sort((x, y) => y.rating - x.rating).map((b, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + b.slug + '/', name: b.name })) }];
   const seo = '<!--seo-->\n  <link rel="canonical" href="' + SITE + '/"/>\n  <meta name="robots" content="index, follow, max-image-preview:large"/>\n  ' + ld.map(jsonld).join('\n  ') + '\n  <!--/seo-->\n';
   h = h.replace(/(<meta name="theme-color")/, seo + '  $1');
+  if (h.indexOf('href="about/"') < 0) h = h.replace('<a href="#newsletter">Newsletter</a></div>', '<a href="#newsletter">Newsletter</a><a href="about/">About</a></div>');
   h = h.replace(/<section id="directory"[\s\S]*?<\/section>\n?/, '');
   let dir = '<section id="directory" style="max-width:1100px;margin:0 auto;padding:40px 24px"><h2 style="font-family:Playfair Display,serif;margin-bottom:14px">All beaches by country</h2>';
   CL.forEach(c => { dir += '<h3 style="margin:14px 0 4px"><a href="country/' + c.slug + '/">Best beaches in ' + esc(c.name) + '</a></h3><p>' + c.list.map(b => '<a href="beach/' + b.slug + '/">' + esc(b.name) + '</a>').join(' &middot; ') + '</p>'; });
