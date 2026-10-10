@@ -175,12 +175,14 @@ GUIDES.forEach(g => {
   const body = `<div class="crumbs"><a href="../../">${NAME}</a> &rsaquo; Guides &rsaquo; ${esc(g.ptitle)}</div>
 <div style="color:${g.color};font-weight:600;text-transform:uppercase;font-size:13px;letter-spacing:.08em">${esc(g.cat)}</div>
 <h1>${esc(g.ptitle)}</h1>
-<p class="credit">${g.min} min read &middot; Last updated ${D.updated}</p>
+<p class="credit">${Math.max(1, Math.round(plain(g.html).split(/\s+/).length / 200))} min read &middot; Last updated ${D.updated}</p>
 <div class="guide-text">${asc(html)}</div>
 <h2>More guides</h2>
 <ul class="links">${GUIDES.filter(x => x !== g).map(x => `<li><a href="../${x.slug}/">${esc(x.ptitle)}</a></li>`).join('')}</ul>
 <p><a href="../../#beaches">Browse all beaches &rarr;</a></p>`;
-  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
+  const firstSlug = (html.match(/href="\.\.\/\.\.\/beach\/([a-z0-9-]+)\//) || [])[1];
+  const gb = B.find(x => x.slug === firstSlug) || B[0];
+  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(gb, 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.6' });
 });
 
