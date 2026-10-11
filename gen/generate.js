@@ -129,7 +129,9 @@ B.forEach(b => {
     ['Is ' + b.name + ' good for children?', b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink') ? 'Access is rated easy and the beach is sandy, which usually suits families. Check water and weather conditions on the day and keep children in sight near the water.' : 'Access is rated ' + b.access.toLowerCase() + ', so check that it suits young children before you go. Our family guide lists easier options.'],
     ['What should I bring to ' + b.name + '?', 'Facilities: ' + b.fac + '. ' + (b.type === 'pebble' || b.type === 'rocky' ? 'Water shoes help on the ' + (b.type === 'pebble' ? 'pebbles' : 'rocks') + '. ' : 'A hat and sun protection are useful. ') + 'Bring water and snacks if there is no kiosk or restaurant.']
   ];
-  const title = b.name + ', ' + city.split(',')[0] + ' - Best Time, Access & Tips | ' + NAME;
+  let title = b.name + ', ' + city.split(',')[0] + ' - Best Time, Access & Tips | ' + NAME;
+  if (title.length > 62) title = b.name + ', ' + city.split(',')[0] + ' - Best Time & Tips | ' + NAME;
+  if (title.length > 62) title = b.name + ', ' + city.split(',')[0] + ' | ' + NAME;
   const desc = (b.name + ' (' + city + '): ' + b.desc).slice(0, 154).replace(/\s+\S*$/, '') + '...';
   const image = imgUrl(b, 1200);
   const ld = [
@@ -334,7 +336,7 @@ GUIDES.forEach(g => {
 (function aboutPage() {
   const rel = 'about/';
   const title = 'About ' + NAME + ': How We Pick and Rate European Beaches';
-  const desc = NAME + ' is an independent editorial guide to ' + B.length + ' beaches in ' + CL.length + ' European countries. See how we choose beaches, how ratings work and where the facts and photos come from.';
+  const desc = NAME + ' is an independent guide to ' + B.length + ' beaches in ' + CL.length + ' European countries. See how we choose and rate beaches and where our facts and photos come from.';
   const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: title, url: SITE + '/' + rel, description: desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'About', item: SITE + '/' + rel }] }];
   const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; About</div>
@@ -351,7 +353,7 @@ GUIDES.forEach(g => {
 <h2>Explore</h2>
 <ul class="links"><li><a href="../#beaches">All beaches</a></li><li><a href="../#countries">Countries</a></li><li><a href="../#guides">Travel guides</a></li></ul>
 <p style="margin-top:22px">Last updated ${D.updated}.</p>`;
-  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ld }));
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.5' });
 })();
 
