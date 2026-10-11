@@ -78,7 +78,7 @@ ${gcTag()}
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
 </body>
 </html>`;
@@ -371,6 +371,33 @@ GUIDES.forEach(g => {
 <p style="margin-top:22px">Last updated ${D.updated}.</p>`;
   write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.5' });
+})();
+
+// ---- suggest-a-beach page
+(function suggestPage() {
+  const rel = 'suggest-a-beach/';
+  const title = 'Suggest a Beach for ' + NAME;
+  const desc = 'Know a European beach that deserves a place in our guide? Send us your suggestion with a few details and we will take a look.';
+  const ld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: title, url: SITE + '/' + rel, description: desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } }];
+  const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; Suggest a beach</div>
+<h1>Suggest a beach</h1>
+<p class="lead">Know a beach that deserves a place in ${NAME}? Tell us about it below. We read every message and add the beaches that fit our guide.</p>
+<form id="sf" action="https://formspree.io/f/mbgdoqpv" method="POST" style="max-width:640px;margin:20px 0">
+<input type="hidden" name="_subject" value="EuroShores: new beach suggestion">
+<input type="hidden" name="form_type" value="beach-suggestion">
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+<p><label>Beach name *<br><input type="text" name="beach_name" required maxlength="120" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></label></p>
+<p><label>Country *<br><input type="text" name="country" required maxlength="80" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></label></p>
+<p><label>Nearest town or area<br><input type="text" name="location" maxlength="160" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></label></p>
+<p><label>Why should we include it? *<br><textarea name="message" required rows="6" maxlength="3000" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></textarea></label></p>
+<p><label>Link to a photo or website (optional)<br><input type="url" name="link" maxlength="300" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></label></p>
+<p><label>Your email (optional, if you would like a reply)<br><input type="email" name="email" maxlength="160" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></label></p>
+<p><button type="submit" style="background:#0e6b8a;color:#fff;border:0;border-radius:8px;padding:12px 22px;font:inherit;font-weight:600;cursor:pointer">Send suggestion</button></p>
+<p id="sfmsg" role="status" style="font-weight:600"></p>
+</form>
+<script>(function(){var f=document.getElementById("sf"),m=document.getElementById("sfmsg"),b=f.querySelector("button");f.addEventListener("submit",function(e){e.preventDefault();b.disabled=true;m.textContent="Sending...";fetch(f.action,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}}).then(function(r){if(r.ok){f.reset();m.textContent="Thank you! We received your suggestion.";}else{m.textContent="Sorry, something went wrong. Please try again.";}b.disabled=false;}).catch(function(){m.textContent="Network error. Please try again.";b.disabled=false;});});})();</script>`;
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.4' });
 })();
 
 // ---- sitemap + robots
