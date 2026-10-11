@@ -14,6 +14,7 @@ const SITE = D.site.replace(/\/$/, ''), NAME = D.name;
 const GC = 'euroshores';
 const gcTag = () => GC ? '<!--gc--><script data-goatcounter="https://' + GC + '.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><!--/gc-->' : '';
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
+let INFO = {}; try { INFO = JSON.parse(fs.readFileSync(path.join(__dirname, 'beach-info.json'), 'utf8')); } catch (e) { /* no practical info file */ }
 
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", eacute: '\u00e9', mdash: '\u2014', ndash: '\u2013', hellip: '\u2026', frac12: '\u00bd', nbsp: ' ', rsquo: '\u2019', lsquo: '\u2018', deg: '\u00b0', middot: '\u00b7', egrave: '\u00e8', agrave: '\u00e0', ccedil: '\u00e7', ocirc: '\u00f4' };
 function dec(s) { return String(s).replace(/&#x([0-9a-f]+);/gi, (m, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&([a-z]+);/gi, (m, n) => ENT[n] !== undefined ? ENT[n] : m); }
@@ -42,7 +43,8 @@ main{max-width:920px;margin:0 auto;padding:28px 20px 60px}.crumbs{font-size:14px
 .score{display:inline-block;background:#e8a020;color:#1a1a2e;font-weight:700;border-radius:8px;padding:2px 10px;margin-right:8px}.tip{background:#fff7e0;border-left:4px solid #e8a020;padding:12px 16px;border-radius:8px;margin:18px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}.card{background:#fff;border:1px solid #e8ecf0;border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:block}.card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#cfe6ee}.card div{padding:12px 14px}.card small{color:#6b7a8d}
 details{background:#fff;border:1px solid #e8ecf0;border-radius:10px;padding:12px 16px;margin:10px 0}summary{cursor:pointer;font-weight:600}.guide-text ul{margin:10px 0 10px 22px}.guide-text p{margin:10px 0}
-footer{background:#08202e;color:#cfe3ec;padding:26px 24px;font-size:14px;text-align:center}footer a{color:#9fd3e6}ul.links{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin:8px 0}`;
+footer{background:#08202e;color:#cfe3ec;padding:26px 24px;font-size:14px;text-align:center}footer a{color:#9fd3e6}ul.links{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin:8px 0}
+table.info{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8ecf0;margin:10px 0}table.info th{text-align:left;width:32%;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a8d;vertical-align:top;padding:10px 14px;border-bottom:1px solid #eef1f4}table.info td{padding:10px 14px;border-bottom:1px solid #eef1f4}@media(max-width:600px){table.info th{width:38%}}`;
 
 function layout(o) {
   // o: {depth, path, title, desc, h1body, ogimg, ld[]}
@@ -115,6 +117,14 @@ function relGuides(b) {
   return out.filter(x => gslug(x[0])).slice(0, 3).map(x => [gslug(x[0]), x[1]]);
 }
 
+// ---- practical info box (data from gen/beach-info.json)
+const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 'Campers &amp; motorhomes'], ['sunbeds', 'Sunbeds &amp; umbrellas'], ['food', 'Food &amp; drink'], ['toilets', 'Toilets &amp; showers'], ['lifeguard', 'Lifeguard'], ['note', 'Good to know']];
+function infoBox(b) {
+  const i = INFO[b.slug]; if (!i) return '';
+  const rows = INFO_ROWS.filter(r => i[r[0]]); if (!rows.length) return '';
+  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Compiled from visitor guides and recent reports (October 2026). Prices, fees and rules change by season, so confirm locally before you go.</p>';
+}
+
 // ---- beach pages
 B.forEach(b => {
   const rel = 'beach/' + b.slug + '/';
@@ -129,6 +139,9 @@ B.forEach(b => {
     ['Is ' + b.name + ' good for children?', b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink') ? 'Access is rated easy and the beach is sandy, which usually suits families. Check water and weather conditions on the day and keep children in sight near the water.' : 'Access is rated ' + b.access.toLowerCase() + ', so check that it suits young children before you go. Our family guide lists easier options.'],
     ['What should I bring to ' + b.name + '?', 'Facilities: ' + b.fac + '. ' + (b.type === 'pebble' || b.type === 'rocky' ? 'Water shoes help on the ' + (b.type === 'pebble' ? 'pebbles' : 'rocks') + '. ' : 'A hat and sun protection are useful. ') + 'Bring water and snacks if there is no kiosk or restaurant.']
   ];
+  const inf = INFO[b.slug]; const nodot = s => String(s).replace(/[.\s]+$/, '');
+  if (inf && (inf.parking || inf.camper)) faqs.push(['Is there parking at ' + b.name + '?', [inf.parking, inf.camper && ('Campers and motorhomes: ' + inf.camper)].filter(Boolean).map(nodot).join('. ') + '. Fees and rules change, so confirm locally.']);
+  if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
   let title = b.name + ', ' + city.split(',')[0] + ' - Best Time, Access & Tips | ' + NAME;
   if (title.length > 62) title = b.name + ', ' + city.split(',')[0] + ' - Best Time & Tips | ' + NAME;
   if (title.length > 62) title = b.name + ', ' + city.split(',')[0] + ' | ' + NAME;
@@ -154,6 +167,7 @@ B.forEach(b => {
 <div class="fact"><b>Getting there &amp; parking</b>${esc(b.park)}</div>
 </div>
 <div class="tip"><b>Local tip:</b> ${esc(b.tip)}</div>
+${infoBox(b)}
 <h2>Planning your visit to ${esc(b.name)}</h2>
 <p>${esc(TYPE_NOTE[b.type] || '')}</p>
 <p>${esc(ACC_NOTE[b.access] || '')}</p>
