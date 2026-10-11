@@ -1086,7 +1086,12 @@ var B = [
 {id:'comporta',name:'Praia da Comporta',loc:'Alentejo coast, Portugal',country:'Portugal',cc:'PT',type:'sandy',tag:'Quiet Atlantic Sands',rating:4.6,feat:0,lat:38.3836,lng:-8.7852,season:'June&#8211;September',temp:20,access:'Easy',gem:0,g:['#2a8fc0','#efe2c4'],desc:'A long, quiet stretch of pale sand backed by dunes and pine woods on the Alentejo coast.',fac:'Beach restaurants and sunbeds at some access points',park:'Parking at the main access points, busy in July and August',tip:'The Atlantic water is cool and conditions vary, so check flags and swim where recommended.'},
 {id:'amado',name:'Praia do Amado',loc:'Carrapateira, Aljezur, Algarve, Portugal',country:'Portugal',cc:'PT',type:'sandy',tag:'Surf Beach of the West Algarve',rating:4.6,feat:0,lat:37.1675,lng:-8.9065,season:'June&#8211;September',temp:19,access:'Easy',gem:0,g:['#1b86b8','#ecdcb8'],desc:'A broad sandy beach with hills behind it on the west coast of the Algarve, popular with surfers.',fac:'Surf school and beach cafe in season',park:'Car park above the beach',tip:'Swell can be strong, so check conditions and stay within the safe areas.'},
 {id:'slanica',name:'Slanica Beach',loc:'Murter, Sibenik-Knin, Croatia',country:'Croatia',cc:'HR',type:'sandy',tag:'Pine-Shaded Bay on Murter',rating:4.5,feat:0,lat:43.8135,lng:15.592,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#22a6c4','#efe4c6'],desc:'A sandy bay near the town of Murter with shallow water and pine trees along the shore.',fac:'Cafes and beach services nearby in season',park:'Parking near the beach in season',tip:'The shallow water suits families; go early in peak summer.'},
-{id:'malaplaza',name:'Ulcinj Mala Plaza',loc:'Ulcinj, Montenegro',country:'Montenegro',cc:'ME',type:'sandy',tag:'Old Town Bay Beach',rating:4.3,feat:0,lat:41.9246,lng:19.2077,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#1a86bd','#e8d8b4'],desc:'A small town beach below the old town of Ulcinj, with a sandy shore and views of the rocky headland.',fac:'Beach bars and sunbed rental nearby in season',park:'Street and public parking in Ulcinj; limited in summer',tip:'It is busy in July and August, so go early or late in the day.'}
+{id:'malaplaza',name:'Ulcinj Mala Plaza',loc:'Ulcinj, Montenegro',country:'Montenegro',cc:'ME',type:'sandy',tag:'Old Town Bay Beach',rating:4.3,feat:0,lat:41.9246,lng:19.2077,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#1a86bd','#e8d8b4'],desc:'A small town beach below the old town of Ulcinj, with a sandy shore and views of the rocky headland.',fac:'Beach bars and sunbed rental nearby in season',park:'Street and public parking in Ulcinj; limited in summer',tip:'It is busy in July and August, so go early or late in the day.'},
+{id:'becici',name:'Becici Beach',loc:'Budva Riviera, Montenegro',country:'Montenegro',cc:'ME',type:'pebble',tag:'Long Beach on the Budva Riviera',rating:4.4,feat:0,lat:42.2817,lng:18.8686,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#1a86bd','#e6dcc2'],desc:'A long, curving beach on the Budva Riviera with mountains rising behind the resort town.',fac:'Sunbeds, beach bars and water sports in season',park:'Paid and street parking in Becici; limited in summer',tip:'It is one of the busiest beaches on the coast, so go early in July and August.'},
+{id:'luz',name:'Praia da Luz',loc:'Lagos, Algarve, Portugal',country:'Portugal',cc:'PT',type:'sandy',tag:'Village Beach Near Lagos',rating:4.5,feat:0,lat:37.0869,lng:-8.7277,season:'June&#8211;September',temp:20,access:'Easy',gem:0,g:['#1f94c8','#f0e0b8'],desc:'A sandy beach beside a small Algarve village near Lagos, with rocky outcrops and a seafront walk.',fac:'Cafes, restaurants and sunbed rental nearby',park:'Parking in the village and near the seafront; limited in summer',tip:'Go early in summer for space and parking.'},
+{id:'meiapraia',name:'Meia Praia',loc:'Lagos, Algarve, Portugal',country:'Portugal',cc:'PT',type:'sandy',tag:'Long Beach Beside Lagos',rating:4.5,feat:0,lat:37.113,lng:-8.642,season:'June&#8211;September',temp:20,access:'Easy',gem:0,g:['#2296c8','#efe0b8'],desc:'A very long sandy beach east of Lagos, backed by dunes and reached by wooden walkways.',fac:'Beach bars and sunbed rental in sections',park:'Parking at several access points along the beach',tip:'Its length means you can usually find space away from the busiest sections.'},
+{id:'sutomore',name:'Sutomore Beach',loc:'Bar, Montenegro',country:'Montenegro',cc:'ME',type:'pebble',tag:'Rocky Coast Near Bar',rating:4.3,feat:0,lat:42.1374,lng:19.0352,season:'June&#8211;September',temp:24,access:'Easy',gem:0,g:['#1b8cc0','#e2d4b8'],desc:'A pebble beach town and rocky coast between Bar and Petrovac, with clear water below steep hills.',fac:'Beach bars and sunbed rental in the main beach area',park:'Parking in Sutomore town; limited in summer',tip:'It is busy in July and August, so go early.'},
+{id:'velipoja',name:'Velipoja Beach',loc:'Shkoder, Albania',country:'Albania',cc:'AL',type:'sandy',tag:'Wide Sandy Coast in the North',rating:4.3,feat:0,lat:41.868,lng:19.4,season:'June&#8211;September',temp:24,access:'Easy',gem:1,g:['#2b8fb8','#d6c8a8'],desc:'A wide, gently shelving beach of dark sand on the northern coast of Albania, with mountains behind.',fac:'Beach bars and sunbed rental in season',park:'Parking near the beach; informal in places',tip:'It is far from the main airports, so plan transport in advance and confirm services locally.'}
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
 var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
@@ -1172,6 +1177,11 @@ var PH = {
  amado:{f:'Praia_do_Amado_-_IV.jpg',by:'Filipe Rocha',lic:'CC BY-SA 3.0'},
  slanica:{f:'PL%C3%81%C5%BD_SLANICA_-_SLANICA_THE_BEACH_-_panoramio.jpg',by:'Andrej Neuherz',lic:'CC BY-SA 3.0'},
  malaplaza:{f:'Ulcinj_-_Mala_Plaza.jpg',by:'Jorge Campos',lic:'CC BY-SA 2.0'},
+ becici:{f:'Montenegro_Becici_beach.jpg',by:'Liilia Moroz',lic:'CC0'},
+ luz:{f:'Luz_Lagos_Portugal.jpg',by:'Dronepicr',lic:'CC BY 3.0'},
+ meiapraia:{f:'Meia_Praia_%282%29.jpg',by:'Joseolgon',lic:'CC BY-SA 4.0'},
+ sutomore:{f:'Sutomore_coastline,_Montenegro.jpg',by:'Szombat78',lic:'CC0'},
+ velipoja:{f:'Ada_Beach_bei_Velipoja_Albanien.JPG',by:'Usien',lic:'CC BY 3.0'},
  jaz:{f:'X05.02_Uvala_Jaz.jpg',by:'Falk2',lic:'CC BY-SA 4.0'},
  ghajn:{f:'Malta_-_Mgarr_-_Ghajn_Tuffieha_Bay_%2B_Il-Karraba_(Triq_Ghajn_Tuffieha)_01_ies.jpg',by:'Frank Vincentz',lic:'CC BY-SA 3.0'},
  paradise:{f:'Malta_-_Mellieha_-_Triq_il-Latnija_-_Paradise_Bay_02_ies.jpg',by:'Frank Vincentz',lic:'CC BY-SA 3.0'},
@@ -1205,6 +1215,11 @@ var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":
 "amado":"praia-do-amado",
 "slanica":"slanica-beach",
 "malaplaza":"ulcinj-mala-plaza",
+"becici":"becici-beach",
+"luz":"praia-da-luz",
+"meiapraia":"meia-praia",
+"sutomore":"sutomore-beach",
+"velipoja":"velipoja-beach",
 "valdanos":"valdanos-bay","jaz":"jaz-beach","ghajn":"ghajn-tuffieha-bay","paradise":"paradise-bay","ramla":"ramla-bay","ghadira":"ghadira-bay","stpeter":"st-peter-s-pool","sanblas":"san-blas-bay","rata":"punta-rata","banje":"banje-beach","dubovica":"dubovica","saplunara":"saplunara","rajska":"rajska-plaza","bacvice":"bacvice","dhermi":"dhermi","jale":"jale","borsh":"borsh","drymades":"drymades","potami":"potami-beach","qeparo":"qeparo"};
 B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
 function imgUrl(b, w){ return WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200); }
