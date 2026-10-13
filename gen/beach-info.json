@@ -98,5 +98,8 @@
 "li-cossi":{"access":"Moderate; walk down to the cove","parking":"Parking above the cove; limited in peak season","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Small cove that fills early. Verify facilities locally."},
 "cala-des-matzoc":{"access":"Moderate","parking":"Limited parking nearby","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify access and facilities locally."},
 "aregno-beach":{"access":"Easy","parking":"Parking near the beach; check locally","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
-"lozari-beach":{"access":"Easy","parking":"Parking near the beach; may be busy in summer","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."}
+"lozari-beach":{"access":"Easy","parking":"Parking near the beach; may be busy in summer","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
+"red-beach-santorini":{"access":"Moderate; short walk over rocky ground","parking":"Parking near the access path; limited in summer","sunbeds":"Sunbeds and umbrellas likely available; fee unconfirmed","food":"Not confirmed","note":"Fee unconfirmed. Rockfall warnings may apply below the cliffs; check local signs and access status."},
+"torre-dei-corsari":{"access":"Moderate","parking":"Parking near the beach; check locally","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
+"supetar-beach":{"access":"Easy","parking":"Parking in town; may be busy in summer","sunbeds":"Not confirmed","food":"Cafes and shops in town; not confirmed","note":"Fee unconfirmed. Verify facilities locally."}
 }
