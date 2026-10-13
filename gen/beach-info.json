@@ -94,5 +94,9 @@
 "tamaricciu-beach":{"access":"Moderate","parking":"Parking nearby; limited in summer","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify access and facilities locally."},
 "cala-pira":{"access":"Moderate","parking":"Parking nearby; may be limited in summer","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
 "gerakas-beach":{"access":"Easy","parking":"Parking near the beach; check local rules","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Part of a protected sea turtle nesting area; follow posted rules and verify access locally."},
-"platis-gialos-beach":{"access":"Easy","parking":"Roadside and nearby parking; limited in summer","sunbeds":"Sunbeds and umbrellas likely available; fee unconfirmed","food":"Bars and restaurants nearby; not confirmed","note":"Fee unconfirmed. Verify opening and prices locally."}
+"platis-gialos-beach":{"access":"Easy","parking":"Roadside and nearby parking; limited in summer","sunbeds":"Sunbeds and umbrellas likely available; fee unconfirmed","food":"Bars and restaurants nearby; not confirmed","note":"Fee unconfirmed. Verify opening and prices locally."},
+"li-cossi":{"access":"Moderate; walk down to the cove","parking":"Parking above the cove; limited in peak season","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Small cove that fills early. Verify facilities locally."},
+"cala-des-matzoc":{"access":"Moderate","parking":"Limited parking nearby","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify access and facilities locally."},
+"aregno-beach":{"access":"Easy","parking":"Parking near the beach; check locally","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
+"lozari-beach":{"access":"Easy","parking":"Parking near the beach; may be busy in summer","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."}
 }
