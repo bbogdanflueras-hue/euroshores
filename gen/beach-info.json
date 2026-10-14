@@ -101,5 +101,10 @@
 "lozari-beach":{"access":"Easy","parking":"Parking near the beach; may be busy in summer","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
 "red-beach-santorini":{"access":"Moderate; short walk over rocky ground","parking":"Parking near the access path; limited in summer","sunbeds":"Sunbeds and umbrellas likely available; fee unconfirmed","food":"Not confirmed","note":"Fee unconfirmed. Rockfall warnings may apply below the cliffs; check local signs and access status."},
 "torre-dei-corsari":{"access":"Moderate","parking":"Parking near the beach; check locally","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
-"supetar-beach":{"access":"Easy","parking":"Parking in town; may be busy in summer","sunbeds":"Not confirmed","food":"Cafes and shops in town; not confirmed","note":"Fee unconfirmed. Verify facilities locally."}
+"supetar-beach":{"access":"Easy","parking":"Parking in town; may be busy in summer","sunbeds":"Not confirmed","food":"Cafes and shops in town; not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
+"platja-de-son-real":{"access":"Moderate; short walk from the nearest parking","parking":"Parking some distance away; check locally","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Undeveloped area; bring water and shade."},
+"baia-di-ieranto":{"access":"Challenging; reached on foot via a path","parking":"Parking in the village above; the cove is reached on foot","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Check access rules and any entry fee before you go."},
+"estanyol-beach":{"access":"Easy","parking":"Parking nearby; check locally","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Verify facilities locally."},
+"glyka-nera-beach":{"access":"Challenging; no road access, reached on foot or by boat","parking":"No road access; parking is at the start of the walking route","sunbeds":"Not confirmed","food":"Not confirmed","note":"Fee unconfirmed. Check the walking route and boat options locally."},
+"la-fosca-beach":{"access":"Easy","parking":"Parking nearby; may be busy in summer","sunbeds":"Not confirmed","food":"Cafes and services nearby; not confirmed","note":"Fee unconfirmed. Verify facilities locally."}
 }
