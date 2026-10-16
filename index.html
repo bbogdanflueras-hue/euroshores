@@ -1505,6 +1505,7 @@ var SLUG = {"navagio":"navagio-beach","spiaggia":"spiaggia-grande","elafonissi":
 "torredeicorsari":"torre-dei-corsari",
 "supetar":"supetar-beach",
 "sonreal":"platja-de-son-real","ieranto":"baia-di-ieranto","estanyol":"estanyol-beach","glykanera":"glyka-nera-beach","lafosca":"la-fosca-beach","gabbiani":"spiaggia-dei-gabbiani","moraig":"cala-del-moraig","plomo":"cala-del-plomo","maronti":"spiaggia-dei-maronti","portuillixi":"portu-illixi-beach","sanpietro":"san-pietro-in-bevagna-beach","lazzaretto":"spiaggia-del-lazzaretto","inglesi":"cala-degli-inglesi","metalia":"metalia-beach","zukovica":"zukovica-beach","valdanos":"valdanos-bay","jaz":"jaz-beach","ghajn":"ghajn-tuffieha-bay","paradise":"paradise-bay","ramla":"ramla-bay","ghadira":"ghadira-bay","stpeter":"st-peter-s-pool","sanblas":"san-blas-bay","rata":"punta-rata","banje":"banje-beach","dubovica":"dubovica","saplunara":"saplunara","rajska":"rajska-plaza","bacvice":"bacvice","dhermi":"dhermi","jale":"jale","borsh":"borsh","drymades":"drymades","potami":"potami-beach","qeparo":"qeparo"};
+if(typeof window!=='undefined'){window.B=B;window.SLUG=SLUG;}
 B.forEach(function(b){ var p = PH[b.id]; if(p){ b.img = 'wm'; b.wm = p.f; b.cr = p; } });
 function imgUrl(b, w){ return WM + b.wm.replace(/\(/g,'%28').replace(/\)/g,'%29') + '?width=' + (w <= 600 ? 800 : 1200); }
 
