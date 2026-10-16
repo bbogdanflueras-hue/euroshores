@@ -52,7 +52,8 @@ table.info{width:100%;border-collapse:collapse;background:#fff;border:1px solid 
 </form>
 <script>(function(){var f=document.getElementById("sf"),m=document.getElementById("sfmsg"),b=f.querySelector("button");f.addEventListener("submit",function(e){e.preventDefault();b.disabled=true;m.textContent="Sending...";fetch(f.action,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}}).then(function(r){if(r.ok){f.reset();m.textContent="Thank you! We received your suggestion.";}else{m.textContent="Sorry, something went wrong. Please try again.";}b.disabled=false;}).catch(function(){m.textContent="Network error. Please try again.";b.disabled=false;});});})();</script>
 </main>
-<footer><p><a href="../">EuroShores</a> &middot; <a href="../about/">About</a> &middot; <a href="../suggest-a-beach/">Suggest a beach</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="../">EuroShores</a> &middot; <a href="../about/">About</a> &middot; <a href="../suggest-a-beach/">Suggest a beach</a> &middot; <a href="../privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
+<script src="../auth.js" defer></script>
 </body>
 </html>
