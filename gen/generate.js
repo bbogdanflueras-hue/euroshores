@@ -84,10 +84,16 @@ ${o.body}
 </html>`;
 }
 
+const OLDMOD = {};
+try { (fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8').match(/<loc>[^<]+<\/loc><lastmod>[^<]+<\/lastmod>/g) || []).forEach(s => { const m = s.match(/<loc>([^<]+)<\/loc><lastmod>([^<]+)</); if (m) OLDMOD[m[1]] = m[2]; }); } catch (e) { /* first run */ }
+const SAME = new Set();
+const normDates = s => s.replace(/20\d\d-\d\d-\d\d/g, '#');
 function write(rel, content) {
   const f = path.join(ROOT, rel);
   fs.mkdirSync(path.dirname(f), { recursive: true });
   const bad = content.match(/[^\x00-\x7f]/); if (bad) throw new Error('non-ascii in ' + rel);
+  let old = null; try { old = fs.readFileSync(f, 'utf8'); } catch (e) { /* new file */ }
+  if (old !== null && normDates(old) === normDates(content)) { SAME.add(rel); return; }
   fs.writeFileSync(f, content);
 }
 
@@ -129,8 +135,11 @@ function infoBox(b) {
 B.forEach(b => {
   const rel = 'beach/' + b.slug + '/';
   const city = b.loc;
-  const others = B.filter(x => x.country === b.country && x.id !== b.id).slice(0, 3);
-  const more = others.length ? others : B.filter(x => x.id !== b.id && x.type === b.type).slice(0, 3);
+  const dkm = (a, c) => { const r = Math.PI / 180, x = (c.lng - a.lng) * r * Math.cos((a.lat + c.lat) * r / 2), y = (c.lat - a.lat) * r; return 6371 * Math.sqrt(x * x + y * y); };
+  const near = B.filter(x => x.id !== b.id).map(x => [x, dkm(b, x)]).sort((p, q) => p[1] - q[1]);
+  const nearD = {}; near.forEach(p => { nearD[p[0].id] = p[1]; });
+  const others = near.filter(p => p[0].country === b.country).slice(0, 6).map(p => p[0]);
+  const more = others.length >= 3 ? others : near.slice(0, 6).map(p => p[0]);
   const faqs = [
     ['When is the best time to visit ' + b.name + '?', b.name + ' is best visited ' + month(b) + '. The sea is typically around ' + b.temp + ' \u00b0C in season. ' + b.tip],
     ['How do I get to ' + b.name + '?', 'Access is rated ' + b.access.toLowerCase() + '. ' + b.park + '.'],
@@ -142,10 +151,17 @@ B.forEach(b => {
   const inf = INFO[b.slug]; const nodot = s => String(s).replace(/[.\s]+$/, '');
   if (inf && (inf.parking || inf.camper)) faqs.push(['Is there parking at ' + b.name + '?', [inf.parking, inf.camper && ('Campers and motorhomes: ' + inf.camper)].filter(Boolean).map(nodot).join('. ') + '. Fees and rules change, so confirm locally.']);
   if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
-  let title = b.name + ', ' + city.split(',')[0] + ' - Best Time, Access & Tips | ' + NAME;
-  if (title.length > 62) title = b.name + ', ' + city.split(',')[0] + ' - Best Time & Tips | ' + NAME;
-  if (title.length > 62) title = b.name + ', ' + city.split(',')[0] + ' | ' + NAME;
-  const desc = (b.name + ' (' + city + '): ' + b.desc).slice(0, 154).replace(/\s+\S*$/, '') + '...';
+  const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
+  const title = tcands.find(t => t.length <= 62) || tcands[tcands.length - 1];
+
+
+  const sents = (plain(b.desc).match(/[^.!?]+[.!?]+/g) || [plain(b.desc)]).map(s => s.trim());
+  let desc = b.name + ' (' + city + '): ' + sents[0];
+  if (desc.length > 155) desc = b.name + ': ' + sents[0];
+  if (desc.length > 155) desc = sents[0];
+  if (desc.length < 110 && sents[1] && (desc + ' ' + sents[1]).length <= 160) desc = desc + ' ' + sents[1];
+  else if (desc.length <= 120) desc += ' Parking, sunbeds and access tips.';
+  if (desc.length > 160) desc = desc.slice(0, 157).replace(/\s+\S*$/, '') + '...';
   const image = imgUrl(b, 1200);
   const ld = [
     { '@context': 'https://schema.org', '@type': 'Beach', name: b.name, description: b.desc, image: image, url: SITE + '/' + rel, geo: { '@type': 'GeoCoordinates', latitude: b.lat, longitude: b.lng }, address: { '@type': 'PostalAddress', addressLocality: city.split(',')[0], addressCountry: b.cc }, isAccessibleForFree: true, publicAccess: true },
@@ -176,8 +192,9 @@ ${infoBox(b)}
 <p><a href="https://www.openstreetmap.org/?mlat=${b.lat}&amp;mlon=${b.lng}#map=14/${b.lat}/${b.lng}" rel="noopener">View ${esc(b.name)} on the map</a> &middot; <a href="../../#beaches">Compare with all beaches</a></p>
 <h2>Frequently asked questions</h2>
 ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('\n')}
-<h2>More beaches ${others.length ? 'in ' + esc(b.country) : 'like this'}</h2>
-<div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}</small></div></a>`).join('')}</div>
+<h2>Beaches near ${esc(b.name)}</h2>
+<div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}${nearD[x.id] != null ? ' &middot; ' + Math.round(nearD[x.id]) + ' km away' : ''}</small></div></a>`).join('')}</div>
+<p>Browse all <a href="../../country/${slug(b.country)}/">beaches in ${esc(b.country)}</a> or <a href="../../#beaches">compare every beach</a>.</p>
 <p style="margin-top:22px">Scores are editorial ratings from the ${NAME} team. Last updated ${D.updated}.</p>`;
   write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
@@ -401,7 +418,7 @@ GUIDES.forEach(g => {
 })();
 
 // ---- sitemap + robots
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${D.updated}</lastmod><priority>${u.pri}</priority></url>`).join('\n') + '\n</urlset>\n');
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${(SAME.has(u.loc.slice(SITE.length + 1) + 'index.html') && OLDMOD[u.loc]) || D.updated}</lastmod><priority>${u.pri}</priority></url>`).join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + '/sitemap.xml\n');
 console.log('generated', urls.length, 'urls');
 
