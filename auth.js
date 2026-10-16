@@ -5,8 +5,8 @@
      row level security in the database keeps every user's rows private. */
 (function () {
   'use strict';
-  var SUPABASE_URL = '';      // e.g. https://abcd1234.supabase.co  (fill in after creating the project)
-  var SUPABASE_ANON_KEY = ''; // public "anon" key from Supabase Settings > API
+  var SUPABASE_URL = 'https://hfjucrfkegcglwbdnfem.supabase.co';      // e.g. https://abcd1234.supabase.co  (fill in after creating the project)
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmanVjcmZrZWdjZ2x3YmRuZmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIxNDMzMjcsImV4cCI6MjEwNzcxOTMyN30.UQgQkZ5NNSXTV7pqb5ejdjBLXSMLxvZPQatGLPCNFqw'; // public "anon" key from Supabase Settings > API
   var ENABLED = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
   var LS_FAV = 'es_favs', LS_SESS = 'es_sess', LS_NUDGE = 'es_nudge';
   var favs = [], sess = null, view = 'fav', mode = 'login', msg = '', busy = false, ov = null, recToken = null;
