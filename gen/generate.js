@@ -78,8 +78,9 @@ ${gcTag()}
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
+<script src="${up}auth.js" defer></script>
 </body>
 </html>`;
 }
@@ -388,6 +389,31 @@ GUIDES.forEach(g => {
 <p style="margin-top:22px">Last updated ${D.updated}.</p>`;
   write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.5' });
+})();
+
+// ---- privacy page
+(function privacyPage() {
+  const rel = 'privacy/';
+  const title = 'Privacy: How ' + NAME + ' Handles Your Data';
+  const desc = 'What ' + NAME + ' stores when you save favorite beaches or create an optional account, and how to delete it.';
+  const ld = [{ '@context': 'https://schema.org', '@type': 'WebPage', name: title, url: SITE + '/' + rel, description: desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } }];
+  const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; Privacy</div>
+<h1>Privacy</h1>
+<p class="lead">You can use every part of ${NAME} without an account. An account is optional and only exists to keep your favorite beaches in sync across your devices.</p>
+<h2>Favorites without an account</h2>
+<p>If you tap the heart on a beach, the choice is saved in your own browser (local storage) on your device. It is not sent to us.</p>
+<h2>Optional account</h2>
+<p>If you create an account we store your email address, a securely hashed password (we never see or store your password in plain text) and the list of beaches you saved. We use this only to log you in and show your favorites. We do not sell your data and we do not send marketing email to account addresses. You will only receive messages needed for the account, such as the confirmation link or a password reset.</p>
+<p>Accounts are provided by <a href="https://supabase.com/" rel="noopener">Supabase</a>, which hosts the database and sends those account emails on our behalf.</p>
+<h2>Deleting your data</h2>
+<p>Log in, open Account and choose Delete my account and data. Your account, email and saved beaches are removed. You can also log out at any time, which clears the favorites stored on that device.</p>
+<h2>Analytics and other forms</h2>
+<p>We use privacy-friendly analytics (GoatCounter) that counts page views without tracking you across sites. If you send a beach suggestion or subscribe to the newsletter, the details you type are used only to read your message or send you the newsletter.</p>
+<h2>Questions</h2>
+<p>Use the <a href="../suggest-a-beach/">contact form</a> and mention privacy.</p>
+<p style="margin-top:22px">Last updated ${D.updated}.</p>`;
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.3' });
 })();
 
 // ---- suggest-a-beach page
