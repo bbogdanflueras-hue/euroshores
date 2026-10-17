@@ -23,6 +23,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A beach country guide about suggest-a-beach privacy img sitemap.xml robots.txt index.html
+          git add -A beach country guide about suggest-a-beach privacy new hidden-gems img sitemap.xml robots.txt feed.xml index.html
           git diff --cached --quiet || git commit -m "Regenerate static pages"
           git push
