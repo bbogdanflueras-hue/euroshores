@@ -81,6 +81,7 @@ ${o.body}
 <footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
 <script src="${up}auth.js" defer></script>
+<script src="${up}counter.js" defer></script>
 </body>
 </html>`;
 }
