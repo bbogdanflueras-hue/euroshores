@@ -59,6 +59,7 @@ function layout(o) {
 <title>${esc(o.title)}</title>
 <meta name="description" content="${esc(o.desc)}"/>
 <link rel="canonical" href="${url}"/>
+<link rel="alternate" type="application/atom+xml" title="Newest beaches" href="${SITE}/feed.xml"/>
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <meta name="theme-color" content="#0f4a63"/>
 <meta property="og:type" content="${o.ogtype || 'article'}"/>
@@ -78,7 +79,7 @@ ${gcTag()}
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
 <script src="${up}auth.js" defer></script>
 <script src="${up}counter.js" defer></script>
@@ -443,6 +444,25 @@ GUIDES.forEach(g => {
   write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.4' });
 })();
+
+// ---- list pages (newest, hidden gems) + atom feed
+(function listPages() {
+  const card = x => '<a class="card" href="../beach/' + x.slug + '/"><img src="' + imgUrl(x, 500) + '" alt="' + esc(x.name) + '" loading="lazy" width="500" height="333"/><div><h3>' + esc(x.name) + '</h3><small>' + esc(x.loc) + ', ' + esc(x.country) + '</small></div></a>'
+  const defs = [
+    { rel: 'new/', h: 'Newest beaches', title: 'Newest European Beaches Added to ' + NAME, desc: 'The latest beaches added to ' + NAME + ', with photos, access tips and practical info for each shore.', lead: 'The most recent additions to the guide, newest first. Every beach has access, parking and facilities info.', list: B.slice(-36).reverse() },
+    { rel: 'hidden-gems/', h: 'Hidden gem beaches', title: 'Hidden Gem Beaches in Europe | ' + NAME, desc: 'Quieter, less visited European beaches picked by the ' + NAME + ' team, with access tips and practical info.', lead: 'Quieter shores that are worth the extra effort. Check access and conditions before you go.', list: B.filter(b => b.gem) }
+  ]
+  defs.forEach(d => {
+    const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: d.title, url: SITE + '/' + d.rel, description: d.desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } }]
+    const body = '<div class="crumbs"><a href="../">' + NAME + '</a> &rsaquo; ' + d.h + '</div>\n<h1>' + d.h + '</h1>\n<p class="lead">' + d.lead + '</p>\n<div class="grid">' + d.list.map(card).join('') + '</div>'
+    write(d.rel + 'index.html', layout({ depth: 1, path: d.rel, title: d.title, desc: d.desc, body, ogimg: imgUrl(d.list[0] || B[0], 1200), ld }))
+    urls.push({ loc: SITE + '/' + d.rel, pri: '0.6' })
+  })
+  const asc = t => String(t).replace(/[^\x00-\x7f]/g, '')
+  const upd = D.updated
+  const entries = B.slice(-30).reverse().map(x => '<entry><title>' + esc(asc(plain(x.name))) + '</title><link href="' + SITE + '/beach/' + x.slug + '/"/><id>' + SITE + '/beach/' + x.slug + '/</id><updated>' + upd + 'T00:00:00Z</updated><summary>' + esc(asc(plain(x.desc))) + '</summary></entry>').join('\n')
+  write('feed.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n<title>' + NAME + ' - newest beaches</title>\n<link href="' + SITE + '/feed.xml" rel="self"/>\n<link href="' + SITE + '/"/>\n<id>' + SITE + '/</id>\n<updated>' + upd + 'T00:00:00Z</updated>\n' + entries + '\n</feed>\n')
+})()
 
 // ---- sitemap + robots
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${(SAME.has(u.loc.slice(SITE.length + 1) + 'index.html') && OLDMOD[u.loc]) || D.updated}</lastmod><priority>${u.pri}</priority></url>`).join('\n') + '\n</urlset>\n');
