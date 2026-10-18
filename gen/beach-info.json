@@ -2102,5 +2102,180 @@
     "sunbeds": "Sunbeds and umbrellas; first rows reserved for resort guests; one visitor paid about 40 EUR",
     "food": "Restaurants and bars in the Praca area and beach bars",
     "note": "Blue Flag listing is undated, so confirm current status. Massage station on the beach."
+  },
+  "kavourotrypes-beach": {
+    "access": "Easy; 3-4 minute walk from the car park along a path through the woods",
+    "parking": "Free parking above the beach; fills up quickly in summer",
+    "sunbeds": "A few sunbeds near the main cove; many nearby coves are completely natural",
+    "food": "Small beach bar near the main cove; reviews of the bar are mixed",
+    "note": "Toilet at the car park; no showers or cabins. Very crowded after 11 am in July and August."
+  },
+  "super-paradise-beach": {
+    "access": "Easy by car; the last stretch of road is steep; local bus from Mykonos Town",
+    "parking": "Free parking; valet attendants may expect a tip of around 5 EUR for a full day",
+    "sunbeds": "Paid sunbeds at the clubs; guides report about 25-40 EUR for two with an umbrella; one 2022 review reported 120 EUR for two",
+    "food": "Jackie O and the Super Paradise club have bars and a self-service restaurant",
+    "note": "Prices vary widely by season, so check before you sit. Water sports and massages are offered on the sand."
+  },
+  "agios-sostis-beach": {
+    "access": "Car or scooter only; the access road is narrow, with room for one lane of traffic in places",
+    "parking": "Roadside parking near the beach; arrive early",
+    "sunbeds": "None; no umbrellas to rent, so bring your own shade",
+    "food": "Kiki taverna nearby, reported as expensive; bring cash",
+    "note": "No bus or beach boat. Nude sunbathing area at the far end of the beach."
+  },
+  "kalamitsi-beach": {
+    "access": "Challenging; steep, narrow road, and cars cannot pass in places; Megali Petra is reached on foot from Kavalikefta",
+    "parking": "Small private parking at Kavalikefta; limited parking at Avali; arrive early",
+    "sunbeds": "Sunbeds and parasols for rent at Kavalikefta; none at Megali Petra; limited sunbeds at Avali",
+    "food": "Restaurant above Kavalikefta; snack bar above Avali serving lunch",
+    "note": "Kavalikefta, Megali Petra and Avali are different beaches within a short distance of each other."
+  },
+  "porto-timoni": {
+    "access": "Challenging; 30-40 minute walk each way from Afionas on a rocky, partly steep path",
+    "parking": "Limited parking in Afionas, fills fast in summer; one guide mentions a paid lot of about 5 EUR",
+    "sunbeds": "None reported; bring water and shade",
+    "food": "Taverna Anemos in Afionas has views over the twin bay",
+    "note": "A further trail leads from the beach to a quieter neighbouring bay. The bus to Afionas is slow and infrequent."
+  },
+  "kolona-beach": {
+    "access": "Moderate; rough dirt road from Chora to the parking at Fikiada, or taxi boat from Merichas in about 15 minutes",
+    "parking": "Parking at Fikiada, not at the beach itself",
+    "sunbeds": "Sources conflict; a beach bar reportedly has some sunbeds and umbrellas, and most of the shore is unorganised",
+    "food": "A taverna or beach bar on part of the beach, reportedly with music",
+    "note": "Very little natural shade; only a couple of trees. Sunbed availability and prices vary, so check locally."
+  },
+  "sa-colonia-beach": {
+    "access": "Easy; about 10 minutes on foot from the car park; bus stop Chia Tabacchi",
+    "parking": "Paid in season, about 7-8 EUR a day (full-day tickets); free out of season; a cheaper rate after 4 pm is reported",
+    "sunbeds": "Kiosks rent loungers, umbrellas and sun beds",
+    "food": "Kiosks serve food and drinks; no large beach clubs",
+    "note": "Clean toilets and changing rooms reported at the parking areas and kiosks; one reviewer paid 0.50 EUR. Check current prices."
+  },
+  "fiascherino-beach": {
+    "access": "Easy; steps lead down to the sea",
+    "parking": "Paid parking about 200 m away (around 15 EUR reported); free parking about 500 m away",
+    "sunbeds": "Equipped stretch with deckchairs and umbrellas; one visitor paid 25 EUR for two sunbeds and an umbrella from 2 pm",
+    "food": "Beach club between Fiascherino and Lerici; check locally for other options",
+    "note": "Part of the beach is free. Prices and season dates are from older reviews, so confirm locally."
+  },
+  "punta-prosciutto": {
+    "access": "Easy by car; use the established access paths through the dunes",
+    "parking": "Paid, seasonal parking; bring change; very busy in July and August",
+    "sunbeds": "Lidos rent loungers and umbrellas; one guide says about 80 percent of the beach is free, but a reviewer reports most sand taken by paid lidos",
+    "food": "Bars and snack bars at the lidos; Samana Beach has a bar, cafe and fast food",
+    "note": "The area is protected; stay on the paths and take your waste with you."
+  },
+  "calamosche-beach": {
+    "access": "Moderate; walk of about 1 to 1.2 km from the car park, roughly 20 minutes",
+    "parking": "Private car park about 5 EUR reported, plus reserve entry of about 3.5 to 5 EUR",
+    "sunbeds": "None; no shade, so bring an umbrella",
+    "food": "A bar and showers are reported at the car park",
+    "note": "The reserve reportedly limits visits to about 550 people a day. I found no booking system or opening hours, so check with the Vendicari reserve."
+  },
+  "praia-do-zavial": {
+    "access": "Easy; leave the N125 near Raposeira and follow the signs",
+    "parking": "Car park near the restaurant; limited in summer, so arrive early",
+    "sunbeds": "Sources disagree; some report sunbeds, one blog describes no neat rows of loungers or parasols",
+    "food": "Restaurante Zavial behind the beach serves fresh fish and chicken piri-piri; reportedly open in high season only and cash only",
+    "note": "Toilets but no showers. Lifeguards in peak season."
+  },
+  "praia-da-ingrina": {
+    "access": "Easy; N125 at Raposeira",
+    "parking": "Car park close to the beach",
+    "sunbeds": "Sunbeds and umbrellas for rent",
+    "food": "Beach restaurant specialising in fresh fish and seafood, with a bar",
+    "note": "Toilets and summer lifeguards. One source says there is no shade. Restaurant hours and rental availability may have changed."
+  },
+  "praia-da-salema": {
+    "access": "Easy; steps and a walkway lead down from the village",
+    "parking": "Parking near the village; fills up at weekends and in peak season",
+    "sunbeds": "Sunbeds and umbrellas near the restaurants; the eastern end is quieter with no rentals",
+    "food": "Several restaurants along the beach, including Olhos n Agua and O Lourenco",
+    "note": "Blue Flag status is cited by several sources; confirm the current season."
+  },
+  "playa-de-los-lances": {
+    "access": "Easy by car or from Tarifa bus station",
+    "parking": "Plenty of parking for private cars",
+    "sunbeds": "Sunbeds reported at Lances Sur; strong wind makes sunbathing unpleasant",
+    "food": "Beach bars and hotel restaurants nearby, such as Waves Beach Bar and Chiringuito Arte Vida",
+    "note": "Wind is the main factor: poniente and levante both blow, and levante is offshore. Kiting rules in summer are unconfirmed, so check locally."
+  },
+  "cala-torta": {
+    "access": "Moderate; 15-30 minute walk each way on an unmarked, uneven trail with an uphill return",
+    "parking": "Unpaved roadside parking about 1.2-1.5 km from the beach; driving further is not allowed",
+    "sunbeds": "None; no lifeguards, so bring water and shade",
+    "food": "A small food truck or restaurant just before the trail starts",
+    "note": "Not suitable for wheelchairs or strollers. Northerly winds can cause undercurrents, and mobile signal is reported as poor."
+  },
+  "playa-de-calblanque": {
+    "access": "Moderate; summer car access is largely restricted, so use the bus, walk in, or ask at the visitor centre",
+    "parking": "A free lot of about 30 spaces is reported near the coves, possibly closed in high season (2021 comment)",
+    "sunbeds": "None found; bring shade",
+    "food": "I found no chiringuito; bring food and water",
+    "note": "Las Cobaticas visitor centre is inside the park. A shuttle bus is mentioned for busy periods. Confirm current summer rules with the regional park."
+  },
+  "stara-baska-beach": {
+    "access": "Easy to moderate; sources disagree on road versus sea access to the main beach",
+    "parking": "Limited roadside parking; several beaches before the village entrance are reached on foot",
+    "sunbeds": "One guide lists beach chairs and umbrellas; I found no rental details",
+    "food": "A beach bar and restaurants listed; Restoran Cicibela near Pe En Bay",
+    "note": "Oprna cove has a small bar in peak season, no showers, and a steep 10-15 minute walk from limited parking."
+  },
+  "kupari-beach": {
+    "access": "Easy by road from Dubrovnik, about 10 km; check for fencing around the old hotels",
+    "parking": "No parking details found; check on arrival",
+    "sunbeds": "None found; the old bathing facilities have been disused for years",
+    "food": "None found nearby; bring supplies",
+    "note": "Redevelopment works began in 2025 and conditions may have changed since. The pebble shore is still visited."
+  },
+  "zavala-beach": {
+    "access": "Moderate; road from Pitve through a tunnel",
+    "parking": "Signposted car park near the beach",
+    "sunbeds": "No rental details found",
+    "food": "Konoba Zavala, Zaca Bar and Restaurant, Restaurant Davor; bars Terra Nova and Zavala Port Beach",
+    "note": "The shore is mostly pebbles, gravel and concrete slabs with some rocks, and it suits families."
+  },
+  "nin-beach": {
+    "access": "Easy; walk from the parking area through the pines",
+    "parking": "Public parking in the pine forest; paid in summer, free in September",
+    "sunbeds": "Sun loungers and umbrellas for rent",
+    "food": "A beach bar near the public parking",
+    "note": "Shallow for about 500 m, which suits young children. The lagoon shifts with wind and weather; the mud is called peloid."
+  },
+  "pakostane-beach": {
+    "access": "Easy; the beach sits at the edge of the village in a pine forest",
+    "parking": "Car park among the trees at the entrance; one listing says free parking",
+    "sunbeds": "Plenty of sun loungers reported at the resort beach",
+    "food": "Resort facilities; check for public options in the village",
+    "note": "Shoreline is described as sand, shingle and rocky terraces. Soline is a separate beach nearby."
+  },
+  "plage-de-piemanson": {
+    "access": "Easy by road from Salin-de-Giraud",
+    "parking": "Public car park open 6:00 to 22:00 per the Arles tourist office",
+    "sunbeds": "None; bring shade",
+    "food": "None reported; bring supplies",
+    "note": "Sources conflict on camping: one reports a tolerance from 1 May to 30 September, another says camping is banned on the beach. Check with Arles. East end is naturist."
+  },
+  "plage-de-tahiti": {
+    "access": "Easy by road; free public access to the beach",
+    "parking": "Paid in summer; Pampelonne parking reported free before 11 am and after 5 pm in season",
+    "sunbeds": "Paid sunbeds at the clubs; one Pampelonne listing shows 40-60 EUR per sunbed and parasols at 8 EUR",
+    "food": "Restaurant Tahiti Beach and Tiki Club among the beach restaurants; lunch prices are high",
+    "note": "Opening dates and prices are for earlier seasons; confirm directly with the clubs."
+  },
+  "plage-de-la-palue": {
+    "access": "Moderate; follow signs to Morgat and Cap de la Chevre, through La Palue hamlet to the dune-top car park",
+    "parking": "Large car park at the top of the dune; a 2021 order restricted some Crozon car parks, so check current rules",
+    "sunbeds": "None; no lifeguards on duty",
+    "food": "None reported; bring supplies",
+    "note": "Swimming is reported as prohibited due to dangerous currents. At high tide a large part of the beach is covered. Crowded on weekends and holidays."
+  },
+  "pointe-de-la-torche": {
+    "access": "Easy; park and walk to the point; the direct road can be closed to general traffic",
+    "parking": "Large car park and toilets (Brittany tourism); one local guide cites several lots and a 2 EUR shuttle, which may apply to events",
+    "sunbeds": "None; this is a surf beach",
+    "food": "Restaurants and surf shops nearby; none named in my sources",
+    "note": "Twenty Nine surf school is on the beach. Lifeguards only in July and August (1.30 pm to 7.30 pm). Waves are big and suit surfers with a good level."
   }
 }
