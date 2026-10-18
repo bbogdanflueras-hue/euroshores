@@ -78,11 +78,11 @@ ${ld}
 ${gcTag()}
 </head>
 <body>
-<header class="top"><a class="brand" href="${up}">&#9830; ${NAME}</a><a href="${up}#beaches">Beaches</a><a href="${up}#map-section">Map</a><a href="${up}#countries">Countries</a><a href="${up}#guides">Guides</a></header>
+<header class="top"><a class="brand" href="${up}">&#9830; ${NAME}</a><a href="${up}#beaches">Beaches</a><a href="${up}#map-section">Map</a><a href="${up}#countries">Countries</a><a href="${up}#guides">Guides</a><a href="${up}best/">Best of</a><a href="${up}find/">Finder</a></header>
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}best/">Best of</a> &middot; <a href="${up}find/">Finder</a> &middot; <a href="${up}map/">Map</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
 <script src="${up}auth.js" defer></script>
 <script src="${up}counter.js" defer></script>
@@ -182,6 +182,7 @@ function seasonMonths(season) {
   for (let i = a; out.length < 13; i = (i + 1) % 12) { out.push(MONTHS[i]); if (i === z) break; }
   return out;
 }
+const LISTS = require('./lists.js')({ B, CL, slug, esc, imgUrl, stars, SITE, NAME, D, seasonMonths, MONTHS, layout, write });
 function extraSections(b, more, nearD) {
   const ms = seasonMonths(b.season);
   const nodotx = x => String(x || '').replace(/[.\s]+$/, '');
@@ -269,6 +270,7 @@ ${infoBox(b)}
 <p>${esc(ACC_NOTE[b.access] || '')}</p>
 <p>The usual season runs ${esc(b.season)}. Visiting near the start or end of that window usually means fewer people, but the sea is cooler and some facilities may not be open yet or may have closed for the year.${b.gem ? ' We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.' : ''}</p>
 <p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}${hubLink(b)}</p>
+${LISTS.linksFor(b)}
 <p><a href="https://www.openstreetmap.org/?mlat=${b.lat}&amp;mlon=${b.lng}#map=14/${b.lat}/${b.lng}" rel="noopener">View ${esc(b.name)} on the map</a> &middot; <a href="../../#beaches">Compare with all beaches</a></p>
 ${extraSections(b, more, nearD)}
 <h2>Frequently asked questions</h2>
@@ -575,6 +577,7 @@ GUIDES.forEach(g => {
     write(d.rel + 'index.html', layout({ depth: 1, path: d.rel, title: d.title, desc: d.desc, body, ogimg: imgUrl(d.list[0] || B[0], 1200), ld }))
     urls.push({ loc: SITE + '/' + d.rel, pri: '0.6' })
   })
+  LISTS.writeAll(urls)
   const asc = t => String(t).replace(/[^\x00-\x7f]/g, '')
   const upd = D.updated
   const entries = B.slice(-30).reverse().map(x => '<entry><title>' + esc(asc(plain(x.name))) + '</title><link href="' + SITE + '/beach/' + x.slug + '/"/><id>' + SITE + '/beach/' + x.slug + '/</id><updated>' + upd + 'T00:00:00Z</updated><summary>' + esc(asc(plain(x.desc))) + '</summary></entry>').join('\n')
@@ -619,6 +622,7 @@ console.log('generated', urls.length, 'urls');
   let dir = '<section id="directory" style="max-width:1100px;margin:0 auto;padding:40px 24px"><h2 style="font-family:Playfair Display,serif;margin-bottom:14px">All beaches by country</h2>';
   CL.forEach(c => { dir += '<h3 style="margin:14px 0 4px"><a href="country/' + c.slug + '/">Best beaches in ' + esc(c.name) + '</a></h3><p>' + c.list.map(b => '<a href="beach/' + b.slug + '/">' + esc(b.name) + '</a>').join(' &middot; ') + '</p>'; });
   dir += '<h3 style="margin:18px 0 4px">More ways to browse</h3><p><a href="new/">Newest beaches</a> &middot; <a href="hidden-gems/">Hidden gem beaches</a> &middot; <a href="feed.xml">RSS feed</a></p>'
+  dir += LISTS.homeLinks();
   dir += '<h3 style="margin:18px 0 4px">Travel guides</h3><p>' + GUIDES.map(g => '<a href="guide/' + g.slug + '/">' + esc(g.ptitle) + '</a>').join(' &middot; ') + '</p></section>\n';
   if (!h.includes('application/atom+xml')) h = h.replace('</head>', '<link rel="alternate" type="application/atom+xml" title="Newest beaches" href="feed.xml"/>\n</head>')
   h = h.replace('</main>', dir + '</main>');
