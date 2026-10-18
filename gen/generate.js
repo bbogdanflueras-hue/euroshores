@@ -3,9 +3,12 @@ const fs = require('fs'), path = require('path');
 const ROOT = path.join(__dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');
 const src = fs.readFileSync(INDEX, 'utf8');
+const DATAJS = path.join(ROOT, 'data.js');
+const HAS_DATAJS = fs.existsSync(DATAJS);
 const a0 = src.indexOf('var B = ['), z0 = src.indexOf('// Paste your Formspree');
-if (a0 < 0 || z0 < 0) throw new Error('data block not found in index.html');
-const data = new Function(src.slice(a0, z0) + ';return {B:B,PH:PH,GUIDES:GUIDES};')();
+if (!HAS_DATAJS && (a0 < 0 || z0 < 0)) throw new Error('data block not found in index.html');
+const dsrc = HAS_DATAJS ? fs.readFileSync(DATAJS, 'utf8') : src.slice(a0, z0);
+const data = new Function(dsrc + ';return {B:B,PH:PH,GUIDES:GUIDES};')();
 let siteUrl = 'https://bbogdanflueras-hue.github.io/euroshores';
 try { const cn = fs.readFileSync(path.join(ROOT, 'CNAME'), 'utf8').trim(); if (cn) siteUrl = 'https://' + cn; } catch (e) { /* no custom domain */ }
 const D = { site: siteUrl, name: 'EuroShores', updated: new Date().toISOString().slice(0, 10), B: data.B, PH: data.PH, GUIDES: data.GUIDES };
@@ -514,7 +517,7 @@ console.log('generated', urls.length, 'urls');
 (function patchHome() {
   let h = fs.readFileSync(INDEX, 'utf8');
   const bs = {}; B.forEach(b => bs[b.id] = b.slug);
-  if (h.indexOf('var SLUG =') < 0) {
+  if (h.indexOf('var SLUG =') < 0 && !HAS_DATAJS) {
     const k = 'B.forEach(function(b){ var p = PH[b.id];';
     if (h.indexOf(k) < 0) throw new Error('slug anchor missing');
     h = h.replace(k, 'var SLUG = ' + JSON.stringify(bs) + ';\n' + k);
