@@ -2627,5 +2627,180 @@
     "sunbeds": "No sunbed rental reported.",
     "food": "Cafes and restaurants in Cap Ferret village; a pinasse boat crosses from Arcachon.",
     "note": "Some stretches are unsupervised and partly naturist; the ocean has strong currents."
+  },
+  "paradise-beach": {
+    "access": "Easy by road, or by bus and taxi boat from Mykonos Town and Platis Gialos.",
+    "parking": "Parking near the beach is limited and fills quickly in summer.",
+    "sunbeds": "Beach clubs rent sunbeds and umbrellas; prices vary by venue and season.",
+    "food": "Bars, restaurants and beach clubs along the shore, plus toilets and showers.",
+    "note": "A lively party beach; much quieter in the morning and outside July and August."
+  },
+  "anthony-quinn-bay": {
+    "access": "Easy; steps and paths lead from the road down to the water.",
+    "parking": "Small car park near the cove; limited spaces and busy in summer.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire on the platforms.",
+    "food": "A seasonal snack bar and tavernas nearby; confirm opening times.",
+    "note": "Rocky entry, so water shoes are recommended. Best early in the day before tour groups arrive."
+  },
+  "tsilivi-beach": {
+    "access": "Easy; the beach runs beside the road and a promenade.",
+    "parking": "Roadside parking and small lots along the beach road; busy in July and August.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire at the beach bars.",
+    "food": "Beach bars and tavernas along the shore.",
+    "note": "A busy resort beach with water sports; the water deepens gradually."
+  },
+  "falasarna-beach": {
+    "access": "Easy; a paved road reaches the beach, then a short walk across the sand.",
+    "parking": "Free parking by the beach; it fills in the middle of summer.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire in the main area.",
+    "food": "Tavernas and snack bars behind the beach; confirm opening times.",
+    "note": "Famous for sunsets. The sea can be rough on windy days, so check conditions."
+  },
+  "cala-cipolla": {
+    "access": "Easy; a short walk from the car park.",
+    "parking": "Limited free parking near the beach; arrive early in summer.",
+    "sunbeds": "Few or no rentals reported; bring your own umbrella.",
+    "food": "Few facilities at the beach; Chia has restaurants and shops nearby.",
+    "note": "A quieter option near Chia; check local signs for current rules."
+  },
+  "baia-dei-turchi": {
+    "access": "Moderate; a path through pinewood and dunes from the car park.",
+    "parking": "Parking areas near the pine wood; busy and often paid in summer.",
+    "sunbeds": "Some seasonal rentals reported; availability varies.",
+    "food": "A seasonal bar or kiosk; Otranto has restaurants nearby.",
+    "note": "Protected coastal area; dunes and vegetation are fragile."
+  },
+  "spiaggia-di-serapo": {
+    "access": "Easy; the beach runs alongside the promenade.",
+    "parking": "Street parking and paid car parks nearby; fills in August.",
+    "sunbeds": "Lidos rent sunbeds and umbrellas; free sections remain between them.",
+    "food": "Bars and restaurants along the promenade, plus showers and toilets at the lidos.",
+    "note": "A popular family beach; very busy around mid-August."
+  },
+  "lido-di-camaiore": {
+    "access": "Easy; the beach is beside the promenade.",
+    "parking": "Paid street parking and car parks near the promenade; busy in summer.",
+    "sunbeds": "Most of the beach is run by paid bathing establishments; free public sections are limited.",
+    "food": "Bars and restaurants along the front and at the establishments.",
+    "note": "Gently shelving sandy bottom; lifeguards at the establishments in season."
+  },
+  "spiaggia-di-rimini": {
+    "access": "Easy; flat access from the promenade and town streets.",
+    "parking": "Paid car parks and street parking; busy in July and August.",
+    "sunbeds": "Most of the beach is run by paid establishments; some free sections remain.",
+    "food": "Bars, restaurants and kiosks all along the front.",
+    "note": "Very wide and shallow, so it suits children; lively and crowded in peak summer."
+  },
+  "cala-benirras": {
+    "access": "Easy by road; a short walk down to the cove.",
+    "parking": "Small parking areas near the cove; they fill early in summer.",
+    "sunbeds": "Sunbeds and umbrellas are available in season.",
+    "food": "Beach bars and restaurants right by the sand.",
+    "note": "Sunday sunset drumming is popular; expect crowds and noise."
+  },
+  "playa-de-levante": {
+    "access": "Easy; flat access from the promenade and the old town.",
+    "parking": "Paid underground and street parking in the city; limited in summer.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire.",
+    "food": "Many bars and restaurants along the promenade.",
+    "note": "A wide, popular city beach with lifeguards in season."
+  },
+  "playa-de-san-lorenzo": {
+    "access": "Easy; the beach is steps from the promenade and the city centre.",
+    "parking": "Paid street and underground parking in the city; busy in summer.",
+    "sunbeds": "Sunbeds are not typical here; bring a towel or windbreak.",
+    "food": "Cafes and restaurants along the promenade; beach bars in season.",
+    "note": "Large tidal range and cold water; lifeguards in season."
+  },
+  "playa-de-la-malvarrosa": {
+    "access": "Easy; reachable by tram or bus from central Valencia.",
+    "parking": "Paid street parking nearby; limited on summer weekends.",
+    "sunbeds": "Sunbeds and umbrellas are available for rent.",
+    "food": "Many chiringuitos and paella restaurants along the front.",
+    "note": "A wide city beach with showers and lifeguards in season."
+  },
+  "sitges-beach": {
+    "access": "Easy; the beach is a few steps from the old town.",
+    "parking": "Paid car parks in town; spaces near the beach are limited.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire in season.",
+    "food": "Cafes and restaurants in the old town and along the promenade.",
+    "note": "A popular town beach; busy at weekends in summer."
+  },
+  "praia-de-ofir": {
+    "access": "Easy; walkways cross the dunes to the sand.",
+    "parking": "Free parking near the beach; busy in July and August.",
+    "sunbeds": "Sunbeds are not typical; bring a windbreak and an umbrella.",
+    "food": "Beach bars and restaurants near the access points.",
+    "note": "Strong surf and currents; swim only at supervised areas."
+  },
+  "praia-dos-pescadores": {
+    "access": "Easy; reached through a tunnel and ramps from the old town.",
+    "parking": "Paid public car parks near the old town; limited in summer.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire.",
+    "food": "Many restaurants and bars around the beach.",
+    "note": "A very popular beach; lifeguards in season."
+  },
+  "praia-da-costa-nova": {
+    "access": "Easy; boardwalks cross from the road to the sand.",
+    "parking": "Free and paid parking along the road behind the beach; busy in July and August.",
+    "sunbeds": "Sunbeds are not typical; bring a windbreak.",
+    "food": "Seafood restaurants and bars in the village.",
+    "note": "Strong waves; swim only at supervised areas."
+  },
+  "praia-do-carvoeiro": {
+    "access": "Easy; the beach is at the foot of the village streets.",
+    "parking": "Paid parking in the village; limited in summer.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire.",
+    "food": "Cafes and restaurants right at the beach.",
+    "note": "A small, busy village beach; lifeguards in season."
+  },
+  "jagodna-beach": {
+    "access": "Moderate; a short walk from the road to the cove.",
+    "parking": "Roadside parking with limited spaces; arrive early in summer.",
+    "sunbeds": "A few rentals may operate in season; confirm locally.",
+    "food": "Limited facilities; Hvar Town has restaurants and shops.",
+    "note": "A quiet pebble cove; water shoes recommended."
+  },
+  "girandella-beach": {
+    "access": "Easy; a promenade runs along the shore.",
+    "parking": "Paid parking in Rabac; limited in July and August.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire.",
+    "food": "Cafes and restaurants along the promenade.",
+    "note": "A family resort beach; water shoes recommended."
+  },
+  "medulin-beach": {
+    "access": "Easy; paths and a promenade run along the bay.",
+    "parking": "Paid parking in Medulin; limited in summer.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire at several beaches.",
+    "food": "Bars, cafes and restaurants along the coast.",
+    "note": "A family-friendly bay; water shoes recommended."
+  },
+  "podgora-beach": {
+    "access": "Easy; a promenade runs along the shore.",
+    "parking": "Paid parking in town and near the beach; busy in July and August.",
+    "sunbeds": "Sunbeds and umbrellas are available for hire.",
+    "food": "Cafes and restaurants along the front.",
+    "note": "A quieter Makarska Riviera beach; water shoes recommended."
+  },
+  "plage-de-la-croisette": {
+    "access": "Easy; flat access from the promenade.",
+    "parking": "Paid parking garages nearby; limited and costly in summer.",
+    "sunbeds": "Private beach clubs rent sunbeds; some public sections remain.",
+    "food": "Restaurants and cafes along the boulevard and at the clubs.",
+    "note": "Busy during festivals; public sections fill early."
+  },
+  "plage-de-la-salis": {
+    "access": "Easy; flat access from the road and promenade.",
+    "parking": "Paid parking in Antibes; limited in summer.",
+    "sunbeds": "Beach clubs rent sunbeds and umbrellas; a public section remains.",
+    "food": "Beach restaurants and cafes nearby.",
+    "note": "A calm family beach; public areas fill early."
+  },
+  "dinard-beach": {
+    "access": "Easy; steps and ramps lead from the promenade.",
+    "parking": "Paid street parking in Dinard; limited in summer.",
+    "sunbeds": "Beach cabins can be rented; sunbeds are not typical.",
+    "food": "Cafes and restaurants on the seafront.",
+    "note": "Very large tidal range; check times and flags."
   }
 }
