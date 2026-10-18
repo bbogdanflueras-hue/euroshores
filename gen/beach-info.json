@@ -2067,5 +2067,40 @@
     "sunbeds": "Sunbeds and parasols reported seasonally; rental uncertain in recent years",
     "food": "Cafes and restaurants in the village",
     "note": "Boats to Sa Dragonera nature park leave from the port. Sa Trapa trail is about 9 km."
+  },
+  "tamariu-beach": {
+    "access": "Easy; village seafront",
+    "parking": "Blue-zone street parking and staffed paid car parks; spaces scarce in summer",
+    "sunbeds": "Not confirmed; bring own shade",
+    "food": "Bars and restaurants along the seafront; about ten in the village",
+    "note": "Beach about 180 m long and 40 m wide. Showers, toilets and a summer lifeguard."
+  },
+  "agios-gordios-beach": {
+    "access": "Easy; steps and path from the village",
+    "parking": "Scarce in July and August; large municipal car park a little above the village",
+    "sunbeds": "Sunbeds and umbrellas for hire; some free with a restaurant order; price not found",
+    "food": "Tavernas along the beach",
+    "note": "About 1 km, Blue Flag reported. Sand at the south end, pebbles at the north. Pedal boats and canoes for hire."
+  },
+  "alimini-beach": {
+    "access": "Easy; road access to beach bars and resort beaches",
+    "parking": "Limited and busy in summer; some free public parking reported",
+    "sunbeds": "Loungers at beach bars; one older review reported 10 EUR for two loungers and an umbrella",
+    "food": "Beach bars and restaurants nearby",
+    "note": "Length not confirmed. Currents can shrink the beach and bring in volcanic sand."
+  },
+  "marina-grande-beach": {
+    "access": "Moderate; steep lane and stairs down from the town; buses from Piazza Tasso",
+    "parking": "Not confirmed",
+    "sunbeds": "None found at Marina Grande; paid sunbeds are at Marina Piccola",
+    "food": "Seafront restaurants and cafes at the harbour",
+    "note": "Rocky beach of volcanic sand; bring a mat or chair. Marina Piccola is reached by lift from the town."
+  },
+  "praia-do-vale-do-lobo": {
+    "access": "Easy; path down from the resort Praca",
+    "parking": "Plenty of paid parking; bring coins for the meter",
+    "sunbeds": "Sunbeds and umbrellas; first rows reserved for resort guests; one visitor paid about 40 EUR",
+    "food": "Restaurants and bars in the Praca area and beach bars",
+    "note": "Blue Flag listing is undated, so confirm current status. Massage station on the beach."
   }
 }
