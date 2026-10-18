@@ -1962,5 +1962,40 @@
     "sunbeds": "Paid areas rent two sunbeds and a parasol (about 25 to 40 euros a day reported, often cash only); a small free area sits in front of the station exit.",
     "food": "Beachside cafes and bars at the lidos and in the village.",
     "note": "Bring water shoes for the pebbles at the water line. The area near the Giant statue is quieter and has shallow water for young children."
+  },
+  "cala-sisine": {
+    "access": "Boat from Cala Gonone or Santa Maria Navarrese, or on foot: about 1 km from the Planu e Murta parking (4x4 road) or about 8 km from Ololbissi",
+    "parking": "No parking at the beach; park at Golgo-side areas or in Cala Gonone and take a boat",
+    "sunbeds": "None; bring your own umbrella",
+    "food": "Small seasonal bar near the beach",
+    "note": "Dirt roads can be difficult after rain. Check conditions locally. Boats from Cala Gonone are the easiest option."
+  },
+  "sa-calobra": {
+    "access": "Mountain road from Sa Calobra car park, then short tunnels to the cove; boats also run from Port de Soller",
+    "parking": "Paid car park at the port; fills in summer; prices vary by source",
+    "sunbeds": "None found on the pebble beach",
+    "food": "Cafes and restaurants by the port",
+    "note": "Pebble beach at the mouth of the Torrent de Pareis gorge. Arrive early or late to avoid coaches."
+  },
+  "kolymbithres-beach": {
+    "access": "Short walk from the road; bus or water taxi from Naoussa",
+    "parking": "Free parking nearby; limited spaces",
+    "sunbeds": "Sunbeds and umbrellas run by beach clubs; prices not found",
+    "food": "Tavernas very close to the beach",
+    "note": "Granite rock formations separate small coves. Water sports such as kayaks and SUP are available. Arrive early in summer."
+  },
+  "playa-burriana": {
+    "access": "Easy, from the seafront promenade",
+    "parking": "Pay car park at the western end plus street parking; fills early in summer",
+    "sunbeds": "Sunbed and parasol hire along most of the beach; price not found",
+    "food": "Chiringuitos and restaurants along the beach",
+    "note": "About 800 m long and 40 m wide. Lifeguards and showers in season. Blue Flag status reported."
+  },
+  "cala-agulla": {
+    "access": "Path through the pine forest from the car park area",
+    "parking": "Car park reported closed since February 2025; check current status",
+    "sunbeds": "Sunbed and umbrella rental available; price not found",
+    "food": "Beach bars and restaurants",
+    "note": "Bay roughly 500 to 800 m long and about 50 m deep. Parking status has been unclear, so check before you go."
   }
 }
