@@ -3,9 +3,11 @@
 const fs = require('fs'), path = require('path');
 const sharp = require('sharp');
 const ROOT = path.join(__dirname, '..');
-const src = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-const a0 = src.indexOf('var B = ['), z0 = src.indexOf('// Paste your Formspree');
-if (a0 < 0 || z0 < 0) throw new Error('data block not found in index.html');
+const dataPath = path.join(ROOT, 'data.js');
+const HAS_DATAJS = fs.existsSync(dataPath);
+const src = fs.readFileSync(HAS_DATAJS ? dataPath : path.join(ROOT, 'index.html'), 'utf8');
+const a0 = src.indexOf('var B = ['), z0 = HAS_DATAJS ? src.length : src.indexOf('// Paste your Formspree');
+if (a0 < 0 || z0 < 0) throw new Error('data block not found');
 const data = new Function(src.slice(a0, z0) + ';return {B:B,PH:PH};')();
 const OUT = path.join(ROOT, 'img');
 fs.mkdirSync(OUT, { recursive: true });
