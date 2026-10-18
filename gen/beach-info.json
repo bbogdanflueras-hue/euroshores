@@ -1892,5 +1892,40 @@
     "sunbeds": "Not confirmed; check on arrival.",
     "food": "Summer beach restaurant (Mar i Vent) in the cove and the Parador restaurant above.",
     "note": "Toilets and adapted showers, plus water sports and a diving centre. The cove is small and fills early in high season."
+  },
+  "agiofili-beach": {
+    "access": "Moderate. About 2 km from Vasiliki by a road that mostly climbs; boat taxis also run from the village, and walking is possible but hot.",
+    "parking": "Paid car park just before the beach gate; rates vary by season (roughly 8 to 10 euros reported).",
+    "sunbeds": "Reports differ: some guides list sunbed and parasol rental (around 20 euros), others say organised sunbeds are gone; bring your own shade to be safe.",
+    "food": "A kiosk near the car park; no taverna close by, so bring food.",
+    "note": "Toilet and shower block near the parking area. Gate hours are reported inconsistently, so check locally before you go."
+  },
+  "kamari-beach": {
+    "access": "Easy. Flat seafront promenade with direct access to the sand.",
+    "parking": "Several free car parks near the beach.",
+    "sunbeds": "Sunbeds and umbrellas rented along most of the beach; arrive early for the day.",
+    "food": "Tavernas, snack bars and cafes along the seafront.",
+    "note": "The dark volcanic sand and pebbles get very hot at midday, so waterproof sandals help. Lifeguard cover is reported in summer."
+  },
+  "kleftiko": {
+    "access": "Challenging. Reached only by boat; there is no road and no beach facilities.",
+    "parking": "Not applicable; tours leave from Adamas port or Agia Kiriaki beach.",
+    "sunbeds": "None; you swim and snorkel from the boat.",
+    "food": "None on land; boat tours typically provide water and snacks, and some include lunch.",
+    "note": "Half-day tours usually allow about one to one and a half hours at Kleftiko. Routes can change in strong north winds."
+  },
+  "praia-de-monte-gordo": {
+    "access": "Easy. Flat promenade and wide sand with a gentle slope into the sea.",
+    "parking": "Free and paid parking nearby, including street parking; busy at peak times.",
+    "sunbeds": "Sunbed rental available; reported at about 15 to 20 euros for two loungers and an umbrella.",
+    "food": "Restaurants and shops along the promenade.",
+    "note": "Blue Flag beach with lifeguards in summer. Toilets and showers on the promenade, though one reviewer found public toilets hard to find."
+  },
+  "ses-salines": {
+    "access": "Easy. Short walk from the car parks over flat ground.",
+    "parking": "Small free lot by the road that fills early; larger paid car park near the roundabout.",
+    "sunbeds": "Loungers and parasols available; beach clubs can be pricey.",
+    "food": "Beach clubs, bars and restaurants along the sand.",
+    "note": "Inside the Ses Salines natural park, with dunes and pine woods behind. Summer buses run from Ibiza Town; check current timetables."
   }
 }
