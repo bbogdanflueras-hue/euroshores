@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://euroshores.com/</loc><lastmod>2026-10-18</lastmod><priority>1.0</priority></url>
-<url><loc>https://euroshores.com/beach/navagio-beach/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/navagio-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/spiaggia-grande/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/elafonissi-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/praia-da-marinha/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
@@ -57,7 +57,7 @@
 <url><loc>https://euroshores.com/beach/drobni-pijesak/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/scala-dei-turchi/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/spiaggia-dei-conigli/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
-<url><loc>https://euroshores.com/beach/voidokilia-beach/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/voidokilia-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/praia-do-camilo/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/cala-violina/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/praia-de-odeceixe/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
@@ -157,7 +157,7 @@
 <url><loc>https://euroshores.com/beach/imgiebah-bay/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/cala-mesquida/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/son-moll-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
-<url><loc>https://euroshores.com/beach/kyllini-beach/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/kyllini-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/playa-de-papagayo/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/platja-de-muro/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/praia-de-porto-de-mos/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
@@ -190,7 +190,7 @@
 <url><loc>https://euroshores.com/beach/cala-bassa/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/tamaricciu-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/cala-pira/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
-<url><loc>https://euroshores.com/beach/gerakas-beach/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/gerakas-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/platis-gialos-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/li-cossi/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/cala-des-matzoc/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
@@ -240,7 +240,7 @@
 <url><loc>https://euroshores.com/beach/praia-de-santa-cruz/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/plage-de-la-gravette/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/triopetra-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
-<url><loc>https://euroshores.com/beach/xigia-beach/</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/xigia-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/lama-monachile/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/spiaggia-di-piscinas/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/praia-da-albandeira/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
@@ -348,6 +348,31 @@
 <url><loc>https://euroshores.com/beach/plage-de-la-cote-des-basques/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/plage-des-grands-sables/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/beach/omaha-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/gidaki-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/dafnoudi-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/kalamaki-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/mylos-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/sansone-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/fetovaia-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/cala-sinzias/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/torre-dell-orso-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/budoni-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/playa-de-las-catedrales/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/playa-de-ris/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/cala-d-hort/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/playa-de-el-puntal/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/playa-de-bolnuevo/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/praia-da-foz-do-arelho/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/praia-dos-tres-irmaos/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/praia-da-ilha-do-pessegueiro/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/praia-da-zambujeira-do-mar/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/punta-rata-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/makarska-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/zaton-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/lacanau-ocean-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/hossegor-lake-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/plage-d-argent/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+<url><loc>https://euroshores.com/beach/cap-ferret-ocean-beach/</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
 <url><loc>https://euroshores.com/country/greece/</loc><lastmod>2026-10-18</lastmod><priority>0.7</priority></url>
 <url><loc>https://euroshores.com/country/spain/</loc><lastmod>2026-10-18</lastmod><priority>0.7</priority></url>
 <url><loc>https://euroshores.com/country/italy/</loc><lastmod>2026-10-18</lastmod><priority>0.7</priority></url>
