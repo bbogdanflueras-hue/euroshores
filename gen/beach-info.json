@@ -2452,5 +2452,180 @@
     "sunbeds": "None.",
     "food": "Cafes and shops in the villages nearby.",
     "note": "Swimming is allowed; check tide times. Visit with respect, since this is a memorial site."
+  },
+  "gidaki-beach": {
+    "access": "Small boats run from Vathy in summer, or walk a rough footpath of roughly 25 minutes from Skinos and up to an hour from Vathy.",
+    "parking": "No road to the beach and no parking; park in the villages and walk, or take a boat.",
+    "sunbeds": "A limited number of sunbeds, around 30 reported, near the snack bar in season.",
+    "food": "A seasonal canteen or snack bar; sources disagree on what is open, so bring your own water and food.",
+    "note": "Pebbles and cliffs; take shoes for the path. Boat trips from Vathy can be pricey, so compare operators."
+  },
+  "dafnoudi-beach": {
+    "access": "A rocky trail through pine forest of about 600 m and roughly 10 minutes; sturdy shoes advised and it is steeper on the way back up.",
+    "parking": "Free parking at the trailhead, reported to have plenty of space.",
+    "sunbeds": "No sunbeds or umbrellas reported; bring your own shade.",
+    "food": "No facilities on the beach; Fiskardo, a few minutes by car, has tavernas and shops.",
+    "note": "Small pebble beach with clear water; best on calm days. Take water, and watch your step on the path."
+  },
+  "kalamaki-beach": {
+    "access": "Walk down from the village or the road above; the beach is flat and easy.",
+    "parking": "No authoritative information on parking; spaces near the village are generally available.",
+    "sunbeds": "Sunbeds and umbrellas are permitted in limited numbers and are meant to be cleared at night.",
+    "food": "A small canteen on the sand and a taverna above that sends drinks down by pulley; more places in the village.",
+    "note": "Protected nesting beach: public access is restricted from sunset to sunrise, do not disturb nest markers, and motorised water sports are banned."
+  },
+  "mylos-beach": {
+    "access": "A rough, uneven path through forest of about 1 km, 15-30 minutes depending on pace; sturdy shoes needed. A taxi boat also runs from Agios Nikitas (reported about 6 EUR each way).",
+    "parking": "No parking at the beach; use the car parks in Agios Nikitas.",
+    "sunbeds": "One bar rents sunbeds and umbrellas; the beach is otherwise unorganised.",
+    "food": "One bar only; bring water and snacks.",
+    "note": "Little shade and no other facilities. Rental prices are reported to be high, so bring your own gear if you can."
+  },
+  "sansone-beach": {
+    "access": "A steep path of about 10 minutes on foot, starting shortly before the Viticcio turning; not suitable for wheelchairs or strollers.",
+    "parking": "Free parking is limited and fills early, street parking is fined, and a small paid lot costs around 18 EUR a day.",
+    "sunbeds": "Umbrella and sunbeds can be rented; one visitor paid about 40 EUR for the day, so check prices first.",
+    "food": "A beach bar rents umbrellas; bring lunch for a full day.",
+    "note": "White pebbles make the water look vivid but rough underfoot; very busy in July and August."
+  },
+  "fetovaia-beach": {
+    "access": "Short walk from the car park at the back of the beach; flat and easy.",
+    "parking": "A car park with a small number of free spaces plus paid spots; fills early. Alternative: park in Marina di Campo, about 10 km away, and take the bus.",
+    "sunbeds": "Beach clubs rent sunbeds and umbrellas; there are also free sections to lay a towel.",
+    "food": "Beach bars and restaurants along the shore; more in the village above.",
+    "note": "Often very crowded in high season. No camper-specific information found, so check local signs and Campo nell Elba rules."
+  },
+  "cala-sinzias": {
+    "access": "Walk straight onto the sand from the road; shallow, gentle entry.",
+    "parking": "Parking around the approach road and the nearby resort; can be tight in August.",
+    "sunbeds": "Sunbeds and umbrellas available, including those run by the nearby resort.",
+    "food": "A beach bar and restaurants nearby; the resort also has a restaurant.",
+    "note": "Shallow water makes it good for small children. No official lifeguard or price details found, so ask locally."
+  },
+  "torre-dell-orso-beach": {
+    "access": "Walk from the town streets directly onto the sand; flat and easy.",
+    "parking": "No reliable public figures found; expect busy car parks in July and August.",
+    "sunbeds": "Lidos rent two loungers and an umbrella, reported around 20-35 EUR in June and 35-50 EUR or more in August; free beach space exists too.",
+    "food": "Beach bars and restaurants along the front.",
+    "note": "The free beach fills quickly; weekdays are calmer than weekends. Bring your own umbrella and towel to avoid fees."
+  },
+  "budoni-beach": {
+    "access": "Direct access from the car park through the dunes; flat and easy.",
+    "parking": "A large pay car park; reported around 3 EUR a day or 0.50 EUR an hour in shoulder season.",
+    "sunbeds": "Sunbeds, umbrellas and dinghy rental in equipped sections; other areas are free.",
+    "food": "Beach bars and restaurants; showers available.",
+    "note": "A September visitor reported seaweed in the southern third, so conditions vary; shallow, sloping water suits families."
+  },
+  "playa-de-las-catedrales": {
+    "access": "A staircase leads down to the sand, and the caves can be explored only around low tide. Permits are needed in high season.",
+    "parking": "Two large free car parks; the paved one fills fast, the second is a gravel meadow.",
+    "sunbeds": "No sunbeds; this is a natural monument, not a beach resort.",
+    "food": "No food on the beach; bars and restaurants in Ribadeo and Rinlo.",
+    "note": "Visiting is by free online permit up to 30 days ahead for up to 25 people in busy periods (Easter, summer, holiday weekends); check the official booking site."
+  },
+  "playa-de-ris": {
+    "access": "Direct access from the promenade and streets; flat and easy.",
+    "parking": "Parking near the beach; it fills quickly in July and August, so arrive early in the morning.",
+    "sunbeds": "Some rental of sunbeds and mats reported; confirm in season.",
+    "food": "Restaurants and bars nearby; sources disagree on whether a beach bar sits right on the sand.",
+    "note": "Lifeguards on duty in summer. Camping Playa de Ris sits behind the beach."
+  },
+  "cala-d-hort": {
+    "access": "A 10-minute walk from the main car park to the sand; flat road and easy steps.",
+    "parking": "An unpaved car park for about 200 vehicles beside the access road, free in 2025 with fees expected from 2026; arrive early.",
+    "sunbeds": "Sunbeds, daybeds and parasols for rent.",
+    "food": "Three beachside restaurants focused on fish and seafood, including Es Boldado known for paella; a bar on the beach.",
+    "note": "Blue Flag for many years and lifeguarded; the beach is small (about 150 m) and very busy in summer."
+  },
+  "playa-de-el-puntal": {
+    "access": "Easy access by road with a promenade overlooking Rodiles and Misiego.",
+    "parking": "Parking near the beach; it can fill up in high season.",
+    "sunbeds": "No sunbed rental reported; bring your own shade.",
+    "food": "Cafes and restaurants in the nearby village and the estuary area.",
+    "note": "Showers and a rescue service are listed by the Asturias tourism board; pets are banned from 1 June to 30 September."
+  },
+  "playa-de-bolnuevo": {
+    "access": "Walk onto the beach from the promenade or the Gredas car park; flat and easy.",
+    "parking": "Large open car park near the Gredas, rarely full even in summer; street parking in town is tight. Camper rules vary and some user reports mention time limits.",
+    "sunbeds": "Some sunbed rental in season.",
+    "food": "Bars and restaurants along the beach front.",
+    "note": "The main beach is about 1.6 km long. Do not climb on the eroded rock formations."
+  },
+  "praia-da-foz-do-arelho": {
+    "access": "Walk straight onto the sand from the village and promenade; easy.",
+    "parking": "Free and paid options nearby; lots fill in peak season, though overflow areas are available.",
+    "sunbeds": "No sunbed rental confirmed; beach clubs may offer seating, so ask on arrival.",
+    "food": "Cais da Praia on the sand (live music and rooftop seating), Cabana do Pescador for seafood, Cocos Beach Club for pizza and cocktails.",
+    "note": "Lagoon and ocean sides differ; water sports on the lagoon. No lifeguard details found, so check flags."
+  },
+  "praia-dos-tres-irmaos": {
+    "access": "A staircase of many steps leads down; lifts at nearby holiday complexes.",
+    "parking": "Parking nearby with disabled bays; arrive early in peak season.",
+    "sunbeds": "Sunbeds can be hired.",
+    "food": "Nearby restaurants such as Canico; toilets beneath some of them.",
+    "note": "Cave routes depend on the tide; check times before you explore."
+  },
+  "praia-da-ilha-do-pessegueiro": {
+    "access": "Paved access road to a large car park, then a short walk to the sand.",
+    "parking": "A paved municipal access road and space for about 131 vehicles.",
+    "sunbeds": "No sunbed rental confirmed; bring your own umbrella.",
+    "food": "Several restaurants, including A Ilha facing the island, serving grilled fish; reservations suggested.",
+    "note": "Part of a protected natural park; showers and toilets reported."
+  },
+  "praia-da-zambujeira-do-mar": {
+    "access": "Steps and a short path from the village down to the sand.",
+    "parking": "Officially about 20 car spaces at the beach, with more in the village.",
+    "sunbeds": "No sunbed rental reported.",
+    "food": "Cafes and restaurants in the village above the beach.",
+    "note": "Lifeguards in summer. Surf reports describe a heavy, hollow break; swim and surf with care."
+  },
+  "punta-rata-beach": {
+    "access": "Walk from the village promenade or car park; flat and easy.",
+    "parking": "A paid car park, reported at around 4 EUR an hour or up to about 25 EUR a day in season; nearby hotel lots can be cheaper.",
+    "sunbeds": "Sunbeds and umbrellas for hire; prices vary widely by source, from about 5-7 EUR each to about 28 EUR for a pair.",
+    "food": "Beach bars and restaurants along the promenade; public toilets may need coins.",
+    "note": "No entry fee for the public beach; shade from the pines until about 5-6 pm. Very crowded in August."
+  },
+  "makarska-beach": {
+    "access": "Walk directly from the promenade onto the beach; easy.",
+    "parking": "Paid city parking; hotel car parks charge separately, around 8 EUR a day at some hotels.",
+    "sunbeds": "Sunbeds and umbrellas cost extra; no current price found.",
+    "food": "Restaurants, cafes and shops along the promenade.",
+    "note": "Showers and changing areas near the small pebble beaches at the front. Crowded in summer."
+  },
+  "zaton-beach": {
+    "access": "Flat walk from the resort and nearby streets.",
+    "parking": "Free parking advertised at the resort; check local signs.",
+    "sunbeds": "Sunbeds and umbrellas for hire; some visitors call prices high.",
+    "food": "Bars and restaurants nearby and in the resort.",
+    "note": "Gently shelving water, good for children. Some stretches are pebbly."
+  },
+  "lacanau-ocean-beach": {
+    "access": "Stairs from the paid car parks at the central beach.",
+    "parking": "Paid parking in the centre fills fast in season; a large car park to the south gives access to the quieter Super Sud beach.",
+    "sunbeds": "No sunbeds reported at the main beach; bring a towel.",
+    "food": "Cafes and restaurants along the front.",
+    "note": "The Grande Aire Oceane motorhome area is paid (about 15.50 EUR per 24 hours in 2025-2026, plus a lifetime 5 EUR Camping Car Park membership). Dog rules vary by beach."
+  },
+  "hossegor-lake-beach": {
+    "access": "Short walk from the entrance car park; accessible with an amphibious chair in summer.",
+    "parking": "A small free car park at the entrance; parking on a nearby street too.",
+    "sunbeds": "No sunbeds reported; paddle rental available.",
+    "food": "A bar and food outlet on the beach.",
+    "note": "Lifeguards from late May to late September (schedule varies); dogs are not allowed per the Landes tourism board."
+  },
+  "plage-d-argent": {
+    "access": "Ferry to Porquerolles, then about 20 minutes on foot or 10 on a bike from the village.",
+    "parking": "No cars allowed; bike parking at the beach.",
+    "sunbeds": "Sunbed rental listed by tourism sources; no price found.",
+    "food": "A bar-restaurant, toilets and a rescue post in season.",
+    "note": "Tiralo amphibious chair for bathing in season. The island is in a national park, so follow park rules."
+  },
+  "cap-ferret-ocean-beach": {
+    "access": "A short walk over the dunes from the car park, about 15 minutes at some beaches.",
+    "parking": "Parking sits before the dunes; some beaches have a small car park at the foot of the dune.",
+    "sunbeds": "No sunbed rental reported.",
+    "food": "Cafes and restaurants in Cap Ferret village; a pinasse boat crosses from Arcachon.",
+    "note": "Some stretches are unsupervised and partly naturist; the ocean has strong currents."
   }
 }
