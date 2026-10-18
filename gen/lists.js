@@ -69,6 +69,8 @@ module.exports = function (c) {
   }
   var CSSX = '<style>.cmpw{overflow-x:auto;margin:10px 0}.cmp{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8ecf0;font-size:14px}.cmp th,.cmp td{padding:8px 10px;border-bottom:1px solid #eef1f4;text-align:left}.cmp th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a8d}.rank{display:inline-block;background:#0f4a63;color:#fff;border-radius:999px;min-width:26px;text-align:center;font-size:13px;margin-right:6px;padding:0 6px}</style>';
 
+  function pinUrl(d, b) { return 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(SITE + '/best/' + d.slug + '/') + '&amp;media=' + encodeURIComponent(imgUrl(b, 1200)) + '&amp;description=' + encodeURIComponent(d.h1 + ' - EuroShores'); }
+
   function pageFor(d) {
     var rel = 'best/' + d.slug + '/';
     var L = d.list, n = L.length, t1 = L[0];
@@ -98,7 +100,7 @@ module.exports = function (c) {
       { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
     ];
     var ctry = d.country ? CL.filter(function (x) { return x.name === d.country; })[0] : null;
-    var body = CSSX + '<div class="crumbs"><a href="../../">' + NAME + '</a> &rsaquo; <a href="../">Best of</a> &rsaquo; ' + esc(d.h1) + '</div>\n<h1>' + esc(d.h1) + '</h1>\n<p class="lead">' + esc(lead1) + '</p>\n<p>' + esc(lead2) + '</p>\n<div class="grid">' + cards + '</div>\n' +
+    var body = CSSX + '<div class="crumbs"><a href="../../">' + NAME + '</a> &rsaquo; <a href="../">Best of</a> &rsaquo; ' + esc(d.h1) + '</div>\n<h1>' + esc(d.h1) + '</h1>\n<p class="lead">' + esc(lead1) + '</p>\n<p>' + esc(lead2) + '</p>\n<p class="noprint"><a href="' + pinUrl(d, t1) + '" target="_blank" rel="noopener" style="display:inline-block;background:#e60023;color:#fff;padding:8px 18px;border-radius:999px;font-weight:600;text-decoration:none">Save on Pinterest</a></p>\n<div class="grid">' + cards + '</div>\n' +
       '<h2>Quick comparison</h2>\n<div class="cmpw"><table class="cmp"><tr><th>#</th><th>Beach</th><th>Country</th><th>Score</th><th>Water</th><th>Best season</th><th>Access</th></tr>' + rows + '</table></div>\n' +
       '<h2>How we picked these beaches</h2>\n<p>' + esc(d.how) + ' See <a href="../../about/">how we rate beaches</a> for the full method.</p>\n' +
       '<h2>Frequently asked questions</h2>\n' + faqs.map(function (f) { return '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>'; }).join('\n') + '\n' +
