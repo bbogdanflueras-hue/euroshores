@@ -1997,5 +1997,40 @@
     "sunbeds": "Sunbed and umbrella rental available; price not found",
     "food": "Beach bars and restaurants",
     "note": "Bay roughly 500 to 800 m long and about 50 m deep. Parking status has been unclear, so check before you go."
+  },
+  "mylopotas-beach": {
+    "access": "Easy; walk or bus from Chora (about 2 km)",
+    "parking": "No dedicated public parking found; bus every 15 to 20 minutes in peak season",
+    "sunbeds": "Sunbeds and umbrellas available; price not found; book ahead in July and August",
+    "food": "Beach bars and tavernas along the bay, mostly at the southern end",
+    "note": "Horseshoe bay over 1 km of golden sand. Busiest beach on Ios; walk north for a quieter stretch."
+  },
+  "canyamel-beach": {
+    "access": "Easy, flat access from the village",
+    "parking": "No beach-specific parking details found; arrive early in summer",
+    "sunbeds": "Sunbed and parasol hire available; price not found",
+    "food": "Cafes and restaurants nearby",
+    "note": "About 290 to 350 m long depending on source. Toilets and showers available."
+  },
+  "levanto-beach": {
+    "access": "Easy; short walk from the town and train station",
+    "parking": "Paid car parks in town; the lot above the beach has a reduced hourly rate; passes about 5 EUR/day via rentals",
+    "sunbeds": "Paid lidos along the beach; prices not found; free sections available",
+    "food": "Cafes and restaurants along the promenade",
+    "note": "Sand and pebbles. Surf school operates year-round. Cycle path along the old railway to Bonassola and Framura."
+  },
+  "cala-galdana": {
+    "access": "Easy; flat access from the resort; bus stop nearby",
+    "parking": "Free car parks 5 to 15 minutes on foot, including Cala Mitjana; fills by midday",
+    "sunbeds": "Sunbed and umbrella hire available; price not found",
+    "food": "Beach bars and restaurants",
+    "note": "Half-moon cove with lifeguards and toilets. Paddle boats and water sports for hire. Length not confirmed."
+  },
+  "la-baule-beach": {
+    "access": "Easy; seafront promenade and cycle path along the bay",
+    "parking": "Not confirmed; reserved accessible spaces nearby",
+    "sunbeds": "Beach clubs and striped beach huts; sunbed prices not found",
+    "food": "Promenade cafes and beach clubs",
+    "note": "About 9 km long between Pornichet and Le Pouliguen. Lifeguards on duty in July and August only."
   }
 }
