@@ -983,13 +983,18 @@ function cardHTML(b, i){
 }
 function render(){
   var l = visible();
-  $('grid').innerHTML = l.length ? l.map(cardHTML).join('') : '<div class="empty-state"><h3>No beaches match</h3><p>Try a different search or clear the filters.</p></div>';
+  var sig = [S.q,S.type,S.country,S.gems,S.sort].join('|'); if(sig !== window.__sig){ window.__sig = sig; window.__shown = 24; }
+  var vis = l.slice(0, window.__shown || 24);
+  $('grid').innerHTML = l.length ? vis.map(cardHTML).join('') : '<div class="empty-state"><h3>No beaches match</h3><p>Try a different search or clear the filters.</p></div>';
   var f = (S.q?1:0)+(S.type!=='all'?1:0)+(S.country!=='all'?1:0)+(S.gems?1:0);
   $('resultLine').innerHTML = 'Showing '+l.length+' of '+B.length+' beaches'+(S.country!=='all'?' in '+esc(S.country):'')+(f?'<button type="button" class="chip-clear" id="clearAll">Clear filters</button>':'');
   renderFilters();
   updateMap(l);
   updateTray();
+  var mw = $('moreWrap'); if(!mw){ mw = document.createElement('div'); mw.id = 'moreWrap'; mw.style.cssText = 'text-align:center;margin:22px 0'; $('grid').parentNode.insertBefore(mw, $('grid').nextSibling); }
+  mw.innerHTML = l.length > vis.length ? '<button type="button" id="moreBtn" class="filter-btn">Show more beaches (' + (l.length - vis.length) + ' left)</button>' : '';
 }
+document.addEventListener('click', function(e){ if(e.target && e.target.id === 'moreBtn'){ window.__shown = (window.__shown || 24) + 48; render(); } });
 
 // map
 function initMap(){
