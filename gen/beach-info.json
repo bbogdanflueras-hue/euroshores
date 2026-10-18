@@ -2277,5 +2277,180 @@
     "sunbeds": "None; this is a surf beach",
     "food": "Restaurants and surf shops nearby; none named in my sources",
     "note": "Twenty Nine surf school is on the beach. Lifeguards only in July and August (1.30 pm to 7.30 pm). Waves are big and suit surfers with a good level."
+  },
+  "mikri-vigla-beach": {
+    "access": "Drive or bus along the coast road from Naxos Town (about 20 km); the beach is flat and easy to reach from the roadside.",
+    "parking": "Free parking along the coastal road and on dirt areas behind the dunes.",
+    "sunbeds": "Few or none; this is mainly a kite and windsurf beach, so bring your own shade.",
+    "food": "A few tavernas and snack spots near the beach, plus the surf school cafes.",
+    "note": "Windy in the afternoon in summer, which suits kiters; mornings are calmer for swimming. Three surf schools operate here."
+  },
+  "apella-beach": {
+    "access": "About 20 km (40 minutes) from Pigadia; the road ends at a car park above the cove, then a short path leads down. A public bus runs a few days a week, and excursion boats leave from Pigadia.",
+    "parking": "A small car park by the taverna where the road ends.",
+    "sunbeds": "Sunbed and umbrella sets are rented at the taverna (reported around 20 EUR per set).",
+    "food": "A small taverna above the beach; bring extra water.",
+    "note": "Pebble cove with very clear water. Check bus times in advance."
+  },
+  "katergo-beach": {
+    "access": "Small boat from Karavostasi (about 10 minutes; about 12 to 14 EUR return reported), or hike 30 minutes from Livadi or about 50 minutes from the port.",
+    "parking": "No parking at the beach; park at Livadi or Karavostasi.",
+    "sunbeds": "None. There is almost no shade, so bring an umbrella.",
+    "food": "None. Bring water and food.",
+    "note": "A wild cove with no facilities; go early and carry water."
+  },
+  "kalafatis-beach": {
+    "access": "11 to 12 km from Mykonos Town; bus from the Old Port or drive.",
+    "parking": "Free street parking near the beach.",
+    "sunbeds": "Sunbeds and umbrellas on the organised section (about 50 EUR for an umbrella and two sunbeds reported).",
+    "food": "Around three restaurants and bars along the beach.",
+    "note": "Windsurf and kitesurf schools operate here; the eastern end is wilder and quieter."
+  },
+  "agios-ioannis-beach": {
+    "access": "Reached by road from Zagora and the Pelion mountain roads; the beach sits right by the village.",
+    "parking": "Free parking is hard to find in summer; some hotels have small private lots, sometimes for a fee.",
+    "sunbeds": "Limited information; a few spots may rent loungers in season.",
+    "food": "Several tavernas along the boardwalk by the beach.",
+    "note": "Pebble beach; water shoes help. Arrive early in July and August."
+  },
+  "la-cinta-beach": {
+    "access": "About 2 km from San Teodoro; road access, with bus service in summer.",
+    "parking": "Free parking in places and paid lots near the entrances (hourly rates, pricey in peak season).",
+    "sunbeds": "Beach clubs rent sunbeds and umbrellas (about 40 to 70 EUR reported in high season).",
+    "food": "Beach bars and restaurants along the beach.",
+    "note": "A quieter stretch lies 10 to 15 minutes along the sand from the main entrance."
+  },
+  "torre-guaceto-beach": {
+    "access": "From the reserve entrance, a flat path of about 1.4 km or a shuttle to the beach.",
+    "parking": "Paid parking at the entrance (about 4 to 8 EUR per day, including the shuttle).",
+    "sunbeds": "No sunbed rental on most of the beach; bring your own shade.",
+    "food": "A small bar and toilets near the entrance; bring water.",
+    "note": "Marine reserve with controlled access; the shuttle can wait around 20 minutes in high season."
+  },
+  "marina-di-praia": {
+    "access": "A steep road and stairs down from the Amalfi Coast road; the SITA bus stops nearby.",
+    "parking": "Roadside parking above and a private summer car park.",
+    "sunbeds": "Limited; a beach club operates in season (rental details unverified).",
+    "food": "A few restaurants at the cove, including Il Pirata.",
+    "note": "Steep stairs back up; the cove gets shade early in the afternoon."
+  },
+  "scilla-marina-grande": {
+    "access": "Directly in the town of Scilla, a short walk from the station and old quarter.",
+    "parking": "A car park near the beach (reported about 2 EUR per hour) and street parking.",
+    "sunbeds": "Sunbeds and umbrellas rented by beach bars.",
+    "food": "Four beach bars and several restaurants nearby.",
+    "note": "Chianalea is uphill from the beach; allow extra time for the walk."
+  },
+  "fornillo-beach": {
+    "access": "About 10 minutes on foot from Spiaggia Grande with long stairs, or by sea shuttle.",
+    "parking": "No beach parking; use town car parks.",
+    "sunbeds": "Lidos rent sunbeds and umbrellas (about 35 EUR per person at one club reported).",
+    "food": "Seafood restaurants on the beach, including Da Ferdinando.",
+    "note": "Calmer and less crowded than the main beach; stairs make it unsuitable for mobility problems."
+  },
+  "playa-de-torimbia": {
+    "access": "On foot only, about 1 km from the top car park; 15 to 20 minutes down and 20 to 25 minutes back up.",
+    "parking": "A small free car park at the top, with roadside parking when full.",
+    "sunbeds": "None.",
+    "food": "A seasonal bar in summer.",
+    "note": "Clothes-optional; lifeguards and showers in summer."
+  },
+  "praia-da-lanzada": {
+    "access": "By road from Sanxenxo and O Grove; flat access across the dunes.",
+    "parking": "Free parking near the beach.",
+    "sunbeds": "No regular rental; bring your own shade.",
+    "food": "Chiringuitos and restaurants nearby, such as Pragueira Beach.",
+    "note": "Big waves and cold water; swim only where lifeguards allow."
+  },
+  "cala-deia": {
+    "access": "Narrow, winding road from Deia village down to the cove; a bus or taxi is easier than driving.",
+    "parking": "Very limited; a larger car park with about 60 extra spaces has been planned.",
+    "sunbeds": "None.",
+    "food": "Two restaurants by the cove: Ca s Patro March (seasonal) and Ca n Lluc.",
+    "note": "Pebble cove that fills quickly; go early. Anchoring is not advisable."
+  },
+  "playa-de-berria": {
+    "access": "2.5 km north of Santona; bus or short drive, flat access.",
+    "parking": "A large free car park.",
+    "sunbeds": "No regular rental.",
+    "food": "Cafes nearby.",
+    "note": "Lifeguards in summer; best at low tide when more sand is exposed."
+  },
+  "cala-santanyi": {
+    "access": "A short walk from the public car park down to the cove.",
+    "parking": "A free public car park a short walk away; it fills early.",
+    "sunbeds": "Parasols and sunbeds can be rented.",
+    "food": "Restaurants such as Voramar near the beach.",
+    "note": "Break-ins are reported, so leave nothing in the car. Es Pontas arch is reached by a coastal path."
+  },
+  "praia-de-sao-rafael": {
+    "access": "Stairs down the cliff from the car park and streets above.",
+    "parking": "Limited in summer and restricted; arrive early.",
+    "sunbeds": "Sunbeds on the left section of the beach.",
+    "food": "A beachfront restaurant.",
+    "note": "Free toilets and showers; Blue Flag status cited in recent years."
+  },
+  "praia-do-evaristo": {
+    "access": "Wooden boardwalks from the central car park to the sand.",
+    "parking": "A central car park.",
+    "sunbeds": "Loungers and parasols; pedalos for hire.",
+    "food": "The original restaurant was lost to a fire in October 2023; a temporary canteen has been reported, so check ahead.",
+    "note": "Lifeguards in summer; showers and toilets at the east end. Natural rock pool at low tide."
+  },
+  "porto-santo-beach": {
+    "access": "Along the island: the beach is long and flat; the ferry from Madeira runs daily.",
+    "parking": "Near the main access points; Pestana section free parking not verified.",
+    "sunbeds": "Sunbed concession at the main sections.",
+    "food": "A restaurant and bars on the Fontinha section.",
+    "note": "Fontinha (720 m) has changing rooms and Blue Flag status; the beach runs about 9 km."
+  },
+  "praia-de-santa-barbara": {
+    "access": "Near Ribeira Grande on the north coast of Sao Miguel; by road.",
+    "parking": "Two spacious car parks.",
+    "sunbeds": "No regular rental; bring shade.",
+    "food": "Bars on site; the restaurant has been under renovation.",
+    "note": "Lifeguards, toilets, showers and a surf school. Strong currents."
+  },
+  "kasjuni-beach": {
+    "access": "About 3 km from the old town; city bus 12 or a coastal walk.",
+    "parking": "A managed car park that fills fast; arrive early.",
+    "sunbeds": "Umbrellas and chairs for rent.",
+    "food": "Joe Beach Lounge and a bar.",
+    "note": "Pebble beach under Marjan hill; clear water."
+  },
+  "sveti-jakov-beach": {
+    "access": "About 150 steps down from the Sveti Jakov church; buses 5 and 8 run along the main road above.",
+    "parking": "Limited near the church; prices and spaces vary.",
+    "sunbeds": "Sunbeds and umbrellas for rent (about 15 EUR each reported).",
+    "food": "A beach bar and restaurant, with toilets and showers; may close after mid-October.",
+    "note": "Not suitable for people with mobility problems."
+  },
+  "plage-de-roccapina": {
+    "access": "A rough dirt track of about 2.5 km from the main road; potholes.",
+    "parking": "A free dirt car park at the end of the track; it fills quickly.",
+    "sunbeds": "None.",
+    "food": "None on site; nearest at the Roccapina hamlet and Col de Curali.",
+    "note": "A signposted walk from the main road is possible. Bring food, water and shade."
+  },
+  "plage-de-la-cote-des-basques": {
+    "access": "Down stairs from the clifftop, or along the beach from the old port.",
+    "parking": "Limited nearby; town car parks are better.",
+    "sunbeds": "None to speak of.",
+    "food": "Cafes at the top of the cliff.",
+    "note": "The beach is covered at high tide; check tide times. Lifeguards April to October."
+  },
+  "plage-des-grands-sables": {
+    "access": "Ferry from Lorient to Groix (about 45 minutes); then a short ride or walk to the beach.",
+    "parking": "A car park beside the beach.",
+    "sunbeds": "None.",
+    "food": "Nothing on the beach itself; bring food.",
+    "note": "Convex beach shaped by opposing currents; supervised in July and August."
+  },
+  "omaha-beach": {
+    "access": "Drive to the beach; the direct path from the American cemetery is closed.",
+    "parking": "Free or paid depending on area and season; plenty at Saint-Laurent-sur-Mer.",
+    "sunbeds": "None.",
+    "food": "Cafes and shops in the villages nearby.",
+    "note": "Swimming is allowed; check tide times. Visit with respect, since this is a memorial site."
   }
 }
