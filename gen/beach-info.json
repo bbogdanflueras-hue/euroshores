@@ -1857,5 +1857,40 @@
     "sunbeds": "Sunbeds and umbrellas rented at the main beach, with showers and changing rooms.",
     "food": "Tavernas around the beaches and the harbour.",
     "note": "Tour coaches arrive from about 11am to 3pm in high season, so go early or late. Boat trips to sea caves and quiet coves leave from the harbour and can sell out in summer."
+  },
+  "cala-rossa": {
+    "access": "Moderate. A long staircase leads down to the rocky bay; not suitable for wheelchairs.",
+    "parking": "No dedicated car park at the cove; street parking near the entrance, or come by bike.",
+    "sunbeds": "No sunbed rental reported; bring your own shade.",
+    "food": "No food reported at the cove; bring water and snacks.",
+    "note": "Rocky shore with no sand, so water shoes help. Sources disagree on how easy swimming is, so take care on the rocks."
+  },
+  "playa-de-zarautz": {
+    "access": "Easy. Flat promenade along the whole beach.",
+    "parking": "Parking in town, within about ten minutes on foot of the sand.",
+    "sunbeds": "Sunshade and lounger rental available.",
+    "food": "Bars and restaurants along the promenade.",
+    "note": "About 2.5 km long and 80 m wide, with several surf schools. Lifeguard cover is listed from 10am to 8pm in season."
+  },
+  "cala-tarida": {
+    "access": "Easy. A road leads down to the beach car park.",
+    "parking": "Small car park; the narrow access road backs up by early afternoon in peak summer, so park early.",
+    "sunbeds": "Sunbed and parasol hire from beach bars; prices vary, so check on arrival.",
+    "food": "Beach bars, beach clubs and restaurants on and above the beach.",
+    "note": "West-facing, so it is a good sunset spot. Summer bus services run from Ibiza Town and Sant Antoni."
+  },
+  "praia-de-carcavelos": {
+    "access": "Easy. Promenade and flat sand.",
+    "parking": "Free and paid parking nearby; lots fill fast in summer, so arrive early or take the train.",
+    "sunbeds": "Check on arrival; rental is not confirmed.",
+    "food": "Cafes and restaurants along the promenade.",
+    "note": "Surf schools and lifeguards in season; swimming areas are separated from surfing zones in summer. The train from Cais do Sodre takes about 26 minutes and the station is roughly 15 minutes on foot from the sand."
+  },
+  "aiguablava-beach": {
+    "access": "Moderate. The cove lies below the Parador on the cliff; step details were not confirmed.",
+    "parking": "Car park next to the Parador, paid in summer.",
+    "sunbeds": "Not confirmed; check on arrival.",
+    "food": "Summer beach restaurant (Mar i Vent) in the cove and the Parador restaurant above.",
+    "note": "Toilets and adapted showers, plus water sports and a diving centre. The cove is small and fills early in high season."
   }
 }
