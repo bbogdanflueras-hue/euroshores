@@ -137,6 +137,40 @@ function infoBox(b) {
   return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go.</p>';
 }
 
+// ---- regional hubs (definitions)
+const HUBS = [
+  { slug: 'algarve', name: 'the Algarve', re: /Algarve/i,
+    intro: "The Algarve is the southern coast of Portugal, known for golden cliffs, sea stacks and sheltered coves in the east and wilder Atlantic beaches on the west coast. The south coast has calmer, warmer water, while the west coast near Sagres is cooler and better for surfing.",
+    when: "May to October is the main beach season. July and August are the busiest and most expensive months, while June and September often give the best balance of warm weather and space.",
+    around: "A car makes it easiest to reach the smaller beaches, and parking at popular cliff-top beaches fills early in summer. Towns such as Lagos, Albufeira and Tavira make good bases." },
+  { slug: 'sardinia', name: 'Sardinia', re: /Sardinia/i,
+    intro: "Sardinia is the second-largest island in Italy, with white-sand coves, turquoise water and granite headlands. The north and south coasts have shallow, sheltered bays, while the east coast has rugged cliffs and some beaches that can only be reached on foot or by boat.",
+    when: "June to September is the main season. July and August are hot and crowded, and some beaches limit daily visitor numbers or require booking in peak summer.",
+    around: "Renting a car is the easiest way to explore the island. For the most protected beaches you may need to book ahead or arrive early, so check the local rules before you go." },
+  { slug: 'mallorca', name: 'Mallorca', re: /Mallorca/i,
+    intro: "Mallorca has everything from long sandy bays to small coves between pine-covered cliffs. The south-east and north-east coasts are known for turquoise water and narrow calas, while the west coast is rockier and more dramatic.",
+    when: "May to October is the beach season. July and August are the busiest, while June and September are often warm with fewer people.",
+    around: "Hire a car to reach the hidden coves. Roads to the popular calas get busy and parking is limited, so start early in the day." },
+  { slug: 'crete', name: 'Crete', re: /Crete/i,
+    intro: "Crete is the largest Greek island, with long sandy beaches, pink-tinted sand in the west and gorges that meet the sea in the south. The north coast is easier to reach, while the south and west coasts have wilder beaches.",
+    when: "May to October is the main beach season and the sea stays warm into October. The meltemi wind in July and August can affect exposed beaches, so sheltered bays are a good backup.",
+    around: "Car hire is the norm. Some of the best-known beaches need a boat trip or a long walk. Chania and Rethymno are good bases for the west and centre." },
+  { slug: 'cyclades', name: 'the Cyclades', re: /Cyclades|Milos|Santorini|Mykonos|Naxos|Paros|Folegandros|Antiparos|Sifnos|Koufonisia/i,
+    intro: "The Cyclades are the Greek island group in the Aegean Sea, known for white villages, clear water and dramatic volcanic or white-rock coastlines. Beaches range from organised sandy bays to wild coves.",
+    when: "Late May to early October is the best time. The meltemi wind blows most in July and August, so the choice of a sheltered beach matters.",
+    around: "Ferries link the islands, and on each island a car, scooter or local bus helps. Book ferries and accommodation early for summer." },
+  { slug: 'corsica', name: 'Corsica', re: /Corsica/i,
+    intro: "Corsica mixes mountains with long sandy bays, clear water and granite rocks. The south and south-east have some of the best-known white-sand beaches, while the west coast is wilder.",
+    when: "June to September is the main season. The water is warmest in August and early September.",
+    around: "A car is the best way to get around, though the roads are slow and winding. Some beaches need a short walk, and ferries connect the island with France and Italy." },
+  { slug: 'canary-islands', name: 'the Canary Islands', re: /Canar|Tenerife|Lanzarote|Fuerteventura|Gran Canaria/i,
+    intro: "The Canary Islands have mild weather all year and a wide range of beaches, from golden dunes to black volcanic sand. Wind and Atlantic swell affect some beaches, so check conditions before swimming.",
+    when: "Beach weather is possible all year. Summer is hotter and drier, winter is mild, and the Atlantic water stays cooler than the Mediterranean even in summer.",
+    around: "Flights or ferries link the islands, and a hire car is the easiest way to get around each island. Check wind and waves before you swim." }
+];
+function hubOf(b) { return HUBS.find(h => h.re.test(b.loc)); }
+function hubLink(b) { const h = hubOf(b); return h ? ' &middot; <a href="../../region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>' : ''; }
+
 // ---- extra per-beach sections (data-driven)
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 function seasonMonths(season) {
@@ -234,7 +268,7 @@ ${infoBox(b)}
 <p>${esc(TYPE_NOTE[b.type] || '')}</p>
 <p>${esc(ACC_NOTE[b.access] || '')}</p>
 <p>The usual season runs ${esc(b.season)}. Visiting near the start or end of that window usually means fewer people, but the sea is cooler and some facilities may not be open yet or may have closed for the year.${b.gem ? ' We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.' : ''}</p>
-<p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}</p>
+<p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}${hubLink(b)}</p>
 <p><a href="https://www.openstreetmap.org/?mlat=${b.lat}&amp;mlon=${b.lng}#map=14/${b.lat}/${b.lng}" rel="noopener">View ${esc(b.name)} on the map</a> &middot; <a href="../../#beaches">Compare with all beaches</a></p>
 ${extraSections(b, more, nearD)}
 <h2>Frequently asked questions</h2>
@@ -376,6 +410,45 @@ ${c.list.map(x => `<h3><a href="../../beach/${x.slug}/">${esc(x.name)}</a> <smal
 ${ci.faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('\n')}`;
     ld.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: ci.faqs.map(f => ({ '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } })) });
   }
+  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(top, 1200), ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
+});
+
+// ---- regional hub pages
+HUBS.forEach(h => {
+  const list = B.filter(b => hubOf(b) === h).sort((a, b) => b.rating - a.rating);
+  if (list.length < 5) return;
+  const rel = 'region/' + h.slug + '/';
+  const top = list[0];
+  const n = list.length;
+  const title = 'Best Beaches in ' + h.name + ' (' + n + ') | ' + NAME;
+  const desc = ('Best beaches in ' + h.name + ': ' + list.slice(0, 6).map(x => x.name).join(', ') + ' and more. Season, access, water temperature and local tips.').slice(0, 158);
+  const fam = list.filter(x => x.access === 'Easy').slice(0, 4);
+  const gems = list.filter(x => x.gem).slice(0, 4);
+  const lk = x => '<a href="../../beach/' + x.slug + '/">' + esc(x.name) + '</a>';
+  const countries = [...new Set(list.map(x => x.country))];
+  const faqs = [
+    ['When is the best time to visit the beaches in ' + h.name + '?', h.when],
+    ['Which beaches in ' + h.name + ' are easiest to reach?', fam.length ? 'The easiest access is at ' + fam.map(x => x.name).join(', ') + '. Check each beach page for parking and facilities.' : 'Most beaches here need a walk or a drive on rough roads, so check each beach page before you go.'],
+    ['Do I need a car for the beaches in ' + h.name + '?', h.around]
+  ];
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in ' + h.name, itemListElement: list.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + x.slug + '/', name: x.name })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: h.name, item: SITE + '/' + rel }] },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } })) }
+  ];
+  const body = '<div class="crumbs"><a href="../../">' + NAME + '</a> &rsaquo; ' + esc(h.name) + '</div>\n' +
+    '<h1>Best Beaches in ' + esc(h.name) + '</h1>\n' +
+    '<p class="lead">' + n + ' hand-picked beaches in ' + esc(h.name) + ', ranked by our editors. Top pick: ' + lk(top) + ' (' + stars(top.rating) + ').</p>\n' +
+    '<div class="grid">' + list.map(x => '<a class="card" href="../../beach/' + x.slug + '/"><img src="' + imgUrl(x, 500) + '" alt="' + esc(x.name + ', ' + x.loc) + '" loading="lazy" width="500" height="333"/><div><h3>' + esc(x.name) + '</h3><small>' + esc(x.loc) + ' &middot; ' + esc(x.tag) + ' &middot; ' + stars(x.rating) + '</small></div></a>').join('') + '</div>\n' +
+    '<h2>About beaches in ' + esc(h.name) + '</h2>\n<p>' + esc(h.intro) + '</p>\n' +
+    '<h2>When to go</h2>\n<p>' + esc(h.when) + '</p>\n' +
+    '<h2>Getting around</h2>\n<p>' + esc(h.around) + '</p>\n' +
+    (fam.length ? '<h2>Easiest beaches to reach</h2>\n<p>' + fam.map(lk).join(', ') + '.</p>\n' : '') +
+    (gems.length ? '<h2>Quieter hidden gems</h2>\n<p>' + gems.map(lk).join(', ') + '.</p>\n' : '') +
+    '<h2>All beaches at a glance</h2>\n<ul>' + list.map(x => '<li>' + lk(x) + ': best ' + esc(x.season) + ', water about ' + x.temp + ' degrees C, access ' + esc(x.access).toLowerCase() + '.</li>').join('') + '</ul>\n' +
+    '<h2>Frequently asked questions</h2>\n' + faqs.map(f => '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>').join('\n') + '\n' +
+    '<p>More: ' + countries.map(c => '<a href="../../country/' + slug(c) + '/">Beaches in ' + esc(c) + '</a>').join(' &middot; ') + ' &middot; <a href="../../#beaches">Browse all European beaches</a></p>';
   write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(top, 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
 });
