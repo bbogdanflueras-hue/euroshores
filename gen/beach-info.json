@@ -1927,5 +1927,40 @@
     "sunbeds": "Loungers and parasols available; beach clubs can be pricey.",
     "food": "Beach clubs, bars and restaurants along the sand.",
     "note": "Inside the Ses Salines natural park, with dunes and pine woods behind. Summer buses run from Ibiza Town; check current timetables."
+  },
+  "paraggi-beach": {
+    "access": "Moderate. The coast path from Santa Margherita takes about 30 minutes; a bus also runs, and the nearest train station is in Santa Margherita, about 2.5 km away.",
+    "parking": "Parking is scarce and expensive; arrive early if driving, or take the bus from Rapallo or Santa Margherita.",
+    "sunbeds": "Paid lidos at either end of the bay; prices are very high (reports range from about 70 euros to over 200 euros for two beds and an umbrella), so check before you sit.",
+    "food": "Cafes and restaurants at the lidos and along the bay.",
+    "note": "A free public stretch lies in the middle of the beach; bring your own towel and umbrella to use it."
+  },
+  "praia-do-baleal": {
+    "access": "Easy. Road access to the beach and the village.",
+    "parking": "Parking around Baleal bay and along the road, plus a car park by the cafe at nearby Supertubos.",
+    "sunbeds": "No sunbed rental reported; this is a surf beach, so bring your own shade.",
+    "food": "Beach bars and cafes in Baleal, with many surf shops.",
+    "note": "The north-facing side is about 800 m long and sheltered by a small island to the west. Many surf schools and camps operate here; check the swell before swimming."
+  },
+  "itzurun-beach": {
+    "access": "Moderate. Flat tree-lined promenade from the town centre, but access onto the sand and along the cliffs may be harder; step details were not confirmed.",
+    "parking": "Free car park on the harbour side, about a 15-minute walk away; street parking near the beach is limited and many streets are one-way.",
+    "sunbeds": "No sunbed rental reported.",
+    "food": "Cafes and shops in Zumaia town, a short walk from the sand.",
+    "note": "The beach is about 270 m long with golden sand and heavy swell. Low tide reveals the rock formations, so check tide times."
+  },
+  "cala-millor": {
+    "access": "Easy. Flat promenade with a cycle path and footpath along the beach.",
+    "parking": "Parking near the promenade is available but limited in peak season.",
+    "sunbeds": "Sunbeds and umbrellas for rent.",
+    "food": "Many restaurants and hotels along the palm-lined promenade.",
+    "note": "Lifeguards are reported in peak season. Sources give the beach length as anywhere from about 1.3 km to 2 km; several describe it as Blue Flag, so check the current award."
+  },
+  "monterosso-al-mare": {
+    "access": "Easy. A short walk from the train station to the beach.",
+    "parking": "Reached on foot from the station, so a car is not needed.",
+    "sunbeds": "Paid areas rent two sunbeds and a parasol (about 25 to 40 euros a day reported, often cash only); a small free area sits in front of the station exit.",
+    "food": "Beachside cafes and bars at the lidos and in the village.",
+    "note": "Bring water shoes for the pebbles at the water line. The area near the Giant statue is quieter and has shallow water for young children."
   }
 }
