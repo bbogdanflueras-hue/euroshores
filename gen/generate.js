@@ -131,7 +131,46 @@ const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 
 function infoBox(b) {
   const i = INFO[b.slug]; if (!i) return '';
   const rows = INFO_ROWS.filter(r => i[r[0]]); if (!rows.length) return '';
-  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Compiled from visitor guides and recent reports (October 2026). Prices, fees and rules change by season, so confirm locally before you go.</p>';
+  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go.</p>';
+}
+
+// ---- extra per-beach sections (data-driven)
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+function seasonMonths(season) {
+  const t = String(season);
+  const f = MONTHS.filter(m => t.includes(m)).sort((x, y) => t.indexOf(x) - t.indexOf(y));
+  if (!f.length) return null;
+  const a = MONTHS.indexOf(f[0]), z = MONTHS.indexOf(f[f.length - 1]);
+  const out = [];
+  for (let i = a; out.length < 13; i = (i + 1) % 12) { out.push(MONTHS[i]); if (i === z) break; }
+  return out;
+}
+function extraSections(b, more, nearD) {
+  const ms = seasonMonths(b.season);
+  const nodotx = x => String(x || '').replace(/[.\s]+$/, '');
+  let when = '';
+  if (ms && ms.length >= 3) {
+    const peak = ms.slice(1, -1);
+    when = '<p>The swimming season here runs from ' + ms[0] + ' to ' + ms[ms.length - 1] + '. ' + peak.join(', ') + (peak.length > 1 ? ' are' : ' is') + ' the warmest and busiest, with the sea around ' + b.temp + ' &deg;C, so arrive early for parking and a good spot. ' + ms[0] + ' and ' + ms[ms.length - 1] + ' are quieter and cooler: good for walking and photos, though some beach bars and lifeguard posts may not be open yet or may already have closed for the year.</p>';
+  } else {
+    when = '<p>The sea reaches about ' + b.temp + ' &deg;C in season. Early and late in the season the beach is quieter, but some facilities may be closed.</p>';
+  }
+  const who = [];
+  if (b.type === 'sandy') who.push('Sand makes it comfortable for sunbathing, building sandcastles and long walks along the water line.');
+  else if (b.type === 'pebble') who.push('Pebbles and clear water suit swimmers and snorkellers; bring water shoes for an easier entry.');
+  else if (b.type === 'rocky') who.push('A rocky shore suits confident swimmers and snorkellers more than families with small children; bring water shoes.');
+  else if (b.type === 'pink') who.push('The pink-tinted sand makes it a favourite for photographers and couples.');
+  if (b.access === 'Easy') who.push('Easy access makes it practical for families, older visitors and anyone with a pushchair.');
+  else if (b.access === 'Moderate') who.push('Expect a short walk or uneven ground, so it suits most visitors with sensible footwear.');
+  else if (b.access === 'Challenging') who.push('Access is demanding, so it suits fit, well-prepared visitors; wear sturdy shoes and carry water.');
+  if (b.gem) who.push('It is flagged as a hidden gem, so it suits travellers who prefer quieter places over the headline beaches.');
+  if (/\bnone\b|\bno facilities\b/i.test(b.fac || '')) who.push('There are few or no facilities on the sand, so bring water, food and shade.');
+  else if (/bar|restaurant|chiringuito|cafe|kiosk|taverna/i.test(b.fac || '')) who.push('Food and drink close by make it easy to stay for the whole day.');
+  const near = (more || []).filter(x => nearD && nearD[x.id] != null).slice(0, 3);
+  let there = '<p>' + esc(nodotx(b.park)) + '. The beach sits at about ' + Number(b.lat).toFixed(3) + ', ' + Number(b.lng).toFixed(3) + ' on the map, so use the map link above for directions.';
+  if (near.length) there += ' If you are planning a day around it, the closest other beaches on our list are ' + near.map(x => '<a href="../' + x.slug + '/">' + esc(x.name) + '</a> (' + Math.round(nearD[x.id]) + ' km)').join(', ') + '.';
+  there += '</p>';
+  return '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
 }
 
 // ---- beach pages
@@ -155,7 +194,7 @@ B.forEach(b => {
   if (inf && (inf.parking || inf.camper)) faqs.push(['Is there parking at ' + b.name + '?', [inf.parking, inf.camper && ('Campers and motorhomes: ' + inf.camper)].filter(Boolean).map(nodot).join('. ') + '. Fees and rules change, so confirm locally.']);
   if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
   const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
-  const title = tcands.find(t => t.length <= 62) || tcands[tcands.length - 1];
+  const title = tcands.find(t => t.length <= 60) || tcands[tcands.length - 1];
 
 
   const sents = (plain(b.desc).match(/[^.!?]+[.!?]+/g) || [plain(b.desc)]).map(s => s.trim());
@@ -176,6 +215,7 @@ B.forEach(b => {
 <p><span class="score">${stars(b.rating)}</span> ${esc(b.tag)} in ${esc(city)}${b.gem ? ' &middot; Hidden gem' : ''}</p>
 <img class="hero" src="${image}" alt="${esc(b.name + ', ' + city + ' - ' + b.tag.toLowerCase())}" width="1200" height="675" fetchpriority="high"/>
 <p class="credit">Photo: ${esc(b.cr.by).replace(/&amp;#(\d+);/g,'&#$1;')}, ${esc(b.cr.lic)}, via <a href="https://commons.wikimedia.org/wiki/File:${b.wm.replace(/\(/g, '%28').replace(/\)/g, '%29')}" rel="noopener">Wikimedia Commons</a></p>
+<p><a href="https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(SITE + '/' + rel)}&media=${encodeURIComponent(SITE + '/img/' + b.id + '-1200.webp')}&description=${encodeURIComponent(b.name + ', ' + b.country + ': ' + b.tag)}" target="_blank" rel="noopener" style="display:inline-block;background:#e60023;color:#fff;padding:8px 16px;border-radius:999px;font-weight:600;text-decoration:none">Save on Pinterest</a></p>
 <p class="lead">${esc(b.desc)}</p>
 <div class="facts">
 <div class="fact"><b>Best season</b>${esc(b.season)}</div>
@@ -193,6 +233,7 @@ ${infoBox(b)}
 <p>The usual season runs ${esc(b.season)}. Visiting near the start or end of that window usually means fewer people, but the sea is cooler and some facilities may not be open yet or may have closed for the year.${b.gem ? ' We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.' : ''}</p>
 <p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}</p>
 <p><a href="https://www.openstreetmap.org/?mlat=${b.lat}&amp;mlon=${b.lng}#map=14/${b.lat}/${b.lng}" rel="noopener">View ${esc(b.name)} on the map</a> &middot; <a href="../../#beaches">Compare with all beaches</a></p>
+${extraSections(b, more, nearD)}
 <h2>Frequently asked questions</h2>
 ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('\n')}
 <h2>Beaches near ${esc(b.name)}</h2>
