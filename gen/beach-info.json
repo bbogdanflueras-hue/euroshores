@@ -2032,5 +2032,40 @@
     "sunbeds": "Beach clubs and striped beach huts; sunbed prices not found",
     "food": "Promenade cafes and beach clubs",
     "note": "About 9 km long between Pornichet and Le Pouliguen. Lifeguards on duty in July and August only."
+  },
+  "camogli-beach": {
+    "access": "Easy; a few minutes on foot from Camogli-San Fruttuoso station, down steps to the beach",
+    "parking": "Very limited and many spaces reserved for residents; park elsewhere and take the train",
+    "sunbeds": "Paid lidos about 40 EUR/day for two sunbeds and an umbrella (spring figure); free stretch available",
+    "food": "Cafes and restaurants in the village and by the harbour",
+    "note": "Grey pebbles, some black sand. Free stretch has basic showers. Water shoes useful for kids."
+  },
+  "plage-du-centre-bidart": {
+    "access": "Easy; central Bidart",
+    "parking": "Not confirmed for this beach; nearby Uhabia beach has free car parks",
+    "sunbeds": "Not confirmed; surf beach, bring own shade",
+    "food": "Not confirmed",
+    "note": "Lifeguards in peak season. Popular with surfers. Check the swell and flags before swimming."
+  },
+  "playa-de-valdevaqueros": {
+    "access": "Dusty track signposted off the N-340",
+    "parking": "Small paid car parks; one guide says about 5 EUR/day, verify current fee",
+    "sunbeds": "None found; wind and kite beach, bring own shade",
+    "food": "Several chiringuitos; a burger stand open into the evening",
+    "note": "Kite area is the south end; north end suits swimmers and windsurfers. Rocks at the south end. Beach length reported 4 to 5 km."
+  },
+  "costa-rei": {
+    "access": "Easy; road access along the beach",
+    "parking": "Parking available near the beach establishments; details vary by stretch",
+    "sunbeds": "Equipment hire at the paid establishments; price not found; free stretches alternate",
+    "food": "Restaurants at the beach establishments",
+    "note": "Length reported 8 to 12 km depending on source. Fine white sand and shallow clear water."
+  },
+  "sant-elm-beach": {
+    "access": "Easy; in the village of Sant Elm",
+    "parking": "Guarded paid car park at the village entrance; free parking further away",
+    "sunbeds": "Sunbeds and parasols reported seasonally; rental uncertain in recent years",
+    "food": "Cafes and restaurants in the village",
+    "note": "Boats to Sa Dragonera nature park leave from the port. Sa Trapa trail is about 9 km."
   }
 }
