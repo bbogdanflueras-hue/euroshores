@@ -275,6 +275,18 @@ ${LISTS.linksFor(b)}
 ${extraSections(b, more, nearD)}
 <h2>Frequently asked questions</h2>
 ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('\n')}
+<details class="tipbox" style="margin:24px 0;padding:14px 16px;border:1px solid #c9d3de;border-radius:10px"><summary style="cursor:pointer;font-weight:600">Been to ${esc(b.name)}? Share a tip</summary>
+<form class="tipf" action="https://formspree.io/f/mbgdoqpv" method="POST" style="margin-top:12px">
+<input type="hidden" name="_subject" value="EuroShores: reader tip for ${esc(b.name)}">
+<input type="hidden" name="form_type" value="beach-tip">
+<input type="hidden" name="beach_name" value="${esc(b.name)}">
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+<p><label>Your tip *<br><textarea name="message" required rows="4" maxlength="2000" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></textarea></label></p>
+<p><label>Your email (optional)<br><input type="email" name="email" maxlength="160" style="width:100%;padding:10px;font:inherit;border:1px solid #c9d3de;border-radius:8px"></label></p>
+<p><button type="submit" style="background:#0e6b8a;color:#fff;border:0;border-radius:8px;padding:10px 20px;font:inherit;cursor:pointer">Send tip</button></p>
+<p class="tipmsg" role="status"></p>
+</form></details>
+<script>document.querySelectorAll(".tipf").forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var b=f.querySelector("button"),m=f.querySelector(".tipmsg");b.disabled=true;m.textContent="Sending...";fetch(f.action,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}}).then(function(r){if(r.ok){f.reset();m.textContent="Thank you! We read every tip."}else{m.textContent="Sorry, something went wrong. Please try again.";b.disabled=false}}).catch(function(){m.textContent="Sorry, something went wrong. Please try again.";b.disabled=false})})})</script>
 <h2>Beaches near ${esc(b.name)}</h2>
 <div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}${nearD[x.id] != null ? ' &middot; ' + Math.round(nearD[x.id]) + ' km away' : ''}</small></div></a>`).join('')}</div>
 <p>Browse all <a href="../../country/${slug(b.country)}/">beaches in ${esc(b.country)}</a> or <a href="../../#beaches">compare every beach</a>.</p>
