@@ -101,10 +101,10 @@ module.exports = function (c) {
     ];
     var ctry = d.country ? CL.filter(function (x) { return x.name === d.country; })[0] : null;
     var body = CSSX + '<div class="crumbs"><a href="../../">' + NAME + '</a> &rsaquo; <a href="../">Best of</a> &rsaquo; ' + esc(d.h1) + '</div>\n<h1>' + esc(d.h1) + '</h1>\n<p class="lead">' + esc(lead1) + '</p>\n<p>' + esc(lead2) + '</p>\n<p class="noprint"><a href="' + pinUrl(d, t1) + '" target="_blank" rel="noopener" style="display:inline-block;background:#e60023;color:#fff;padding:8px 18px;border-radius:999px;font-weight:600;text-decoration:none">Save on Pinterest</a></p>\n<div class="grid">' + cards + '</div>\n' +
-      '<h2>Quick comparison</h2>\n<div class="cmpw"><table class="cmp"><tr><th>#</th><th>Beach</th><th>Country</th><th>Score</th><th>Water</th><th>Best season</th><th>Access</th></tr>' + rows + '</table></div>\n' +
-      '<h2>How we picked these beaches</h2>\n<p>' + esc(d.how) + ' See <a href="../../about/">how we rate beaches</a> for the full method.</p>\n' +
-      '<h2>Frequently asked questions</h2>\n' + faqs.map(function (f) { return '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>'; }).join('\n') + '\n' +
-      '<h2>More lists</h2>\n<ul class="links">' + rel2.map(function (x) { return '<li><a href="../' + x.slug + '/">' + esc(x.h1) + '</a></li>'; }).join('') + '</ul>\n' +
+      '<nav class="toc" aria-label="On this page"><strong>On this page:</strong> <a href="#compare">Quick comparison</a> &middot; <a href="#picked">How we picked</a> &middot; <a href="#faq">FAQ</a> &middot; <a href="#more">More lists</a></nav>\n<h2 id="compare">Quick comparison</h2>\n<div class="cmpw"><table class="cmp"><tr><th>#</th><th>Beach</th><th>Country</th><th>Score</th><th>Water</th><th>Best season</th><th>Access</th></tr>' + rows + '</table></div>\n' +
+      '<h2 id="picked">How we picked these beaches</h2>\n<p>' + esc(d.how) + ' See <a href="../../about/">how we rate beaches</a> for the full method.</p>\n' +
+      '<h2 id="faq">Frequently asked questions</h2>\n' + faqs.map(function (f) { return '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>'; }).join('\n') + '\n' +
+      '<h2 id="more">More lists</h2>\n<ul class="links">' + rel2.map(function (x) { return '<li><a href="../' + x.slug + '/">' + esc(x.h1) + '</a></li>'; }).join('') + '</ul>\n' +
       '<p>' + (ctry ? '<a href="../../country/' + ctry.slug + '/">All beaches in ' + esc(ctry.name) + '</a> &middot; ' : '') + '<a href="../../find/">Beach finder</a> &middot; <a href="../../map/">Map of all beaches</a> &middot; <a href="../">All lists</a></p>';
     write(rel + 'index.html', layout({ depth: 2, path: rel, title: title, desc: desc, body: body, ogimg: imgUrl(t1, 1200), ld: ld }));
     return { loc: SITE + '/' + rel, pri: '0.7' };
