@@ -928,7 +928,7 @@ var PH = {
  tossa:{f:'Tossa_de_Mar._Platja_Gran_-_009.jpg',by:'Shesmax',lic:'CC BY-SA 4.0'},
  peniscola:{f:'Playa_de_Pe%C3%B1%C3%ADscola.jpg',by:'Gustavo86',lic:'CC BY-SA 2.5'},
  denia:{f:'Denia_Platja_de_Les_Marines_Beach_2014_05_25.JPG',by:'Javierme',lic:'CC BY 4.0'},
- javea:{f:'J%C3%A1vea_Monte_Mont%C3%A7%C3%B3_2.jpg',by:'Txo',lic:'CC0'},
+ javea:{f:'J%C3%A1vea_Monte_Montg%C3%B3_2.jpg',by:'Txo',lic:'CC0'},
  calpe:{f:'La_playa_arenal-_bol_calpe_juin_2011_-_panoramio.jpg',by:'chisloup',lic:'CC BY 3.0'},
  peschici:{f:'Peschici_05.JPG',by:'Bultro',lic:'CC BY-SA 3.0'},
  sanremo:{f:'Sanremo_-_Spiaggia_(2).jpg',by:'roberto franceschini',lic:'CC BY-SA 2.0'},
