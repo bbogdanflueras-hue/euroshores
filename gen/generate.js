@@ -65,6 +65,8 @@ function layout(o) {
 <link rel="alternate" type="application/atom+xml" title="Newest beaches" href="${SITE}/feed.xml"/>
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <meta name="theme-color" content="#0f4a63"/>
+<link rel="icon" href="${up}favicon.svg" type="image/svg+xml"/>
+<link rel="manifest" href="${up}site.webmanifest"/>
 <meta property="og:type" content="${o.ogtype || 'article'}"/>
 <meta property="og:site_name" content="${NAME}"/>
 <meta property="og:title" content="${esc(o.title)}"/>
@@ -251,7 +253,7 @@ B.forEach(b => {
   const body = `<div class="crumbs"><a href="../../">${NAME}</a> &rsaquo; <a href="../../country/${slug(b.country)}/">${esc(b.country)}</a> &rsaquo; ${esc(b.name)}</div>
 <h1>${esc(b.name)}</h1>
 <p><span class="score">${stars(b.rating)}</span> ${esc(b.tag)} in ${esc(city)}${b.gem ? ' &middot; Hidden gem' : ''}</p>
-<img class="hero" src="${image}" alt="${esc(b.name + ', ' + city + ' - ' + b.tag.toLowerCase())}" width="1200" height="675" fetchpriority="high"/>
+<img class="hero" src="${image}" srcset="${imgUrl(b, 500)} 500w, ${image} 1200w" sizes="(max-width: 760px) 100vw, 1200px" alt="${esc(b.name + ', ' + city + ' - ' + b.tag.toLowerCase())}" width="1200" height="675" fetchpriority="high"/>
 <p class="credit">Photo: ${esc(b.cr.by).replace(/&amp;#(\d+);/g,'&#$1;')}, ${esc(b.cr.lic)}, via <a href="https://commons.wikimedia.org/wiki/File:${b.wm.replace(/\(/g, '%28').replace(/\)/g, '%29')}" rel="noopener">Wikimedia Commons</a></p>
 <p><a href="https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(SITE + '/' + rel)}&media=${encodeURIComponent(SITE + '/img/' + b.id + '-1200.webp')}&description=${encodeURIComponent(b.name + ', ' + b.country + ': ' + b.tag)}" target="_blank" rel="noopener" style="display:inline-block;background:#e60023;color:#fff;padding:8px 16px;border-radius:999px;font-weight:600;text-decoration:none">Save on Pinterest</a></p>
 <p class="lead">${esc(b.desc)}</p>
@@ -597,7 +599,11 @@ GUIDES.forEach(g => {
 })()
 
 // ---- sitemap + robots
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${(SAME.has(u.loc.slice(SITE.length + 1) + 'index.html') && OLDMOD[u.loc]) || D.updated}</lastmod><priority>${u.pri}</priority></url>`).join('\n') + '\n</urlset>\n');
+const ID_BY_SLUG = {}; B.forEach(b => { ID_BY_SLUG[b.slug] = b.id; });
+function imgTag(u) { const m = u.loc.match(/\/beach\/([^\/]+)\/$/); const id = m && ID_BY_SLUG[m[1]]; return id ? '<image:image><image:loc>' + SITE + '/img/' + id + '-1200.webp</image:loc></image:image>' : ''; }
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + urls.map(u => `<url><loc>${u.loc}</loc><lastmod>${(SAME.has(u.loc.slice(SITE.length + 1) + 'index.html') && OLDMOD[u.loc]) || D.updated}</lastmod><priority>${u.pri}</priority>${imgTag(u)}</url>`).join('\n') + '\n</urlset>\n');
+write('favicon.svg', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0f4a63"/><path d="M8 40c8-8 16-8 24 0s16 8 24 0v16H8z" fill="#3fb6d8"/><path d="M8 30c8-8 16-8 24 0s16 8 24 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><circle cx="46" cy="18" r="7" fill="#ffd166"/></svg>\n');
+write('site.webmanifest', JSON.stringify({ name: NAME, short_name: NAME, start_url: '/', display: 'browser', theme_color: '#0f4a63', background_color: '#ffffff', icons: [{ src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }) + '\n');
 write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + '/sitemap.xml\n');
 console.log('generated', urls.length, 'urls');
 
@@ -636,6 +642,7 @@ console.log('generated', urls.length, 'urls');
   dir += '<h3 style="margin:18px 0 4px">More ways to browse</h3><p><a href="new/">Newest beaches</a> &middot; <a href="hidden-gems/">Hidden gem beaches</a> &middot; <a href="feed.xml">RSS feed</a></p>'
   dir += LISTS.homeLinks();
   dir += '<h3 style="margin:18px 0 4px">Travel guides</h3><p>' + GUIDES.map(g => '<a href="guide/' + g.slug + '/">' + esc(g.ptitle) + '</a>').join(' &middot; ') + '</p></section>\n';
+  if (!h.includes('rel="icon"')) h = h.replace('</head>', '<link rel="icon" href="favicon.svg" type="image/svg+xml"/>\n<link rel="manifest" href="site.webmanifest"/>\n' + jsonld({ '@context': 'https://schema.org', '@type': 'Organization', name: NAME, url: SITE + '/', logo: SITE + '/favicon.svg' }) + '\n</head>');
   if (!h.includes('application/atom+xml')) h = h.replace('</head>', '<link rel="alternate" type="application/atom+xml" title="Newest beaches" href="feed.xml"/>\n</head>')
   h = h.replace('</main>', dir + '</main>');
   if (/[^\x00-\x7f]/.test(h)) throw new Error('non-ascii in index.html');
