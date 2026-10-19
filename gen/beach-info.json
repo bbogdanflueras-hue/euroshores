@@ -2977,5 +2977,180 @@
     "sunbeds": "Beach bars, sunbeds in season and seafood restaurants.",
     "food": "Cafes, bars or restaurants are close by.",
     "note": "Visit in June or September to avoid the crowds, and bring water shoes for the pebbles."
+  },
+  "primosten-beach": {
+    "access": "Easy to reach from Primosten, on foot or by short drive.",
+    "parking": "Paid parking at the edge of the old town; walk to the beaches.",
+    "sunbeds": "Beach bars, sunbeds, showers and water sports in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Swim early, then climb to the old town church for views over the bays."
+  },
+  "spiaggia-di-sirolo": {
+    "access": "Easy to reach from Sirolo, on foot or by short drive.",
+    "parking": "Paid parking at the top of the town; free shuttle in summer.",
+    "sunbeds": "Bathing clubs, bars, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Take the shuttle or walk down early, since the path back up is steep."
+  },
+  "spiaggia-di-gabicce-mare": {
+    "access": "Easy to reach from Gabicce Mare, on foot or by short drive.",
+    "parking": "Paid parking in town; the beach is a short walk.",
+    "sunbeds": "Bathing clubs, sunbeds, showers, restaurants and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk up to the Monte hill for views over the coast and the old castle."
+  },
+  "spiaggia-di-sabaudia": {
+    "access": "Easy to reach from Sabaudia, on foot or by short drive.",
+    "parking": "Paid parking along the coast road; free sections further out.",
+    "sunbeds": "Bathing clubs, free sections, showers, bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Choose a free section away from the main entrance for more space."
+  },
+  "platja-de-lloret": {
+    "access": "Easy to reach from Lloret de Mar, on foot or by short drive.",
+    "parking": "Paid underground parking in town; limited street parking.",
+    "sunbeds": "Sunbeds, showers, bars, water sports and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "For a quieter swim, walk to the small coves at either end of the bay."
+  },
+  "platja-gran-tossa-de-mar": {
+    "access": "Easy to reach from Tossa de Mar, on foot or by short drive.",
+    "parking": "Paid parking at the edge of town; walk to the beach.",
+    "sunbeds": "Sunbeds, showers, cafes, boat tours and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Climb the old town walls for views of the bay, then swim from the quieter end."
+  },
+  "playa-de-peniscola": {
+    "access": "Easy to reach from Peniscola, on foot or by short drive.",
+    "parking": "Paid parking near the promenade; fills early in August.",
+    "sunbeds": "Sunbeds, showers, bars, water sports and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk to the castle and old town in the evening, when the day crowds leave."
+  },
+  "playa-de-les-marines-denia": {
+    "access": "Easy to reach from Denia, on foot or by short drive.",
+    "parking": "Free parking along the road behind the beach.",
+    "sunbeds": "Sunbeds, showers, beach bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Go in June or September for space, as August fills the main sections."
+  },
+  "playa-del-arenal-javea": {
+    "access": "Easy to reach from Javea, on foot or by short drive.",
+    "parking": "Paid parking near the promenade; limited in August.",
+    "sunbeds": "Sunbeds, bars, water sports, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Rent a kayak to explore the sea caves along the nearby coast."
+  },
+  "playa-arenal-bol-calpe": {
+    "access": "Easy to reach from Calpe, on foot or by short drive.",
+    "parking": "Paid parking in town and along the promenade.",
+    "sunbeds": "Sunbeds, showers, cafes, water sports and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Climb the Penon trail early in the morning for views over the whole bay."
+  },
+  "spiaggia-di-peschici": {
+    "access": "Easy to reach from Peschici, on foot or by short drive.",
+    "parking": "Paid parking near the beach and at the town entrance.",
+    "sunbeds": "Bathing clubs, bars, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk up through the old town for views of the bay from the castle."
+  },
+  "spiaggia-di-sanremo": {
+    "access": "Easy to reach from Sanremo, on foot or by short drive.",
+    "parking": "Paid parking in town; the train station is close.",
+    "sunbeds": "Bathing clubs, free sections, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Combine a swim with a walk up through the old town of La Pigna."
+  },
+  "spiaggia-di-marina-di-maratea": {
+    "access": "Easy to reach from Maratea, on foot or by short drive.",
+    "parking": "Free and paid parking along the harbour.",
+    "sunbeds": "Bars, restaurants, showers and sunbed hire in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Take a boat trip to the sea caves along the coast."
+  },
+  "spiaggia-di-scalea": {
+    "access": "Easy to reach from Scalea, on foot or by short drive.",
+    "parking": "Free parking along the seafront; paid near the clubs.",
+    "sunbeds": "Bathing clubs, free sections, bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit in June or September to avoid the August crowds."
+  },
+  "spiaggia-di-marzamemi": {
+    "access": "Easy to reach from Marzamemi, on foot or by short drive.",
+    "parking": "Free parking at the village edge; fills in August evenings.",
+    "sunbeds": "Bars, restaurants and sunbed hire in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Eat fresh fish in the village square at sunset after a swim."
+  },
+  "spiaggia-guidi-carloforte": {
+    "access": "Easy to reach from Carloforte, on foot or by short drive.",
+    "parking": "Free roadside parking near the cove.",
+    "sunbeds": "Few facilities; bring water and shade.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Take the ferry from Portovesme and rent a scooter to explore the island."
+  },
+  "plage-de-sainte-maxime": {
+    "access": "Easy to reach from Sainte-Maxime, on foot or by short drive.",
+    "parking": "Paid parking along the promenade and in town.",
+    "sunbeds": "Beach clubs, public sections, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Take the boat across the bay to Saint-Tropez, which avoids the road traffic."
+  },
+  "plage-des-sablettes-menton": {
+    "access": "Easy to reach from Menton, on foot or by short drive.",
+    "parking": "Paid parking in town; the train station is a short walk.",
+    "sunbeds": "Beach clubs, public sections, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk the old town stairs up to the cemetery for views over the bay."
+  },
+  "plage-de-saint-jean-de-luz": {
+    "access": "Easy to reach from Saint-Jean-de-Luz, on foot or by short drive.",
+    "parking": "Paid parking in town; the train station is a short walk.",
+    "sunbeds": "Sunbeds, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Try a Basque cake in the old streets behind the beach after a swim."
+  },
+  "plage-du-bon-secours-saint-malo": {
+    "access": "Easy to reach from Saint-Malo, on foot or by short drive.",
+    "parking": "Paid parking in Saint-Malo; walk from the old town.",
+    "sunbeds": "Tidal pool, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Check the tide table and walk out to the Grand Be island at low tide."
+  },
+  "praia-da-figueira-da-foz": {
+    "access": "Easy to reach from Figueira da Foz, on foot or by short drive.",
+    "parking": "Free and paid parking behind the promenade.",
+    "sunbeds": "Sunbeds, beach bars, showers, surf schools and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "The tide goes out a long way, so keep your belongings well up the beach."
+  },
+  "praia-da-vagueira": {
+    "access": "Easy to reach from Vagueira, on foot or by short drive.",
+    "parking": "Free parking behind the dunes.",
+    "sunbeds": "Beach bars, showers, surf schools and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Swim only in the supervised areas, as the Atlantic currents are strong."
+  },
+  "durres-beach": {
+    "access": "Easy to reach from Durres, on foot or by short drive.",
+    "parking": "Free and paid parking along the seafront.",
+    "sunbeds": "Sunbeds, bars, restaurants, showers and a long promenade.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit the Roman amphitheatre in the old town after a swim."
+  },
+  "bibione-beach": {
+    "access": "Easy to reach from Bibione, on foot or by short drive.",
+    "parking": "Paid parking in town; shuttle to the beach in season.",
+    "sunbeds": "Sunbeds, umbrellas, showers, bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit the Punta Tagliamento lighthouse at the western end for a quieter walk."
+  },
+  "playa-de-benicassim": {
+    "access": "Easy to reach from Benicassim, on foot or by short drive.",
+    "parking": "Free and paid parking behind the promenade.",
+    "sunbeds": "Sunbeds, showers, beach bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit the old villas along the promenade and the Desert de les Palmes hills nearby."
   }
 }
