@@ -2802,5 +2802,180 @@
     "sunbeds": "Beach cabins can be rented; sunbeds are not typical.",
     "food": "Cafes and restaurants on the seafront.",
     "note": "Very large tidal range; check times and flags."
+  },
+  "lapad-beach": {
+    "access": "Easy to reach from Dubrovnik, on foot or by short drive.",
+    "parking": "Paid parking along the Lapad promenade; the city bus is easier in summer.",
+    "sunbeds": "Sunbeds, showers, cafes, water sports and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Take the bus from Pile Gate and swim early before the platforms fill."
+  },
+  "trstenica-beach": {
+    "access": "Easy to reach from Orebic, on foot or by short drive.",
+    "parking": "Free and paid roadside parking near the beach.",
+    "sunbeds": "Sunbeds, beach bars, showers, water sports and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Winds are strong here, which suits windsurfers; swim in the calmer morning hours."
+  },
+  "plage-de-la-garoupe": {
+    "access": "Easy to reach from Antibes, on foot or by short drive.",
+    "parking": "Paid parking on the cape road; limited in summer.",
+    "sunbeds": "Beach clubs, restaurants, showers and a public section.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk the coastal path up to the lighthouse for views over the bay."
+  },
+  "plage-des-catalans": {
+    "access": "Easy to reach from Marseille, on foot or by short drive.",
+    "parking": "Paid street and underground parking nearby; the tram and bus are easier.",
+    "sunbeds": "Showers, toilets, lifeguards in season and cafes along the promenade.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "It is busy at weekends, so go early or in the evening."
+  },
+  "jesolo-beach": {
+    "access": "Easy to reach from Jesolo, on foot or by short drive.",
+    "parking": "Paid parking along the seafront and in town.",
+    "sunbeds": "Bathing clubs, sunbeds, showers, restaurants and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Combine it with a day trip to Venice by boat from nearby Punta Sabbioni."
+  },
+  "pizzomunno-beach": {
+    "access": "Easy to reach from Vieste, on foot or by short drive.",
+    "parking": "Paid parking in Vieste; the lots fill quickly in July and August.",
+    "sunbeds": "Bathing clubs, sunbeds, showers, bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit at sunrise when the rock glows and the beach is quiet."
+  },
+  "spiaggia-della-purita": {
+    "access": "Easy to reach from Gallipoli, on foot or by short drive.",
+    "parking": "Paid parking in the new town of Gallipoli; walk across the bridge.",
+    "sunbeds": "Bars, restaurants, showers and sunbed hire in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Arrive early in August, when the small beach is full by mid-morning."
+  },
+  "playa-de-la-carihuela": {
+    "access": "Easy to reach from Torremolinos, on foot or by short drive.",
+    "parking": "Paid street and underground parking; the train station is close.",
+    "sunbeds": "Chiringuitos, sunbeds, showers, toilets and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Try the fried fish at a chiringuito on the sand, and go early in August."
+  },
+  "playa-de-poniente": {
+    "access": "Easy to reach from Benidorm, on foot or by short drive.",
+    "parking": "Paid underground and street parking in town.",
+    "sunbeds": "Sunbeds, showers, toilets, bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Poniente is calmer than Levante, so choose it for families."
+  },
+  "praia-de-armacao-de-pera": {
+    "access": "Easy to reach from Armacao de Pera, on foot or by short drive.",
+    "parking": "Free and paid parking behind the promenade; fills in August.",
+    "sunbeds": "Sunbeds, beach bars, showers, toilets and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk to the western end to see where the fishing boats come ashore."
+  },
+  "mogren-beach": {
+    "access": "Easy to reach from Budva, on foot or by short drive.",
+    "parking": "Paid parking in Budva; walk along the seafront from the old town.",
+    "sunbeds": "Sunbeds, bars, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk the cliff path between the two coves, and go early since it gets very busy."
+  },
+  "plage-de-cavalaire": {
+    "access": "Easy to reach from Cavalaire-sur-Mer, on foot or by short drive.",
+    "parking": "Paid parking along the promenade and at the port.",
+    "sunbeds": "Private beach clubs, public sections, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "The public sections fill in July and August, so arrive early."
+  },
+  "faliraki-beach": {
+    "access": "Easy to reach from Faliraki, on foot or by short drive.",
+    "parking": "Roadside and paid parking near the beach; buses from Rhodes Town.",
+    "sunbeds": "Sunbeds, water sports, bars, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "For a quieter swim, walk to the ends of the bay, away from the bars."
+  },
+  "perissa-beach": {
+    "access": "Easy to reach from Perissa, on foot or by short drive.",
+    "parking": "Free parking at the edge of the village; fills in summer.",
+    "sunbeds": "Sunbeds, tavernas, bars, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Bring water shoes because the dark stones heat up fast in the sun."
+  },
+  "spiaggia-di-riccione": {
+    "access": "Easy to reach from Riccione, on foot or by short drive.",
+    "parking": "Paid parking in town; the train station is close to the beach.",
+    "sunbeds": "Bathing clubs, sunbeds, showers, restaurants and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Choose a numbered bathing club with a kids area if you travel with children."
+  },
+  "spiaggia-di-alassio": {
+    "access": "Easy to reach from Alassio, on foot or by short drive.",
+    "parking": "Paid parking in town; the train station is a short walk away.",
+    "sunbeds": "Bathing clubs, public sections, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk the old Budello alley behind the beach for shops and gelato."
+  },
+  "spiaggia-di-termoli": {
+    "access": "Easy to reach from Termoli, on foot or by short drive.",
+    "parking": "Free and paid parking behind the beach.",
+    "sunbeds": "Bathing clubs, free sections, showers, bars and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk the old town walls at sunset and try the local fish stew called brodetto."
+  },
+  "praia-de-quarteira": {
+    "access": "Easy to reach from Quarteira, on foot or by short drive.",
+    "parking": "Free and paid parking near the promenade.",
+    "sunbeds": "Sunbeds, beach bars, showers, toilets and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit the fish market and the fishing boats at the western end."
+  },
+  "plage-de-la-grande-conche": {
+    "access": "Easy to reach from Royan, on foot or by short drive.",
+    "parking": "Paid parking along the seafront.",
+    "sunbeds": "Children club areas, showers, cafes and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Check the tide table, because the sea retreats a long way at low tide."
+  },
+  "plage-de-deauville": {
+    "access": "Easy to reach from Deauville, on foot or by short drive.",
+    "parking": "Paid parking in town; the beach is a short walk.",
+    "sunbeds": "Beach cabins, parasols, cafes, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Read the names on the beach cabins, each one is named after a film star."
+  },
+  "grande-plage-de-quiberon": {
+    "access": "Easy to reach from Quiberon, on foot or by short drive.",
+    "parking": "Paid parking in town; the train and ferry terminal are close.",
+    "sunbeds": "Cafes, showers, sailing schools and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Rent a bike and cycle the Cote Sauvage on the west side of the peninsula."
+  },
+  "crikvenica-beach": {
+    "access": "Easy to reach from Crikvenica, on foot or by short drive.",
+    "parking": "Paid parking in town; free spots further from the centre.",
+    "sunbeds": "Sunbeds, beach bars, showers, water sports and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Walk the promenade to Selce for quieter coves and a seaside path."
+  },
+  "umag-beach": {
+    "access": "Easy to reach from Umag, on foot or by short drive.",
+    "parking": "Paid parking in Umag; the main lots fill in July and August.",
+    "sunbeds": "Sunbeds, beach bars, showers and lifeguards in season.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Wear water shoes for the rocks, and visit the town before the evening crowds arrive."
+  },
+  "saranda-beach": {
+    "access": "Easy to reach from Saranda, on foot or by short drive.",
+    "parking": "Free and paid parking along the promenade; walk from the centre.",
+    "sunbeds": "Sunbeds, cafes, restaurants, showers and a long promenade.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Combine it with a trip to the Ksamil beaches or the ruins of Butrint."
+  },
+  "jonufer-beach": {
+    "access": "Easy to reach from Vlora, on foot or by short drive.",
+    "parking": "Free roadside parking along the beach road.",
+    "sunbeds": "Beach bars, sunbeds in season and seafood restaurants.",
+    "food": "Cafes, bars or restaurants are close by.",
+    "note": "Visit in June or September to avoid the crowds, and bring water shoes for the pebbles."
   }
 }
