@@ -1074,7 +1074,7 @@ var PH = {
  georgioupoli:{f:'Mikes_Oasis,_Georgioupoli,_Chania,_Crete,_Greece_-_panoramio.jpg',by:'trolvag',lic:'CC BY-SA 3.0'},
  elounda:{f:'Elounda_P1050495.JPG',by:'Deror_avi',lic:'CC BY-SA 3.0'},
  kolymbia:{f:'Kolymbia_Strand.jpg',by:'Hombre',lic:'CC BY-SA 3.0'},
- kamenjak:{f:'Kap_Kamenjak_Panorama_(64572495).jpeg',by:'Tim Gotzkowsky',lic:'CC BY 3.0'},
+ kamenjak:{f:'Rt_Kamenjak,_Croatia4.JPG',by:'Croq',lic:'CC BY-SA 3.0'},
  martinhal:{f:'Martinhal_(5873455245).jpg',by:'Paulo Valdivieso',lic:'CC BY-SA 2.0'},
  cascais:{f:'Praia_da_Concei%C3%A7%C3%A3o_(Portugal)2.jpg',by:'Vitor Oliveira',lic:'CC BY 2.0'},
  peniche:{f:'Praia_de_Supertubos_-_Portugal_(349283371).jpg',by:'Vitor Oliveira',lic:'CC BY-SA 2.0'},
