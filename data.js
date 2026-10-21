@@ -1192,7 +1192,7 @@ var PH = {
  xerokampos:{f:'Xerokambos_Argilos_01.jpg',by:'Olaf Tausch',lic:'CC BY 3.0'},
  villasimius:{f:'Spiaggia_Notteri-Timiama_01.jpg',by:'Olaf Tausch',lic:'CC BY 3.0'},
  favignana:{f:'Cala_azzurra_favignana.jpg',by:'Cmassari',lic:'CC BY 3.0'},
- llafranc:{f:'Platja_de_Llafranc_des_de_el_Far_Sant_Sebasti%C3%A0_2.JPG',by:'DagafeSQV',lic:'CC BY-SA 3.0'},
+ llafranc:{f:'Platja_de_Llafranc_des_de_el_Far_Sant_Sebastia_2.JPG',by:'DagafeSQV',lic:'CC BY-SA 3.0'},
  sjekirica:{f:'Sjekirica_Beach_near_Brse%C4%8Dine,_Croatia_(PPL1-Corrected)_julesvernex2.jpg',by:'Jules Verne Times Two',lic:'CC BY 4.0'},
  codacavallo:{f:'Spiaggia_di_Capo_Coda_Cavallo_-_panoramio.jpg',by:'Carlo Pelagalli',lic:'CC BY-SA 3.0'},
  jaz:{f:'X05.02_Uvala_Jaz.jpg',by:'Falk2',lic:'CC BY-SA 4.0'},
