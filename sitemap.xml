@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 <url><loc>https://euroshores.com/</loc><lastmod>2026-10-24</lastmod><priority>1.0</priority></url>
 <url><loc>https://euroshores.com/beach/navagio-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/navagio-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/spiaggia-grande/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/spiaggia-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/spiaggia-grande/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/spiaggia-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/elafonissi-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/elafonissi-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-da-marinha/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/marinha-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/es-trenc/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/estrenc-1200.webp</image:loc></image:image></url>
@@ -173,7 +173,7 @@
 <url><loc>https://euroshores.com/beach/lindos-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/lindosbeach-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/agia-eleni-beach/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/agiaeleni-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/nikolaos-beach/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/nikolaos-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/agioi-anargyri-beach/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/agioianargyri-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/agioi-anargyri-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/agioianargyri-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/tzortzi-gialos-beach/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/tzortzigialos-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/rousoum-gialos-beach/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/rousoumgialos-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/barceloneta-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/barceloneta-1200.webp</image:loc></image:image></url>
@@ -196,11 +196,11 @@
 <url><loc>https://euroshores.com/beach/cala-des-matzoc/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/calamatzoc-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/aregno-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/aregno-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/lozari-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/lozari-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/red-beach-santorini/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/redbeach-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/red-beach-santorini/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/redbeach-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/torre-dei-corsari/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/torredeicorsari-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/supetar-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/supetar-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/platja-de-son-real/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/sonreal-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/baia-di-ieranto/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/ieranto-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/baia-di-ieranto/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/ieranto-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/estanyol-beach/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/estanyol-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/glyka-nera-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/glykanera-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/la-fosca-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/lafosca-1200.webp</image:loc></image:image></url>
@@ -269,7 +269,7 @@
 <url><loc>https://euroshores.com/beach/praia-de-carcavelos/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/carcavelos-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/aiguablava-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/aiguablava-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/agiofili-beach/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/agiofili-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/kamari-beach/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/kamari-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/kamari-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/kamari-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/kleftiko/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/kleftiko-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-de-monte-gordo/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/montegordo-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/ses-salines/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/salines-1200.webp</image:loc></image:image></url>
@@ -296,7 +296,7 @@
 <url><loc>https://euroshores.com/beach/tamariu-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/tamariu-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/agios-gordios-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/gordios-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/alimini-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/alimini-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/marina-grande-beach/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/marinagrande-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/marina-grande-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/marinagrande-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-do-vale-do-lobo/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/valelobo-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/kavourotrypes-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/kavourotrypes-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/super-paradise-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/superparadise-1200.webp</image:loc></image:image></url>
@@ -330,9 +330,9 @@
 <url><loc>https://euroshores.com/beach/agios-ioannis-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/agiosioannis-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/la-cinta-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/lacinta-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/torre-guaceto-beach/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/guaceto-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/marina-di-praia/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/praiano-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/marina-di-praia/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/praiano-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/scilla-marina-grande/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/scilla-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/fornillo-beach/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/positano-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/fornillo-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/positano-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/playa-de-torimbia/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/torimbia-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-da-lanzada/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/lanzada-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/cala-deia/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/deia-1200.webp</image:loc></image:image></url>
@@ -386,7 +386,7 @@
 <url><loc>https://euroshores.com/beach/playa-de-levante/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/benidorm-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/playa-de-san-lorenzo/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/gijon-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/playa-de-la-malvarrosa/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/malvarrosa-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/sitges-beach/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/sitges-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/sitges-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/sitges-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-de-ofir/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/ofir-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-dos-pescadores/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/pescadores-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/praia-da-costa-nova/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/costanova-1200.webp</image:loc></image:image></url>
@@ -411,7 +411,7 @@
 <url><loc>https://euroshores.com/beach/mogren-beach/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/mogren-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/plage-de-cavalaire/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/cavalaire-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/faliraki-beach/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/faliraki-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/perissa-beach/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/perissa-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/perissa-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/perissa-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/spiaggia-di-riccione/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/riccione-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/spiaggia-di-alassio/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/alassio-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/spiaggia-di-termoli/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/termoli-1200.webp</image:loc></image:image></url>
@@ -456,9 +456,9 @@
 <url><loc>https://euroshores.com/beach/platja-de-cadaques/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/cadaques-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/platja-de-calella-de-palafrugell/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/calella-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/platja-de-blanes/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/blanes-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/platja-de-salou/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/salou-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/platja-del-regueral-cambrils/</loc><lastmod>2026-10-19</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/cambrils-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/playa-de-la-rada-estepona/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/estepona-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/platja-de-salou/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/salou-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/platja-del-regueral-cambrils/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/cambrils-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/playa-de-la-rada-estepona/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/estepona-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/playa-san-cristobal-almunecar/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/almunecar-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/plage-du-touquet/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/touquet-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/plage-de-collioure/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/collioure-1200.webp</image:loc></image:image></url>
@@ -498,7 +498,7 @@
 <url><loc>https://euroshores.com/beach/arvanitia-beach-nafplio/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/nafplio-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/plage-de-la-grande-motte/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/grandemotte-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/cavtat-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/cavtat-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/perivolos-beach-santorini/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/perivolos-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/perivolos-beach-santorini/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/perivolos-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/georgioupoli-beach-crete/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/georgioupoli-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/elounda-beach-crete/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/elounda-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/kolymbia-beach-rhodes/</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/kolymbia-1200.webp</image:loc></image:image></url>
@@ -609,10 +609,10 @@
 <url><loc>https://euroshores.com/beach/ostriconi-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/ostriconi-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/plage-du-canadel/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/canadel-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/xi-beach-kefalonia/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/xibeach-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/roukounas-beach-anafi/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/roukounas-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/roukounas-beach-anafi/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/roukounas-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/skala-potamia-beach-thasos/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/skalapotamia-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/tolo-beach-peloponnese/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/tolo-1200.webp</image:loc></image:image></url>
-<url><loc>https://euroshores.com/beach/citara-beach-ischia/</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/citara-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/citara-beach-ischia/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/citara-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/porto-ferro-beach/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/portoferro-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/baia-del-buondormire-palinuro/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/palinuro-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/playa-de-benijo-tenerife/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/benijo-1200.webp</image:loc></image:image></url>
@@ -749,6 +749,19 @@
 <url><loc>https://euroshores.com/beach/follonica-beach-tuscany/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/follonica-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/xerokambos-beach-crete/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/xerokambos-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/beach/armier-bay-malta/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/armier-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/playa-de-mazagon-huelva/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/mazagon-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/playa-de-sotogrande-cadiz/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/sotogrande-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/playa-de-castelldefels-barcelona/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/castelldefels-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/playa-de-isla-canela-huelva/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/islacanela-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/praia-de-caminha-minho/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/caminha-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/kalathas-beach-chania/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/kalathas-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/finikounda-beach-messinia/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/finikounda-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/vlychada-beach-santorini/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/vlychada-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/methoni-beach-messinia/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/methoni-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/fornillo-beach-positano/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/fornillo-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/serapo-beach-gaeta/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/serapo-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/ansedonia-beach-tuscany/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/ansedonia-1200.webp</image:loc></image:image></url>
+<url><loc>https://euroshores.com/beach/bonassola-beach-liguria/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority><image:image><image:loc>https://euroshores.com/img/bonassola-1200.webp</image:loc></image:image></url>
 <url><loc>https://euroshores.com/country/spain/</loc><lastmod>2026-10-24</lastmod><priority>0.7</priority></url>
 <url><loc>https://euroshores.com/country/greece/</loc><lastmod>2026-10-24</lastmod><priority>0.7</priority></url>
 <url><loc>https://euroshores.com/country/italy/</loc><lastmod>2026-10-24</lastmod><priority>0.7</priority></url>
