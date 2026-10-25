@@ -134,8 +134,8 @@ function relGuides(b) {
 // ---- practical info box (data from gen/beach-info.json)
 const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 'Campers &amp; motorhomes'], ['sunbeds', 'Sunbeds &amp; umbrellas'], ['food', 'Food &amp; drink'], ['toilets', 'Toilets &amp; showers'], ['lifeguard', 'Lifeguard'], ['note', 'Good to know']];
 function infoBox(b) {
-  const i = INFO[b.slug]; if (!i) return '';
-  const rows = INFO_ROWS.filter(r => i[r[0]]); if (!rows.length) return '';
+  const i = INFO[b.slug]; if (!i) return ''; if (i.food === 'Cafes, bars or restaurants are close by.') return '';
+  const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]])); if (!rows.length) return '';
   return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go.</p>';
 }
 
@@ -204,7 +204,7 @@ function extraSections(b, more, nearD) {
   else if (b.access === 'Moderate') who.push('Expect a short walk or uneven ground, so it suits most visitors with sensible footwear.');
   else if (b.access === 'Challenging') who.push('Access is demanding, so it suits fit, well-prepared visitors; wear sturdy shoes and carry water.');
   if (b.gem) who.push('It is flagged as a hidden gem, so it suits travellers who prefer quieter places over the headline beaches.');
-  if (/\bnone\b|\bno facilities\b/i.test(b.fac || '')) who.push('There are few or no facilities on the sand, so bring water, food and shade.');
+  if (/^\s*(none|no|few)\b|\bnone\b|\bno facilities\b/i.test(b.fac || '')) who.push('There are few or no facilities on the sand, so bring water, food and shade.');
   else if (/bar|restaurant|chiringuito|cafe|kiosk|taverna/i.test(b.fac || '')) who.push('Food and drink close by make it easy to stay for the whole day.');
   const near = (more || []).filter(x => nearD && nearD[x.id] != null).slice(0, 3);
   let there = '<p>' + esc(nodotx(b.park)) + '. The beach sits at about ' + Number(b.lat).toFixed(3) + ', ' + Number(b.lng).toFixed(3) + ' on the map, so use the map link above for directions.';
