@@ -51,8 +51,8 @@ module.exports = function (c) {
     var o = hasCountry ? { country: N } : {};
     var sfx = '-in-' + S;
     var X = function (how) { var r = { how: how }; if (hasCountry) r.country = N; return r; };
-    add('beaches-with-sunbeds' + sfx, 'sunbeds', 'Best Beaches with Sunbeds and Umbrellas in ' + N, 'beaches with sunbeds and umbrellas in ' + N, arr.filter(hasSun), X('Included when our practical info says sunbeds or umbrellas can be rented on or next to the beach, then ranked by editorial score. Prices change each season, so confirm locally.'));
-    add('unspoiled-beaches-no-sunbeds' + sfx, 'unspoiled', 'Unspoiled Beaches with No Sunbeds in ' + N, 'unspoiled beaches without sunbeds in ' + N, arr.filter(noSun), X('Included when our practical info reports no sunbed or umbrella rental, so the beach stays natural, then ranked by editorial score. Bring shade and water.'));
+    add('beaches-with-sunbeds' + sfx, 'sunbeds', 'Best Beaches with Sunbeds in ' + N, 'beaches with sunbeds and umbrellas in ' + N, arr.filter(hasSun), X('Included when our practical info says sunbeds or umbrellas can be rented on or next to the beach, then ranked by editorial score. Prices change each season, so confirm locally.'));
+    add('unspoiled-beaches-no-sunbeds' + sfx, 'unspoiled', 'Unspoiled Beaches Without Sunbeds in ' + N, 'unspoiled beaches without sunbeds in ' + N, arr.filter(noSun), X('Included when our practical info reports no sunbed or umbrella rental, so the beach stays natural, then ranked by editorial score. Bring shade and water.'));
     add('beaches-with-free-parking' + sfx, 'parking', 'Best Beaches with Free Parking in ' + N, 'beaches with free parking in ' + N, arr.filter(freePark), X('Included when our practical info reports free parking at or near the beach, then ranked by editorial score. Lots can fill early in summer.'));
   }
   function addMonths(arr, S, N) {
