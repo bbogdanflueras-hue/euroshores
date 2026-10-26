@@ -49,10 +49,13 @@ details{background:#fff;border:1px solid #e8ecf0;border-radius:10px;padding:12px
 footer{background:#08202e;color:#cfe3ec;padding:26px 24px;font-size:14px;text-align:center}footer a{color:#9fd3e6}ul.links{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin:8px 0}
 table.info{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8ecf0;margin:10px 0}table.info th{text-align:left;width:32%;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a8d;vertical-align:top;padding:10px 14px;border-bottom:1px solid #eef1f4}table.info td{padding:10px 14px;border-bottom:1px solid #eef1f4}@media(max-width:600px){table.info th{width:38%}}`;
 
+// Duplicate beach pages (same beach listed twice): canonical points to the keeper, and they are left out of the sitemap.
+const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano' };
 function layout(o) {
   // o: {depth, path, title, desc, h1body, ogimg, ld[]}
   const up = '../'.repeat(o.depth);
   const url = SITE + '/' + o.path;
+  const curl = o.canon ? SITE + '/' + o.canon : url;
   const ld = (o.ld || []).map(jsonld).join('\n');
   return `<!DOCTYPE html>
 <html lang="en">
@@ -61,7 +64,7 @@ function layout(o) {
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>${esc(o.title)}</title>
 <meta name="description" content="${esc(o.desc)}"/>
-<link rel="canonical" href="${url}"/>
+<link rel="canonical" href="${curl}"/>
 <link rel="alternate" type="application/atom+xml" title="Newest beaches" href="${SITE}/feed.xml"/>
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <meta name="theme-color" content="#0f4a63"/>
@@ -383,8 +386,8 @@ ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></de
 <div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}${nearD[x.id] != null ? ' &middot; ' + Math.round(nearD[x.id]) + ' km away' : ''}</small></div></a>`).join('')}</div>
 <p>Browse all <a href="../../country/${slug(b.country)}/">beaches in ${esc(b.country)}</a> or <a href="../../#beaches">compare every beach</a>.</p>
 <p style="margin-top:22px">Scores are editorial ratings from the ${NAME} team. Last updated ${D.updated}.</p>`;
-  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld }));
-  urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
+  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld, canon: CANON[b.id] ? 'beach/' + BY[CANON[b.id]].slug + '/' : '' }));
+  if (!CANON[b.id]) urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
 });
 
 // ---- country editorial content (general, stable facts only; no prices or visa rules)
