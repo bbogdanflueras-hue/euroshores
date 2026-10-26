@@ -32,9 +32,11 @@ function stars(r) { return r.toFixed(1) + ' / 5'; }
 const B = D.B.map(b => Object.assign({}, b, { name: plain(b.name), slug: b.id === 'comino' ? 'blue-lagoon-comino' : slug(b.name), loc: plain(b.loc), country: plain(b.country), season: plain(b.season), desc: plain(b.desc), fac: plain(b.fac), park: plain(b.park), tip: plain(b.tip) }));
 B.forEach(b => { const p = D.PH[b.id]; b.wm = p.f; b.cr = p; });
 const BY = {}; B.forEach(b => BY[b.id] = b);
+const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano' };
+const BU = B.filter(b => !CANON[b.id]);
 const GUIDES = D.GUIDES.map(g => Object.assign({}, g, { slug: slug(g.title), ptitle: plain(g.title) }));
 const countries = {};
-B.forEach(b => { (countries[b.country] = countries[b.country] || { name: b.country, cc: b.cc, slug: slug(b.country), list: [] }).list.push(b); });
+BU.forEach(b => { (countries[b.country] = countries[b.country] || { name: b.country, cc: b.cc, slug: slug(b.country), list: [] }).list.push(b); });
 Object.values(countries).forEach(c => c.list.sort((a, b) => b.rating - a.rating));
 const CL = Object.values(countries).sort((a, b) => b.list.length - a.list.length || a.name.localeCompare(b.name));
 
@@ -50,7 +52,6 @@ footer{background:#08202e;color:#cfe3ec;padding:26px 24px;font-size:14px;text-al
 table.info{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8ecf0;margin:10px 0}table.info th{text-align:left;width:32%;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a8d;vertical-align:top;padding:10px 14px;border-bottom:1px solid #eef1f4}table.info td{padding:10px 14px;border-bottom:1px solid #eef1f4}@media(max-width:600px){table.info th{width:38%}}`;
 
 // Duplicate beach pages (same beach listed twice): canonical points to the keeper, and they are left out of the sitemap.
-const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano' };
 function layout(o) {
   // o: {depth, path, title, desc, h1body, ogimg, ld[]}
   const up = '../'.repeat(o.depth);
@@ -77,6 +78,7 @@ function layout(o) {
 <meta property="og:url" content="${url}"/>
 ${o.ogimg ? `<meta property="og:image" content="${o.ogimg}"/>\n<meta name="twitter:card" content="summary_large_image"/>\n<meta name="twitter:image" content="${o.ogimg}"/>` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>${CSS}</style>
 ${ld}
@@ -263,7 +265,7 @@ const HUBS = [
 ];
 function hubOf(b) { return HUBS.find(h => h.re.test(b.loc)); }
 function hubLink(b) { const h = hubOf(b); return h ? ' &middot; <a href="../../region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>' : ''; }
-function hubsFor(list) { const m = new Map(); list.forEach(b => { const h = hubOf(b); if (h) m.set(h, (m.get(h) || 0) + 1); }); return [...m.keys()].filter(h => B.filter(b => hubOf(b) === h).length >= 5); }
+function hubsFor(list) { const m = new Map(); list.forEach(b => { const h = hubOf(b); if (h) m.set(h, (m.get(h) || 0) + 1); }); return [...m.keys()].filter(h => BU.filter(b => hubOf(b) === h).length >= 5); }
 function regionBlock(list, up) { const hs = hubsFor(list); return hs.length ? '<h2>Browse by region</h2>\n<p>' + hs.map(h => '<a href="' + up + 'region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>').join(' &middot; ') + '</p>' : ''; }
 
 // ---- extra per-beach sections (data-driven)
@@ -277,7 +279,7 @@ function seasonMonths(season) {
   for (let i = a; out.length < 13; i = (i + 1) % 12) { out.push(MONTHS[i]); if (i === z) break; }
   return out;
 }
-const LISTS = require('./lists.js')({ B, CL, slug, esc, imgUrl, stars, SITE, NAME, D, seasonMonths, MONTHS, layout, write, HUBS, hubOf });
+const LISTS = require('./lists.js')({ B: BU, CL, slug, esc, imgUrl, stars, SITE, NAME, D, seasonMonths, MONTHS, layout, write, HUBS, hubOf });
 function extraSections(b, more, nearD) {
   const ms = seasonMonths(b.season);
   const nodotx = x => String(x || '').replace(/[.\s]+$/, '');
@@ -311,7 +313,7 @@ B.forEach(b => {
   const rel = 'beach/' + b.slug + '/';
   const city = b.loc;
   const dkm = (a, c) => { const r = Math.PI / 180, x = (c.lng - a.lng) * r * Math.cos((a.lat + c.lat) * r / 2), y = (c.lat - a.lat) * r; return 6371 * Math.sqrt(x * x + y * y); };
-  const near = B.filter(x => x.id !== b.id).map(x => [x, dkm(b, x)]).sort((p, q) => p[1] - q[1]);
+  const near = BU.filter(x => x.id !== b.id).map(x => [x, dkm(b, x)]).sort((p, q) => p[1] - q[1]);
   const nearD = {}; near.forEach(p => { nearD[p[0].id] = p[1]; });
   const others = near.filter(p => p[0].country === b.country).slice(0, 6).map(p => p[0]);
   const more = others.length >= 3 ? others : near.slice(0, 6).map(p => p[0]);
@@ -527,7 +529,7 @@ ${ci.faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p><
 
 // ---- regional hub pages
 HUBS.forEach(h => {
-  const list = B.filter(b => hubOf(b) === h).sort((a, b) => b.rating - a.rating);
+  const list = BU.filter(b => hubOf(b) === h).sort((a, b) => b.rating - a.rating);
   if (list.length < 5) return;
   const rel = 'region/' + h.slug + '/';
   const top = list[0];
@@ -567,7 +569,7 @@ HUBS.forEach(h => {
 
 // ---- regions index
 {
-  const rl = HUBS.map(h => ({ h, list: B.filter(b => hubOf(b) === h).sort((a, b) => b.rating - a.rating) })).filter(x => x.list.length >= 5);
+  const rl = HUBS.map(h => ({ h, list: BU.filter(b => hubOf(b) === h).sort((a, b) => b.rating - a.rating) })).filter(x => x.list.length >= 5);
   const rel = 'region/';
   const title = 'Beach Regions of Europe: ' + rl.length + ' Coasts and Islands | ' + NAME;
   const desc = 'Browse European beaches by region: ' + rl.slice(0, 8).map(x => x.h.name).join(', ') + ' and more. Season, access and local tips.';
@@ -750,7 +752,7 @@ console.log('generated', urls.length, 'urls');
   let dir = '<section id="directory" style="max-width:1100px;margin:0 auto;padding:40px 24px"><h2 style="font-family:Playfair Display,serif;margin-bottom:14px">All beaches by country</h2>';
   CL.forEach(c => { dir += '<h3 style="margin:14px 0 4px"><a href="country/' + c.slug + '/">Best beaches in ' + esc(c.name) + '</a></h3><p>' + c.list.map(b => '<a href="beach/' + b.slug + '/">' + esc(b.name) + '</a>').join(' &middot; ') + '</p>'; });
   dir += '<h3 style="margin:18px 0 4px">More ways to browse</h3><p><a href="new/">Newest beaches</a> &middot; <a href="hidden-gems/">Hidden gem beaches</a> &middot; <a href="feed.xml">RSS feed</a></p>'
-  { const rh = HUBS.filter(h => B.filter(b => hubOf(b) === h).length >= 5); dir += '<h3 style="margin:18px 0 4px">Browse by region</h3><p><a href="region/">All beach regions</a> &middot; ' + rh.map(h => '<a href="region/' + h.slug + '/">' + esc(h.name.charAt(0).toUpperCase() + h.name.slice(1)) + '</a>').join(' &middot; ') + '</p>'; }
+  { const rh = HUBS.filter(h => BU.filter(b => hubOf(b) === h).length >= 5); dir += '<h3 style="margin:18px 0 4px">Browse by region</h3><p><a href="region/">All beach regions</a> &middot; ' + rh.map(h => '<a href="region/' + h.slug + '/">' + esc(h.name.charAt(0).toUpperCase() + h.name.slice(1)) + '</a>').join(' &middot; ') + '</p>'; }
   dir += LISTS.homeLinks();
   dir += '<h3 style="margin:18px 0 4px">Travel guides</h3><p>' + GUIDES.map(g => '<a href="guide/' + g.slug + '/">' + esc(g.ptitle) + '</a>').join(' &middot; ') + '</p></section>\n';
   if (!h.includes('rel="icon"')) h = h.replace('</head>', '<link rel="icon" href="favicon.svg" type="image/svg+xml"/>\n<link rel="manifest" href="site.webmanifest"/>\n' + jsonld({ '@context': 'https://schema.org', '@type': 'Organization', name: NAME, url: SITE + '/', logo: SITE + '/favicon.svg' }) + '\n</head>');
