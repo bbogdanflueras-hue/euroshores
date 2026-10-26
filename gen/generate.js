@@ -290,6 +290,12 @@ function crumbItems(b, rel) {
   items.push({ name: b.name, item: SITE + '/' + rel });
   return items;
 }
+function hubCrumbs(h, countries, rel) {
+  const items = [{ name: NAME, item: SITE + '/' }];
+  if (countries.length === 1) items.push({ name: countries[0], item: SITE + '/country/' + slug(countries[0]) + '/' });
+  items.push({ name: capFirst(h.name), item: SITE + '/' + rel });
+  return items;
+}
 function hubsFor(list) { const m = new Map(); list.forEach(b => { const h = hubOf(b); if (h) m.set(h, (m.get(h) || 0) + 1); }); return [...m.keys()].filter(h => BU.filter(b => hubOf(b) === h).length >= 5); }
 function regionBlock(list, up) { const hs = hubsFor(list); return hs.length ? '<h2>Browse by region</h2>\n<p>' + hs.map(h => '<a href="' + up + 'region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>').join(' &middot; ') + '</p>' : ''; }
 
@@ -579,10 +585,10 @@ HUBS.forEach(h => {
   ];
   const ld = [
     { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in ' + h.name, itemListElement: list.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + x.slug + '/', name: x.name })) },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: h.name, item: SITE + '/' + rel }] },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: hubCrumbs(h, countries, rel).map((x, k) => ({ '@type': 'ListItem', position: k + 1, name: x.name, item: x.item })) },
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } })) }
   ];
-  const body = '<div class="crumbs"><a href="../../">' + NAME + '</a> &rsaquo; ' + esc(h.name) + '</div>\n' +
+  const body = '<div class="crumbs"><a href="../../">' + NAME + '</a> &rsaquo; ' + (countries.length === 1 ? '<a href="../../country/' + slug(countries[0]) + '/">' + esc(countries[0]) + '</a> &rsaquo; ' : '') + esc(capFirst(h.name)) + '</div>\n' +
     '<h1>Best Beaches in ' + esc(h.name) + '</h1>\n' +
     '<p class="lead">' + n + ' hand-picked beaches in ' + esc(h.name) + ', ranked by our editors. Top pick: ' + lk(top) + ' (' + stars(top.rating) + ').</p>\n' +
     '<div class="grid">' + list.map(x => '<a class="card" href="../../beach/' + x.slug + '/"><img src="' + imgUrl(x, 500) + '" alt="' + esc(x.name + ', ' + x.loc) + '" loading="lazy" width="500" height="333"/><div><h3>' + esc(x.name) + '</h3><small>' + esc(x.loc) + ' &middot; ' + esc(x.tag) + ' &middot; ' + stars(x.rating) + '</small></div></a>').join('') + '</div>\n' +
