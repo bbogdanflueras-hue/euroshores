@@ -42,8 +42,16 @@ module.exports = function (c) {
       add('best-beaches-in-' + mn.toLowerCase(), 'month', 'Best Beaches in Europe in ' + mn, 'beaches to visit in ' + mn, B.filter(function (b) { return monthsOf(b).indexOf(mn) >= 0; }), { how: HOW.month });
     })(MONTHS[mi]);
   }
+  function addMonths(arr, S, N) {
+    for (var mi = 3; mi <= 9; mi++) {
+      (function (mn) {
+        add('best-beaches-in-' + S + '-in-' + mn.toLowerCase(), 'month', 'Best Beaches in ' + N + ' in ' + mn, 'beaches to visit in ' + N + ' in ' + mn, arr.filter(function (b) { return monthsOf(b).indexOf(mn) >= 0; }), { country: N, how: HOW.month });
+      })(MONTHS[mi]);
+    }
+  }
   CL.forEach(function (ct) {
     var L = ct.list, N = ct.name, S = ct.slug;
+    addMonths(L, S, N);
     ['sandy', 'pebble', 'rocky'].forEach(function (t) {
       add(t + (t === 'rocky' ? '-coves' : '-beaches') + '-in-' + S, 'type', 'Best ' + TL[t] + ' in ' + N, TLOW[t] + ' in ' + N, L.filter(function (b) { return b.type === t; }), { country: N, how: HOW.type });
     });
@@ -63,6 +71,7 @@ module.exports = function (c) {
     });
     if (!by['family-beaches-in-' + S]) add('family-beaches-in-' + S, 'family', 'Best Family Beaches in ' + N, 'family-friendly beaches in ' + N, arr.filter(isFam), { country: N, how: HOW.family });
     if (!by['easy-access-beaches-in-' + S]) add('easy-access-beaches-in-' + S, 'easy', 'Easiest Beaches to Reach in ' + N, 'easy-access beaches in ' + N, arr.filter(function (b) { return b.access === 'Easy'; }), { country: N, how: HOW.easy });
+    addMonths(arr, S, N);
     if (!by['hidden-gem-beaches-in-' + S]) add('hidden-gem-beaches-in-' + S, 'gem', 'Hidden Gem Beaches in ' + N, 'hidden gem beaches in ' + N, arr.filter(function (b) { return b.gem; }), { country: N, how: HOW.gem });
   });
 
