@@ -42,6 +42,19 @@ module.exports = function (c) {
       add('best-beaches-in-' + mn.toLowerCase(), 'month', 'Best Beaches in Europe in ' + mn, 'beaches to visit in ' + mn, B.filter(function (b) { return monthsOf(b).indexOf(mn) >= 0; }), { how: HOW.month });
     })(MONTHS[mi]);
   }
+  var INFO = c.INFO || {};
+  function inf(b) { return INFO[b.slug] || {}; }
+  function hasSun(b) { var s = inf(b).sunbeds || ''; return s && !/^(none|no |not available)/i.test(s) && /sunbed|umbrella|lounger|deckchair|rental|paid/i.test(s); }
+  function noSun(b) { return /^(none|no sunbed|no rental|not available)/i.test(inf(b).sunbeds || ''); }
+  function freePark(b) { return /\bfree\b/i.test(inf(b).parking || ''); }
+  function addInfo(arr, S, N, hasCountry) {
+    var o = hasCountry ? { country: N } : {};
+    var sfx = '-in-' + S;
+    var X = function (how) { var r = { how: how }; if (hasCountry) r.country = N; return r; };
+    add('beaches-with-sunbeds' + sfx, 'sunbeds', 'Best Beaches with Sunbeds and Umbrellas in ' + N, 'beaches with sunbeds and umbrellas in ' + N, arr.filter(hasSun), X('Included when our practical info says sunbeds or umbrellas can be rented on or next to the beach, then ranked by editorial score. Prices change each season, so confirm locally.'));
+    add('unspoiled-beaches-no-sunbeds' + sfx, 'unspoiled', 'Unspoiled Beaches with No Sunbeds in ' + N, 'unspoiled beaches without sunbeds in ' + N, arr.filter(noSun), X('Included when our practical info reports no sunbed or umbrella rental, so the beach stays natural, then ranked by editorial score. Bring shade and water.'));
+    add('beaches-with-free-parking' + sfx, 'parking', 'Best Beaches with Free Parking in ' + N, 'beaches with free parking in ' + N, arr.filter(freePark), X('Included when our practical info reports free parking at or near the beach, then ranked by editorial score. Lots can fill early in summer.'));
+  }
   function addMonths(arr, S, N) {
     for (var mi = 3; mi <= 9; mi++) {
       (function (mn) {
@@ -49,9 +62,11 @@ module.exports = function (c) {
       })(MONTHS[mi]);
     }
   }
+  addInfo(B, 'europe', 'Europe', false);
   CL.forEach(function (ct) {
     var L = ct.list, N = ct.name, S = ct.slug;
     addMonths(L, S, N);
+    addInfo(L, S, N, true);
     ['sandy', 'pebble', 'rocky'].forEach(function (t) {
       add(t + (t === 'rocky' ? '-coves' : '-beaches') + '-in-' + S, 'type', 'Best ' + TL[t] + ' in ' + N, TLOW[t] + ' in ' + N, L.filter(function (b) { return b.type === t; }), { country: N, how: HOW.type });
     });
@@ -72,6 +87,7 @@ module.exports = function (c) {
     if (!by['family-beaches-in-' + S]) add('family-beaches-in-' + S, 'family', 'Best Family Beaches in ' + N, 'family-friendly beaches in ' + N, arr.filter(isFam), { country: N, how: HOW.family });
     if (!by['easy-access-beaches-in-' + S]) add('easy-access-beaches-in-' + S, 'easy', 'Easiest Beaches to Reach in ' + N, 'easy-access beaches in ' + N, arr.filter(function (b) { return b.access === 'Easy'; }), { country: N, how: HOW.easy });
     addMonths(arr, S, N);
+    addInfo(arr, S, N, true);
     if (!by['hidden-gem-beaches-in-' + S]) add('hidden-gem-beaches-in-' + S, 'gem', 'Hidden Gem Beaches in ' + N, 'hidden gem beaches in ' + N, arr.filter(function (b) { return b.gem; }), { country: N, how: HOW.gem });
   });
 
