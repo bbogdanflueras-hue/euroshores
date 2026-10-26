@@ -347,12 +347,18 @@ B.forEach(b => {
 
 
   const sents = (plain(b.desc).match(/[^.!?]+[.!?]+/g) || [plain(b.desc)]).map(s => s.trim());
-  let desc = b.name + ' (' + city + '): ' + sents[0];
-  if (desc.length > 155) desc = b.name + ': ' + sents[0];
-  if (desc.length > 155) desc = sents[0];
-  if (desc.length < 110 && sents[1] && (desc + ' ' + sents[1]).length <= 160) desc = desc + ' ' + sents[1];
-  else if (desc.length <= 120) desc += ' Parking, sunbeds and access tips.';
-  if (desc.length > 160) desc = desc.slice(0, 157).replace(/\s+\S*$/, '') + '...';
+  // Meta description: lead sentence plus quick facts (rating, season, access) so the snippet earns the click.
+  const sSeason = plain(b.season).replace(/[^\x00-\x7f]/g, '-');
+  const factFull = 'Rated ' + b.rating.toFixed(1) + '/5. Best ' + sSeason + '. ' + b.access + ' access. Parking, sunbeds & tips.';
+  const factShort = 'Rated ' + b.rating.toFixed(1) + '/5. Best ' + sSeason + '. ' + b.access + ' access.';
+  let desc;
+  [factFull, factShort].some(fact => {
+    let lead = b.name + ' (' + city + '): ' + sents[0];
+    if (lead.length + 1 + fact.length > 158) lead = b.name + ': ' + sents[0];
+    if (lead.length + 1 + fact.length > 158) { const room = 158 - fact.length - 4; if (room < 55) return false; lead = lead.slice(0, room).replace(/\s+\S*$/, '') + '...'; }
+    desc = lead + ' ' + fact; return true;
+  });
+  if (!desc) { desc = b.name + ' (' + city + '): ' + sents[0]; if (desc.length > 160) desc = desc.slice(0, 157).replace(/\s+\S*$/, '') + '...'; }
   const image = imgUrl(b, 1200);
   const ld = [
     { '@context': 'https://schema.org', '@type': 'Beach', name: b.name, description: b.desc, image: image, url: SITE + '/' + rel, geo: { '@type': 'GeoCoordinates', latitude: b.lat, longitude: b.lng }, address: { '@type': 'PostalAddress', addressLocality: city.split(',')[0], addressCountry: b.cc }, isAccessibleForFree: true, publicAccess: true },
