@@ -101,7 +101,21 @@ const OLDMOD = {};
 try { (fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8').match(/<loc>[^<]+<\/loc><lastmod>[^<]+<\/lastmod>/g) || []).forEach(s => { const m = s.match(/<loc>([^<]+)<\/loc><lastmod>([^<]+)</); if (m) OLDMOD[m[1]] = m[2]; }); } catch (e) { /* first run */ }
 const SAME = new Set();
 const normDates = s => s.replace(/20\d\d-\d\d-\d\d/g, '#');
+// Images in the first row of a card grid are above the fold: load them eagerly so they do not delay LCP.
+function eagerTop(html) {
+  const g = html.indexOf('class="grid"');
+  if (g < 0) return html;
+  let idx = g, n = 0;
+  while (n < 3) {
+    const k = html.indexOf('loading="lazy"', idx);
+    if (k < 0) break;
+    html = html.slice(0, k) + 'loading="eager"' + html.slice(k + 14);
+    idx = k + 15; n++;
+  }
+  return html;
+}
 function write(rel, content) {
+  content = eagerTop(content);
   const f = path.join(ROOT, rel);
   fs.mkdirSync(path.dirname(f), { recursive: true });
   const bad = content.match(/[^\x00-\x7f]/); if (bad) throw new Error('non-ascii in ' + rel);
