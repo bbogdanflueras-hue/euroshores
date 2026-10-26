@@ -556,6 +556,7 @@ HUBS.forEach(h => {
     (gems.length ? '<h2>Quieter hidden gems</h2>\n<p>' + gems.map(lk).join(', ') + '.</p>\n' : '') +
     '<h2>All beaches at a glance</h2>\n<ul>' + list.map(x => '<li>' + lk(x) + ': best ' + esc(x.season) + ', water about ' + x.temp + ' degrees C, access ' + esc(x.access).toLowerCase() + '.</li>').join('') + '</ul>\n' +
     '<h2>Frequently asked questions</h2>\n' + faqs.map(f => '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>').join('\n') + '\n' +
+    (function () { const ls = LISTS.defs.filter(d => d.country === h.name); return ls.length ? '<h2>Best-of lists for ' + esc(h.name) + '</h2>\n<p>' + ls.map(d => '<a href="../../best/' + d.slug + '/">' + esc(d.h1) + '</a>').join(' &middot; ') + '</p>\n' : ''; })() +
     '<p>More: ' + countries.map(c => '<a href="../../country/' + slug(c) + '/">Beaches in ' + esc(c) + '</a>').join(' &middot; ') + ' &middot; <a href="../../#beaches">Browse all European beaches</a></p>';
   write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(top, 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
