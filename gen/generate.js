@@ -506,6 +506,7 @@ CL.forEach(c => {
 ${c.list.map(x => `<h3><a href="../../beach/${x.slug}/">${esc(x.name)}</a> <small>(${stars(x.rating)})</small></h3><p>${esc(x.desc)}</p><p><b>Best season:</b> ${esc(x.season)}. <b>Typical water temperature:</b> about ${esc(String(x.temp))} degrees C. <b>Access:</b> ${esc(x.access)}.</p><p><b>Facilities:</b> ${esc(x.fac)}. <b>Getting there and parking:</b> ${esc(x.park)}.</p>`).join('\n')}
 <h2>Planning a beach trip to ${esc(c.name)}</h2>
 <p>${c.list.map(x => esc(x.name) + ' is best in ' + esc(x.season)).join('; ') + '.'} See the <a href="../../guide/${GUIDES[0].slug}/">${esc(GUIDES[0].ptitle)}</a> guide for timing and the <a href="../../guide/${GUIDES[1].slug}/">${esc(GUIDES[1].ptitle)}</a> guide for saving money.</p>
+${(function () { const ls = LISTS.defs.filter(d => d.country === c.name); return ls.length ? '<h2>Ranked lists for ' + esc(c.name) + '</h2>\n<p>' + ls.map(d => '<a href="../../best/' + d.slug + '/">' + esc(d.h1) + '</a>').join(' &middot; ') + '</p>' : ''; })()}
 ${regionBlock(c.list, '../../')}
 <p><a href="../../#beaches">Browse all European beaches &rarr;</a></p>`;
   const ci = CINFO[c.slug];
