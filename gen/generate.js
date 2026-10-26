@@ -279,7 +279,7 @@ function seasonMonths(season) {
   for (let i = a; out.length < 13; i = (i + 1) % 12) { out.push(MONTHS[i]); if (i === z) break; }
   return out;
 }
-const LISTS = require('./lists.js')({ B: BU, CL, slug, esc, imgUrl, stars, SITE, NAME, D, seasonMonths, MONTHS, layout, write, HUBS, hubOf });
+const LISTS = require('./lists.js')({ B: BU, CL, slug, esc, imgUrl, stars, SITE, NAME, D, seasonMonths, MONTHS, layout, write, HUBS, hubOf, INFO });
 function extraSections(b, more, nearD) {
   const ms = seasonMonths(b.season);
   const nodotx = x => String(x || '').replace(/[.\s]+$/, '');
