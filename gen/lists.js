@@ -248,7 +248,7 @@ module.exports = function (c) {
   return {
     defs: defs,
     linksFor: function (b) {
-      var m = (memb[b.id] || []).slice().sort(function (x, y) { return (y.country ? 1 : 0) - (x.country ? 1 : 0); }).slice(0, 4);
+      var m = (memb[b.id] || []).slice().sort(function (x, y) { return ((x.cat === 'month') - (y.cat === 'month')) || ((y.country ? 1 : 0) - (x.country ? 1 : 0)); }).slice(0, 5);
       if (!m.length) return '';
       return '<p>Featured in: ' + m.map(function (d) { return '<a href="../../best/' + d.slug + '/">' + esc(d.h1) + '</a>'; }).join(' &middot; ') + ' &middot; <a href="../../find/">Beach finder</a></p>';
     },
