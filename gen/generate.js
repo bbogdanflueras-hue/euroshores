@@ -636,12 +636,12 @@ ${guideExtra(g)}<h2>More guides</h2>
 (function aboutPage() {
   const rel = 'about/';
   const title = 'About ' + NAME + ': How We Pick and Rate European Beaches';
-  const desc = NAME + ' is an independent guide to ' + B.length + ' beaches in ' + CL.length + ' European countries. See how we choose and rate beaches and where our facts and photos come from.';
+  const desc = NAME + ' is an independent guide to ' + BU.length + ' beaches in ' + CL.length + ' European countries. See how we choose and rate beaches and where our facts and photos come from.';
   const ld = [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: title, url: SITE + '/' + rel, description: desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'About', item: SITE + '/' + rel }] }];
   const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; About</div>
 <h1>About ${NAME}</h1>
-<p class="lead">${NAME} is an editorial guide to the best beaches in Europe: ${B.length} hand-picked shores in ${CL.length} countries, with ratings, a map and practical notes on when to go and how to get there.</p>
+<p class="lead">${NAME} is an editorial guide to the best beaches in Europe: ${BU.length} hand-picked shores in ${CL.length} countries, with ratings, a map and practical notes on when to go and how to get there.</p>
 <h2>How we choose beaches</h2>
 <p>We include beaches that are worth planning a trip around, from famous bays to quieter coves we flag as hidden gems. Each one is chosen for its setting, the quality of the water and sand, and how practical it is for a visitor to reach and enjoy. We aim for a spread of beach types (sandy, pebble, rocky and pink-sand) and of countries, rather than a ranking of the most visited places.</p>
 <h2>How ratings work</h2>
@@ -715,8 +715,8 @@ ${guideExtra(g)}<h2>More guides</h2>
 (function listPages() {
   const card = x => '<a class="card" href="../beach/' + x.slug + '/"><img src="' + imgUrl(x, 500) + '" alt="' + esc(x.name) + '" loading="lazy" width="500" height="333"/><div><h3>' + esc(x.name) + '</h3><small>' + esc(x.loc) + ', ' + esc(x.country) + '</small></div></a>'
   const defs = [
-    { rel: 'new/', h: 'Newest beaches', title: 'Newest European Beaches Added to ' + NAME, desc: 'The latest beaches added to ' + NAME + ', with photos, access tips and practical info for each shore.', lead: 'The most recent additions to the guide, newest first. Every beach has access, parking and facilities info.', list: B.slice(-36).reverse() },
-    { rel: 'hidden-gems/', h: 'Hidden gem beaches', title: 'Hidden Gem Beaches in Europe | ' + NAME, desc: 'Quieter, less visited European beaches picked by the ' + NAME + ' team, with access tips and practical info.', lead: 'Quieter shores that are worth the extra effort. Check access and conditions before you go.', list: B.filter(b => b.gem) }
+    { rel: 'new/', h: 'Newest beaches', title: 'Newest European Beaches Added to ' + NAME, desc: 'The latest beaches added to ' + NAME + ', with photos, access tips and practical info for each shore.', lead: 'The most recent additions to the guide, newest first. Every beach has access, parking and facilities info.', list: BU.slice(-36).reverse() },
+    { rel: 'hidden-gems/', h: 'Hidden gem beaches', title: 'Hidden Gem Beaches in Europe | ' + NAME, desc: 'Quieter, less visited European beaches picked by the ' + NAME + ' team, with access tips and practical info.', lead: 'Quieter shores that are worth the extra effort. Check access and conditions before you go.', list: BU.filter(b => b.gem) }
   ]
   defs.forEach(d => {
     const ld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: d.title, url: SITE + '/' + d.rel, description: d.desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } }]
@@ -727,7 +727,7 @@ ${guideExtra(g)}<h2>More guides</h2>
   LISTS.writeAll(urls)
   const asc = t => String(t).replace(/[^\x00-\x7f]/g, '')
   const upd = D.updated
-  const entries = B.slice(-30).reverse().map(x => '<entry><title>' + esc(asc(plain(x.name))) + '</title><link href="' + SITE + '/beach/' + x.slug + '/"/><id>' + SITE + '/beach/' + x.slug + '/</id><updated>' + upd + 'T00:00:00Z</updated><summary>' + esc(asc(plain(x.desc))) + '</summary></entry>').join('\n')
+  const entries = BU.slice(-30).reverse().map(x => '<entry><title>' + esc(asc(plain(x.name))) + '</title><link href="' + SITE + '/beach/' + x.slug + '/"/><id>' + SITE + '/beach/' + x.slug + '/</id><updated>' + upd + 'T00:00:00Z</updated><summary>' + esc(asc(plain(x.desc))) + '</summary></entry>').join('\n')
   write('feed.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n<title>' + NAME + ' - newest beaches</title>\n<link href="' + SITE + '/feed.xml" rel="self"/>\n<link href="' + SITE + '/"/>\n<id>' + SITE + '/</id>\n<updated>' + upd + 'T00:00:00Z</updated>\n' + entries + '\n</feed>\n')
 })()
 
@@ -755,7 +755,7 @@ console.log('generated', urls.length, 'urls');
     h = h.replace(k, "'<p class=\"card-desc\">'+b.desc+'</p>'+\n   '<p style=\"margin:6px 0 12px\"><a href=\"beach/'+SLUG[id]+'/\">Open the full '+b.name+' guide &rarr;</a></p>'+\n   '<div class=\"facts\">");
   }
   const T = 'Best Beaches in Europe: Guide, Map &amp; Ratings | EuroShores';
-  const n = B.length, nc = CL.length;
+  const n = BU.length, nc = CL.length;
   const dsc = 'The best beaches in Europe: ' + n + ' hand-picked shores in ' + nc + ' countries with ratings, best time to visit, access tips, a map and travel guides.';
   h = h.replace(/<title>[^<]*<\/title>/, '<title>' + T + '</title>');
   h = h.replace(/<meta name="description" content="[^"]*"\/>/, '<meta name="description" content="' + dsc + '"/>');
@@ -765,7 +765,7 @@ console.log('generated', urls.length, 'urls');
   if (GC) h = h.replace('</head>', gcTag() + '\n</head>');
   h = h.replace(/<!--seo-->[\s\S]*?<!--\/seo-->\n?/, '');
   const ld = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: SITE + '/', description: 'Editorial guide to the best beaches in Europe.' },
-    { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in Europe', itemListElement: B.slice().sort((x, y) => y.rating - x.rating).map((b, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + b.slug + '/', name: b.name })) }];
+    { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Best beaches in Europe', itemListElement: BU.slice().sort((x, y) => y.rating - x.rating).map((b, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + '/beach/' + b.slug + '/', name: b.name })) }];
   const seo = '<!--seo-->\n  <link rel="canonical" href="' + SITE + '/"/>\n  <meta name="robots" content="index, follow, max-image-preview:large"/>\n  ' + ld.map(jsonld).join('\n  ') + '\n  <!--/seo-->\n';
   h = h.replace(/(<meta name="theme-color")/, seo + '  $1');
   if (h.indexOf('href="about/"') < 0) h = h.replace('<a href="#newsletter">Newsletter</a></div>', '<a href="#newsletter">Newsletter</a><a href="about/">About</a></div>');
