@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -857,7 +857,6 @@
 <div class="overlay" id="overlay" aria-hidden="true"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="data.js"></script>
 <script>
 (function(){
@@ -1003,7 +1002,7 @@ document.addEventListener('click', function(e){ if(e.target && e.target.id === '
 function initMap(){
   if(map) return;
   var el = $('map');
-  if(typeof L==='undefined'){ el.innerHTML='<div class="map-note">The map could not be loaded. Please check your connection and reload.</div>'; return; }
+  if(typeof L==='undefined'){ if(!window.__lfl){ window.__lfl=1; var lk=document.createElement('link'); lk.rel='stylesheet'; lk.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'; document.head.appendChild(lk); var sc=document.createElement('script'); sc.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'; sc.onload=function(){ window.__lfl=0; initMap(); }; sc.onerror=function(){ window.__lfl=0; el.innerHTML='<div class="map-note">The map could not be loaded. Please check your connection and reload.</div>'; }; document.head.appendChild(sc); } el.innerHTML='<div class="map-note">Loading map...</div>'; return; }
   el.innerHTML='';
   map = L.map('map',{scrollWheelZoom:false}).setView([40.5,15],4);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
@@ -1149,8 +1148,8 @@ function init(){
   $('sort').addEventListener('change', function(){ S.sort=this.value; render(); });
   render();
   observeReveal();
-  window.addEventListener('load', initMap);
-  if(document.readyState==='complete') initMap();
+  window.addEventListener('load', function(){});
+  (function(){ var m=document.getElementById('map'); if(!m) return; if('IntersectionObserver' in window){ new IntersectionObserver(function(en,ob){ if(en[0].isIntersecting){ ob.disconnect(); initMap(); } },{rootMargin:'600px'}).observe(m); } else { initMap(); } })();
   // active nav highlight
   var secs = ['hero','beaches','map-section','countries','guides','top-rated'];
   window.addEventListener('scroll', function(){
