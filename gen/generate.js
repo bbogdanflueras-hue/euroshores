@@ -280,6 +280,16 @@ const HUBS = [
 ];
 function hubOf(b) { return HUBS.find(h => h.re.test(b.loc)); }
 function hubLink(b) { const h = hubOf(b); return h ? ' &middot; <a href="../../region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>' : ''; }
+function capFirst(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+const HUB_OK = new Map();
+function beachHub(b) { const h = hubOf(b); if (!h) return null; if (!HUB_OK.has(h)) HUB_OK.set(h, BU.filter(x => hubOf(x) === h).length >= 5); return HUB_OK.get(h) ? h : null; }
+function crumbItems(b, rel) {
+  const items = [{ name: NAME, item: SITE + '/' }, { name: b.country, item: SITE + '/country/' + slug(b.country) + '/' }];
+  const h = beachHub(b);
+  if (h) items.push({ name: capFirst(h.name), item: SITE + '/region/' + h.slug + '/' });
+  items.push({ name: b.name, item: SITE + '/' + rel });
+  return items;
+}
 function hubsFor(list) { const m = new Map(); list.forEach(b => { const h = hubOf(b); if (h) m.set(h, (m.get(h) || 0) + 1); }); return [...m.keys()].filter(h => BU.filter(b => hubOf(b) === h).length >= 5); }
 function regionBlock(list, up) { const hs = hubsFor(list); return hs.length ? '<h2>Browse by region</h2>\n<p>' + hs.map(h => '<a href="' + up + 'region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>').join(' &middot; ') + '</p>' : ''; }
 
@@ -363,10 +373,10 @@ B.forEach(b => {
   const image = imgUrl(b, 1200);
   const ld = [
     { '@context': 'https://schema.org', '@type': 'Beach', name: b.name, description: b.desc, image: image, url: SITE + '/' + rel, geo: { '@type': 'GeoCoordinates', latitude: b.lat, longitude: b.lng }, address: { '@type': 'PostalAddress', addressLocality: city.split(',')[0], addressCountry: b.cc }, isAccessibleForFree: true, publicAccess: true },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: b.country, item: SITE + '/country/' + slug(b.country) + '/' }, { '@type': 'ListItem', position: 3, name: b.name, item: SITE + '/' + rel }] },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbItems(b, rel).map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x.name, item: x.item })) },
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } })) }
   ];
-  const body = `<div class="crumbs"><a href="../../">${NAME}</a> &rsaquo; <a href="../../country/${slug(b.country)}/">${esc(b.country)}</a> &rsaquo; ${esc(b.name)}</div>
+  const body = `<div class="crumbs"><a href="../../">${NAME}</a> &rsaquo; <a href="../../country/${slug(b.country)}/">${esc(b.country)}</a> &rsaquo; ${(function () { const h = beachHub(b); return h ? '<a href="../../region/' + h.slug + '/">' + esc(capFirst(h.name)) + '</a> &rsaquo; ' : ''; })()}${esc(b.name)}</div>
 <h1>${esc(b.name)}</h1>
 <p><span class="score">${stars(b.rating)}</span> ${esc(b.tag)} in ${esc(city)}${b.gem ? ' &middot; Hidden gem' : ''}</p>
 <img class="hero" src="${image}" srcset="${imgUrl(b, 500)} 500w, ${image} 1200w" sizes="(max-width: 760px) 100vw, 1200px" alt="${esc(b.name + ', ' + city + ' - ' + b.tag.toLowerCase())}" width="1200" height="675" fetchpriority="high"/>
