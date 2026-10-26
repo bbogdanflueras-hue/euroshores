@@ -84,7 +84,7 @@ ${gcTag()}
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}about/#editorial">Editorial policy</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}best/">Best of</a> &middot; <a href="${up}find/">Finder</a> &middot; <a href="${up}map/">Map</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}about/#editorial">Editorial policy</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}best/">Best of</a> &middot; <a href="${up}find/">Finder</a> &middot; <a href="${up}map/">Map</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}region/">Regions</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Details such as water temperature, facilities and access rules are approximate and can change. Check locally before you travel.</p></footer>
 <script src="${up}auth.js" defer></script>
 <script src="${up}counter.js" defer></script>
@@ -260,6 +260,8 @@ const HUBS = [
 ];
 function hubOf(b) { return HUBS.find(h => h.re.test(b.loc)); }
 function hubLink(b) { const h = hubOf(b); return h ? ' &middot; <a href="../../region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>' : ''; }
+function hubsFor(list) { const m = new Map(); list.forEach(b => { const h = hubOf(b); if (h) m.set(h, (m.get(h) || 0) + 1); }); return [...m.keys()].filter(h => B.filter(b => hubOf(b) === h).length >= 5); }
+function regionBlock(list, up) { const hs = hubsFor(list); return hs.length ? '<h2>Browse by region</h2>\n<p>' + hs.map(h => '<a href="' + up + 'region/' + h.slug + '/">Best beaches in ' + esc(h.name) + '</a>').join(' &middot; ') + '</p>' : ''; }
 
 // ---- extra per-beach sections (data-driven)
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -499,6 +501,7 @@ CL.forEach(c => {
 ${c.list.map(x => `<h3><a href="../../beach/${x.slug}/">${esc(x.name)}</a> <small>(${stars(x.rating)})</small></h3><p>${esc(x.desc)}</p><p><b>Best season:</b> ${esc(x.season)}. <b>Typical water temperature:</b> about ${esc(String(x.temp))} degrees C. <b>Access:</b> ${esc(x.access)}.</p><p><b>Facilities:</b> ${esc(x.fac)}. <b>Getting there and parking:</b> ${esc(x.park)}.</p>`).join('\n')}
 <h2>Planning a beach trip to ${esc(c.name)}</h2>
 <p>${c.list.map(x => esc(x.name) + ' is best in ' + esc(x.season)).join('; ') + '.'} See the <a href="../../guide/${GUIDES[0].slug}/">${esc(GUIDES[0].ptitle)}</a> guide for timing and the <a href="../../guide/${GUIDES[1].slug}/">${esc(GUIDES[1].ptitle)}</a> guide for saving money.</p>
+${regionBlock(c.list, '../../')}
 <p><a href="../../#beaches">Browse all European beaches &rarr;</a></p>`;
   const ci = CINFO[c.slug];
   if (ci) {
@@ -557,6 +560,18 @@ HUBS.forEach(h => {
   write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: imgUrl(top, 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
 });
+
+// ---- regions index
+{
+  const rl = HUBS.map(h => ({ h, list: B.filter(b => hubOf(b) === h).sort((a, b) => b.rating - a.rating) })).filter(x => x.list.length >= 5);
+  const rel = 'region/';
+  const title = 'Beach Regions of Europe: ' + rl.length + ' Coasts and Islands | ' + NAME;
+  const desc = 'Browse European beaches by region: ' + rl.slice(0, 8).map(x => x.h.name).join(', ') + ' and more. Season, access and local tips.';
+  const body = '<div class="crumbs"><a href="../">' + NAME + '</a> &rsaquo; Regions</div>\n<h1>Beach Regions of Europe</h1>\n<p class="lead">' + rl.length + ' coasts and island groups, each with its best beaches ranked by our editors.</p>\n<div class="grid">' + rl.map(x => '<a class="card" href="' + x.h.slug + '/"><img src="' + imgUrl(x.list[0], 500) + '" alt="' + esc(x.list[0].name + ', ' + x.list[0].loc) + '" loading="lazy" width="500" height="333"/><div><h3>' + esc(x.h.name.charAt(0).toUpperCase() + x.h.name.slice(1)) + '</h3><p>' + x.list.length + ' beaches, top pick ' + esc(x.list[0].name) + '</p></div></a>').join('') + '</div>\n<p><a href="../#beaches">Browse all European beaches &rarr;</a></p>';
+  const ld = [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Regions', item: SITE + '/' + rel }] }];
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(rl[0].list[0], 1200), ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
+}
 
 // ---- guide pages
 GUIDES.forEach(g => {
