@@ -52,6 +52,20 @@ module.exports = function (c) {
     add('hidden-gem-beaches-in-' + S, 'gem', 'Hidden Gem Beaches in ' + N, 'hidden gem beaches in ' + N, L.filter(function (b) { return b.gem; }), { country: N, how: HOW.gem });
   });
 
+  (c.HUBS || []).forEach(function (h) {
+    var arr = B.filter(function (b) { return c.hubOf(b) === h; });
+    if (arr.length < 8) return;
+    var S = h.slug, N = h.name;
+    if (CL.some(function (ct) { return ct.slug === S; })) return;
+    ['sandy', 'pebble', 'rocky'].forEach(function (t) {
+      var id = t + (t === 'rocky' ? '-coves' : '-beaches') + '-in-' + S;
+      if (!by[id]) add(id, 'type', 'Best ' + TL[t] + ' in ' + N, TLOW[t] + ' in ' + N, arr.filter(function (b) { return b.type === t; }), { country: N, how: HOW.type });
+    });
+    if (!by['family-beaches-in-' + S]) add('family-beaches-in-' + S, 'family', 'Best Family Beaches in ' + N, 'family-friendly beaches in ' + N, arr.filter(isFam), { country: N, how: HOW.family });
+    if (!by['easy-access-beaches-in-' + S]) add('easy-access-beaches-in-' + S, 'easy', 'Easiest Beaches to Reach in ' + N, 'easy-access beaches in ' + N, arr.filter(function (b) { return b.access === 'Easy'; }), { country: N, how: HOW.easy });
+    if (!by['hidden-gem-beaches-in-' + S]) add('hidden-gem-beaches-in-' + S, 'gem', 'Hidden Gem Beaches in ' + N, 'hidden gem beaches in ' + N, arr.filter(function (b) { return b.gem; }), { country: N, how: HOW.gem });
+  });
+
   function monthStats(list) {
     var cnt = {}; list.forEach(function (b) { monthsOf(b).forEach(function (m) { cnt[m] = (cnt[m] || 0) + 1; }); });
     var keep = MONTHS.filter(function (m) { return cnt[m] >= 0.6 * list.length; });
