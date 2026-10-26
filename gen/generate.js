@@ -581,6 +581,25 @@ HUBS.forEach(h => {
 }
 
 // ---- guide pages
+// Data-driven extras appended to each guide: ranked lists that match the guide and top picks from our data.
+function guideExtra(g) {
+  const S = g.slug, defs = LISTS.defs;
+  const isFam = b => b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink');
+  let ls = [], pool = BU, label = 'Top-rated picks';
+  if (/time|country/.test(S)) { ls = defs.filter(d => d.cat === 'month'); label = 'Highest-rated beaches in the season'; }
+  else if (/budget/.test(S)) { ls = defs.filter(d => d.cat === 'parking' || d.cat === 'unspoiled' || d.cat === 'easy'); pool = BU.filter(b => /\bfree\b/i.test((INFO[b.slug] || {}).parking || '')); label = 'Top-rated beaches with free parking'; }
+  else if (/family/.test(S)) { ls = defs.filter(d => d.cat === 'family'); pool = BU.filter(isFam); label = 'Top-rated easy sandy beaches'; }
+  else if (/water-sports/.test(S)) { ls = defs.filter(d => d.cat === 'type' && /^sandy/.test(d.slug)); pool = BU.filter(b => b.type === 'sandy'); label = 'Top-rated sandy beaches'; }
+  else if (/romantic/.test(S)) { ls = defs.filter(d => d.cat === 'gem' || d.cat === 'unspoiled'); pool = BU.filter(b => b.gem); label = 'Top-rated hidden gems'; }
+  else if (/snorkel/.test(S)) { ls = defs.filter(d => d.cat === 'type' && /^(rocky|pebble)/.test(d.slug)); pool = BU.filter(b => b.type === 'rocky' || b.type === 'pebble'); label = 'Top-rated rocky and pebble beaches'; }
+  ls = ls.slice().sort((a, b) => (a.country ? 1 : 0) - (b.country ? 1 : 0)).slice(0, 16);
+  const top = pool.slice().sort((a, b) => b.rating - a.rating || a.name.localeCompare(b.name)).slice(0, 8);
+  let out = '';
+  if (top.length) out += '<h2>' + esc(label) + '</h2>\n<ul class="links">' + top.map(b => '<li><a href="../../beach/' + b.slug + '/">' + esc(b.name) + '</a>, ' + esc(b.country) + ' (' + stars(b.rating) + '): best in ' + esc(b.season) + '</li>').join('') + '</ul>\n';
+  if (ls.length) out += '<h2>Ranked lists to go with this guide</h2>\n<ul class="links">' + ls.map(d => '<li><a href="../../best/' + d.slug + '/">' + esc(d.h1) + '</a></li>').join('') + '</ul>\n';
+  return out;
+}
+
 GUIDES.forEach(g => {
   const rel = 'guide/' + g.slug + '/';
   const title = g.ptitle + ' | ' + NAME;
@@ -603,7 +622,7 @@ GUIDES.forEach(g => {
 <h1>${esc(g.ptitle)}</h1>
 <p class="credit">${Math.max(1, Math.round(plain(g.html).split(/\s+/).length / 200))} min read &middot; Last updated ${D.updated}</p>
 <div class="guide-text">${asc(html)}</div>
-<h2>More guides</h2>
+${guideExtra(g)}<h2>More guides</h2>
 <ul class="links">${GUIDES.filter(x => x !== g).map(x => `<li><a href="../${x.slug}/">${esc(x.ptitle)}</a></li>`).join('')}</ul>
 <p><a href="../../#beaches">Browse all beaches &rarr;</a></p>`;
   const firstSlug = (html.match(/href="\.\.\/\.\.\/beach\/([a-z0-9-]+)\//) || [])[1];
