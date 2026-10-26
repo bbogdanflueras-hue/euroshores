@@ -104,7 +104,7 @@ const normDates = s => s.replace(/20\d\d-\d\d-\d\d/g, '#');
 // Images in the first row of a card grid are above the fold: load them eagerly so they do not delay LCP.
 function eagerTop(html) {
   const g = html.indexOf('class="grid"');
-  if (g < 0) return html;
+  if (g < 0 || g > 3500) return html; // only grids that start near the top of the page
   let idx = g, n = 0;
   while (n < 3) {
     const k = html.indexOf('loading="lazy"', idx);
