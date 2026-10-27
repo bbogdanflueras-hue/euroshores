@@ -162,6 +162,10 @@ const SHOE_FIX = {
   'as-catedrais': "Useful. Sand with rock formations; good grip helps on the rocks at low tide.",
   'praia-da-ursa': "Useful. Steep rocky path and rocks around the cove; sturdy shoes help.",
   'cala-varques': "Useful. Rocky cove reached by a stony path of about 30 minutes; sturdy shoes help.",
+  'seitan-limani': "Recommended. Pebbles at the entrance and a rough stony path; sturdy shoes help.",
+  'jale': "Recommended. Mixed pebbles and sand with rocky headlands; water shoes help.",
+  'scala-dei-turchi': "Recommended. Smooth white rock is very slippery when wet; closed shoes with grip help.",
+  'portinho-da-arrabida': "Recommended. Sand mixed with pebbles at the waterline; water shoes help.",
   'navagio-beach': "Recommended. Pebbles and shingle at the waterline, with boulders at the cliff foot."
 };
 function shoesFor(b, i) {
