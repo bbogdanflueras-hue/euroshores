@@ -891,6 +891,10 @@ ${guideExtra(g)}<h2>More guides</h2>
   const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; Privacy</div>
 <h1>Privacy</h1>
 <p class="lead">You can use every part of ${NAME} without an account. An account is optional and only exists to keep your favorite beaches in sync across your devices.</p>
+<h2>Advertising and cookies</h2>
+<p>${NAME} shows ads through Google AdSense. Google and its advertising partners may use cookies and similar technologies to serve and measure ads, including ads based on your earlier visits to this and other websites. Google's use of advertising cookies lets it and its partners serve ads to you based on your visit to our site and other sites on the internet.</p>
+<p>In the European Economic Area, the United Kingdom and Switzerland you are asked for consent through a consent message before personalised ads are shown, and you can change your choice at any time through the privacy settings link where it is offered. You can also opt out of personalised advertising at <a href="https://adssettings.google.com" rel="noopener">Google Ad Settings</a> or <a href="https://www.aboutads.info" rel="noopener">aboutads.info</a>. Learn how Google uses data from sites that use its services at <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">policies.google.com/technologies/partner-sites</a>.</p>
+<p>We also use GoatCounter for simple visit statistics. It sets no cookies and does not track you across sites.</p>
 <h2>Favorites without an account</h2>
 <p>If you tap the heart on a beach, the choice is saved in your own browser (local storage) on your device. It is not sent to us.</p>
 <h2>Optional account</h2>
