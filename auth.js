@@ -192,6 +192,8 @@
     }).join('') + '</ul>';
   }
   var formAt = Date.now();
+  var TS_KEY = '0x4AAAAAAFoef-lAflP1WDAq', tsTok = '', tsOn = false;
+  function loadTS(cb) { if (window.turnstile) return cb(); if (loadTS.q) { loadTS.q.push(cb); return; } loadTS.q = [cb]; var s = document.createElement('script'); s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.async = true; s.onload = function () { loadTS.q.forEach(function (f) { f(); }); }; document.head.appendChild(s); }
   function drawPanel() { formAt = Date.now();
     if (!ov) return;
     var h = '<div class="esu-box"><button type="button" class="esu-close" data-act="close" aria-label="Close">&times;</button>';
@@ -210,23 +212,25 @@
       h += '<h2>' + (su ? 'Create your free account' : 'Log in') + '</h2><p class="esu-muted esu-sm">Optional. It only keeps your favorite beaches in sync across devices.</p>' +
         '<form data-form="auth"><label>Email<input type="email" name="email" autocomplete="email" required/></label>' +
         '<label>Password<input type="password" name="pw" minlength="8" autocomplete="' + (su ? 'new-password' : 'current-password') + '" required/></label>' + (su ? '<label class="esu-sm" style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" name="consent" required style="width:auto;margin-top:3px"/><span>I have read the <a href="' + esc(BASE) + 'privacy/">privacy policy</a> and agree that EuroShores stores my email and favorites.</span></label><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0"/>' : '') + '' +
-        '<button class="esu-primary" ' + (busy ? 'disabled' : '') + '>' + (su ? 'Sign up' : 'Log in') + '</button></form>' +
+        '<div id="esu-ts" style="margin:8px 0;min-height:4px"></div>' + '<button class="esu-primary" ' + (busy ? 'disabled' : '') + '>' + (su ? 'Sign up' : 'Log in') + '</button></form>' +
         '<p class="esu-sm">' + (su ? 'Already have an account? <button type="button" class="esu-link" data-act="tologin">Log in</button>' : 'New here? <button type="button" class="esu-link" data-act="tosignup">Create an account</button> &middot; <button type="button" class="esu-link" data-act="forgot">Forgot password?</button>') + '</p>' +
         (su ? '<p class="esu-sm esu-muted">We store your email and favorites only to provide this feature. See our <a href="' + esc(BASE) + 'privacy/">privacy page</a>. You can delete your account at any time.</p>' : '') +
         '<p class="esu-sm"><button type="button" class="esu-link" data-act="fav">&larr; Back to favorites</button></p>';
     }
     if (msg) h += '<p class="esu-msg" role="alert">' + msg + '</p>';
     ov.innerHTML = h + '</div>';
+    tsOn = false; tsTok = ''; var tsEl = ov.querySelector('#esu-ts'); if (tsEl) loadTS(function () { try { window.turnstile.render(tsEl, { sitekey: TS_KEY, callback: function (tk) { tsTok = tk; }, 'expired-callback': function () { tsTok = ''; }, 'error-callback': function () { tsOn = false; } }); tsOn = true; } catch (e) { } });
     var inp = ov.querySelector('input'); if (inp && view !== 'fav') { try { inp.focus(); } catch (e) { } }
   }
   function setMsg(m) { msg = m; drawPanel(); }
 
   /* ---------- actions ---------- */
   function doAuth(email, pw) {
+    var cap = tsTok;
     busy = true; msg = ''; drawPanel();
     var su = mode === 'signup';
-    var p = su ? api('/auth/v1/signup?redirect_to=' + encodeURIComponent(location.origin + '/'), { method: 'POST', body: { email: email, password: pw } })
-      : api('/auth/v1/token?grant_type=password', { method: 'POST', body: { email: email, password: pw } });
+    var p = su ? api('/auth/v1/signup?redirect_to=' + encodeURIComponent(location.origin + '/'), { method: 'POST', body: { email: email, password: pw, gotrue_meta_security: { captcha_token: cap } } })
+      : api('/auth/v1/token?grant_type=password', { method: 'POST', body: { email: email, password: pw, gotrue_meta_security: { captcha_token: cap } } });
     p.then(function (r) {
       busy = false;
       if (!r.ok) return setMsg(esc(errText(r)));
@@ -237,7 +241,7 @@
   }
   function doForgot(email) {
     if (!email) return setMsg('Type your email above first, then tap "Forgot password?".');
-    api('/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + '/'), { method: 'POST', body: { email: email } }).then(function (r) {
+    api('/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + '/'), { method: 'POST', body: { email: email, gotrue_meta_security: { captcha_token: tsTok } } }).then(function (r) {
       setMsg(r.ok ? 'If that email has an account, a reset link is on its way.' : esc(errText(r)));
     });
   }
@@ -295,6 +299,7 @@
     e.preventDefault();
     var pw = f.querySelector('input[name=pw]').value;
     if (f.getAttribute('data-form') === 'newpw') return doNewPw(pw);
+    if (tsOn && !tsTok) return setMsg('Please wait a second for the security check to finish, then try again.');
     if (mode === 'signup') { var wh = f.querySelector('input[name=website]'); if ((wh && wh.value) || Date.now() - formAt < 2500) return setMsg('Please wait a moment and try again.'); var cb = f.querySelector('input[name=consent]'); if (cb && !cb.checked) return setMsg('Please accept the privacy policy to create an account.'); }
     doAuth(f.querySelector('input[name=email]').value.trim(), pw);
   }, true);
