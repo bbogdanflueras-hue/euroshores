@@ -156,7 +156,9 @@ const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 
 const SHOE_WS = /water shoes|sea shoes|aqua shoes|reef shoes|swim shoes|beach shoes|jelly shoes/i;
 const SHOE_HARD = /urchin|slippery|sharp rocks|sharp stones|volcanic|lava|razor/i;
 const SHOE_SOFT = /pebbl|shingle|cobble|stony|rocky|rocks? (under|in the water|at the (water|entry|edge))|stones? (under|on the)/i;
-const SHOE_FIX = {};
+const SHOE_FIX = {
+  'navagio-beach': "Recommended. Pebbles and shingle at the waterline, with boulders at the cliff foot."
+};
 function shoesFor(b, i) {
   if (SHOE_FIX[b.slug]) return SHOE_FIX[b.slug];
   const txt = [b.desc, b.fac, b.tip, i.note, i.sunbeds, i.food].join(' . ');
