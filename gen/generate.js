@@ -83,6 +83,7 @@ ${o.ogimg ? `<meta property="og:image" content="${o.ogimg}"/>\n<meta name="twitt
 <style>${CSS}</style>
 ${ld}
 ${gcTag()}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3284213732554472" crossorigin="anonymous"></script>
 </head>
 <body>
 <header class="top"><a class="brand" href="${up}">&#9830; ${NAME}</a><a href="${up}#beaches">Beaches</a><a href="${up}#map-section">Map</a><a href="${up}#countries">Countries</a><a href="${up}#guides">Guides</a><a href="${up}best/">Best of</a><a href="${up}region/">Regions</a><a href="${up}find/">Finder</a></header>
