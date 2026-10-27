@@ -152,10 +152,25 @@ function relGuides(b) {
 }
 
 // ---- practical info box (data from gen/beach-info.json)
-const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 'Campers &amp; motorhomes'], ['sunbeds', 'Sunbeds &amp; umbrellas'], ['food', 'Food &amp; drink'], ['toilets', 'Toilets &amp; showers'], ['lifeguard', 'Lifeguard'], ['note', 'Good to know']];
+const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 'Campers &amp; motorhomes'], ['sunbeds', 'Sunbeds &amp; umbrellas'], ['food', 'Food &amp; drink'], ['toilets', 'Toilets &amp; showers'], ['lifeguard', 'Lifeguard'], ['shoes', 'Water shoes'], ['note', 'Good to know']];
+const SHOE_WS = /water shoes|sea shoes|aqua shoes|reef shoes|swim shoes|beach shoes|jelly shoes/i;
+const SHOE_HARD = /urchin|slippery|sharp rocks|sharp stones|volcanic|lava|razor/i;
+const SHOE_SOFT = /pebbl|shingle|cobble|stony|rocky|rocks? (under|in the water|at the (water|entry|edge))|stones? (under|on the)/i;
+const SHOE_FIX = {};
+function shoesFor(b, i) {
+  if (SHOE_FIX[b.slug]) return SHOE_FIX[b.slug];
+  const txt = [b.desc, b.fac, b.tip, i.note, i.sunbeds, i.food].join(' . ');
+  if (b.type === 'rocky') return "Recommended. Rocky shore and sea entry; stones are sharp or slippery in places.";
+  if (b.type === 'pebble') return "Recommended. Pebble or shingle shore; stones can hurt bare feet at the water's edge.";
+  if (SHOE_WS.test(txt) || SHOE_HARD.test(txt)) return /urchin/i.test(txt) ? 'Recommended. Sea urchins or rocks are reported in the water.' : "Recommended. Rocks or slippery stones are reported at the water's edge.";
+  if (SHOE_SOFT.test(txt)) return 'Useful. Mostly sand, but pebbles or rocks are noted at the edges.';
+  return 'Not needed. Sand beach; no rocks or urchins noted in our sources.';
+}
 function infoBox(b) {
-  const i = INFO[b.slug]; if (!i) return ''; if (i.food === 'Cafes, bars or restaurants are close by.') return '';
-  const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]])); if (!rows.length) return '';
+  const base = INFO[b.slug] || {};
+  const i = Object.assign({}, base, { shoes: shoesFor(b, base) });
+  const generic = base.food === 'Cafes, bars or restaurants are close by.';
+  const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]]) && (!generic || r[0] === 'shoes')); if (!rows.length) return '';
   return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go.</p>';
 }
 
@@ -359,6 +374,7 @@ B.forEach(b => {
   const inf = INFO[b.slug]; const nodot = s => String(s).replace(/[.\s]+$/, '');
   if (inf && (inf.parking || inf.camper)) faqs.push(['Is there parking at ' + b.name + '?', [inf.parking, inf.camper && ('Campers and motorhomes: ' + inf.camper)].filter(Boolean).map(nodot).join('. ') + '. Fees and rules change, so confirm locally.']);
   if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
+  faqs.push(['Do you need water shoes at ' + b.name + '?', shoesFor(b, inf || {})]);
   const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
   const title = tcands.find(t => t.length <= 60) || tcands[tcands.length - 1];
 
