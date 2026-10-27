@@ -152,7 +152,7 @@ function relGuides(b) {
 }
 
 // ---- practical info box (data from gen/beach-info.json)
-const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 'Campers &amp; motorhomes'], ['sunbeds', 'Sunbeds &amp; umbrellas'], ['food', 'Food &amp; drink'], ['toilets', 'Toilets &amp; showers'], ['lifeguard', 'Lifeguard'], ['shoes', 'Water shoes'], ['note', 'Good to know']];
+const INFO_ROWS = [['access', 'Access'], ['parking', 'Car parking'], ['camper', 'Campers &amp; motorhomes'], ['sunbeds', 'Sunbeds &amp; umbrellas'], ['food', 'Food &amp; drink'], ['toilets', 'Toilets &amp; showers'], ['lifeguard', 'Lifeguard'], ['shoes', 'Water shoes'], ['nudism', 'Nudism'], ['note', 'Good to know']];
 const SHOE_WS = /water shoes|sea shoes|aqua shoes|reef shoes|swim shoes|beach shoes|jelly shoes/i;
 const SHOE_HARD = /urchin|slippery|sharp rocks|sharp stones|volcanic|lava|razor/i;
 const SHOE_SOFT = /pebbl|shingle|cobble|stony|rocky|rocks? (under|in the water|at the (water|entry|edge))|stones? (under|on the)/i;
@@ -330,11 +330,15 @@ function shoesFor(b, i) {
   if (SHOE_SOFT.test(txt)) return 'Useful. Mostly sand, but pebbles or rocks are noted at the edges.';
   return 'Not needed. Sand beach; no rocks or urchins noted in our sources.';
 }
+const NUDE_M = { 'adabojana': "Mandatory. Naturist area on the Ada Bojana island, where nudity is the norm.", 'suhapunta': "Mandatory. Listed as a nudist beach on Rab; clothes are not expected." };
+const NUDE_O = new Set('superparadise sougia glykanera plakias agiospavlos agiagalini kommos hersonissos elia agiossostis plaka agiaanna agiaannaamorgos agprokopios mikroalyko vlychada katergo vatera kathisma falassarna banana myrtiotissa sistiana portonovo sirolo vignanotica guaceto vendicari piscinas portoferro maripintau meco barril fonte comporta ursa pessegueiro bordeira beliche prainha fuseta meiapraia zavial cabopino zrce zlatnirat nugal sunj lokrum valdanos maspalomas ingles cofete papagayo illetes sesilletes estrenc torta mesquida calamatzoc enporter sonbou macarella macarelleta monsul muertos bolonia torimbia vega gulpiyuri ballota xago silencio barayo capodifeno tahiti espiguette pampelonne brouis piemanson hossegor'.split(' '));
+function nudismFor(b) { if (NUDE_M[b.id]) return NUDE_M[b.id]; if (NUDE_O.has(b.id)) return 'Optional. Naturists use this beach or a part of it, so clothing is not required there. Check local signs and be discreet.'; if (b.cc === 'MT') return 'Forbidden. Public nudity is illegal in Malta.'; if (b.cc === 'AL') return 'Forbidden. Nudism is not legal on public beaches in Albania.'; return 'Forbidden. Clothing is expected; no naturist area is recorded for this beach in our sources.'; }
+
 function infoBox(b) {
   const base = INFO[b.slug] || {};
-  const i = Object.assign({}, base, { shoes: shoesFor(b, base) });
+  const i = Object.assign({}, base, { shoes: shoesFor(b, base), nudism: nudismFor(b) });
   const generic = base.food === 'Cafes, bars or restaurants are close by.';
-  const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]]) && (!generic || r[0] === 'shoes')); if (!rows.length) return '';
+  const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]]) && (!generic || r[0] === 'shoes' || r[0] === 'nudism')); if (!rows.length) return '';
   return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go.</p>';
 }
 
@@ -539,6 +543,7 @@ B.forEach(b => {
   if (inf && (inf.parking || inf.camper)) faqs.push(['Is there parking at ' + b.name + '?', [inf.parking, inf.camper && ('Campers and motorhomes: ' + inf.camper)].filter(Boolean).map(nodot).join('. ') + '. Fees and rules change, so confirm locally.']);
   if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
   faqs.push(['Do you need water shoes at ' + b.name + '?', shoesFor(b, inf || {})]);
+  faqs.push(['Is nudism allowed at ' + b.name + '?', nudismFor(b)]);
   const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
   const title = tcands.find(t => t.length <= 60) || tcands[tcands.length - 1];
 
