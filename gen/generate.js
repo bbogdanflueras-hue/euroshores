@@ -157,6 +157,11 @@ const SHOE_WS = /water shoes|sea shoes|aqua shoes|reef shoes|swim shoes|beach sh
 const SHOE_HARD = /urchin|slippery|sharp rocks|sharp stones|volcanic|lava|razor/i;
 const SHOE_SOFT = /pebbl|shingle|cobble|stony|rocky|rocks? (under|in the water|at the (water|entry|edge))|stones? (under|on the)/i;
 const SHOE_FIX = {
+  'spiaggia-grande': "Recommended. Dark sand mixed with pebbles; water shoes make getting in and out easier.",
+  'praia-do-camilo': "Useful. Rocky seabed with sandy gaps; shoes help getting into the water.",
+  'as-catedrais': "Useful. Sand with rock formations; good grip helps on the rocks at low tide.",
+  'praia-da-ursa': "Useful. Steep rocky path and rocks around the cove; sturdy shoes help.",
+  'cala-varques': "Useful. Rocky cove reached by a stony path of about 30 minutes; sturdy shoes help.",
   'navagio-beach': "Recommended. Pebbles and shingle at the waterline, with boulders at the cliff foot."
 };
 function shoesFor(b, i) {
