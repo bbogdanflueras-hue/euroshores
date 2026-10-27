@@ -339,7 +339,7 @@ function infoBox(b) {
   const i = Object.assign({}, base, { shoes: shoesFor(b, base), nudism: nudismFor(b) });
   const generic = base.food === 'Cafes, bars or restaurants are close by.';
   const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]]) && (!generic || r[0] === 'shoes' || r[0] === 'nudism')); if (!rows.length) return '';
-  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go.</p>';
+  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go. Disclaimer: this information is compiled from public sources and may be incomplete or out of date. This includes water shoe advice and nudism status, which is a guide only and not a legal ruling. Local rules and signs always take priority. EuroShores accepts no liability for errors; use it at your own risk and tell us if you spot a mistake.</p>';
 }
 
 // ---- regional hubs (definitions)
