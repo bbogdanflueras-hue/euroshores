@@ -191,7 +191,8 @@
       return '<li><a href="' + esc(BASE) + 'beach/' + esc(f.s) + '/">' + img + '<span>' + esc(f.n) + '</span></a><button type="button" class="esu-x" data-rm="' + esc(f.s) + '" aria-label="Remove ' + esc(f.n) + '">&times;</button></li>';
     }).join('') + '</ul>';
   }
-  function drawPanel() {
+  var formAt = Date.now();
+  function drawPanel() { formAt = Date.now();
     if (!ov) return;
     var h = '<div class="esu-box"><button type="button" class="esu-close" data-act="close" aria-label="Close">&times;</button>';
     if (view === 'fav') {
@@ -208,7 +209,7 @@
       var su = mode === 'signup';
       h += '<h2>' + (su ? 'Create your free account' : 'Log in') + '</h2><p class="esu-muted esu-sm">Optional. It only keeps your favorite beaches in sync across devices.</p>' +
         '<form data-form="auth"><label>Email<input type="email" name="email" autocomplete="email" required/></label>' +
-        '<label>Password<input type="password" name="pw" minlength="8" autocomplete="' + (su ? 'new-password' : 'current-password') + '" required/></label>' +
+        '<label>Password<input type="password" name="pw" minlength="8" autocomplete="' + (su ? 'new-password' : 'current-password') + '" required/></label>' + (su ? '<label class="esu-sm" style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" name="consent" required style="width:auto;margin-top:3px"/><span>I have read the <a href="' + esc(BASE) + 'privacy/">privacy policy</a> and agree that EuroShores stores my email and favorites.</span></label><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0"/>' : '') + '' +
         '<button class="esu-primary" ' + (busy ? 'disabled' : '') + '>' + (su ? 'Sign up' : 'Log in') + '</button></form>' +
         '<p class="esu-sm">' + (su ? 'Already have an account? <button type="button" class="esu-link" data-act="tologin">Log in</button>' : 'New here? <button type="button" class="esu-link" data-act="tosignup">Create an account</button> &middot; <button type="button" class="esu-link" data-act="forgot">Forgot password?</button>') + '</p>' +
         (su ? '<p class="esu-sm esu-muted">We store your email and favorites only to provide this feature. See our <a href="' + esc(BASE) + 'privacy/">privacy page</a>. You can delete your account at any time.</p>' : '') +
@@ -224,7 +225,7 @@
   function doAuth(email, pw) {
     busy = true; msg = ''; drawPanel();
     var su = mode === 'signup';
-    var p = su ? api('/auth/v1/signup', { method: 'POST', body: { email: email, password: pw } })
+    var p = su ? api('/auth/v1/signup?redirect_to=' + encodeURIComponent(location.origin + '/'), { method: 'POST', body: { email: email, password: pw } })
       : api('/auth/v1/token?grant_type=password', { method: 'POST', body: { email: email, password: pw } });
     p.then(function (r) {
       busy = false;
@@ -294,6 +295,7 @@
     e.preventDefault();
     var pw = f.querySelector('input[name=pw]').value;
     if (f.getAttribute('data-form') === 'newpw') return doNewPw(pw);
+    if (mode === 'signup') { var wh = f.querySelector('input[name=website]'); if ((wh && wh.value) || Date.now() - formAt < 2500) return setMsg('Please wait a moment and try again.'); var cb = f.querySelector('input[name=consent]'); if (cb && !cb.checked) return setMsg('Please accept the privacy policy to create an account.'); }
     doAuth(f.querySelector('input[name=email]').value.trim(), pw);
   }, true);
 
