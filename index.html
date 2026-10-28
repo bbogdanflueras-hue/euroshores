@@ -690,7 +690,8 @@
       .hero-scroll { display: none; }
     }
     @media (max-height: 780px) { .hero-scroll { display: none; } }
-  </style>
+  .near-btn{cursor:pointer;white-space:nowrap;font-weight:600}.near-btn:disabled{opacity:.6;cursor:wait}.dist{font-weight:600}
+</style>
 <link rel="alternate" type="application/atom+xml" title="Newest beaches" href="feed.xml"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="manifest" href="site.webmanifest"/>
@@ -766,6 +767,7 @@
       <option value="name">Sort: Name A-Z</option>
       <option value="country">Sort: Country</option>
     </select>
+    <button type="button" id="nearBtn" class="tool-input near-btn" title="Sort beaches by distance from you. Your location stays on your device.">Near me</button>
   </div>
   <div class="filter-bar" id="filters"></div>
   <div class="result-line" id="resultLine" aria-live="polite"></div>
@@ -962,10 +964,14 @@ function matches(b){
   }
   return true;
 }
+var UL=null;
+function distKm(b){var R=6371,r=Math.PI/180,dl=(b.lat-UL.lat)*r,dn=(b.lng-UL.lng)*r;var a=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(UL.lat*r)*Math.cos(b.lat*r)*Math.sin(dn/2)*Math.sin(dn/2);return 2*R*Math.asin(Math.sqrt(a));}
+function distTxt(b){if(!UL||typeof b.lat!=='number'||typeof b.lng!=='number')return '';var d=distKm(b);return ' <span class="dist">&middot; '+(d<10?d.toFixed(1):Math.round(d).toLocaleString('en'))+' km away</span>';}
 function visible(){
   var l = B.filter(matches);
   var s = S.sort;
   l.sort(function(a,b){
+    if(s==='near'&&UL) return distKm(a)-distKm(b);
     if(s==='name') return a.name.localeCompare(b.name);
     if(s==='country') return a.country.localeCompare(b.country) || b.rating-a.rating;
     return b.rating-a.rating || a.name.localeCompare(b.name);
@@ -982,7 +988,7 @@ function cardHTML(b, i){
    '<div class="card-view-overlay"><div class="view-btn">View Beach &rarr;</div></div>'+
    '<button type="button" class="card-cmp'+(on?' on':'')+'" data-cmp="'+b.id+'" aria-pressed="'+on+'">'+ic(on?'check':'layers',13)+(on?' Added':' Compare')+'</button></div>'+
    '<div class="card-body"><div class="card-top-row"><div class="card-rating"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span></div><span class="card-type-tag">'+b.tag+'</span></div>'+
-   '<div class="card-title">'+b.name+'</div><div class="card-location">'+ic('pin',14)+' '+b.loc+'</div><div class="card-desc">'+b.desc+'</div>'+
+   '<div class="card-title">'+b.name+'</div><div class="card-location">'+ic('pin',14)+' '+b.loc+distTxt(b)+'</div><div class="card-desc">'+b.desc+'</div>'+
    '<div class="card-meta"><span class="meta-item">'+ic('cal',14)+' '+b.season+'</span><span class="meta-item">'+ic('therm',14)+' '+b.temp+'&#176;C</span><span class="meta-item">'+ic('compass',14)+' '+b.access+'</span></div></div></div>';
 }
 function render(){
@@ -991,7 +997,7 @@ function render(){
   var vis = l.slice(0, window.__shown || 24);
   $('grid').innerHTML = l.length ? vis.map(cardHTML).join('') : '<div class="empty-state"><h3>No beaches match</h3><p>Try a different search or clear the filters.</p></div>';
   var f = (S.q?1:0)+(S.type!=='all'?1:0)+(S.country!=='all'?1:0)+(S.gems?1:0);
-  $('resultLine').innerHTML = 'Showing '+l.length+' of '+B.length+' beaches'+(S.country!=='all'?' in '+esc(S.country):'')+(f?'<button type="button" class="chip-clear" id="clearAll">Clear filters</button>':'');
+  $('resultLine').innerHTML = (S.sort==='near'&&UL?'Sorted by distance from you. ':'')+'Showing '+l.length+' of '+B.length+' beaches'+(S.country!=='all'?' in '+esc(S.country):'')+(f?'<button type="button" class="chip-clear" id="clearAll">Clear filters</button>':'');
   renderFilters();
   updateMap(l);
   updateTray();
@@ -1046,7 +1052,7 @@ function openBeach(id){
   var b = BY[id]; if(!b) return;
   var bg = 'background:linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')'+(b.img?',url('+imgUrl(b,1200)+')':'');
   if(b.img) bg = 'background-image:url('+imgUrl(b,1200)+'),linear-gradient(135deg,'+b.g[0]+','+b.g[1]+')';
-  var h = '<div class="modal-hero" style="'+bg+'"></div><div class="modal-body"><h3>'+b.name+'</h3><div class="card-location">'+ic('pin',14)+' '+b.loc+'</div>'+
+  var h = '<div class="modal-hero" style="'+bg+'"></div><div class="modal-body"><h3>'+b.name+'</h3><div class="card-location">'+ic('pin',14)+' '+b.loc+distTxt(b)+'</div>'+
    '<div class="card-rating" style="margin:8px 0"><span class="rating-score">'+b.rating.toFixed(1)+'</span><span class="stars">'+stars(b.rating)+'</span><span class="card-type-tag" style="margin-left:8px">'+b.tag+'</span>'+(b.gem?'<span class="card-type-tag" style="margin-left:6px">Hidden gem</span>':'')+'</div>'+
    '<p class="card-desc">'+b.desc+'</p>'+
    '<p style="margin:6px 0 12px"><a href="beach/'+SLUG[id]+'/">Open the full '+b.name+' guide &rarr;</a></p>'+
@@ -1148,6 +1154,7 @@ function init(){
   renderStats(); renderPills(); renderCountries(); renderGuides(); renderTop();
   $('q').addEventListener('input', function(){ clearTimeout(qt); var v=this.value; qt=setTimeout(function(){ S.q=v.trim(); render(); },150); });
   $('sort').addEventListener('change', function(){ S.sort=this.value; render(); });
+  var nb=$('nearBtn'); if(nb){ nb.addEventListener('click', function(){ var rl=$('resultLine'); if(!navigator.geolocation){ rl.textContent='Your browser does not support location. Search by name instead.'; return; } nb.disabled=true; nb.textContent='Locating...'; navigator.geolocation.getCurrentPosition(function(p){ UL={lat:p.coords.latitude,lng:p.coords.longitude}; var sel=$('sort'); if(!sel.querySelector('option[value="near"]')){ var o=document.createElement('option'); o.value='near'; o.textContent='Sort: Nearest to me'; sel.insertBefore(o,sel.firstChild); } sel.value='near'; S.sort='near'; nb.disabled=false; nb.textContent='Near me'; render(); }, function(){ nb.disabled=false; nb.textContent='Near me'; rl.textContent='Could not get your location. Allow location access in your browser, or search by name.'; }, {enableHighAccuracy:false,timeout:10000,maximumAge:600000}); }); }
   render();
   observeReveal();
   window.addEventListener('load', function(){});
