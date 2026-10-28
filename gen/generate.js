@@ -94,6 +94,7 @@ ${o.body}
 <p style="margin-top:8px">Disclaimer: details such as water temperature, facilities, access rules, water shoe advice and nudism status are compiled from public sources, may be incomplete or out of date, and are a guide only, not legal advice. Local rules and signs take priority. Check locally before you travel; use of this site is at your own risk.</p></footer>
 <script src="${up}auth.js" defer></script>
 <script src="${up}counter.js" defer></script>
+<script src="${up}near.js" defer></script>
 </body>
 </html>`;
 }
@@ -1009,3 +1010,6 @@ console.log('generated', urls.length, 'urls');
   if (/[^\x00-\x7f]/.test(h)) throw new Error('non-ascii in index.html');
   fs.writeFileSync(INDEX, h);
 })();
+
+// near.json: lightweight list for the Near me features (slug, blank, lat, lng)
+try { write('near.json', JSON.stringify(BU.filter(b => b.slug && isFinite(b.lat) && isFinite(b.lng)).map(b => [b.slug, '', Math.round(b.lat * 10000) / 10000, Math.round(b.lng * 10000) / 10000]))); } catch (e) { console.log('near.json skipped: ' + e.message); }
