@@ -690,7 +690,7 @@
       .hero-scroll { display: none; }
     }
     @media (max-height: 780px) { .hero-scroll { display: none; } }
-  .near-btn{cursor:pointer;white-space:nowrap;font-weight:600}.near-btn:disabled{opacity:.6;cursor:wait}.dist{font-weight:600}
+  .near-btn{width:auto;padding:11px 20px;cursor:pointer;white-space:nowrap;font-weight:600}.near-btn:disabled{opacity:.6;cursor:wait}.dist{font-weight:600}
 </style>
 <link rel="alternate" type="application/atom+xml" title="Newest beaches" href="feed.xml"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
@@ -1154,7 +1154,7 @@ function init(){
   renderStats(); renderPills(); renderCountries(); renderGuides(); renderTop();
   $('q').addEventListener('input', function(){ clearTimeout(qt); var v=this.value; qt=setTimeout(function(){ S.q=v.trim(); render(); },150); });
   $('sort').addEventListener('change', function(){ S.sort=this.value; render(); });
-  var nb=$('nearBtn'); if(nb){ nb.addEventListener('click', function(){ var rl=$('resultLine'); if(!navigator.geolocation){ rl.textContent='Your browser does not support location. Search by name instead.'; return; } nb.disabled=true; nb.textContent='Locating...'; navigator.geolocation.getCurrentPosition(function(p){ UL={lat:p.coords.latitude,lng:p.coords.longitude}; var sel=$('sort'); if(!sel.querySelector('option[value="near"]')){ var o=document.createElement('option'); o.value='near'; o.textContent='Sort: Nearest to me'; sel.insertBefore(o,sel.firstChild); } sel.value='near'; S.sort='near'; nb.disabled=false; nb.textContent='Near me'; render(); }, function(){ nb.disabled=false; nb.textContent='Near me'; rl.textContent='Could not get your location. Allow location access in your browser, or search by name.'; }, {enableHighAccuracy:false,timeout:10000,maximumAge:600000}); }); }
+  var nb=$('nearBtn'); if(nb){ nb.addEventListener('click', function(){ var rl=$('resultLine'); if(!navigator.geolocation){ rl.textContent='Your browser does not support location. Search by name instead.'; return; } nb.disabled=true; nb.textContent='Locating...'; navigator.geolocation.getCurrentPosition(function(p){ UL={lat:p.coords.latitude,lng:p.coords.longitude}; var sel=$('sort'); if(!sel.querySelector('option[value="near"]')){ var o=document.createElement('option'); o.value='near'; o.textContent='Sort: Nearest'; sel.insertBefore(o,sel.firstChild); } sel.value='near'; S.sort='near'; nb.disabled=false; nb.textContent='Near me'; render(); }, function(){ nb.disabled=false; nb.textContent='Near me'; rl.textContent='Could not get your location. Allow location access in your browser, or search by name.'; }, {enableHighAccuracy:false,timeout:10000,maximumAge:600000}); }); }
   render();
   observeReveal();
   window.addEventListener('load', function(){});
