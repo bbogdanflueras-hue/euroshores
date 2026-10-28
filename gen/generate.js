@@ -32,7 +32,7 @@ function stars(r) { return r.toFixed(1) + ' / 5'; }
 const B = D.B.map(b => Object.assign({}, b, { name: plain(b.name), slug: b.id === 'comino' ? 'blue-lagoon-comino' : slug(b.name), loc: plain(b.loc), country: plain(b.country), season: plain(b.season), desc: plain(b.desc), fac: plain(b.fac), park: plain(b.park), tip: plain(b.tip) }));
 B.forEach(b => { const p = D.PH[b.id]; b.wm = p.f; b.cr = p; });
 const BY = {}; B.forEach(b => BY[b.id] = b);
-const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano' };
+const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano', mellieha: 'ghadira' };
 const BU = B.filter(b => !CANON[b.id]);
 const GUIDES = D.GUIDES.map(g => Object.assign({}, g, { slug: slug(g.title), ptitle: plain(g.title) }));
 const countries = {};
