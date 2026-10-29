@@ -51,4 +51,22 @@ msg.textContent='Sorted by distance from you.';b.disabled=false;
 },function(t){msg.textContent=t;b.disabled=false;});
 });
 }
+var pm=location.pathname.match(/\/beach\/([^\/]+)\/?$/);
+if(pm){
+var h1=document.querySelector('main h1');
+if(h1){
+load().then(function(L){
+var e=null;L.forEach(function(x){if(x[0]===pm[1])e=x;});
+if(!e)return;
+var ll=e[2]+','+e[3];
+var box=document.createElement('div');
+box.style.cssText='margin:12px 0 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center';
+function mk(t,u,main){var a=document.createElement('a');a.href=u;a.target='_blank';a.rel='noopener';a.textContent=t;a.style.cssText=main?'padding:11px 20px;border-radius:10px;background:#0b6e8a;color:#fff;font-weight:700;text-decoration:none':'padding:10px 16px;border-radius:10px;border:1px solid #c5ced6;color:inherit;font-weight:600;text-decoration:none';return a;}
+box.appendChild(mk('Take me there','https://www.google.com/maps/dir/?api=1&destination='+ll,true));
+box.appendChild(mk('Waze','https://waze.com/ul?ll='+ll+'&navigate=yes',false));
+box.appendChild(mk('Apple Maps','https://maps.apple.com/?daddr='+ll,false));
+h1.parentNode.insertBefore(box,h1.nextSibling);
+}).catch(function(){});
+}
+}
 })();
