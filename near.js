@@ -75,3 +75,33 @@ h1.parentNode.insertBefore(box,h1.nextSibling);
 }
 }
 })();
+
+;(function wx(){
+var m=location.pathname.match(/\/beach\/([^\/]+)\/?$/);if(!m)return;
+var slug=m[1];
+var N={0:'Clear',1:'Mostly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Fog',51:'Drizzle',53:'Drizzle',55:'Drizzle',61:'Rain',63:'Rain',65:'Heavy rain',71:'Snow',73:'Snow',75:'Snow',80:'Showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
+function nm(c){return N[c]||'Mixed';}
+fetch('/near.json').then(function(r){return r.json();}).then(function(a){
+var e=null;for(var i=0;i<a.length;i++){if(a[i][0]===slug){e=a[i];break;}}
+if(!e)return;
+var q='latitude='+e[2]+'&longitude='+e[3];
+var p1=fetch('https://api.open-meteo.com/v1/forecast?'+q+'&current=temperature_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,weather_code&timezone=auto&forecast_days=5').then(function(r){return r.json();});
+var p2=fetch('https://marine-api.open-meteo.com/v1/marine?'+q+'&current=sea_surface_temperature,wave_height').then(function(r){return r.json();}).catch(function(){return null;});
+Promise.all([p1,p2]).then(function(R){
+var f=R[0],s=R[1];if(!f||!f.current||!f.daily)return;
+var box=document.createElement('section');
+box.style.cssText='margin:18px 0;padding:14px 16px;border:1px solid #d6e4ea;border-radius:12px;background:#f4f9fb';
+var h='<h2 style="margin:0 0 8px;font-size:18px">Weather now</h2><p style="margin:0 0 10px">'+nm(f.current.weather_code)+', '+Math.round(f.current.temperature_2m)+' &deg;C, wind '+Math.round(f.current.wind_speed_10m)+' km/h';
+if(s&&s.current&&s.current.sea_surface_temperature!=null){h+=' &middot; sea '+Math.round(s.current.sea_surface_temperature)+' &deg;C';}
+if(s&&s.current&&s.current.wave_height!=null){h+=' &middot; waves '+(Math.round(s.current.wave_height*10)/10)+' m';}
+h+='</p><div style="display:flex;gap:8px;flex-wrap:wrap">';
+var d=f.daily;
+for(var k=0;k<d.time.length;k++){var dt=new Date(d.time[k]+'T12:00:00');h+='<div style="flex:1 1 90px;background:#fff;border-radius:8px;padding:6px 8px;text-align:center;font-size:13px"><b>'+dt.toLocaleDateString('en-GB',{weekday:'short'})+'</b><br>'+Math.round(d.temperature_2m_max[k])+' &deg;C<br>'+nm(d.weather_code[k])+'</div>';}
+h+='</div><p style="margin:8px 0 0;font-size:12px;color:#5b6b73">Live data from <a href="https://open-meteo.com/" rel="noopener">Open-Meteo</a>. Sea data is modelled and can be missing near the coast.</p>';
+box.innerHTML=h;
+var hs=document.querySelectorAll('main h2'),t=null;
+for(var j=0;j<hs.length;j++){if(/^Practical info/.test(hs[j].textContent)){t=hs[j];break;}}
+if(t)t.parentNode.insertBefore(box,t);else{var mn=document.querySelector('main');if(mn)mn.appendChild(box);}
+});
+}).catch(function(){});
+})();
