@@ -65,6 +65,11 @@ function mk(t,u,main){var a=document.createElement('a');a.href=u;a.target='_blan
 box.appendChild(mk('Take me there','https://www.google.com/maps/dir/?api=1&destination='+ll,true));
 box.appendChild(mk('Waze','https://waze.com/ul?ll='+ll+'&navigate=yes',false));
 box.appendChild(mk('Apple Maps','https://maps.apple.com/?daddr='+ll,false));
+var sb=document.createElement('button');sb.type='button';sb.textContent='Share';sb.style.cssText='padding:10px 16px;border-radius:10px;border:1px solid #c5ced6;background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer';
+sb.addEventListener('click',function(){var d={title:document.title,url:location.href.split('#')[0]};if(navigator.share){navigator.share(d).catch(function(){});return;}
+var done=function(){sb.textContent='Link copied';setTimeout(function(){sb.textContent='Share';},2000);};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(d.url).then(done,function(){prompt('Copy this link',d.url);});}else{prompt('Copy this link',d.url);}});
+box.appendChild(sb);
 h1.parentNode.insertBefore(box,h1.nextSibling);
 }).catch(function(){});
 }
