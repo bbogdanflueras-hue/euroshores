@@ -2,6 +2,9 @@
 const fs = require('fs'), path = require('path');
 const ROOT = path.join(__dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');
+let P2 = {}; try { P2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'gen', 'photos2.json'), 'utf8')); } catch (e) { /* no second photos */ }
+function gal2(b) { const p = P2[b.id]; if (!p || !fs.existsSync(path.join(ROOT, 'img', b.id + '-2-800.webp'))) return ''; const fl = encodeURIComponent(p.f).replace(/\(/g, '%28').replace(/\)/g, '%29'); return '<figure style="margin:18px 0"><img class="hero" src="../../img/' + b.id + '-2-800.webp" alt="' + esc(b.name) + ' - another view" loading="lazy" width="800" height="450"/><figcaption class="credit">Photo: ' + esc(p.by) + ', ' + esc(p.lic) + ', via <a href="https://commons.wikimedia.org/wiki/File:' + fl + '" rel="noopener">Wikimedia Commons</a></figcaption></figure>\n'; }
+
 const src = fs.readFileSync(INDEX, 'utf8');
 const DATAJS = path.join(ROOT, 'data.js');
 const HAS_DATAJS = fs.existsSync(DATAJS);
@@ -521,7 +524,7 @@ function extraSections(b, more, nearD) {
   let there = '<p>' + esc(nodotx(b.park)) + '. The beach sits at about ' + Number(b.lat).toFixed(3) + ', ' + Number(b.lng).toFixed(3) + ' on the map, so use the map link above for directions.';
   if (near.length) there += ' If you are planning a day around it, the closest other beaches on our list are ' + near.map(x => '<a href="../' + x.slug + '/">' + esc(x.name) + '</a> (' + Math.round(nearD[x.id]) + ' km)').join(', ') + '.';
   there += '</p>';
-  return '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
+  return gal2(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
 }
 
 // ---- beach pages
