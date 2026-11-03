@@ -40,3 +40,17 @@ async function get(url) {
   }
   console.log('images: new ' + done + ', failed ' + fail);
 })();
+
+;(function second(){
+(async()=>{
+ let P2={};try{P2=JSON.parse(fs.readFileSync(path.join(ROOT,'gen','photos2.json'),'utf8'));}catch(e){return;}
+ for(const id of Object.keys(P2)){
+  const f=path.join(OUT,id+'-2-800.webp');
+  if(fs.existsSync(f))continue;
+  const url='https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(P2[id].f).replace(/\(/g,'%28').replace(/\)/g,'%29')+'?width=1000';
+  try{const buf=await get(url);await sharp(buf).resize({width:800,withoutEnlargement:true}).webp({quality:74}).toFile(f);}
+  catch(e){console.log('image2 failed',id,e.message);}
+  await sleep(1200);
+ }
+})();
+})();
