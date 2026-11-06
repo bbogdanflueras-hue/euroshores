@@ -346,7 +346,7 @@ function infoBox(b) {
   const i = Object.assign({}, base, { shoes: shoesFor(b, base), nudism: nudismFor(b) });
   const generic = base.food === 'Cafes, bars or restaurants are close by.';
   const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]]) && (!generic || r[0] === 'shoes' || r[0] === 'nudism')); if (!rows.length) return '';
-  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go. Disclaimer: this information is compiled from public sources and may be incomplete or out of date. This includes water shoe advice and nudism status, which is a guide only and not a legal ruling. Local rules and signs always take priority. EuroShores accepts no liability for errors; use it at your own risk and tell us if you spot a mistake.</p>';
+  return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go. Details are compiled from public sources and may be out of date, so local rules and signs always take priority. EuroShores accepts no liability for errors.</p>';
 }
 
 // ---- regional hubs (definitions)
@@ -501,23 +501,29 @@ function seasonMonths(season) {
   return out;
 }
 const LISTS = require('./lists.js')({ B: BU, CL, slug, esc, imgUrl, stars, SITE, NAME, D, seasonMonths, MONTHS, layout, write, HUBS, hubOf, INFO });
+const pick = (s, arr) => arr[[...String(s)].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % arr.length];
+const ACC_VAR = {
+  Easy: [ACC_NOTE.Easy, 'Getting here is easy: there is no long walk or difficult terrain, so most visitors can arrive without special equipment.', 'Access is straightforward, with an easy approach that suits most people, including those with children or limited mobility.', 'This is one of the easier beaches to reach, with a simple approach and no demanding walk.'],
+  Moderate: [ACC_NOTE.Moderate, 'Getting here takes a little effort: expect stairs, a short walk or an uneven track, and wear proper shoes rather than flip-flops.', 'The approach is moderate, with a short walk or rough ground, so sensible footwear and water are a good idea.', 'Access is not difficult but not effortless either; allow extra time for stairs or an uneven path.'],
+  Challenging: [ACC_NOTE.Challenging, 'This is a demanding approach with a steep hike; carry plenty of water, start early and leave enough daylight for the return.', 'Reaching the beach involves a steep and tiring walk, so go prepared with water, sturdy shoes and time to spare.', 'Expect a hard walk in and out; start early in the day and do not underestimate the climb back.']
+};
 function extraSections(b, more, nearD) {
   const ms = seasonMonths(b.season);
   const nodotx = x => String(x || '').replace(/[.\s]+$/, '');
   let when = '';
   if (ms && ms.length >= 3) {
     const peak = ms.slice(1, -1);
-    when = '<p>The swimming season here runs from ' + ms[0] + ' to ' + ms[ms.length - 1] + '. ' + peak.join(', ') + (peak.length > 1 ? ' are' : ' is') + ' the warmest and busiest, with the sea around ' + b.temp + ' &deg;C, so arrive early for parking and a good spot. ' + ms[0] + ' and ' + ms[ms.length - 1] + ' are quieter and cooler: good for walking and photos, though some beach bars and lifeguard posts may not be open yet or may already have closed for the year.</p>';
+    when = pick(b.slug + 'w', ['<p>The swimming season here runs from ' + ms[0] + ' to ' + ms[ms.length - 1] + '. ' + peak.join(', ') + (peak.length > 1 ? ' are' : ' is') + ' the warmest and busiest, with the sea around ' + b.temp + ' &deg;C, so arrive early for parking and a good spot. ' + ms[0] + ' and ' + ms[ms.length - 1] + ' are quieter and cooler: good for walking and photos, though some beach bars and lifeguard posts may not be open yet or may already have closed for the year.</p>', '<p>Most people swim at ' + b.name + ' between ' + ms[0] + ' and ' + ms[ms.length - 1] + '. The warmest and busiest ' + (peak.length > 1 ? 'months are ' : 'month is ') + peak.join(', ') + ', when the sea sits around ' + b.temp + ' &deg;C. Shoulder months bring cooler water and fewer crowds, although some bars and lifeguard posts may be closed.</p>', '<p>' + b.name + ' is at its best from ' + ms[0] + ' to ' + ms[ms.length - 1] + '. Expect the sea near ' + b.temp + ' &deg;C and the biggest crowds in ' + peak.join(', ') + ', so get there early for parking. A visit in ' + ms[0] + ' or ' + ms[ms.length - 1] + ' is calmer, but check that facilities are open.</p>', '<p>The season at ' + b.name + ' stretches from ' + ms[0] + ' to ' + ms[ms.length - 1] + ', with ' + peak.join(', ') + ' the peak (sea about ' + b.temp + ' &deg;C). Early and late visits mean quieter sand and cooler water, and seasonal services may not yet be running.</p>']);
   } else {
     when = '<p>The sea reaches about ' + b.temp + ' &deg;C in season. Early and late in the season the beach is quieter, but some facilities may be closed.</p>';
   }
   const who = [];
-  if (b.type === 'sandy') who.push('Sand makes it comfortable for sunbathing, building sandcastles and long walks along the water line.');
-  else if (b.type === 'pebble') who.push('Pebbles and clear water suit swimmers and snorkellers; bring water shoes for an easier entry.');
+  if (b.type === 'sandy') who.push(pick(b.slug + 'x', ['Sand makes it comfortable for sunbathing, building sandcastles and long walks along the water line.', 'The soft sand is good for lying out, playing with children and strolling along the shore.', 'This is a sand beach, which makes it easy for sunbathing, sandcastles and a long walk at the water edge.']));
+  else if (b.type === 'pebble') who.push(pick(b.slug + 'x', ['Pebbles and clear water suit swimmers and snorkellers; bring water shoes for an easier entry.', 'The pebbles and clear water favour swimmers and snorkellers, and water shoes make getting in more comfortable.', 'A pebble shore means clear water for swimming and snorkelling; shoes for the water help on the stones.']));
   else if (b.type === 'rocky') who.push('A rocky shore suits confident swimmers and snorkellers more than families with small children; bring water shoes.');
   else if (b.type === 'pink') who.push('The pink-tinted sand makes it a favourite for photographers and couples.');
-  if (b.access === 'Easy') who.push('Easy access makes it practical for families, older visitors and anyone with a pushchair.');
-  else if (b.access === 'Moderate') who.push('Expect a short walk or uneven ground, so it suits most visitors with sensible footwear.');
+  if (b.access === 'Easy') who.push(pick(b.slug + 'x', ['Easy access makes it practical for families, older visitors and anyone with a pushchair.', 'With easy access it works well for families, older visitors and people with pushchairs.', 'The simple approach makes it a practical choice for families and visitors who prefer not to walk far.']));
+  else if (b.access === 'Moderate') who.push(pick(b.slug + 'x', ['Expect a short walk or uneven ground, so it suits most visitors with sensible footwear.', 'A short walk or uneven ground is part of the visit, which most people manage in sensible shoes.', 'The approach has some uneven ground, so wear proper footwear; most visitors manage it comfortably.']));
   else if (b.access === 'Challenging') who.push('Access is demanding, so it suits fit, well-prepared visitors; wear sturdy shoes and carry water.');
   if (b.gem) who.push('It is flagged as a hidden gem, so it suits travellers who prefer quieter places over the headline beaches.');
   if (/^\s*(none|no|few)\b|\bnone\b|\bno facilities\b/i.test(b.fac || '')) who.push('There are few or no facilities on the sand, so bring water, food and shade.');
@@ -593,7 +599,7 @@ B.forEach(b => {
 ${infoBox(b)}
 <h2>Planning your visit to ${esc(b.name)}</h2>
 <p>${esc(TYPE_NOTE[b.type] || '')}</p>
-<p>${esc(ACC_NOTE[b.access] || '')}</p>
+<p>${esc(ACC_VAR[b.access] ? pick(b.slug + 'a', ACC_VAR[b.access]) : '')}</p>
 <p>The usual season runs ${esc(b.season)}. Visiting near the start or end of that window usually means fewer people, but the sea is cooler and some facilities may not be open yet or may have closed for the year.${b.gem ? ' We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.' : ''}</p>
 <p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}${hubLink(b)}</p>
 ${LISTS.linksFor(b)}
