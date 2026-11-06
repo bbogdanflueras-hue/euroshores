@@ -37,7 +37,8 @@ B.forEach(b => { const p = D.PH[b.id]; b.wm = p.f; b.cr = p; });
 const BY = {}; B.forEach(b => BY[b.id] = b);
 const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano', mellieha: 'ghadira' };
 const BU = B.filter(b => !CANON[b.id]);
-const GUIDES = D.GUIDES.map(g => Object.assign({}, g, { slug: slug(g.title), ptitle: plain(g.title) }));
+let EXTRA_G = []; try { EXTRA_G = JSON.parse(fs.readFileSync(path.join(ROOT, 'gen', 'extra-guides.json'), 'utf8')); } catch (e) {}
+const GUIDES = D.GUIDES.concat(EXTRA_G).map(g => Object.assign({}, g, { slug: slug(g.title), ptitle: plain(g.title) }));
 const countries = {};
 BU.forEach(b => { (countries[b.country] = countries[b.country] || { name: b.country, cc: b.cc, slug: slug(b.country), list: [] }).list.push(b); });
 Object.values(countries).forEach(c => c.list.sort((a, b) => b.rating - a.rating));
