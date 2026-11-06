@@ -925,6 +925,7 @@ function renderCountries(){
   }).join('');
   observeReveal($('countriesGrid'));
 }
+fetch('gen/extra-guides.json').then(function(r){return r.ok?r.json():[]}).then(function(x){ if(x&&x.length&&!window._xg){ window._xg=1; GUIDES.push.apply(GUIDES,x); var s=$('stGuides'); if(s) s.textContent=GUIDES.length; renderGuides(); } }).catch(function(){});
 function renderGuides(){
   $('guidesGrid').innerHTML = GUIDES.map(function(g,i){
     return '<button type="button" class="guide-card reveal reveal-d'+((i%6)+1)+'" data-guide="'+i+'"><div class="guide-color-strip" style="background:'+g.color+'"></div><div class="guide-body"><div class="guide-category">'+g.cat+'</div><div class="guide-title">'+g.title+'</div><div class="guide-desc">'+g.desc+'</div><div class="guide-meta"><span>'+ic('clock',14)+' '+g.min+' min read</span></div></div></button>';
