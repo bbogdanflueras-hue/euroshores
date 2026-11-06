@@ -55,6 +55,7 @@ footer{background:#08202e;color:#cfe3ec;padding:26px 24px;font-size:14px;text-al
 table.info{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8ecf0;margin:10px 0}table.info th{text-align:left;width:32%;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a8d;vertical-align:top;padding:10px 14px;border-bottom:1px solid #eef1f4}table.info td{padding:10px 14px;border-bottom:1px solid #eef1f4}@media(max-width:600px){table.info th{width:38%}}`;
 
 // Duplicate beach pages (same beach listed twice): canonical points to the keeper, and they are left out of the sitemap.
+const THIN = new Set(["mgarr-ix-xini","cala-mesquida","son-moll-beach","kyllini-beach","praia-de-porto-de-mos","mikro-alyko-beach","la-courtade-beach","nikolaos-beach","barceloneta-beach","tsigrado-beach","cala-bassa","tamaricciu-beach","platis-gialos-beach","lozari-beach","supetar-beach","baia-di-ieranto","estanyol-beach","glyka-nera-beach","la-fosca-beach","cala-del-plomo","spiaggia-dei-maronti","playa-de-los-lances","platja-de-pineda-de-mar","playa-de-mazagon-huelva","livadhi-beach","buljarica-beach","kathisma-beach","praia-do-tonel","gnejna-bay","vai-beach","queens-beach"]); // thin pages: noindex, kept out of the sitemap
 function layout(o) {
   // o: {depth, path, title, desc, h1body, ogimg, ld[]}
   const up = '../'.repeat(o.depth);
@@ -70,7 +71,7 @@ function layout(o) {
 <meta name="description" content="${esc(o.desc)}"/>
 <link rel="canonical" href="${curl}"/>
 <link rel="alternate" type="application/atom+xml" title="Newest beaches" href="${SITE}/feed.xml"/>
-<meta name="robots" content="index, follow, max-image-preview:large"/>
+<meta name="robots" content="${o.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}"/>
 <meta name="theme-color" content="#0f4a63"/>
 <link rel="icon" href="${up}favicon.svg" type="image/svg+xml"/>
 <link rel="manifest" href="${up}site.webmanifest"/>
@@ -93,7 +94,7 @@ ${gcTag()}
 <main>
 ${o.body}
 </main>
-<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}about/#editorial">Editorial policy</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}best/">Best of</a> &middot; <a href="${up}find/">Finder</a> &middot; <a href="${up}map/">Map</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}region/">Regions</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
+<footer><p><a href="${up}">${NAME}</a> &middot; <a href="${up}about/">About</a> &middot; <a href="${up}about/#editorial">Editorial policy</a> &middot; <a href="${up}new/">Newest</a> &middot; <a href="${up}best/">Best of</a> &middot; <a href="${up}find/">Finder</a> &middot; <a href="${up}map/">Map</a> &middot; <a href="${up}hidden-gems/">Hidden gems</a> &middot; <a href="${up}region/">Regions</a> &middot; <a href="${up}feed.xml">RSS</a> &middot; <a href="${up}suggest-a-beach/">Suggest a beach</a> &middot; <a href="${up}contact/">Contact</a> &middot; <a href="${up}privacy/">Privacy</a> &middot; Editorial beach guides for Europe &middot; Photos via <a href="https://commons.wikimedia.org/" rel="noopener">Wikimedia Commons</a> (credited on each page)</p>
 <p style="margin-top:8px">Disclaimer: details such as water temperature, facilities, access rules, water shoe advice and nudism status are compiled from public sources, may be incomplete or out of date, and are a guide only, not legal advice. Local rules and signs take priority. Check locally before you travel; use of this site is at your own risk.</p></footer>
 <script src="${up}auth.js" defer></script>
 <script src="${up}counter.js" defer></script>
@@ -615,8 +616,8 @@ ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></de
 <div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}${nearD[x.id] != null ? ' &middot; ' + Math.round(nearD[x.id]) + ' km away' : ''}</small></div></a>`).join('')}</div>
 <p>Browse all <a href="../../country/${slug(b.country)}/">beaches in ${esc(b.country)}</a> or <a href="../../#beaches">compare every beach</a>.</p>
 <p style="margin-top:22px">Scores are editorial ratings from the ${NAME} team. Last updated ${D.updated}.</p>`;
-  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld, canon: CANON[b.id] ? 'beach/' + BY[CANON[b.id]].slug + '/' : '' }));
-  if (!CANON[b.id]) urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
+  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld, canon: CANON[b.id] ? 'beach/' + BY[CANON[b.id]].slug + '/' : '', noindex: THIN.has(b.slug) }));
+  if (!CANON[b.id] && !THIN.has(b.slug)) urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
 });
 
 // ---- country editorial content (general, stable facts only; no prices or visa rules)
@@ -884,6 +885,31 @@ ${guideExtra(g)}<h2>More guides</h2>
 <p style="margin-top:22px">Last updated ${D.updated}.</p>`;
   write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
   urls.push({ loc: SITE + '/' + rel, pri: '0.5' });
+})();
+
+// ---- contact page
+(function contactPage() {
+  const rel = 'contact/';
+  const title = 'Contact ' + NAME + ': Corrections and Suggestions';
+  const desc = 'How to send ' + NAME + ' a correction, a beach suggestion or a question about our beach guides.';
+  const ld = [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: title, url: SITE + '/' + rel, description: desc, isPartOf: { '@type': 'WebSite', name: NAME, url: SITE + '/' } }];
+  const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; Contact</div>
+<h1>Contact ${NAME}</h1>
+<p class="lead">${NAME} is an independent, editor-run guide to the beaches of Europe. We read every message and use it to correct and improve the guides.</p>
+<h2>Send a correction or a tip</h2>
+<p>Parking rules, fees, opening seasons and access routes change every year. If you visited a beach recently and something on its page is out of date, tell us through the <a href="../suggest-a-beach/">Suggest a beach</a> form. Name the beach, say what changed and when you saw it. We check the details against official sources before we update the page.</p>
+<h2>Suggest a beach</h2>
+<p>Know a beach that should be in the guide? Use the same form and include the nearest village, what makes it worth a trip and how you get there. We add beaches only when we can confirm access, facilities and a free-licence photo.</p>
+<h2>Photo credits and takedowns</h2>
+<p>Photos come from Wikimedia Commons under free licences and are credited to their authors on each beach page. If you are the author and want a credit changed or a photo removed, send the beach name and the file name through the form and we will act on it promptly.</p>
+<h2>Partnerships and press</h2>
+<p>We have no paid placements and no sponsored rankings. If you run a tourism board, a ferry line or a local guide service and want to share official information about a beach, send it through the form with a link to the source.</p>
+<h2>How we respond</h2>
+<p>We aim to reply to messages that need an answer within a week. Corrections are usually live on the site within a few days of verification.</p>
+<ul class="links"><li><a href="../suggest-a-beach/">Suggest a beach or send a correction</a></li><li><a href="../about/">About ${NAME} and how we rate beaches</a></li><li><a href="../privacy/">Privacy</a></li></ul>
+<p style="margin-top:22px">Last updated ${D.updated}.</p>`;
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(B[0], 1200), ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.4' });
 })();
 
 // ---- privacy page
