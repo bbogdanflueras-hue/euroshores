@@ -145,8 +145,9 @@ module.exports = function (c) {
       '<h2 id="faq">Frequently asked questions</h2>\n' + faqs.map(function (f) { return '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>'; }).join('\n') + '\n' +
       '<h2 id="more">More lists</h2>\n<ul class="links">' + rel2.map(function (x) { return '<li><a href="../' + x.slug + '/">' + esc(x.h1) + '</a></li>'; }).join('') + '</ul>\n' +
       '<p>' + (ctry ? '<a href="../../country/' + ctry.slug + '/">All beaches in ' + esc(ctry.name) + '</a> &middot; ' : '') + '<a href="../../find/">Beach finder</a> &middot; <a href="../../map/">Map of all beaches</a> &middot; <a href="../">All lists</a></p>';
-    write(rel + 'index.html', layout({ depth: 2, path: rel, title: title, desc: desc, body: body, ogimg: imgUrl(t1, 1200), ld: ld }));
-    return { loc: SITE + '/' + rel, pri: '0.7' };
+    var thinList = body.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length < 570; // short list pages: noindex and left out of the sitemap
+    write(rel + 'index.html', layout({ depth: 2, path: rel, title: title, desc: desc, body: body, ogimg: imgUrl(t1, 1200), ld: ld, noindex: thinList }));
+    return thinList ? null : { loc: SITE + '/' + rel, pri: '0.7' };
   }
 
   function indexPage() {
@@ -257,7 +258,7 @@ module.exports = function (c) {
       return '<h3 style="margin:18px 0 4px">Best-of lists and tools</h3><p>' + pick.map(function (d) { return '<a href="best/' + d.slug + '/">' + esc(d.h1) + '</a>'; }).join(' &middot; ') + ' &middot; <a href="best/">All ' + defs.length + ' lists</a> &middot; <a href="find/">Beach finder</a> &middot; <a href="map/">Map</a> &middot; <a href="packing-checklist/">Packing checklist</a></p>';
     },
     writeAll: function (urls) {
-      defs.forEach(function (d) { urls.push(pageFor(d)); });
+      defs.forEach(function (d) { var u = pageFor(d); if (u) urls.push(u); });
       urls.push(indexPage()); urls.push(findPage()); urls.push(mapPage()); urls.push(checklistPage());
     }
   };
