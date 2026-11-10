@@ -838,8 +838,8 @@ function guideExtra(g) {
 
 GUIDES.forEach(g => {
   const rel = 'guide/' + g.slug + '/';
-  const title = g.ptitle + ' | ' + NAME;
-  const desc = plain(g.desc + ' ' + g.html).slice(0, 154).replace(/\s+\S*$/, '') + '...';
+  const SEOT = { 'budget-beach-holidays-in-europe': ['Cheap Beach Holidays in Europe: Costs and Tips | EuroShores', 'Beaches are free almost everywhere in Europe. See what sunbeds, parking, boats and food really cost, and the cheapest coasts for 2027.'] }; const title = SEOT[g.slug] ? SEOT[g.slug][0] : g.ptitle + ' | ' + NAME;
+  const desc = (SEOT[g.slug] && SEOT[g.slug][1]) || plain(g.desc + ' ' + g.html).slice(0, 154).replace(/\s+\S*$/, '') + '...';
   const ld = [
     { '@context': 'https://schema.org', '@type': 'Article', headline: g.ptitle, description: plain(g.desc), dateModified: D.updated, author: { '@type': 'Organization', name: NAME }, publisher: { '@type': 'Organization', name: NAME }, mainEntityOfPage: SITE + '/' + rel },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: g.ptitle, item: SITE + '/' + rel }] }
