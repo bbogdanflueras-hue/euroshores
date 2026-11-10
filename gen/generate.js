@@ -529,7 +529,7 @@ function extraSections(b, more, nearD) {
   if (/^\s*(none|no|few)\b|\bnone\b|\bno facilities\b/i.test(b.fac || '')) who.push('There are few or no facilities on the sand, so bring water, food and shade.');
   else if (/bar|restaurant|chiringuito|cafe|kiosk|taverna/i.test(b.fac || '')) who.push('Food and drink close by make it easy to stay for the whole day.');
   const near = (more || []).filter(x => nearD && nearD[x.id] != null).slice(0, 3);
-  let there = '<p>' + esc(nodotx(b.park)) + '. The beach sits at about ' + Number(b.lat).toFixed(3) + ', ' + Number(b.lng).toFixed(3) + ' on the map, so use the map link above for directions.';
+  let there = '<p>' + esc(nodotx(b.park)) + '. Use the map link above for directions.';
   if (near.length) there += ' If you are planning a day around it, the closest other beaches on our list are ' + near.map(x => '<a href="../' + x.slug + '/">' + esc(x.name) + '</a> (' + Math.round(nearD[x.id]) + ' km)').join(', ') + '.';
   there += '</p>';
   return gal2(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
@@ -622,7 +622,7 @@ ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></de
 <h2>Beaches near ${esc(b.name)}</h2>
 <div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}${nearD[x.id] != null ? ' &middot; ' + Math.round(nearD[x.id]) + ' km away' : ''}</small></div></a>`).join('')}</div>
 <p>Browse all <a href="../../country/${slug(b.country)}/">beaches in ${esc(b.country)}</a> or <a href="../../#beaches">compare every beach</a>.</p>
-<p style="margin-top:22px">Scores are editorial ratings from the ${NAME} team. Last updated ${D.updated}.</p>`;
+<p style="margin-top:22px">Scores are editorial ratings from the ${NAME} team, based on public tourism and visitor sources; see <a href="../../guide/how-to-read-a-beach-rating-on-euroshores/">how to read a rating</a>. Last updated ${D.updated}.</p>`;
   write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld, canon: CANON[b.id] ? 'beach/' + BY[CANON[b.id]].slug + '/' : '', noindex: THIN.has(b.slug) }));
   if (!CANON[b.id] && !THIN.has(b.slug)) urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
 });
