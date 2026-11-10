@@ -557,7 +557,7 @@ B.forEach(b => {
   if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
   faqs.push(['Do you need water shoes at ' + b.name + '?', shoesFor(b, inf || {})]);
   faqs.push(['Is nudism allowed at ' + b.name + '?', nudismFor(b)]);
-  const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ' - Best Time, Parking & Tips | ' + NAME, b.name + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
+  const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ' - Best Time, Parking & Tips | ' + NAME, b.name + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
   const title = tcands.find(t => t.length <= 60) || tcands[tcands.length - 1];
 
 
