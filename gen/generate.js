@@ -557,7 +557,7 @@ B.forEach(b => {
   if (inf && inf.sunbeds) faqs.push(['Are there sunbeds at ' + b.name + '?', nodot(inf.sunbeds) + '. Prices are approximate and change by season.']);
   faqs.push(['Do you need water shoes at ' + b.name + '?', shoesFor(b, inf || {})]);
   faqs.push(['Is nudism allowed at ' + b.name + '?', nudismFor(b)]);
-  const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
+  const tcands = [b.name + ', ' + b.country + ' - Best Time, Parking & Tips | ' + NAME, b.name + ', ' + b.country + ' - Best Time & Tips | ' + NAME, b.name + ' - Best Time, Parking & Tips | ' + NAME, b.name + ' - Best Time & Tips | ' + NAME, b.name + ', ' + b.country + ' - Beach Guide | ' + NAME, b.name + ', ' + b.country + ' | ' + NAME];
   const title = tcands.find(t => t.length <= 60) || tcands[tcands.length - 1];
 
 
@@ -570,7 +570,7 @@ B.forEach(b => {
   [factFull, factShort].some(fact => {
     let lead = b.name + ' (' + city + '): ' + sents[0];
     if (lead.length + 1 + fact.length > 158) lead = b.name + ': ' + sents[0];
-    if (lead.length + 1 + fact.length > 158) { const room = 158 - fact.length - 4; if (room < 55) return false; lead = lead.slice(0, room).replace(/\s+\S*$/, '') + '...'; }
+    if (lead.length + 1 + fact.length > 158) { lead = b.name + ' beach guide' + (city ? ' (' + city + ')' : '') + '.'; if (lead.length + 1 + fact.length > 158) return false; }
     desc = lead + ' ' + fact; return true;
   });
   if (!desc) { desc = b.name + ' (' + city + '): ' + sents[0]; if (desc.length > 160) desc = desc.slice(0, 157).replace(/\s+\S*$/, '') + '...'; }
