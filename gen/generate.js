@@ -339,7 +339,7 @@ function shoesFor(b, i) {
 }
 const NUDE_M = { 'adabojana': "Mandatory. Naturist area on the Ada Bojana island, where nudity is the norm.", 'suhapunta': "Mandatory. Listed as a nudist beach on Rab; clothes are not expected." };
 const NUDE_O = new Set('superparadise sougia glykanera plakias agiospavlos agiagalini kommos hersonissos elia agiossostis plaka agiaanna agiaannaamorgos agprokopios mikroalyko vlychada katergo vatera kathisma falassarna banana myrtiotissa sistiana portonovo sirolo vignanotica guaceto vendicari piscinas portoferro maripintau meco barril fonte comporta ursa pessegueiro bordeira beliche prainha fuseta meiapraia zavial cabopino zrce zlatnirat nugal sunj lokrum valdanos maspalomas ingles cofete papagayo illetes sesilletes estrenc torta mesquida calamatzoc enporter sonbou macarella macarelleta monsul muertos bolonia torimbia vega gulpiyuri ballota xago silencio barayo capodifeno tahiti espiguette pampelonne brouis piemanson hossegor'.split(' '));
-function nudismFor(b) { if (NUDE_M[b.id]) return NUDE_M[b.id]; if (NUDE_O.has(b.id)) return 'Optional. Naturists use this beach or a part of it, so clothing is not required there. Check local signs and be discreet.'; if (b.cc === 'MT') return 'Forbidden. Public nudity is illegal in Malta.'; if (b.cc === 'AL') return 'Forbidden. Nudism is not legal on public beaches in Albania.'; return 'Forbidden. Clothing is expected; no naturist area is recorded for this beach in our sources.'; }
+function nudismFor(b) { if (b.cc === 'CY') return 'Forbidden. Public nudity is not allowed on Cyprus beaches, so keep swimwear on.'; if (NUDE_M[b.id]) return NUDE_M[b.id]; if (NUDE_O.has(b.id)) return 'Optional. Naturists use this beach or a part of it, so clothing is not required there. Check local signs and be discreet.'; if (b.cc === 'MT') return 'Forbidden. Public nudity is illegal in Malta.'; if (b.cc === 'AL') return 'Forbidden. Nudism is not legal on public beaches in Albania.'; return 'Forbidden. Clothing is expected; no naturist area is recorded for this beach in our sources.'; }
 
 function infoBox(b) {
   const base = INFO[b.slug] || {};
@@ -690,7 +690,17 @@ const CINFO = {
       ["Is Ksamil cheaper than the Greek islands?", "It has that reputation, but prices rise in peak season and in popular beach clubs. Check current prices before you plan a budget."]
     ]
   },
-  france: {
+  cyprus: {
+      intro: "Cyprus has warm, clear water, sandy bays around Ayia Napa and Protaras, quieter pebble coves near Paphos and Polis, and a long swimming season. Most beaches have sunbeds and cafes in summer, and the island is easy to explore by car.",
+      when: "May to October is the main swimming season, and the sea stays warm into November. July and August are the hottest and busiest months, while May, June and September give warm water with more space.",
+      around: "Larnaca and Paphos airports serve most visitors. Public buses link the main towns, but a hire car is the easiest way to reach quieter coves. Cyprus drives on the left.",
+      good: "Cyprus uses the euro. Sunbeds and umbrellas are usually paid, and public nudity is not allowed. Protect yourself from the strong midday sun and check flags and local signs before swimming.",
+      faqs: [
+        ["When is the best time to swim in Cyprus?", "June and September offer warm water with fewer people. July and August are the hottest and busiest months."],
+        ["Do you need a car to visit Cyprus beaches?", "Resort beaches such as Nissi Beach and Fig Tree Bay are easy by bus or taxi, but a car helps for Konnos Bay and the quieter coves on the west coast."]
+      ]
+    },
+    france: {
     intro: "Palombaggia, on the southeast coast of Corsica, is among the island's best-known beaches, with fine pale sand, red rocks and umbrella pines behind the shore.",
     when: "June to September is the main season. July and August are the busiest, and parking behind the beach can fill early. Late spring and early autumn are quieter, and the sea stays warm into September.",
     around: "Corsica is reached by ferry from mainland France and Italy, or by air to Figari, Bastia, Ajaccio or Calvi. A car is the easiest way to reach the beaches near Porto-Vecchio.",
