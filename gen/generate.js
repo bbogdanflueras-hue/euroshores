@@ -338,7 +338,7 @@ function shoesFor(b, i) {
   return 'Not needed. Sand beach; no rocks or urchins noted in our sources.';
 }
 const NUDE_M = { 'adabojana': "Mandatory. Naturist area on the Ada Bojana island, where nudity is the norm.", 'suhapunta': "Mandatory. Listed as a nudist beach on Rab; clothes are not expected." };
-const NUDE_O = new Set('superparadise sougia glykanera plakias agiospavlos agiagalini kommos hersonissos elia agiossostis plaka agiaanna agiaannaamorgos agprokopios mikroalyko vlychada katergo vatera kathisma falassarna banana myrtiotissa sistiana portonovo sirolo vignanotica guaceto vendicari piscinas portoferro maripintau meco barril fonte comporta ursa pessegueiro bordeira beliche prainha fuseta meiapraia zavial cabopino zrce zlatnirat nugal sunj lokrum valdanos maspalomas ingles cofete papagayo illetes sesilletes estrenc torta mesquida calamatzoc enporter sonbou macarella macarelleta monsul muertos bolonia torimbia vega gulpiyuri ballota xago silencio barayo capodifeno tahiti espiguette pampelonne brouis piemanson hossegor'.split(' '));
+const NUDE_O = new Set('superparadise sougia glykanera plakias agiospavlos agiagalini kommos hersonissos elia agiossostis plaka agiaanna agiaannaamorgos agprokopios mikroalyko vlychada katergo vatera kathisma falassarna banana myrtiotissa sistiana portonovo sirolo vignanotica guaceto vendicari piscinas portoferro maripintau meco barril fonte comporta ursa pessegueiro bordeira beliche prainha fuseta meiapraia zavial cabopino zrce zlatnirat nugal sunj lokrum valdanos maspalomas ingles cofete papagayo illetes sesilletes estrenc torta mesquida calamatzoc enporter sonbou macarella macarelleta monsul muertos bolonia torimbia vega gulpiyuri ballota xago silencio barayo capodifeno tahiti espiguette pampelonne brouis piemanson hossegor irakli'.split(' '));
 function nudismFor(b) { if (b.cc === 'TR') return 'Forbidden. Public nudity is not allowed on Turkish beaches, so keep swimwear on.'; if (b.cc === 'CY') return 'Forbidden. Public nudity is not allowed on Cyprus beaches, so keep swimwear on.'; if (NUDE_M[b.id]) return NUDE_M[b.id]; if (NUDE_O.has(b.id)) return 'Optional. Naturists use this beach or a part of it, so clothing is not required there. Check local signs and be discreet.'; if (b.cc === 'MT') return 'Forbidden. Public nudity is illegal in Malta.'; if (b.cc === 'AL') return 'Forbidden. Nudism is not legal on public beaches in Albania.'; return 'Forbidden. Clothing is expected; no naturist area is recorded for this beach in our sources.'; }
 
 function infoBox(b) {
@@ -734,7 +734,17 @@ const CINFO = {
         ["Do you need a car to visit Turkey beaches?", "Resort beaches such as Oludeniz, Konyaalti and Icmeler are easy to reach by bus or dolmus, but a car helps for quieter bays such as Kaputas, Kabak and Cirali."]
       ]
     },
-france: {
+bulgaria: {
+      intro: "Bulgaria's Black Sea coast runs for about 380 kilometres from the Romanian border to Turkey, with long sandy beaches, low cliffs and some of the least developed shoreline in Europe. Big resorts such as Sunny Beach and Albena have wide golden sand and full facilities, while Irakli, Veleka and Krapets are quiet and wild.",
+      when: "June to September is the main swimming season, with the warmest sea in July and August. June and September are calmer, while the north coast can feel cooler and windier than the south.",
+      around: "Most visitors fly into Varna or Burgas, and both airports are within an hour or two of the main resorts. Local buses and minibuses link the towns, and a hire car helps for the wild southern beaches near Sinemorets and Kiten.",
+      good: "Sunbeds and umbrellas are usually paid at developed resort beaches, while the wilder southern beaches have few services, so bring water and shade. Check flags and local signs before swimming, since the Black Sea can have currents after strong winds.",
+      faqs: [
+        ["When is the best time to swim in Bulgaria", "July and August have the warmest water and the busiest beaches. June and September are quieter, with warm days and cooler evenings."],
+        ["Which Bulgarian beaches are best for a quiet day", "Irakli, Veleka, Krapets, Arkutino and Kavatsite are quieter than the big resorts, although most need a short walk or a drive from the nearest village."]
+      ]
+    },
+    france: {
     intro: "Palombaggia, on the southeast coast of Corsica, is among the island's best-known beaches, with fine pale sand, red rocks and umbrella pines behind the shore.",
     when: "June to September is the main season. July and August are the busiest, and parking behind the beach can fill early. Late spring and early autumn are quieter, and the sea stays warm into September.",
     around: "Corsica is reached by ferry from mainland France and Italy, or by air to Figari, Bastia, Ajaccio or Calvi. A car is the easiest way to reach the beaches near Porto-Vecchio.",
