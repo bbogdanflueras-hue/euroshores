@@ -1043,6 +1043,8 @@ var B = [
 ];
 var BY = {}; B.forEach(function(b){ BY[b.id]=b; });
 var WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
+// Editorial calibration (2026-11-14): Bulgaria scores differentiated; famous beaches (4.7+) are not hidden gems
+(function(){var R={sunny:4.1,albena:4.1,kiten:4.2,irakli:4.4,veleka:4.4,obzor:4.2,arkutino:4.2,krapets:4.2,kavatsite:4.3,silistar:4.4,vlas:4.1,chernomorets:4.2,byala:4.2,varna:4.1,constantine:4.1,pomorie:4.1,primorsko:4.2,golden:4.1,ravda:4.2};B.forEach(function(b){if(R[b.id])b.rating=R[b.id];if(b.gem&&b.rating>=4.7)b.gem=0;});})();
 var PH = {
 olympos:{f:'Olympos_Beach.jpg',by:'Capyusuf',lic:'CC BY-SA 4.0'},
 kusadasi:{f:'Sunset_at_ladies_beach_in_Kusadasi.jpg',by:'Finnfrog99',lic:'CC BY-SA 4.0'},
