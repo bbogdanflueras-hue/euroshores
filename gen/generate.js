@@ -1049,6 +1049,89 @@ ${guideExtra(g)}<h2>More guides</h2>
   write('feed.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<feed xmlns="http://www.w3.org/2005/Atom">\n<title>' + NAME + ' - newest beaches</title>\n<link href="' + SITE + '/feed.xml" rel="self"/>\n<link href="' + SITE + '/"/>\n<id>' + SITE + '/</id>\n<updated>' + upd + 'T00:00:00Z</updated>\n' + entries + '\n</feed>\n')
 })()
 
+// ---- stats hub (computed from the beach data; no new claims)
+(function statsPage() {
+  const rel = 'stats/';
+  const n = B.length;
+  const avg = a => a.length ? a.reduce((s, x) => s + x, 0) / a.length : 0;
+  const f1 = x => x.toFixed(1), f2 = x => x.toFixed(2);
+  const pct = (a, t) => Math.round(100 * a / t) + '%';
+  const rows = CL.map(c => {
+    const l = c.list, k = l.length;
+    return { c, k, rating: avg(l.map(x => x.rating)), temp: avg(l.map(x => x.temp)),
+      sandy: l.filter(x => x.type === 'sandy' || x.type === 'pink').length,
+      pebble: l.filter(x => x.type === 'pebble').length, rocky: l.filter(x => x.type === 'rocky').length,
+      easy: l.filter(x => x.access === 'Easy').length, gem: l.filter(x => x.gem).length,
+      top: l[0] };
+  });
+  const tr = cells => '<tr>' + cells.map((x, i) => '<td' + (i ? ' style="text-align:right"' : '') + '>' + x + '</td>').join('') + '</tr>';
+  const th = cells => '<tr>' + cells.map((x, i) => '<th' + (i ? ' style="text-align:right"' : '') + '>' + x + '</th>').join('') + '</tr>';
+  const tbl = (head, body) => '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8ecf0;font-size:15px"><thead>' + th(head) + '</thead><tbody>' + body.join('') + '</tbody></table></div><style>td,th{padding:8px 10px;border-bottom:1px solid #eef1f4;text-align:left}th{background:#f3f7fa;font-size:13px}</style>';
+  const clink = c => '<a href="../country/' + c.slug + '/">' + esc(c.name) + '</a>';
+  const total = {
+    sandy: B.filter(x => x.type === 'sandy' || x.type === 'pink').length,
+    pebble: B.filter(x => x.type === 'pebble').length,
+    rocky: B.filter(x => x.type === 'rocky').length,
+    easy: B.filter(x => x.access === 'Easy').length,
+    mod: B.filter(x => x.access === 'Moderate').length,
+    hard: B.filter(x => x.access === 'Challenging').length,
+    gem: B.filter(x => x.gem).length
+  };
+  const avgRating = avg(B.map(x => x.rating)), avgTemp = avg(B.map(x => x.temp));
+  const byCount = rows.slice().sort((a, b) => b.k - a.k);
+  const byTemp = rows.slice().sort((a, b) => b.temp - a.temp);
+  const top25 = B.slice().sort((a, b) => b.rating - a.rating || a.name.localeCompare(b.name)).slice(0, 25);
+  const warm = B.slice().sort((a, b) => b.temp - a.temp || b.rating - a.rating).slice(0, 10);
+  const cool = B.slice().sort((a, b) => a.temp - b.temp || b.rating - a.rating).slice(0, 10);
+  const gemTop = B.filter(x => x.gem).sort((a, b) => b.rating - a.rating || a.name.localeCompare(b.name)).slice(0, 15);
+  const hardest = B.filter(x => x.access === 'Challenging').sort((a, b) => b.rating - a.rating).slice(0, 10);
+  const blink = x => '<a href="../beach/' + x.slug + '/">' + esc(x.name) + '</a>';
+  const title = 'Europe Beach Statistics: ' + n + ' Beaches Compared | ' + NAME;
+  const desc = 'Data on ' + n + ' European beaches in ' + CL.length + ' countries: average ratings, sea temperatures, sand vs pebble, access difficulty and hidden gems by country.';
+  const body = `<div class="crumbs"><a href="../">${NAME}</a> &rsaquo; Statistics</div>
+<h1>Europe Beach Statistics</h1>
+<p class="lead">A data view of the ${n} beaches in ${CL.length} countries covered by ${NAME}: how many there are, what they are made of, how easy they are to reach and how warm the sea gets. Every figure on this page is calculated from the same editorial dataset that powers the beach pages.</p>
+<div class="facts">
+<div class="fact"><b>Beaches</b>${n}</div>
+<div class="fact"><b>Countries</b>${CL.length}</div>
+<div class="fact"><b>Average editorial score</b>${f2(avgRating)} / 5</div>
+<div class="fact"><b>Average in-season sea temperature</b>${f1(avgTemp)} &deg;C</div>
+<div class="fact"><b>Sand beaches</b>${total.sandy} (${pct(total.sandy, n)})</div>
+<div class="fact"><b>Pebble beaches</b>${total.pebble} (${pct(total.pebble, n)})</div>
+<div class="fact"><b>Rocky coves</b>${total.rocky} (${pct(total.rocky, n)})</div>
+<div class="fact"><b>Easy access</b>${total.easy} (${pct(total.easy, n)})</div>
+<div class="fact"><b>Moderate or challenging access</b>${total.mod + total.hard} (${pct(total.mod + total.hard, n)})</div>
+<div class="fact"><b>Flagged hidden gems</b>${total.gem} (${pct(total.gem, n)})</div>
+</div>
+<h2>Beaches by country</h2>
+<p>Spain, Greece and Italy have the most beaches in our guide, which reflects both their coastlines and how much coverage we have written so far. Newer countries have smaller samples, so treat their averages with caution.</p>
+${tbl(['Country', 'Beaches', 'Avg score', 'Sea temp (&deg;C)', 'Sand', 'Pebble', 'Rocky', 'Easy access', 'Top beach'], byCount.map(r => tr([clink(r.c), r.k, f2(r.rating), f1(r.temp), r.sandy, r.pebble, r.rocky, pct(r.easy, r.k), blink(r.top)])))}
+<h2>Sand or pebble?</h2>
+<p>${pct(total.sandy, n)} of our beaches are sand, ${pct(total.pebble, n)} are pebble and ${pct(total.rocky, n)} are rocky. The balance differs a lot by country, so check the table above: countries with a high pebble share, such as Croatia, call for water shoes, while sand-heavy countries suit families with small children.</p>
+<h2>Warmest and coolest seas</h2>
+<p>Temperatures are typical in-season values in degrees Celsius, not live readings. Averaged by country, the warmest in our data are ${byTemp.slice(0, 3).map(r => esc(r.c.name) + ' (' + f1(r.temp) + ')').join(', ')}, and the coolest are ${byTemp.slice(-3).reverse().map(r => esc(r.c.name) + ' (' + f1(r.temp) + ')').join(', ')}.</p>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+<div><h3>Warmest beaches</h3>${tbl(['Beach', 'Sea &deg;C'], warm.map(x => tr([blink(x) + ' <small>' + esc(x.country) + '</small>', x.temp])))}</div>
+<div><h3>Coolest beaches</h3>${tbl(['Beach', 'Sea &deg;C'], cool.map(x => tr([blink(x) + ' <small>' + esc(x.country) + '</small>', x.temp])))}</div>
+</div>
+<h2>Top 25 beaches by editorial score</h2>
+<p>Scores are the ${NAME} team's opinion of the overall experience, not visitor averages. Ties are broken alphabetically.</p>
+${tbl(['Beach', 'Country', 'Type', 'Access', 'Score'], top25.map(x => tr([blink(x), esc(x.country), esc(x.tag), esc(x.access), f1(x.rating)])))}
+<h2>Hidden gems</h2>
+<p>${total.gem} beaches (${pct(total.gem, n)}) carry our hidden-gem flag. The highest scoring are listed below. Countries with the most gems: ${rows.slice().sort((a, b) => b.gem - a.gem).slice(0, 3).map(r => esc(r.c.name) + ' (' + r.gem + ')').join(', ')}.</p>
+${tbl(['Beach', 'Country', 'Access', 'Score'], gemTop.map(x => tr([blink(x), esc(x.country), esc(x.access), f1(x.rating)])))}
+<h2>The hardest beaches to reach</h2>
+<p>${total.hard} beaches are rated challenging, which usually means a steep path, a long walk or a boat. These are the best rated of them.</p>
+${tbl(['Beach', 'Country', 'Score'], hardest.map(x => tr([blink(x), esc(x.country), f1(x.rating)])))}
+<h2>How to read these numbers</h2>
+<p>The dataset is editorial and selective: we cover beaches worth planning a trip around, not every shoreline, so country counts are not a measure of coastline length or quality. Temperatures and scores are approximate. See <a href="../about/">how we pick and rate beaches</a> for the method. Last updated ${D.updated}.</p>
+<p><a href="../#beaches">Browse all beaches</a> &middot; <a href="../regions/">Browse by region</a></p>`;
+  const ld = [{ '@context': 'https://schema.org', '@type': 'Dataset', name: 'European beach statistics', description: desc, url: SITE + '/' + rel, creator: { '@type': 'Organization', name: NAME }, dateModified: D.updated, isAccessibleForFree: true },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: NAME, item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Statistics', item: SITE + '/' + rel }] }];
+  write(rel + 'index.html', layout({ depth: 1, path: rel, title, desc, body, ogimg: imgUrl(top25[0], 1200), ld }));
+  urls.push({ loc: SITE + '/' + rel, pri: '0.7' });
+})();
+
 // ---- sitemap + robots
 const ID_BY_SLUG = {}; B.forEach(b => { ID_BY_SLUG[b.slug] = b.id; });
 function imgTag(u) { const m = u.loc.match(/\/beach\/([^\/]+)\/$/); const id = m && ID_BY_SLUG[m[1]]; return id ? '<image:image><image:loc>' + SITE + '/img/' + id + '-1200.webp</image:loc></image:image>' : ''; }
