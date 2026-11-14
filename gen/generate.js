@@ -1050,7 +1050,7 @@ ${guideExtra(g)}<h2>More guides</h2>
 })()
 
 // ---- stats hub (computed from the beach data; no new claims)
-(function statsPage() {
+;(function statsPage() {
   const rel = 'stats/';
   const n = B.length;
   const avg = a => a.length ? a.reduce((s, x) => s + x, 0) / a.length : 0;
