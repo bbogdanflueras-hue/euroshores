@@ -91,7 +91,7 @@ ${gcTag()}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3284213732554472" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="top"><a class="brand" href="${up}">&#9830; ${NAME}</a><a href="${up}#beaches">Beaches</a><a href="${up}#map-section">Map</a><a href="${up}#countries">Countries</a><a href="${up}#guides">Guides</a><a href="${up}best/">Best of</a><a href="${up}region/">Regions</a><a href="${up}find/">Finder</a></header>
+<header class="top"><a class="brand" href="${up}">&#9830; ${NAME}</a><a href="${up}#beaches">Beaches</a><a href="${up}#map-section">Map</a><a href="${up}#countries">Countries</a><a href="${up}#guides">Guides</a><a href="${up}best/">Best of</a><a href="${up}region/">Regions</a><a href="${up}find/">Finder</a><a class="donate" href="https://www.paypal.com/paypalme/bogdanf2000" target="_blank" rel="noopener" title="Donate via PayPal to keep EuroShores free and running" style="background:#e8a020;color:#1a1a2e;padding:5px 14px;border-radius:999px;font-weight:600;white-space:nowrap">&#9829; Donate</a></header>
 <main>
 ${o.body}
 </main>
