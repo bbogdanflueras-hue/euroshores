@@ -751,7 +751,27 @@ const CINFO = {
         ["Do you need a car to visit Turkey beaches?", "Resort beaches such as Oludeniz, Konyaalti and Icmeler are easy to reach by bus or dolmus, but a car helps for quieter bays such as Kaputas, Kabak and Cirali."]
       ]
     },
-bulgaria: {
+romania: {
+    intro: "Romania has about 245 km of Black Sea coast, from the Danube Delta in the north to the Bulgarian border in the south. The southern half is lined with sandy resorts such as Mamaia, Eforie and Neptun, while the north, inside the Danube Delta Biosphere Reserve, has wild beaches like Sulina and Gura Portitei that you reach by boat.",
+    when: "The season runs from June to early September, and July and August are the warmest and busiest months, especially at weekends. The Black Sea is usually warm enough for swimming from mid-June, and early September is calmer, with warm water and fewer people.",
+    around: "Constanta is the gateway to the coast, with an airport nearby and trains from Bucharest. Trains and buses link the southern resorts as far as Mangalia, and a car makes it easier to reach Corbu or Vama Veche. Sulina has no road and is reached by boat from Tulcea, and Gura Portitei by boat from Jurilovca.",
+    good: "The currency is the Romanian leu, and cards are widely accepted in the resorts. Many beaches have paid sunbed sections next to free public sand. The Danube Delta beaches are inside a protected reserve, so follow local rules on camping, fires and wildlife.",
+    faqs: [
+      ["When is the best time to visit Romanian beaches?", "July and August are warmest but busiest. Late June and early September give warm water with far fewer people."],
+      ["Which Romanian beach is the quietest?", "Corbu, Gura Portitei and Sulina are the wildest, with few or no hotels. The southern resorts such as Mamaia are much busier."]
+    ]
+  },
+  slovenia: {
+    intro: "Slovenia has under 50 km of Adriatic coast, between Italy and Croatia, so its beaches are small and close together. Swimming here mostly means stone or concrete platforms in towns such as Piran and Izola, a sandy resort beach at Portoroz, and quieter pebble coves under the cliffs of Strunjan and Debeli rtic.",
+    when: "The swimming season runs from June to September, with the warmest water in July and August. June and September are quieter and still warm, and the coast is an easy day trip from Ljubljana or Trieste at any point in summer.",
+    around: "Koper, Izola, Piran and Portoroz are linked by frequent buses, and the coast is about 90 minutes by car from Ljubljana. Piran old town is closed to cars, so visitors park at the edge of town and take a shuttle bus in. Coastal paths connect several beaches on foot.",
+    good: "Slovenia uses the euro. Much of the shore is rock or concrete rather than sand, so water shoes are useful. Strunjan and Debeli rtic are protected areas, so follow the rules on access, camping and fires.",
+    faqs: [
+      ["Does Slovenia have sandy beaches?", "Very few. Portoroz has the main sandy beach; most other spots are pebble coves or stone and concrete platforms."],
+      ["What is the best beach in Slovenia?", "Moon Bay below the Strunjan cliff is the most scenic. For facilities and families, Portoroz is the easiest choice."]
+    ]
+  },
+  bulgaria: {
       intro: "Bulgaria's Black Sea coast runs for about 380 kilometres from the Romanian border to Turkey, with long sandy beaches, low cliffs and some of the least developed shoreline in Europe. Big resorts such as Sunny Beach and Albena have wide golden sand and full facilities, while Irakli, Veleka and Krapets are quiet and wild.",
       when: "June to September is the main swimming season, with the warmest sea in July and August. June and September are calmer, while the north coast can feel cooler and windier than the south.",
       around: "Most visitors fly into Varna or Burgas, and both airports are within an hour or two of the main resorts. Local buses and minibuses link the towns, and a hire car helps for the wild southern beaches near Sinemorets and Kiten.",
