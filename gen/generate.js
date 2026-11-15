@@ -57,7 +57,24 @@ table.info{width:100%;border-collapse:collapse;background:#fff;border:1px solid 
 
 // Duplicate beach pages (same beach listed twice): canonical points to the keeper, and they are left out of the sitemap.
 const THIN = new Set(["mgarr-ix-xini","cala-mesquida","son-moll-beach","kyllini-beach","praia-de-porto-de-mos","mikro-alyko-beach","la-courtade-beach","nikolaos-beach","barceloneta-beach","tsigrado-beach","cala-bassa","tamaricciu-beach","platis-gialos-beach","lozari-beach","supetar-beach","baia-di-ieranto","estanyol-beach","glyka-nera-beach","la-fosca-beach","cala-del-plomo","spiaggia-dei-maronti","playa-de-los-lances","platja-de-pineda-de-mar","playa-de-mazagon-huelva","livadhi-beach","buljarica-beach","kathisma-beach","praia-do-tonel","gnejna-bay","vai-beach","queens-beach"]); // thin pages: noindex, kept out of the sitemap
+// Hand-written titles/snippets for pages Google already shows on page 1-2 (from Search Console queries, Nov 2026)
+const SNIP = {
+  'guide/budget-beach-holidays-in-europe/': { title: 'Budget Beach Holidays in Europe: Cheapest Coasts 2027', desc: 'Cheap beach breaks in Europe: which coasts cost least, what sunbeds, parking and boats really cost, and how to plan a budget-friendly beach getaway.' },
+  'beach/costa-calma-beach-fuerteventura/': { title: 'Costa Calma Beach, Fuerteventura: Best Time & Tips', desc: 'Costa Calma, Fuerteventura: kilometres of golden sand and shallow water on the Sotavento coast. Best time, wind, parking and tips. Rated 4.5/5.' },
+  'beach/spiaggia-di-riccione/': { title: 'Best Time to Visit Riccione Beach, Italy | EuroShores', desc: 'When to visit Riccione: June to September, with the sea around 24 C. Fine sand, shallow water, numbered bathing clubs and tips for families.' },
+  'beach/itzurun-beach/': { title: 'Itzurun Beach, Zumaia: Flysch Cliffs & Visitor Tips', desc: 'Itzurun Beach in Zumaia: a 270 m golden-sand cove below the famous Basque flysch cliffs. Best time to visit, access, parking and swimming tips.' },
+  'beach/kourouta-beach/': { title: 'Kourouta Beach, Greece: Best Time & Tips | EuroShores', desc: 'Kourouta Beach near Amaliada: a long, wide sandy beach on the Ionian coast of the western Peloponnese. Best time, sea temperature, parking and tips.' },
+  'beach/playa-de-gandia/': { title: 'Playa de Gandia, Spain: Best Time & Tips | EuroShores', desc: 'Playa de Gandia: one of the widest beaches on the Valencia coast, with fine golden sand and shallow water. Best time to visit, parking and tips.' },
+  'beach/kalamaki-beach/': { title: 'Kalamaki Beach, Zakynthos: Turtles, Rules & Tips', desc: 'Kalamaki Beach on Laganas Bay, Zakynthos: golden sand inside the protected loggerhead turtle nesting area. What the rules mean, best time and tips.' },
+  'beach/lalzit-bay-beach-albania/': { title: 'Lalzi Bay (Lalzit) Beach, Albania: Guide & Tips', desc: 'Lalzi Bay (Lalzit), north of Durres: a long sandy Adriatic beach with calm shallow water. Best time to visit, sea temperature and practical tips.' },
+  'beach/playa-san-cristobal-almunecar/': { title: 'Playa San Cristobal, Almunecar: Guide & Tips', desc: 'Playa San Cristobal below Almunecar old town on the Costa Tropical: dark pebbles, coarse sand and clear water. Best time, parking and tips.' },
+  'beach/praia-da-barra-aveiro/': { title: 'Praia da Barra, Aveiro: Beach Guide & Tips | EuroShores', desc: 'Praia da Barra near Aveiro: a wide Atlantic beach of golden sand beside the striped Barra lighthouse. Best time, water temperature and tips.' },
+  'beach/tamariu-beach/': { title: 'Tamariu Beach, Costa Brava: Best Time & Tips', desc: 'Tamariu, Costa Brava: a small golden-sand bay of about 180 m sheltered by pine-covered headlands near Palafrugell. Best time, parking and tips.' },
+  'beach/playa-de-ris/': { title: 'Playa de Ris, Noja (Cantabria): Beach Guide & Tips', desc: 'Playa de Ris in Noja, Cantabria: a broad golden beach with a gentle shore, good swimming and dunes behind. Best time, parking and tips.' },
+  'beach/spiaggia-di-giardini-naxos/': { title: 'Giardini Naxos Beach, Sicily: Guide & Tips', desc: 'Giardini Naxos beach below Taormina, Sicily: grey pebbles, warm clear water and views of Mount Etna. Best time, sea temperature and tips.' }
+};
 function layout(o) {
+  if (SNIP[o.path]) Object.assign(o, SNIP[o.path]);
   // o: {depth, path, title, desc, h1body, ogimg, ld[]}
   const up = '../'.repeat(o.depth);
   const url = SITE + '/' + o.path;
