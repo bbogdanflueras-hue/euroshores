@@ -747,6 +747,21 @@
 </div>
 
 <!-- BEACHES -->
+<section id="livecam" hidden style="max-width:1100px;margin:48px auto 0;padding:0 20px">
+<div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid #e8ecf0;border-radius:16px;padding:16px;color:#1a1a2e">
+<a id="lcImgA" href="#" style="flex:0 1 280px;max-width:100%"><img id="lcImg" alt="" loading="lazy" width="500" height="300" style="width:100%;height:170px;object-fit:cover;border-radius:12px;display:block"></a>
+<div style="flex:1;min-width:220px">
+<div style="font-size:13px;font-weight:700;letter-spacing:.08em;color:#d0342c"><span class="lcdot" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#d0342c;margin-right:6px"></span>LIVE NOW &middot; BEACH WEBCAM</div>
+<h2 id="lcName" style="margin:6px 0 4px;font-size:24px;color:#1a1a2e"></h2>
+<p id="lcLoc" style="margin:0 0 12px;color:#6b7a8d"></p>
+<a id="lcGo" href="#" target="_blank" rel="noopener nofollow" style="display:inline-block;background:#0e7490;color:#fff;padding:9px 16px;border-radius:999px;font-weight:600;text-decoration:none;margin:0 8px 8px 0">Watch the live webcam</a><button id="lcNext" type="button" style="padding:9px 16px;border-radius:999px;border:1px solid #c9d3dc;background:#fff;color:#1a1a2e;cursor:pointer;font-weight:600;margin:0 0 8px">Show another beach</button>
+<p style="margin:6px 0 0;font-size:12px;color:#6b7a8d">Cameras are run by SkylineWebcams and open on their site. <a id="lcPage" href="#">Read our beach guide</a></p>
+</div></div>
+<style>@keyframes lcp{0%,100%{opacity:1}50%{opacity:.25}}.lcdot{animation:lcp 1.6s infinite}</style>
+<script>
+;(function(){try{fetch('cams.json').then(function(r){return r.json()}).then(function(L){if(!L||!L.length)return;var s=document.getElementById('livecam'),i=Math.floor(Math.random()*L.length);function g(x){return document.getElementById(x)}function show(){var c=L[i%L.length];g('lcImg').src='img/'+c.id+'-500.webp';g('lcImg').alt=c.n;g('lcImgA').href=g('lcPage').href='beach/'+c.s+'/';g('lcName').textContent=c.n;g('lcLoc').textContent=c.l;g('lcGo').href=c.u}show();s.hidden=false;g('lcNext').onclick=function(){i+=1+Math.floor(Math.random()*Math.max(1,L.length-1));show()}}).catch(function(){})}catch(e){}})();
+</script>
+</section>
 <section id="beaches">
   <div class="section-header">
     <div>
