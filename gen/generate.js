@@ -775,6 +775,36 @@ romania: {
       ["What is the best beach in Slovenia?", "Moon Bay below the Strunjan cliff is the most scenic. For facilities and families, Portoroz is the easiest choice."]
     ]
   },
+  germany: {
+    intro: "Germany has two coasts, but this guide covers the Baltic, where long beaches of fine pale sand run from the Bay of Lubeck past Rostock to the islands of Rugen and Usedom. Grand resort towns with white villas and piers sit beside wild national park beaches backed by forest.",
+    when: "The season runs from June to early September. July and August are warmest and busiest, with the sea usually around 17 to 20 C. June and September are quieter and often sunny, but the water is cooler.",
+    around: "Trains reach most of the big resorts, including Warnemunde, Binz, Timmendorfer Strand and the Usedom resorts on the UBB line. Rostock, Lubeck and Hamburg are the main gateways, and a bike is the best way to explore the Darss and Rugen.",
+    good: "Most resorts charge a small visitor tax (Kurtaxe) per night, and some check beach passes in season. Hooded wicker beach chairs (Strandkorb) can be hired by the day. The currency is the euro, and naturist sections (FKK) are common and clearly signed.",
+    faqs: [
+      ["Is the German Baltic warm enough to swim?", "In July and August the sea is usually around 17 to 20 C, which most people find fresh but fine. Shallow bays warm up first."],
+      ["What is a Strandkorb?", "A hooded wicker beach chair that gives shelter from wind and sun. You can hire one by the day or week on most resort beaches."]
+    ]
+  },
+  poland: {
+    intro: "Poland has about 440 km of Baltic coast, almost all of it fine white sand backed by dunes and pine forest. Highlights range from the lively Tricity resorts of Sopot and Gdynia to the Hel Peninsula, the moving dunes near Leba and the cliffs of Wolin.",
+    when: "The season runs from late June to the end of August, when lifeguards are on duty and the sea is usually around 17 to 19 C. Weekends in July and August are busy, and early September is calmer.",
+    around: "Gdansk, Szczecin and Bydgoszcz have the nearest airports. Trains reach Sopot, Gdynia, Hel, Leba in summer, Ustka, Kolobrzeg, Miedzyzdroje and Swinoujscie, and summer ferries cross from Gdynia and Gdansk to Hel.",
+    good: "The currency is the Polish zloty, and cards are widely accepted. Windbreak screens (parawany) are a Polish beach tradition and can often be hired. Swim in guarded areas marked by flags, as currents can be strong on the open sea.",
+    faqs: [
+      ["When is the Polish Baltic warmest?", "Late July and August, with the sea usually around 18 C. Shallow bays such as the Bay of Puck can be warmer."],
+      ["Which Polish beaches are best for families?", "Calm, shallow water on the Bay of Puck side of the Hel Peninsula suits small children, and the big resorts have guarded beaches and facilities."]
+    ]
+  },
+  ireland: {
+    intro: "Ireland has thousands of kilometres of Atlantic and Irish Sea coast, with wide sandy strands, white shell-sand coves and surf beaches. The west, from Donegal through Connemara to Kerry and Cork, has the most dramatic scenery, while the south-east is drier and sunnier.",
+    when: "The beach season is short, from June to August, with the longest days around June. The sea is cold, usually around 14 to 16 C in summer, so many swimmers wear wetsuits. Weather changes fast, so pack layers even in July.",
+    around: "A car is the easiest way to reach the west coast beaches, as many are at the end of narrow country roads. Dublin, Shannon, Cork and Knock have airports, and DART trains serve the beaches north and south of Dublin.",
+    good: "The currency is the euro. Lifeguards cover many popular beaches at set times in summer, so check the times at the beach. Surf schools work on most Atlantic beaches, and the Wild Atlantic Way route links many of the best ones.",
+    faqs: [
+      ["Can you swim in the sea in Ireland?", "Yes, but the water is cold, usually 14 to 16 C in summer. Swim at lifeguarded beaches, and consider a wetsuit."],
+      ["Which Irish beaches are best for learning to surf?", "Lahinch, Rossnowlagh and Inch have gentle, consistent waves and several surf schools."]
+    ]
+  },
   bulgaria: {
       intro: "Bulgaria's Black Sea coast runs for about 380 kilometres from the Romanian border to Turkey, with long sandy beaches, low cliffs and some of the least developed shoreline in Europe. Big resorts such as Sunny Beach and Albena have wide golden sand and full facilities, while Irakli, Veleka and Krapets are quiet and wild.",
       when: "June to September is the main swimming season, with the warmest sea in July and August. June and September are calmer, while the north coast can feel cooler and windier than the south.",
