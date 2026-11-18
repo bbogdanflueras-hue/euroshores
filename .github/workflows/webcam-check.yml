@@ -1,0 +1,63 @@
+name: Weekly webcam check
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check every webcam link (removes only links that are gone)
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const f = 'gen/generate.js';
+          let src = fs.readFileSync(f, 'utf8');
+          const m = src.match(/const CAMS = (\{[^\n]*\});/);
+          if (!m) { console.log('CAMS not found'); fs.writeFileSync('dead.txt', ''); process.exit(0); }
+          const cams = JSON.parse(m[1]);
+          const sleep = ms => new Promise(r => setTimeout(r, ms));
+          (async () => {
+            const dead = [], seen = {};
+            for (const [id, p] of Object.entries(cams)) {
+              const u = 'https://www.skylinewebcams.com/en/webcam/' + p + '.html';
+              let st = seen[u];
+              if (st === undefined) {
+                for (let t = 0; t < 3; t++) {
+                  try { const r = await fetch(u, { redirect: 'manual', headers: { 'User-Agent': 'Mozilla/5.0 (EuroShores weekly link check)' } }); st = r.status; } catch (e) { st = 0; }
+                  if (st !== 429 && st !== 0 && st < 500) break;
+                  await sleep(15000);
+                }
+                seen[u] = st;
+                await sleep(1500);
+              }
+              console.log(st, id, u);
+              if (st === 404 || st === 410 || (st >= 300 && st < 400)) dead.push(id);
+            }
+            fs.writeFileSync('dead.txt', dead.join(' '));
+            if (dead.length) { dead.forEach(id => delete cams[id]); src = src.replace(m[1], JSON.stringify(cams)); fs.writeFileSync(f, src); }
+            console.log('Dead links removed:', dead.join(', ') || 'none');
+          })();
+          EOF
+      - name: Save and rebuild the site if any link was removed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s dead.txt ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add gen/generate.js
+            git commit -m "Remove dead webcam links: $(cat dead.txt)"
+            git push
+            gh workflow run build.yml
+          fi
