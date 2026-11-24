@@ -34,6 +34,8 @@ function stars(r) { return r.toFixed(1) + ' / 5'; }
 
 const B = D.B.map(b => Object.assign({}, b, { name: plain(b.name), slug: b.id === 'comino' ? 'blue-lagoon-comino' : slug(b.name), loc: plain(b.loc), country: plain(b.country), season: plain(b.season), desc: plain(b.desc), fac: plain(b.fac), park: plain(b.park), tip: plain(b.tip) }));
 B.forEach(b => { const p = D.PH[b.id]; b.wm = p.f; b.cr = p; });
+// Nov 2026: drop placeholder parking text; year-round seasons for subtropical islands, longer season for Cyprus
+B.forEach(b => { if (/not confirmed/i.test(b.park || '')) b.park = ''; const w = (b.loc || '') + ' ' + (b.country || ''); if (/Canary Islands|Tenerife|Gran Canaria|Lanzarote|Fuerteventura|La Gomera|El Hierro|Madeira|Porto Santo/i.test(w)) { b.season = 'Year-round'; b.yr = true; } else if (/Cyprus/i.test(b.country || '')) b.season = 'May\u2013November'; });
 const BY = {}; B.forEach(b => BY[b.id] = b);
 const CANON = { elafonisi: 'elafonissi', catedrales: 'catedrais', brela: 'rata', falasarna: 'falassarna', isaruttas: 'arutas', sessalines: 'salines', fornillo: 'positano', mellieha: 'ghadira' };
 const BU = B.filter(b => !CANON[b.id]);
@@ -77,10 +79,10 @@ Object.assign(DEEP, {"platja-de-pineda-de-mar": "<h2>Before you go: what we chec
 // Hand-written titles/snippets for pages Google already shows on page 1-2 (from Search Console queries, Nov 2026)
 const SNIP = { 'best/family-beaches-in-france/': { title: 'Best Beaches in France for Families: 40 Kid-Friendly Picks', desc: 'The best family beaches in France, ranked: shallow, sheltered sand with easy access in Corsica, the Riviera, Brittany and the Atlantic coast.' }, 'best/family-beaches-in-italy/': { title: 'Best Beaches in Italy for Families: 40 Kid-Friendly Picks', desc: 'The best family beaches in Italy, ranked: gentle sandy shores with easy access in Sardinia, Sicily, Calabria and beyond, with season and tips.' }, 'best/family-beaches-in-europe/': { title: 'Best Family Beaches in Europe: 40 Kid-Friendly Picks', desc: 'The 40 best family-friendly beaches in Europe, ranked from 564: shallow water, soft sand and easy access in Italy, Greece, Spain, France and Cyprus.' }, 'best/best-beaches-in-may/': { title: 'Best Beaches in Europe in May: Where to Go (Ranked)', desc: 'Where to go to the beach in Europe in May: 40 ranked beaches already in season, from Crete to the Balearics, with access and practical tips.' }, 'best/best-beaches-in-june/': { title: 'Best Beaches in Europe in June: Where to Go (Ranked)', desc: 'Where to go to the beach in Europe in June: 40 ranked beaches in season, with best months, access and practical tips for each one.' },
   'guide/budget-beach-holidays-in-europe/': { title: 'Budget Beach Holidays in Europe: Cheapest Coasts 2027', desc: 'Cheap beach breaks in Europe: which coasts cost least, what sunbeds, parking and boats really cost, and how to plan a budget-friendly beach getaway.' },
-  'beach/costa-calma-beach-fuerteventura/': { title: 'Costa Calma Beach, Fuerteventura: Best Time & Tips', desc: 'Costa Calma, Fuerteventura: kilometres of golden sand and shallow water on the Sotavento coast. Best time, wind, parking and tips. Rated 4.5/5.' },
-  'beach/spiaggia-di-riccione/': { title: 'Best Time to Visit Riccione Beach, Italy | EuroShores', desc: 'When to visit Riccione: June to September, with the sea around 24 C. Fine sand, shallow water, numbered bathing clubs and tips for families.' },
-  'beach/itzurun-beach/': { title: 'Itzurun Beach, Zumaia: Flysch Cliffs & Visitor Tips', desc: 'Itzurun Beach in Zumaia: a 270 m golden-sand cove below the famous Basque flysch cliffs. Best time to visit, access, parking and swimming tips.' },
-  'beach/kourouta-beach/': { title: 'Kourouta Beach, Greece: Best Time & Tips | EuroShores', desc: 'Kourouta Beach near Amaliada: a long, wide sandy beach on the Ionian coast of the western Peloponnese. Best time, sea temperature, parking and tips.' },
+  'beach/costa-calma-beach-fuerteventura/': { title: 'Costa Calma Beach, Fuerteventura: Winter Sun, Wind & Tips', desc: 'Costa Calma, south Fuerteventura: about 2 km of sheltered white sand and calm, shallow water. Swimmable all year, sea 18 to 23 C. Wind, parking and tips.' },
+  'beach/spiaggia-di-riccione/': { title: 'When to Visit Riccione Beach: Best Months, Sea & Crowds', desc: 'Best time to visit Riccione: June or September for a warm sea without the July and August crowds. Fine sand, shallow water, bathing clubs and family tips.' },
+  'beach/itzurun-beach/': { title: 'Itzurun Beach, Zumaia: The Game of Thrones Dragonstone', desc: 'Itzurun in Zumaia: the flysch-cliff beach used as Dragonstone in Game of Thrones. When to go at low tide, parking, swimming and the cliff walk.' },
+  'beach/kourouta-beach/': { title: 'Kourouta Beach, Greece: Long Sandy Beach Near Amaliada', desc: 'Kourouta near Amaliada: kilometres of soft sand and shallow water on the Ionian coast of the Peloponnese, about 35 km from Ancient Olympia. Best time, access and tips.' },
   'beach/playa-de-gandia/': { title: 'Playa de Gandia, Spain: Best Time & Tips | EuroShores', desc: 'Playa de Gandia: one of the widest beaches on the Valencia coast, with fine golden sand and shallow water. Best time to visit, parking and tips.' },
   'beach/kalamaki-beach/': { title: 'Kalamaki Beach, Zakynthos: Turtles, Rules & Tips', desc: 'Kalamaki Beach on Laganas Bay, Zakynthos: golden sand inside the protected loggerhead turtle nesting area. What the rules mean, best time and tips.' },
   'beach/lalzit-bay-beach-albania/': { title: 'Lalzi Bay (Lalzit) Beach, Albania: Guide & Tips', desc: 'Lalzi Bay (Lalzit), north of Durres: a long sandy Adriatic beach with calm shallow water. Best time to visit, sea temperature and practical tips.' },
@@ -167,7 +169,7 @@ function write(rel, content) {
 }
 
 const urls = [{ loc: SITE + '/', pri: '1.0' }];
-const month = b => b.season.replace(/\u2013/g, ' to ');
+const month = b => b.yr ? 'all year round' : b.season.replace(/\u2013/g, ' to ');
 
 // ---- beach editorial helpers (general, stable advice derived from each beach's data; no prices or rules)
 const TYPE_NOTE = {
@@ -379,7 +381,7 @@ function infoBox(b) {
   const base = INFO[b.slug] || {};
   const i = Object.assign({}, base, { shoes: shoesFor(b, base), nudism: nudismFor(b) });
   const generic = base.food === 'Cafes, bars or restaurants are close by.';
-  const rows = INFO_ROWS.filter(r => i[r[0]] && !/^Not confirmed\.?$/i.test(i[r[0]]) && (!generic || r[0] === 'shoes' || r[0] === 'nudism')); if (!rows.length) return '';
+  const rows = INFO_ROWS.filter(r => i[r[0]] && !/not confirmed/i.test(i[r[0]]) && (!generic || r[0] === 'shoes' || r[0] === 'nudism')); if (!rows.length) return '';
   return '<h2>Practical info for ' + esc(b.name) + '</h2>\n<table class="info">' + rows.map(r => '<tr><th>' + r[1] + '</th><td>' + esc(i[r[0]]) + '</td></tr>').join('') + '</table>\n<p class="credit">Last verified: October 2026. Compiled from official tourism pages, visitor guides and recent reports. Prices, fees and rules change by season, so confirm locally before you go. Details are compiled from public sources and may be out of date, so local rules and signs always take priority. EuroShores accepts no liability for errors.</p>';
 }
 
@@ -550,7 +552,7 @@ function regionBlock(list, up) { const hs = hubsFor(list); return hs.length ? '<
 // ---- extra per-beach sections (data-driven)
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 function seasonMonths(season) {
-  const t = String(season);
+  const t = String(season); if (/year-round/i.test(t)) return MONTHS.slice();
   const f = MONTHS.filter(m => t.includes(m)).sort((x, y) => t.indexOf(x) - t.indexOf(y));
   if (!f.length) return null;
   const a = MONTHS.indexOf(f[0]), z = MONTHS.indexOf(f[f.length - 1]);
@@ -569,7 +571,9 @@ function extraSections(b, more, nearD) {
   const ms = seasonMonths(b.season);
   const nodotx = x => String(x || '').replace(/[.\s]+$/, '');
   let when = '';
-  if (ms && ms.length >= 3) {
+  if (b.yr) {
+    when = '<p>You can swim at ' + esc(b.name) + ' all year. The sea is coolest in February and March, at about 18 to 19 &deg;C, and warmest from August to October, at about 22 to 23 &deg;C. Winter, from November to April, is the main season for visitors looking for sun; July, August, Christmas and Easter are the busiest times.</p>';
+  } else if (ms && ms.length >= 3) {
     const peak = ms.slice(1, -1);
     when = pick(b.slug + 'w', ['<p>The swimming season here runs from ' + ms[0] + ' to ' + ms[ms.length - 1] + '. ' + peak.join(', ') + (peak.length > 1 ? ' are' : ' is') + ' the warmest and busiest, with the sea around ' + b.temp + ' &deg;C, so arrive early for parking and a good spot. ' + ms[0] + ' and ' + ms[ms.length - 1] + ' are quieter and cooler: good for walking and photos, though some beach bars and lifeguard posts may not be open yet or may already have closed for the year.</p>', '<p>Most people swim at ' + esc(b.name) + ' between ' + ms[0] + ' and ' + ms[ms.length - 1] + '. The warmest and busiest ' + (peak.length > 1 ? 'months are ' : 'month is ') + peak.join(', ') + ', when the sea sits around ' + b.temp + ' &deg;C. Shoulder months bring cooler water and fewer crowds, although some bars and lifeguard posts may be closed.</p>', '<p>' + esc(b.name) + ' is at its best from ' + ms[0] + ' to ' + ms[ms.length - 1] + '. Expect the sea near ' + b.temp + ' &deg;C and the biggest crowds in ' + peak.join(', ') + ', so get there early for parking. A visit in ' + ms[0] + ' or ' + ms[ms.length - 1] + ' is calmer, but check that facilities are open.</p>', '<p>The season at ' + esc(b.name) + ' stretches from ' + ms[0] + ' to ' + ms[ms.length - 1] + ', with ' + peak.join(', ') + ' the peak (sea about ' + b.temp + ' &deg;C). Early and late visits mean quieter sand and cooler water, and seasonal services may not yet be running.</p>']);
   } else {
@@ -587,7 +591,7 @@ function extraSections(b, more, nearD) {
   if (/^\s*(none|no|few)\b|\bnone\b|\bno facilities\b/i.test(b.fac || '')) who.push('There are few or no facilities on the sand, so bring water, food and shade.');
   else if (/bar|restaurant|chiringuito|cafe|kiosk|taverna/i.test(b.fac || '')) who.push('Food and drink close by make it easy to stay for the whole day.');
   const near = (more || []).filter(x => nearD && nearD[x.id] != null).slice(0, 3);
-  let there = '<p>' + esc(nodotx(b.park)) + '. Use the map link above for directions.';
+  let there = '<p>' + (b.park ? esc(nodotx(b.park)) + '. ' : '') + 'Use the map link above for directions.';
   if (near.length) there += ' If you are planning a day around it, the closest other beaches on our list are ' + near.map(x => '<a href="../' + x.slug + '/">' + esc(x.name) + '</a> (' + Math.round(nearD[x.id]) + ' km)').join(', ') + '.';
   there += '</p>';
   return gal2(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
@@ -603,12 +607,9 @@ B.forEach(b => {
   const others = near.filter(p => p[0].country === b.country).slice(0, 6).map(p => p[0]);
   const more = others.length >= 3 ? others : near.slice(0, 6).map(p => p[0]);
   const faqs = [
-    ['When is the best time to visit ' + b.name + '?', b.name + ' is best visited ' + month(b) + '. The sea is typically around ' + b.temp + ' \u00b0C in season. ' + b.tip],
-    ['How do I get to ' + b.name + '?', 'Access is rated ' + b.access.toLowerCase() + '. ' + b.park + '.'],
-    ['What facilities does ' + b.name + ' have?', b.fac + '.'],
-    ['Where is ' + b.name + '?', b.name + ' is in ' + city + ' (approx. coordinates ' + b.lat + ', ' + b.lng + ').'],
-    ['Is ' + b.name + ' good for children?', b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink') ? 'Access is rated easy and the beach is sandy, which usually suits families. Check water and weather conditions on the day and keep children in sight near the water.' : 'Access is rated ' + b.access.toLowerCase() + ', so check that it suits young children before you go. Our family guide lists easier options.'],
-    ['What should I bring to ' + b.name + '?', 'Facilities: ' + b.fac + '. ' + (b.type === 'pebble' || b.type === 'rocky' ? 'Water shoes help on the ' + (b.type === 'pebble' ? 'pebbles' : 'rocks') + '. ' : 'A hat and sun protection are useful. ') + 'Bring water and snacks if there is no kiosk or restaurant.']
+    ['When is the best time to visit ' + b.name + '?', b.name + ' is best visited ' + month(b) + '. ' + (b.yr ? 'The sea stays between about 18 and 23 \u00b0C through the year. ' : 'The sea is typically around ' + b.temp + ' \u00b0C in season. ') + b.tip],
+    ['How do I get to ' + b.name + '?', 'Access is rated ' + b.access.toLowerCase() + '.' + (b.park ? ' ' + b.park + '.' : ' Use the map link on this page for directions.')],
+    ['Is ' + b.name + ' good for children?', b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink') ? 'Access is rated easy and the beach is sandy, which usually suits families. Check water and weather conditions on the day and keep children in sight near the water.' : 'Access is rated ' + b.access.toLowerCase() + ', so check that it suits young children before you go. Our family guide lists easier options.']
   ];
   const inf = INFO[b.slug]; const nodot = s => String(s).replace(/[.\s]+$/, '');
   if (inf && (inf.parking || inf.camper)) faqs.push(['Is there parking at ' + b.name + '?', [inf.parking, inf.camper && ('Campers and motorhomes: ' + inf.camper)].filter(Boolean).map(nodot).join('. ') + '. Fees and rules change, so confirm locally.']);
@@ -647,18 +648,17 @@ B.forEach(b => {
 <p class="lead">${esc(b.desc)}</p>
 <div class="facts">
 <div class="fact"><b>Best season</b>${esc(b.season)}</div>
-<div class="fact"><b>Water temperature</b>About ${b.temp} &deg;C in season</div>
+<div class="fact"><b>Water temperature</b>${b.yr ? 'About 18&ndash;19 &deg;C in late winter, 22&ndash;23 &deg;C in early autumn' : 'About ' + b.temp + ' &deg;C in season'}</div>
 <div class="fact"><b>Access</b>${esc(b.access)}</div>
 <div class="fact"><b>Beach type</b>${esc(b.tag)}</div>
 <div class="fact"><b>Facilities</b>${esc(b.fac)}</div>
-<div class="fact"><b>Getting there &amp; parking</b>${esc(b.park)}</div>
+${b.park ? '<div class="fact"><b>Getting there &amp; parking</b>' + esc(b.park) + '</div>' : ''}
 </div>
 <div class="tip"><b>Local tip:</b> ${esc(b.tip)}</div>
 ${infoBox(b)}${camBox(b)}${DEEP[b.slug] || ''}
 <h2>Planning your visit to ${esc(b.name)}</h2>
-<p>${esc(TYPE_NOTE[b.type] || '')}</p>
 <p>${esc(ACC_VAR[b.access] ? pick(b.slug + 'a', ACC_VAR[b.access]) : '')}</p>
-<p>The usual season runs ${esc(b.season)}. Visiting near the start or end of that window usually means fewer people, but the sea is cooler and some facilities may not be open yet or may have closed for the year.${b.gem ? ' We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.' : ''}</p>
+${b.gem ? '<p>We flag this beach as a hidden gem, so it is quieter than the headline beaches nearby, but it is no secret: arrive early in peak summer.</p>' : ''}
 <p>Related guides: ${relGuides(b).map(g => `<a href="../../guide/${g[0]}/">${esc(g[1])}</a>`).join(' &middot; ')}${hubLink(b)}</p>
 ${LISTS.linksFor(b)}
 <p><a href="https://www.openstreetmap.org/?mlat=${b.lat}&amp;mlon=${b.lng}#map=14/${b.lat}/${b.lng}" rel="noopener">View ${esc(b.name)} on the map</a> &middot; <a href="../../#beaches">Compare with all beaches</a></p>
