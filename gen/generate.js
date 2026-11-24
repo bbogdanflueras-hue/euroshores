@@ -21,6 +21,7 @@ const GC = 'euroshores';
 const gcTag = () => GC ? '<!--gc--><script data-goatcounter="https://' + GC + '.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><!--/gc-->' : '';
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 let INFO = {}; try { INFO = JSON.parse(fs.readFileSync(path.join(__dirname, 'beach-info.json'), 'utf8')); } catch (e) { /* no practical info file */ }
+for (const k in INFO) for (const f in INFO[k]) if (typeof INFO[k][f] === 'string' && /not confirmed/i.test(INFO[k][f])) delete INFO[k][f];
 
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", eacute: '\u00e9', mdash: '\u2014', ndash: '\u2013', hellip: '\u2026', frac12: '\u00bd', nbsp: ' ', rsquo: '\u2019', lsquo: '\u2018', deg: '\u00b0', middot: '\u00b7', egrave: '\u00e8', agrave: '\u00e0', ccedil: '\u00e7', ocirc: '\u00f4' };
 function dec(s) { return String(s).replace(/&#x([0-9a-f]+);/gi, (m, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&([a-z]+);/gi, (m, n) => ENT[n] !== undefined ? ENT[n] : m); }
