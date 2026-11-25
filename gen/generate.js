@@ -22,6 +22,36 @@ const gcTag = () => GC ? '<!--gc--><script data-goatcounter="https://' + GC + '.
 const WM = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
 let INFO = {}; try { INFO = JSON.parse(fs.readFileSync(path.join(__dirname, 'beach-info.json'), 'utf8')); } catch (e) { /* no practical info file */ }
 for (const k in INFO) for (const f in INFO[k]) if (typeof INFO[k][f] === 'string' && /not confirmed/i.test(INFO[k][f])) delete INFO[k][f];
+// Monthly sea surface temperature per beach (gen/sst.json, NOAA OISST v2.1 1991-2020 climatology, built by gen/fetch_sst.py)
+let SST = {}; try { SST = JSON.parse(fs.readFileSync(path.join(__dirname, 'sst.json'), 'utf8')); } catch (e) { /* no sea temperature file */ }
+const MON3 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function sstStats(b) {
+  const s = SST[b.slug]; if (!s || s.length !== 12) return null;
+  const r = s.map(v => Math.round(v));
+  const hi = Math.max(...r), lo = Math.min(...r);
+  return { r, hi, lo, imax: r.indexOf(hi), imin: r.indexOf(lo) };
+}
+function sstFact(b) {
+  const t = sstStats(b); if (!t) return '';
+  return 'About ' + t.lo + '&ndash;' + t.hi + ' &deg;C through the year (warmest in ' + MONTHS[t.imax] + ')';
+}
+function sstSentence(b) {
+  const t = sstStats(b); if (!t) return '';
+  return 'On average the sea is warmest in ' + MONTHS[t.imax] + ', at about ' + t.hi + ' °C, and coolest in ' + MONTHS[t.imin] + ', at about ' + t.lo + ' °C. ';
+}
+function sstTable(b) {
+  const t = sstStats(b); if (!t) return '';
+  const { r, hi, lo } = t;
+  const warm = r.map((v, i) => v >= 21 ? i : -1).filter(i => i >= 0);
+  const span = hi === lo ? 1 : hi - lo;
+  const cell = v => { const k = (v - lo) / span; const bg = v >= 21 ? 'rgba(232,160,32,' + (0.18 + 0.4 * k).toFixed(2) + ')' : 'rgba(15,74,99,' + (0.05 + 0.15 * (1 - k)).toFixed(2) + ')'; return '<td style="text-align:center;padding:6px 2px;background:' + bg + '">' + v + '</td>'; };
+  let note;
+  if (warm.length === 12) note = 'The sea stays at 21 &deg;C or warmer all year.';
+  else if (!warm.length) note = 'The sea stays below 21 &deg;C all year, so expect a bracing swim even in summer, or bring a wetsuit.';
+  else note = 'The sea is at 21 &deg;C or warmer, comfortable for most swimmers, from ' + MONTHS[warm[0]] + ' to ' + MONTHS[warm[warm.length - 1]] + '.';
+  return '<h3>Average sea temperature by month (&deg;C)</h3>\n<div style="overflow-x:auto"><table class="sst" style="width:100%;min-width:520px;border-collapse:collapse;font-size:14px;margin:8px 0"><tr>' + MON3.map(m => '<th style="text-align:center;padding:4px 2px;font-weight:600">' + m + '</th>').join('') + '</tr><tr>' + r.map(cell).join('') + '</tr></table></div>\n<p>' + note + ' The warmest month is ' + MONTHS[t.imax] + ' (about ' + hi + ' &deg;C) and the coolest is ' + MONTHS[t.imin] + ' (about ' + lo + ' &deg;C).</p>\n<p class="credit">Average sea surface temperature for 1991&ndash;2020 at the nearest offshore point, from NOAA OISST v2.1 (NOAA Physical Sciences Laboratory). Water at the shore can be a degree or two warmer in shallow, sheltered bays and cooler where winds or currents bring up cold water.</p>\n';
+}
+
 
 const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", eacute: '\u00e9', mdash: '\u2014', ndash: '\u2013', hellip: '\u2026', frac12: '\u00bd', nbsp: ' ', rsquo: '\u2019', lsquo: '\u2018', deg: '\u00b0', middot: '\u00b7', egrave: '\u00e8', agrave: '\u00e0', ccedil: '\u00e7', ocirc: '\u00f4' };
 function dec(s) { return String(s).replace(/&#x([0-9a-f]+);/gi, (m, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&([a-z]+);/gi, (m, n) => ENT[n] !== undefined ? ENT[n] : m); }
@@ -595,7 +625,7 @@ function extraSections(b, more, nearD) {
   let there = '<p>' + (b.park ? esc(nodotx(b.park)) + '. ' : '') + 'Use the map link above for directions.';
   if (near.length) there += ' If you are planning a day around it, the closest other beaches on our list are ' + near.map(x => '<a href="../' + x.slug + '/">' + esc(x.name) + '</a> (' + Math.round(nearD[x.id]) + ' km)').join(', ') + '.';
   there += '</p>';
-  return gal2(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
+  return gal2(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + sstTable(b) + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
 }
 
 // ---- beach pages
@@ -608,7 +638,7 @@ B.forEach(b => {
   const others = near.filter(p => p[0].country === b.country).slice(0, 6).map(p => p[0]);
   const more = others.length >= 3 ? others : near.slice(0, 6).map(p => p[0]);
   const faqs = [
-    ['When is the best time to visit ' + b.name + '?', b.name + ' is best visited ' + month(b) + '. ' + (b.yr ? 'The sea stays between about 18 and 23 \u00b0C through the year. ' : 'The sea is typically around ' + b.temp + ' \u00b0C in season. ') + b.tip],
+    ['When is the best time to visit ' + b.name + '?', b.name + ' is best visited ' + month(b) + '. ' + (sstSentence(b) || (b.yr ? 'The sea stays between about 18 and 23 \u00b0C through the year. ' : 'The sea is typically around ' + b.temp + ' \u00b0C in season. ')) + b.tip],
     ['How do I get to ' + b.name + '?', 'Access is rated ' + b.access.toLowerCase() + '.' + (b.park ? ' ' + b.park + '.' : ' Use the map link on this page for directions.')],
     ['Is ' + b.name + ' good for children?', b.access === 'Easy' && (b.type === 'sandy' || b.type === 'pink') ? 'Access is rated easy and the beach is sandy, which usually suits families. Check water and weather conditions on the day and keep children in sight near the water.' : 'Access is rated ' + b.access.toLowerCase() + ', so check that it suits young children before you go. Our family guide lists easier options.']
   ];
@@ -649,7 +679,7 @@ B.forEach(b => {
 <p class="lead">${esc(b.desc)}</p>
 <div class="facts">
 <div class="fact"><b>Best season</b>${esc(b.season)}</div>
-<div class="fact"><b>Water temperature</b>${b.yr ? 'About 18&ndash;19 &deg;C in late winter, 22&ndash;23 &deg;C in early autumn' : 'About ' + b.temp + ' &deg;C in season'}</div>
+<div class="fact"><b>Water temperature</b>${sstFact(b) || (b.yr ? 'About 18&ndash;19 &deg;C in late winter, 22&ndash;23 &deg;C in early autumn' : 'About ' + b.temp + ' &deg;C in season')}</div>
 <div class="fact"><b>Access</b>${esc(b.access)}</div>
 <div class="fact"><b>Beach type</b>${esc(b.tag)}</div>
 <div class="fact"><b>Facilities</b>${esc(b.fac)}</div>
