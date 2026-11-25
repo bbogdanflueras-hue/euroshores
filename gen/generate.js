@@ -5,6 +5,8 @@ const INDEX = path.join(ROOT, 'index.html');
 let P2 = {}; try { P2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'gen', 'photos2.json'), 'utf8')); } catch (e) { /* no second photos */ }
 function gal2(b) { const p = P2[b.id]; if (!p || !fs.existsSync(path.join(ROOT, 'img', b.id + '-2-800.webp'))) return ''; const fl = encodeURIComponent(p.f).replace(/\(/g, '%28').replace(/\)/g, '%29'); return '<figure style="margin:18px 0"><img class="hero" src="../../img/' + b.id + '-2-800.webp" alt="' + esc(b.name) + ' - another view" loading="lazy" width="800" height="450"/><figcaption class="credit">Photo: ' + esc(p.by) + ', ' + esc(p.lic) + ', via <a href="https://commons.wikimedia.org/wiki/File:' + fl + '" rel="noopener">Wikimedia Commons</a></figcaption></figure>\n'; }
 
+let PX = {}; try { PX = JSON.parse(fs.readFileSync(path.join(ROOT, 'gen', 'photosx.json'), 'utf8')); } catch (e) { /* no extra photos */ }
+function galX(b) { const L = (PX[b.id] || []).map((p, i) => ({ p: p, n: i + 3 })).filter(o => fs.existsSync(path.join(ROOT, 'img', b.id + '-' + o.n + '-800.webp'))); if (!L.length) return ''; return '<h2>More photos of ' + esc(b.name) + '</h2>\n<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0 20px">' + L.map(o => { const fl = encodeURIComponent(o.p.f).replace(/\(/g, '%28').replace(/\)/g, '%29'); return '<figure style="margin:0"><img src="../../img/' + b.id + '-' + o.n + '-800.webp" alt="' + esc(b.name) + ', photo ' + o.n + '" loading="lazy" width="800" height="450" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px"/><figcaption class="credit">Photo: ' + esc(o.p.by) + ', ' + esc(o.p.lic) + ', via <a href="https://commons.wikimedia.org/wiki/File:' + fl + '" rel="noopener">Wikimedia Commons</a></figcaption></figure>'; }).join('') + '</div>\n'; }
 const src = fs.readFileSync(INDEX, 'utf8');
 const DATAJS = path.join(ROOT, 'data.js');
 const HAS_DATAJS = fs.existsSync(DATAJS);
@@ -630,7 +632,7 @@ function extraSections(b, more, nearD) {
   let there = '<p>' + (b.park ? esc(nodotx(b.park)) + '. ' : '') + 'Use the map link above for directions.';
   if (near.length) there += ' If you are planning a day around it, the closest other beaches on our list are ' + near.map(x => '<a href="../' + x.slug + '/">' + esc(x.name) + '</a> (' + Math.round(nearD[x.id]) + ' km)').join(', ') + '.';
   there += '</p>';
-  return gal2(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + sstTable(b) + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
+  return gal2(b) + galX(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + sstTable(b) + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
 }
 
 // ---- beach pages
