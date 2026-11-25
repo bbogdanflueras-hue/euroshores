@@ -1,0 +1,27 @@
+name: Fetch sea temperatures
+on:
+  push:
+    paths:
+      - 'gen/fetch-sst.js'
+      - '.github/workflows/sst.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sst:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node gen/fetch-sst.js
+      - name: Commit sea temperature data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gen/sst.json
+          git diff --cached --quiet || git commit -m "Update monthly sea temperatures (NOAA OISST)"
+          git pull --rebase
+          git push
