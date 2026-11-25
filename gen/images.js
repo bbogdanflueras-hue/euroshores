@@ -54,3 +54,16 @@ async function get(url) {
  }
 })();
 })();
+(async () => {
+  let PX = {}; try { PX = JSON.parse(fs.readFileSync(path.join(__dirname, 'photosx.json'), 'utf8')); } catch (e) { return; }
+  for (const id of Object.keys(PX)) {
+    for (let i = 0; i < PX[id].length; i++) {
+      const f = path.join(OUT, id + '-' + (i + 3) + '-800.webp');
+      if (fs.existsSync(f)) continue;
+      const url = 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(PX[id][i].f).replace(/\(/g, '%28').replace(/\)/g, '%29') + '?width=1000';
+      try { const buf = await get(url); await sharp(buf).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 72 }).toFile(f); }
+      catch (e) { console.log('imageX failed', id, i, e.message); }
+      await sleep(1200);
+    }
+  }
+})();
