@@ -636,6 +636,67 @@ function extraSections(b, more, nearD) {
   return gal2(b) + galX(b) + '<h2>Best months to visit ' + esc(b.name) + '</h2>\n' + when + sstTable(b) + '\n<h2>Who ' + esc(b.name) + ' suits</h2>\n<p>' + who.join(' ') + '</p>\n<h2>Getting there and nearby</h2>\n' + there;
 }
 
+// ---- redesigned beach page layout (rolled out gradually via REDESIGN)
+const REDESIGN = new Set(['balos-lagoon']);
+const RD_ICON = {
+  type: '<path d="M2 20c3-2 6-2 9 0s6 2 9 0"/><path d="M4 16c2.5-1.5 5-1.5 7.5 0"/><circle cx="17" cy="7" r="3"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  temp: '<path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"/>',
+  park: '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>',
+  fac: '<path d="M4 21h16M6 21V10l6-6 6 6v11"/><path d="M10 21v-6h4v6"/>',
+  walk: '<circle cx="13" cy="4" r="2"/><path d="M9 21l2-6 3 3v3M7 12l3-3 3 2 3 1M11 15l-1-4"/>',
+  ticket: '<path d="M3 8a2 2 0 0 0 0 4v4h18v-4a2 2 0 0 0 0-4V4H3z"/><path d="M13 4v16" stroke-dasharray="2 2"/>'
+};
+function rdIcon(k) { return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + RD_ICON[k] + '</svg>'; }
+function rdFacts(b) {
+  const f = [];
+  f.push(['type', 'Beach', b.tag || b.type || '']);
+  f.push(['sun', 'Best time', b.yr ? 'All year' : (b.season || '')]);
+  const s = (typeof SST !== 'undefined' && SST[b.slug]) ? SST[b.slug] : null;
+  if (s && s[7] != null) f.push(['temp', 'Sea in August', Math.round(s[7]) + ' °C']);
+  const p = String(b.park || '');
+  let pk = '';
+  if (/boat only|no car|no road|on foot only|no parking/i.test(p)) pk = 'No car access';
+  else if (/free/i.test(p) && !/paid|fee|€|eur/i.test(p)) pk = 'Free';
+  else if (/paid|fee|€|eur|charge/i.test(p)) pk = 'Paid';
+  else if (p) pk = 'Available';
+  if (pk) f.push(['park', 'Parking', pk]);
+  const fc = String(b.fac || '');
+  let fv = '';
+  if (/^\s*(none|no)\b|no facilities|none on/i.test(fc)) fv = 'None';
+  else if (/bar|restaurant|taverna|chiringuito|sunbed|kiosk|cafe/i.test(fc)) fv = 'Bars & sunbeds';
+  else if (fc) fv = 'Basic';
+  if (fv) f.push(['fac', 'Facilities', fv]);
+  if (b.access) f.push(['walk', 'Access', b.access]);
+  const d = (typeof DEEP !== 'undefined' && DEEP[b.slug]) ? DEEP[b.slug] : '';
+  if (/booking (is )?(required|needed|mandatory)|must be booked|booked online|free permit|authori[sz]ation|need a booking|places are limited/i.test(d)) f.push(['ticket', 'Booking', 'Needed in summer']);
+  return '<div class="bfacts">' + f.filter(x => x[2]).map(x => '<div class="bfact">' + rdIcon(x[0]) + '<div><b>' + x[1] + '</b><span>' + esc(String(x[2])) + '</span></div></div>').join('') + '</div>';
+}
+function redesign(b, body, more, nearD) {
+  const m = body.match(/<h1>([\s\S]*?)<\/h1>\n<p>(<span class="score">[\s\S]*?)<\/p>\n(<img class="hero"[^>]*\/>)\n(<p class="credit">[\s\S]*?<\/p>)\n/);
+  if (!m) return body;
+  const head = body.slice(0, m.index);
+  const rest = body.slice(m.index + m[0].length);
+  const nPhotos = 1 + (typeof P2 !== 'undefined' && P2[b.id] ? 1 : 0) + ((typeof PX !== 'undefined' && PX[b.id]) ? PX[b.id].length : 0);
+  const hero = '<div class="bhero">' + m[3] + (nPhotos > 1 ? '<span class="bhero-count" data-lb="0">▣ ' + nPhotos + ' photos</span>' : '') +
+    '<div class="bhero-txt"><h1>' + m[1] + '</h1><p class="bhero-meta">' + m[2] + '</p></div></div>\n' + m[4] + '\n<div id="bactions"></div>\n' + rdFacts(b) + '\n';
+  const bb = 0.02, ba = 0.012;
+  const map = '<iframe class="bmap" loading="lazy" title="Map of ' + esc(b.name) + '" src="https://www.openstreetmap.org/export/embed.html?bbox=' + (b.lng - bb).toFixed(4) + '%2C' + (b.lat - ba).toFixed(4) + '%2C' + (b.lng + bb).toFixed(4) + '%2C' + (b.lat + ba).toFixed(4) + '&amp;layer=mapnik&amp;marker=' + b.lat + '%2C' + b.lng + '"></iframe><p style="margin:6px 0 0;font-size:13px"><a href="https://www.openstreetmap.org/?mlat=' + b.lat + '&amp;mlon=' + b.lng + '#map=14/' + b.lat + '/' + b.lng + '" rel="noopener">Open larger map</a></p>';
+  const near = (more || []).slice(0, 4).map(x => '<a href="../' + x.slug + '/"><img src="' + imgUrl(x, 500) + '" alt="" loading="lazy" width="64" height="48"/><span><strong>' + esc(x.name) + '</strong><br/><small>' + (nearD && nearD[x.id] != null ? Math.round(nearD[x.id]) + ' km away' : esc(x.loc)) + '</small></span></a>').join('');
+  const side = '<aside class="bside"><div class="bcard"><h3>Location</h3>' + map + '</div>' + (near ? '<div class="bcard bnear"><h3>Nearby beaches</h3>' + near + '</div>' : '') + '</aside>';
+  const lb = '<div class="lb" id="lb" role="dialog" aria-label="Photo viewer"><button class="lbx" aria-label="Close">×</button><button class="lbp" aria-label="Previous">‹</button><img alt=""/><button class="lbn" aria-label="Next">›</button><div class="lbc"></div></div>' +
+    '<script>(function(){var h=document.querySelector(".bhero h1"),t=document.getElementById("bactions");if(h&&t){var mv=function(){var n;while((n=h.nextElementSibling)&&!n.classList.contains("bhero-meta"))t.appendChild(n)};new MutationObserver(mv).observe(h.parentNode,{childList:true});mv()}' +
+    'var L=document.getElementById("lb"),I=L.querySelector("img"),C=L.querySelector(".lbc"),ims=[].slice.call(document.querySelectorAll(".bhero img.hero, main figure img")),k=0;' +
+    'function src(e){return e.currentSrc&&e.classList.contains("hero")?e.getAttribute("src"):(e.currentSrc||e.src)}' +
+    'function show(i){k=(i+ims.length)%ims.length;I.src=src(ims[k]);I.alt=ims[k].alt;C.textContent=(k+1)+" / "+ims.length;L.classList.add("on")}' +
+    'ims.forEach(function(e,i){e.addEventListener("click",function(){show(i)})});var hc=document.querySelector(".bhero-count");if(hc)hc.addEventListener("click",function(){show(0)});' +
+    'L.querySelector(".lbx").onclick=function(){L.classList.remove("on")};L.querySelector(".lbp").onclick=function(){show(k-1)};L.querySelector(".lbn").onclick=function(){show(k+1)};' +
+    'L.addEventListener("click",function(e){if(e.target===L)L.classList.remove("on")});document.addEventListener("keydown",function(e){if(!L.classList.contains("on"))return;if(e.key==="Escape")L.classList.remove("on");if(e.key==="ArrowLeft")show(k-1);if(e.key==="ArrowRight")show(k+1)});' +
+    'var x0=null;L.addEventListener("touchstart",function(e){x0=e.touches[0].clientX},{passive:true});L.addEventListener("touchend",function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)show(k+(d<0?1:-1));x0=null});})();</script>';
+  return '<style>' + RD_CSS + '</style>\n' + head + hero + '<div class="bx"><div class="bmain">' + rest + '</div>' + side + '</div>\n' + lb;
+}
+const RD_CSS = 'main:has(.bhero){max-width:1240px}.bhero{position:relative;border-radius:18px;overflow:hidden;margin:4px 0 6px;background:#0f4a63}.bhero img.hero{display:block;margin:0;border-radius:0;width:100%;aspect-ratio:21/9;object-fit:cover;cursor:zoom-in}@media(max-width:760px){.bhero img.hero{aspect-ratio:4/3}}.bhero-txt{position:absolute;left:0;right:0;bottom:0;padding:70px 28px 22px;background:linear-gradient(rgba(5,25,35,0),rgba(5,25,35,.82));color:#fff;pointer-events:none}.bhero-txt h1{color:#fff;margin:0 0 6px;text-shadow:0 2px 14px rgba(0,0,0,.35)}.bhero-meta{margin:0;font-size:16px;color:#eaf3f6}.bhero-count{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:600;padding:6px 12px;border-radius:20px;cursor:pointer}#bactions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 2px}#bactions>div{margin:0!important}.bfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0 6px}.bfact{background:#fff;border:1px solid #e8ecf0;border-radius:12px;padding:12px 14px;display:flex;gap:11px;align-items:center}.bfact svg{flex:none;color:#0f6e8a}.bfact b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:#6b7a8d;font-weight:600}.bfact span{display:block;font-weight:600;color:#1a1a2e;font-size:15px;line-height:1.3}.bx{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:36px;align-items:start}.bside{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px;margin-top:34px}.bcard{background:#fff;border:1px solid #e8ecf0;border-radius:14px;padding:14px}.bcard h3{font-family:"Playfair Display",serif;color:#0f4a63;font-size:18px;margin:0 0 8px}.bmap{width:100%;height:230px;border:0;border-radius:10px;display:block}.bnear a{display:flex;gap:10px;align-items:center;text-decoration:none;color:inherit;padding:8px 0;border-top:1px solid #f0f2f4}.bnear img{width:64px;height:48px;object-fit:cover;border-radius:8px;flex:none}.bnear small{color:#6b7a8d}@media(max-width:980px){.bx{grid-template-columns:1fr;gap:0}.bside{position:static;margin-top:24px}}main figure img{cursor:zoom-in}.lb{position:fixed;inset:0;background:rgba(5,15,22,.94);z-index:9999;display:none;align-items:center;justify-content:center}.lb.on{display:flex}.lb img{max-width:92vw;max-height:84vh;border-radius:8px}.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;font-size:30px;line-height:1;width:50px;height:50px;border-radius:50%;cursor:pointer}.lb .lbx{top:16px;right:16px}.lb .lbp{left:16px;top:calc(50% - 25px)}.lb .lbn{right:16px;top:calc(50% - 25px)}.lb .lbc{position:absolute;bottom:18px;color:#fff;font-size:14px}';
+
 // ---- beach pages
 B.forEach(b => {
   const rel = 'beach/' + b.slug + '/';
@@ -720,7 +781,7 @@ ${faqs.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></de
 <div class="grid">${more.map(x => `<a class="card" href="../${x.slug}/"><img src="${imgUrl(x, 500)}" alt="${esc(x.name)}" loading="lazy" width="500" height="333"/><div><h3>${esc(x.name)}</h3><small>${esc(x.loc)} &middot; ${stars(x.rating)}${nearD[x.id] != null ? ' &middot; ' + Math.round(nearD[x.id]) + ' km away' : ''}</small></div></a>`).join('')}</div>
 <p>Browse all <a href="../../country/${slug(b.country)}/">beaches in ${esc(b.country)}</a> or <a href="../../#beaches">compare every beach</a>.</p>
 <p>Water quality: check the official <a href="https://www.eea.europa.eu/themes/water/europes-seas-and-coasts/assessments/state-of-bathing-water" target="_blank" rel="noopener">EU bathing water report</a> and the <a href="https://www.blueflag.global/" target="_blank" rel="noopener">Blue Flag programme</a> for the current status of this beach, because classifications change every year. See our <a href="../../guide/blue-flag-vs-bathing-water-quality-how-to-check-a-beach/">guide to checking water quality</a>.</p><p style="margin-top:22px">Scores are editorial ratings from the ${NAME} team, based on public tourism and visitor sources; see <a href="../../guide/how-to-read-a-beach-rating-on-euroshores/">how to read a rating</a>. Last updated ${D.updated}.</p>`;
-  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body, ogimg: image, ld, canon: CANON[b.id] ? 'beach/' + BY[CANON[b.id]].slug + '/' : '', noindex: THIN.has(b.slug) }));
+  write(rel + 'index.html', layout({ depth: 2, path: rel, title, desc, body: REDESIGN.has(b.slug) ? redesign(b, body, more, nearD) : body, ogimg: image, ld, canon: CANON[b.id] ? 'beach/' + BY[CANON[b.id]].slug + '/' : '', noindex: THIN.has(b.slug) }));
   if (!CANON[b.id] && !THIN.has(b.slug)) urls.push({ loc: SITE + '/' + rel, pri: '0.8' });
 });
 
